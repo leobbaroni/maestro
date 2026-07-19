@@ -39,6 +39,7 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | Planning any video (story, beats, pacing, transitions) | `video-direction.md` |
 | Rendering video from HTML | `video-hyperframes.md` |
 | Rendering video from React | `video-remotion.md` |
+| Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` |
 | iOS / Android / desktop-native design or motion | `platform-native.md` |
 | Process questions (grilling, mockups, phases, verification) | `process.md` |
 
@@ -51,7 +52,7 @@ Load combinations freely — a scroll-driven 3D landing page needs `design-found
 | Situation | Engine |
 |---|---|
 | Simple state/entrance transitions | CSS (transitions, keyframes, view transitions) |
-| React app, layout/gesture/spring animations | Motion (Framer Motion) |
+| React app, layout/gesture/spring animations | Motion — prev. Framer Motion; install `motion`, import `motion/react` |
 | Timeline choreography, scroll-driven stories, text splitting, SVG morph | GSAP |
 | One-off programmatic tween, no dependency budget | WAAPI |
 

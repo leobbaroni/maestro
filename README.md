@@ -54,7 +54,7 @@ it the best way my harness supports — Claude Code plugin via
 available to me as a user command (tell me to run those two commands), otherwise copy
 skills/maestro into my user skills directory (~/.claude/skills/maestro on macOS/Linux,
 %USERPROFILE%\.claude\skills\maestro on Windows); (3) verify the install by listing the
-skill and confirming skills/maestro/references contains 14 modules; (4) tell me the two
+skill and confirming skills/maestro/references contains 15 modules; (4) tell me the two
 ways to trigger it (just asking for design/motion/video work, or /maestro) and that
 substantial requests start with a short interview (the Grill Gate) — that's by design;
 (5) optionally run "node scripts/check-upstreams.mjs" and tell me if the upstream
@@ -83,7 +83,8 @@ maestro/
 │       ├── video-direction.md   ← story spine, beats, pacing, kinetic type, transitions
 │       ├── video-hyperframes.md ← the HTML-to-video engine: composition contract + CLI loop
 │       ├── video-remotion.md    ← the React-to-video engine: timing, sequencing, rendering
-│       └── platform-native.md   ← iOS/Android/desktop: gestures, SwiftUI/Compose motion
+│       ├── platform-native.md   ← iOS/Android/desktop: gestures, SwiftUI/Compose motion
+│       └── toolbox.md           ← vetted libraries, galleries, asset/easing tools — and what to avoid
 ├── upstreams.json               ← pinned source commits + module map
 ├── scripts/check-upstreams.mjs  ← drift checker / re-pinner
 ├── .github/workflows/           ← weekly upstream watch → issue on drift

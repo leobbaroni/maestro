@@ -1,6 +1,6 @@
 # Motion on the Web
 
-*Choosing and using the implementation layer — modern CSS, WAAPI, Motion/Framer Motion, anime.js — for the motion designed in `references/motion-principles.md`.*
+*Choosing and using the implementation layer — modern CSS, WAAPI, Motion (prev. Framer Motion), anime.js — for the motion designed in `references/motion-principles.md`.*
 
 ## Choosing the Engine
 
@@ -12,7 +12,8 @@
 | Page transitions (SPA or MPA) | View Transitions API |
 | Tooltip / popover positioning | Popover API + CSS anchor positioning |
 | JS-generated keyframes without a library | WAAPI (`element.animate`) |
-| React UI: exit animations, shared layout, gestures, springs | Motion (Framer Motion) |
+| React UI: exit animations, shared layout, gestures, springs | Motion (`motion/react`) |
+| Vanilla JS springs / independent transforms / scroll-linked without React | Motion vanilla (`import { animate, scroll } from "motion"`) |
 | Complex multi-step timelines (5+ tweens), cinematic scroll scenes, SVG morphing | GSAP — see `references/gsap.md` |
 | Compact SVG/DOM flourishes, imported anime.js examples | anime.js |
 | Physics-based spring with interruption | Motion (React) or GSAP |
@@ -41,7 +42,7 @@ Rule of thumb: if it fits in `@keyframes` + one `animation-timeline`, stay in CS
 
 ### linear() easing — springs in pure CSS
 
-`linear(0, 0.25, ..., 1.017, 1)` approximates spring/bounce curves with sampled stops. Generate stops from a spring config with a linear-easing generator tool; use for one-off bouncy entrances without JS.
+`linear(0, 0.25, ..., 1.017, 1)` approximates spring/bounce curves with sampled stops. Generate stops from a spring config with a linear-easing generator (Easing Wizard, easing.dev — see `references/toolbox.md`); use for one-off bouncy entrances without JS.
 
 ### @starting-style — animate from display:none
 
@@ -139,9 +140,15 @@ items.forEach((item, i) =>
 - Control: `anim.pause() / play() / reverse() / finish()`; `anim.finished` is a promise — fine for chaining polish, but don't gate critical UI state on it.
 - For deterministic/seekable contexts (renderers, scrubbed timelines): finite `duration` and `iterations` always; infinite iterations have no computable end time.
 
-## Motion (Framer Motion) for React
+## Motion (prev. Framer Motion)
 
-Package `motion` (v11+, formerly `framer-motion`): `import { motion, AnimatePresence } from "motion/react"`.
+Framer Motion became independent in Nov 2024 and is now **Motion** (repo `motiondivision/motion`, MIT, v12+): one library serving React, vanilla JS, and Vue.
+
+- **Install `motion`, never `framer-motion`.** React: `import { motion, AnimatePresence } from "motion/react"` (RSC entry: `"motion/react-client"`). The `framer-motion` package still publishes in lockstep and `motion` wraps it — existing code isn't broken, but new code uses `motion`.
+- **Vanilla is first-class**: `import { animate, scroll, inView, hover, press, stagger } from "motion"` — springs and independent transforms (`x`, `rotateY`) work without React. `motion/mini` is a ~2.3kb WAAPI-only `animate()` (no springs/independent transforms).
+- **Vue**: `npm install motion-v` (`<motion.div />`).
+- **No API renames in the rebrand** — `AnimatePresence`, `layoutId`, `useAnimate`, `useScroll` keep their names; v12 has zero React breaking changes. Legacy migrations that DO apply: `AnimateSharedLayout` is long removed (use `layoutId` + `LayoutGroup`); `exitBeforeEnter` → `mode="wait"`.
+- **Motion+ components are paid** — `Cursor`, `Ticker`, `AnimateNumber`, `Carousel`, `Typewriter`, `ScrambleText`, `splitText`, `Curtains` are NOT in the free package; never generate imports for them. (GSAP's SplitText/ScrambleText are free — route text-splitting there: `references/gsap.md`.)
 
 ### Basics
 

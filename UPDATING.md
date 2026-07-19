@@ -74,6 +74,23 @@ Update the maestro skill from its upstream sources.
 | video-hyperframes.md | hyperframes (authoritative) |
 | video-remotion.md | remotion (authoritative) |
 | platform-native.md | genjutsu |
+| toolbox.md | live web verification — no git upstream; see below |
 
 Two local-only source layers (design-kit references, hyperframes deep-skill content) have
 no public repo to watch; their guidance only changes when you change it deliberately.
+
+## Ecosystem facts (toolbox.md, motion-web.md)
+
+`toolbox.md` and the Motion facts in `motion-web.md` encode **time-sensitive ecosystem
+state** (library licensing, acquisitions, maintenance status) that no git pin can watch.
+They carry a "verified" date. When it's ~6 months old, or any recommendation looks off,
+run this prompt:
+
+```text
+Re-verify the ecosystem facts in skills/maestro/references/toolbox.md and the Motion
+section of motion-web.md via web research: for each named library/tool/gallery, confirm
+it is alive, its license/pricing tier, its maintenance status, and any
+acquisition/rename. Update the modules per the AUTHORING SPEC (move dead or
+newly-paywalled entries to the Excluded table with a reason; update the verified date),
+bump the plugin version, add a CHANGELOG entry, commit.
+```

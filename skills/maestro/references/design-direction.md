@@ -272,6 +272,7 @@ All MIT/ISC, commercial-OK: Lucide (neutral default), Phosphor (6 weights — we
 
 - fffuel (free SVG generators: noise, flux gradients, dot grids) · Haikei (waves/blobs — recolor to your palette, never ship the default blob) · gradient.style (OKLCH-interpolated gradients, avoids the sRGB gray dead-zone) · Lost & Taken + Texture Labs (scanned paper/film, free commercial; use as low-opacity `multiply` overlays).
 - Stock illustration systems (unDraw, Blush, Open Peeps, Humaaans) are license-safe but **anti-award** — juries clock unDraw in one second. Go typographic, photographic, or generated instead.
+- **Cohesive paid packs — Craftwork (craftwork.design)**: human-made illustration/mockup/UI packs with a commercial + client-work license (no resale, no physical products, asset can't be the primary component of a product for sale). Free entry: the *Ultima* bundle (750+ illustrations); flagship UI kit: *Blank* (3,200+ components, Figma/Framer/Webflow). Pro subscribers get an official MCP server — agents can query assets in natural language. A distinct tier above stock-illustration systems; below custom-drawn.
 
 ### Photos & video
 
@@ -285,7 +286,7 @@ All MIT/ISC, commercial-OK: Lucide (neutral default), Phosphor (6 weights — we
 
 ## Reference workflow (before designing)
 
-1. 20 minutes max: collect 6–12 references from curated galleries — Awwwards (read judging notes, not just screenshots), Godly, Minimal Gallery (the antidote when a design gets loud), Mobbin (real app flows — app UX ≠ marketing-site patterns), SaaS Interface, Curated.design, Cosmos.
+1. 20 minutes max: collect 6–12 references from curated galleries — Awwwards (read judging notes, not just screenshots), Godly, Minimal Gallery (the antidote when a design gets loud), Mobbin (real app flows — app UX ≠ marketing-site patterns), Refero (real web-product screens), Saaspo + Land-book (landing pages, section-level filtering), Craftwork Curated (the former curated.design, now at craftwork.design/curated/websites), Cosmos. Niche fills: dark.design, footer.design. Full gallery roles: `references/toolbox.md`.
 2. Save refs with filenames that name the steal (`01-type-scale-hero.png`) plus one line each: "steal this / NOT this."
 3. When fanning out multiple design options, give each variant divergent references (one editorial, one brutalist…) — referenced fan-out beats blind fan-out; agents anchor on concrete taste instead of the training-data median.
 4. Keep the refs; later critique passes cite them as the taste bar.
