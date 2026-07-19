@@ -1,5 +1,39 @@
 # Changelog
 
+## 2.1.1 — 2026-07-19
+
+Anti-slop / weight pass — 4 parallel adversarial reviews (design, motion/3D, video/native,
+toolbox/meta clusters) against the skill's own design-audit.md standard. No marketing-voice
+slop found in the prose; fixes below are broken references, one factual error, one
+cross-file numeric contradiction, and redundancy cut for weight.
+
+- **Fixed**: `design-foundations.md` linked to a nonexistent `references/motion.md` —
+  pointed to `motion-principles.md`.
+- **Fixed**: `platform-native.md`'s Compose spring stiffness/damping constants were
+  shifted a tier off the real `androidx.compose.animation.core.Spring` values
+  (VeryLow was 200, should be 50; etc.) — corrected. Softened the SwiftUI
+  `.snappy`/`.smooth`/`.bouncy` table from exact-equals to approximation (those presets
+  are natively duration/extraBounce-based, not response/dampingFraction).
+- **Fixed**: `video-direction.md`'s video text-size floors (28–42px body, 18–24px labels)
+  sat entirely below `video-remotion.md`'s stated hard minimums (44px/32px) — raised to
+  match so the two modules no longer disagree when both are loaded for a Remotion job.
+- **Fixed**: `toolbox.md` cited `research/craftwork-curation-2026-07.md` for provenance,
+  but that file was never packaged by any install path (plugin manifest and both copy
+  methods only touch `skills/`) — a dead reference in every real install. Deleted the file
+  (fully absorbed into toolbox.md already; not consulted by the re-verification loop) and
+  cut the reference. Also: removed the banned AI-tell word "unlock" from the file that
+  teaches agents to avoid it; deduplicated three facts stated twice in the same file
+  (Theatre.js dormancy, Craftwork MCP, Base UI default); fixed an unsupported "three-way
+  name collision" claim that only named two parties.
+- **Tightened for weight**: `gsap.md`'s and `video-remotion.md`'s "Common mistakes" tables
+  each had ~half their rows just restating rules already given earlier in the same file —
+  cut to the non-redundant rows only. Consolidated the same AI-slop-tells checklist that
+  had drifted into three files down to one canonical copy in `design-audit.md`. Merged
+  `process.md`'s two overlapping routing tables into one. Cut `SKILL.md`'s upstream-project
+  list from twice to once (footer only). Cross-referenced instead of restating a shared
+  spring-physics snippet in `threejs.md`/`creative-coding.md` and a transition-discipline
+  rule in `video-hyperframes.md`/`video-direction.md`.
+
 ## 2.1.0 — 2026-07-19
 
 - Mined @craftwork.design's Instagram curation feed (82 posts, Dec 2025–Jul 2026) via

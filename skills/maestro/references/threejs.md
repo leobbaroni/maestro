@@ -191,7 +191,7 @@ Skeletal: `skinnedMesh.skeleton.bones.find(b => b.name === "Head")` — mutate b
 - Pin output size and `setPixelRatio(1)` — no DPR-dependent output.
 - Avoid postprocessing that accumulates previous-frame history unless reconstructable from `time`.
 
-Procedural motion patterns: sine bob `y = Math.sin(t*2)*0.5`; circular orbit `x = cos(t)*r, z = sin(t)*r`; smooth follow `pos.lerp(target, 1 - Math.exp(-k * delta))`; a critically damped spring (`v += (-stiffness*(x-target) - damping*v)*dt; x += v*dt`) for interactive targets.
+Procedural motion patterns: sine bob `y = Math.sin(t*2)*0.5`; circular orbit `x = cos(t)*r, z = sin(t)*r`; smooth follow `pos.lerp(target, 1 - Math.exp(-k * delta))`. For interactive spring-follow targets (constants, tuning): `references/creative-coding.md`.
 
 ## Interaction
 
@@ -351,7 +351,7 @@ Costs: each pass is a full-screen render. Halve bloom resolution, toggle `pass.e
 </Canvas>
 ```
 
-The five R3F sins:
+R3F common mistakes:
 
 1. **setState in `useFrame`** → 60 re-renders/sec. Mutate refs: `meshRef.current.rotation.y += delta * 0.5`.
 2. **Allocating in the loop** → GC stutter. `useMemo` scratch `Vector3`s, `.set()` + `.copy()` them.

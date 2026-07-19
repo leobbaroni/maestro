@@ -245,15 +245,13 @@ The final pass. Polish comes after functional completeness and after aligning to
 Default, hover, focus-visible, active, disabled, loading, error, success. Plus per-view: empty, overflow/long-content, first-run. Missing states are broken experiences, not missing polish.
 
 - Focus: `:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }` — never `outline: none` without replacement, styled to match the direction.
-- Transitions on state change: 150–300ms, ease-out family (quart/quint/expo). Never bounce/elastic for UI state. Respect `prefers-reduced-motion` (deeper motion craft: `references/motion.md`).
+- Transitions on state change: 150–300ms, ease-out family (quart/quint/expo). Never bounce/elastic for UI state. Respect `prefers-reduced-motion` (deeper motion craft: `references/motion-principles.md`).
 
-### Generic-output tells — grep for these
+### Generic-output tells not already in the audit catalog
 
-- Colored `border-left`/`border-right` > 1px accent stripes (use full hairline border, 4–8% surface tint, or leading glyph)
-- Purple-blue gradients; gradient text; default cream/sand backgrounds
-- Inter/Roboto everything; two similar grotesks paired
-- Identical icon+heading+text card grids; cards nested in cards
-- Decorative fake metrics / hero-number layouts with no real data
+Full anti-pattern catalog (gradients, card grids, generic fonts, fake metrics): `references/design-audit.md`. Two more worth grepping for here:
+
+- Colored `border-left`/`border-right` > 1px accent stripes (use a full hairline border, 4–8% surface tint, or a leading glyph instead)
 - Lorem ipsum, placeholder images, dead links, emoji as icons, mixed icon sets
 
 ### Craft details

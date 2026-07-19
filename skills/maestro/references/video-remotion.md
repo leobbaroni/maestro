@@ -305,29 +305,18 @@ If metadata is dynamic, reuse the composition's `calculateMetadata` logic to der
 
 ## Common Mistakes
 
+Failure modes not already covered by the rules above (determinism, `interpolate()`-over-`spring()`, inline `defaultProps`, `type` over `interface`, `staticFile()`, `delayRender()`, frame-unit trimming, `toneFrequency`, and text-size minimums are stated once, in Mental Model / Timing / Compositions / Layout above — not repeated here):
+
 | Mistake | Rule |
 |---|---|
-| CSS `transition`/`animation`, Tailwind `animate-*`/`transition-*` | FORBIDDEN — animate only via `useCurrentFrame()` + `interpolate()` |
-| `Math.random()`, `Date.now()`, any nondeterminism | Use `random(seed)` from `remotion`; every frame must be reproducible across threads |
 | `useFrame()` (@react-three/fiber), self-animating shaders/models | Forbidden — causes flicker; drive 3D from `useCurrentFrame()` |
-| `interpolate()` without clamping | Values escape the output range — set `extrapolateLeft/Right: "clamp"` |
-| `transform: \`scale(${s})\`` strings, values in variables | Keep `interpolate()` inline in `style`; use `scale`/`translate`/`rotate` props |
-| `spring()` by default | Prefer `interpolate()` + `Easing.bezier()`; springs only when physics is asked for |
-| Unpremounted sequences | Always `premountFor={1 * fps}` on `<Sequence>` |
 | Expecting global frame inside `<Sequence>` | `useCurrentFrame()` is local — starts at 0 per sequence |
 | Summing scene durations with `TransitionSeries` | Transitions overlap: total = scenes − transitions; overlays change nothing |
-| `trimBefore`/`trimAfter` in seconds | They are in frames — multiply by `fps` |
-| Expecting `toneFrequency` in preview/Player | Pitch shift applies during server-side render only |
+| Unpremounted sequences | Always `premountFor={1 * fps}` on `<Sequence>` |
 | `useCurrentFrame()` in audio-viz child components | Pass the parent's `frame` down, or visualization jumps at sequence offsets |
 | Rendering WebGL effects/3D without ANGLE | `--gl=angle` or `Config.setChromiumOpenGlRenderer('angle')` |
 | Measuring text before fonts load | `await waitUntilDone()` first; `validateFontIsLoaded: true`; identical font props for measure and render; `outline`, not `border` |
-| `defaultProps` in a variable/spread/`satisfies` | Inline object literal on `<Composition>` or Studio can't write back |
 | Overlay adjacent to a transition/overlay | Not allowed in `TransitionSeries` — separate with a sequence |
-| Fetching data without holding the render | Wrap in `delayRender()`/`continueRender()`, `cancelRender(e)` on error |
-| `interface` for prop types | Use `type` for `defaultProps` type safety |
-| Web-page layout habits in video | One focal point per scene; 84/44/32px text minimums at 1080w; solve crowding with time, not smaller text |
-| Referencing assets by relative path | Put them in `public/`, load via `staticFile()` |
-| `npm i @remotion/foo` | Use `npx remotion add @remotion/foo` for version-matched installs |
 
 ---
 *Distilled from: remotion (official skills).*

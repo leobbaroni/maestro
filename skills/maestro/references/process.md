@@ -6,15 +6,11 @@
 
 The two most expensive failure modes are **building before the brief is locked** and **improving without concrete criteria**. Every rule below exists to prevent one of them. Bias toward caution over speed; for trivial tasks, use judgment.
 
-**Quick routing:**
+**Quick routing:** most requests are a phase — detect it and run its ritual (§4's table). The two decisions that aren't a phase:
 
 | Incoming request | First move |
 |---|---|
-| Substantial new design/build/redesign | Grill Gate (§1) → brief lock (§2) |
 | Significant new screen/page/surface | Mockup fan-out + user gate (§3) |
-| Vague improvement ask | Extract criteria first (§4, Improvement) |
-| Broken, cause unknown | Reproduce first (§4, Debugging) |
-| "Polish it" on brief-conformant work | Critique loop (§4, Polish) |
 | Small tweak, fully-specified change | Just do it — then verify (§6) |
 
 ## 1. The Grill Gate

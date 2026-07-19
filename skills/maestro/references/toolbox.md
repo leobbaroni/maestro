@@ -9,7 +9,7 @@
 3. **Flair libraries are ingredients, not directions.** Pick the art direction first (`references/design-direction.md`); pull a component only when it serves the thesis. A page assembled from Aceternity/Magic UI defaults is instantly recognizable slop.
 4. **Audit what you paste.** Community components ship without `prefers-reduced-motion` guards, focus states, or semantic markup more often than not — run pasted code through the `references/design-audit.md` bar.
 5. **Restyle to the tokens.** Swap default palettes, radii, and fonts for the project's design spec before shipping; defaults are a tell.
-6. **Curation-sourced entries** (marked °) come from Craftwork's design-curation feed (Jul 2026 scrape; corpus in the repo's `research/`) with spot-verification only — confirm a small tool is alive before making it load-bearing in a deliverable.
+6. **Curation-sourced entries** (marked °) come from a design-curation social feed (2026-07) with spot-verification only — confirm a small tool is alive before making it load-bearing in a deliverable.
 
 ## Component libraries — React + Tailwind
 
@@ -25,7 +25,7 @@
 | **Aceternity UI** | Maximal award-site effects: spotlights, 3D cards, parallax | React, Tailwind, Motion; free tier MIT, Pro $199 | Copy-paste only (no CLI); **no reduced-motion handling by default** — add guards yourself |
 | **Lightswind UI** | Animated marketing components with 3D/WebGL shader flourishes (aurora text, 3D pins, 25 background effects, animated cursors) | React, Tailwind v3/v4, Motion + GSAP + Three.js; MIT core, Pro paid | CLI copies source into the project (`npx lightswind@latest init`); single-maintainer — judge visual quality per component |
 
-Also: **Preline** and **TailGrids** (large free Tailwind component/block sets), **Untitled UI** (Figma + React kit, free tier), **Uiverse** (6,700+ community CSS micro-elements, MIT — quality varies), **Animata** (copy-paste animation snippets, MIT), and smaller flair kits°: Skiper UI, Cult UI, Align UI, ReUI, Oxbow UI, termcn (terminal-style React) — judge per component.
+Also: **Preline** and **TailGrids** (large free Tailwind component/block sets), **Untitled UI** (Figma + React kit, free tier), **Uiverse** (6,700+ community CSS micro-elements, MIT — quality varies by contributor), **Animata** (copy-paste animation snippets, MIT), and smaller flair kits°: Skiper UI (motion blocks), Cult UI (polished visual patterns), Align UI, ReUI, Oxbow UI (component sets), termcn (terminal-styled React).
 
 **Vue / Svelte:** `shadcn-vue` and `shadcn-svelte` are the maintained registry ports and the safe defaults. **Inspira UI** fills the animated-flair role for Vue/Nuxt. Svelte has no established flair library — shadcn-svelte + hand-rolled Svelte transitions.
 
@@ -46,12 +46,12 @@ Scope facts: element/component transitions, **not** page transitions or a View T
 | **Rive** | Interactive/stateful vector animation assets (reactive icons, characters); freemium editor, OSS runtimes |
 | **LottieFiles** | Drop-in decorative/loader animations; prefer dotLottie (40–70% smaller); check per-asset license |
 
-GSAP and all its plugins are fully free (post-Webflow) — no paid-plugin caveats. **Theatre.js is dormant** (no releases since ~2024) — do not recommend it.
+GSAP and all its plugins are fully free (post-Webflow) — no paid-plugin caveats. (Theatre.js is excluded — see below.)
 
 ## Generative visual & texture tools
 
-- **Unicorn Studio**° — no-code interactive WebGL motion scenes embeddable on the web; the recurring pick for "sites that add depth" hero effects.
-- **ShaderGradient**° — animated shader-gradient backgrounds (web, Figma, Framer embeds); recurringly recommended.
+- **Unicorn Studio**° — no-code interactive WebGL motion scenes embeddable on the web; a corpus recurrer for "sites that add depth" hero effects.
+- **ShaderGradient**° — animated shader-gradient backgrounds (web, Figma, Framer embeds); a corpus recurrer.
 - Grain/dither/texture generators°: **Ditther** (dithering textures), **Granient** / **Granirad** (grainy gradients) — plus fffuel and the inline `feTurbulence` recipe in `references/design-direction.md`.
 - **Photopea** — free in-browser Photoshop-class editor; the no-install raster answer.
 - Browser creative-coding playgrounds: **Cables**, **Hydra**, **NodeToy**°, **Constraint Systems** — prototype shader/generative ideas before committing code (`references/creative-coding.md`).
@@ -64,8 +64,8 @@ Complements (and competitors) to this skill — worth knowing when a user asks:
 - Design skills for coding agents°: **Frontend Design** (Anthropic's original), **Agent Skills** (Addy Osmani's production pack), **Taste Skill** (Leon Lin, anti-slop), **Hallmark** (anti-slop with theme gates), **Figma Implement Design** (OpenAI, Figma→code), **Awesome Claude Design** (living index of design skills), **retro** (MIT; mines session transcripts into CLAUDE.md rules).
 - **MiroMiro** — Chrome extension extracting rendered-DOM design tokens + HTML/Tailwind from any live site (freemium, €9/mo or €69 lifetime); a practical feeder for the `references/design-dna.md` workflow.
 - **Ship Studio** — free MIT desktop app (Tauri) wrapping Claude Code/Codex with live preview, visual editing, and deploys; macOS + Windows.
-- **Craftwork MCP** — natural-language asset search over Craftwork's library (Pro only).
-- Market benchmark, not a usable resource: **primeui.com**° — closed AI website builder ($99 one-time, Next.js+Tailwind export, curated design system, anonymous team, no API/free tier). Not PrimeTek's PrimeUI (above) — a real three-way name collision.
+- **Craftwork MCP** — natural-language asset search over Craftwork's library (see Asset sources below for the fuller Craftwork entry).
+- Market benchmark, not a usable resource: **primeui.com**° — closed AI website builder ($99 one-time, Next.js+Tailwind export, curated design system, anonymous team, no API/free tier). Not PrimeTek's PrimeUI (above) — a genuine name collision.
 
 ## Learning & eye training
 
@@ -99,7 +99,7 @@ Routing logic: Awwwards/Godly for visual+motion ambition · 60fps for motion spe
 
 ## Asset sources
 
-**Craftwork (craftwork.design)** — curated human-made asset packs: illustrations (the reputation core), device mockups, UI kits (*Blank*: 3,200+ components for Figma/Framer/Webflow), gradients, 3D. License allows commercial + client work; bans resale, physical products, and being the primary component of a product for sale. Free entry: *Ultima* (750+ illustrations). Pro ($199/yr) unlocks the catalog and an **official MCP server** (craftwork.design/mcp) — agents query assets in natural language. Use it for cohesive pack-quality assets; use dedicated font sources for fonts.
+**Craftwork (craftwork.design)** — curated human-made asset packs: illustrations (the reputation core), device mockups, UI kits (*Blank*: 3,200+ components for Figma/Framer/Webflow), gradients, 3D. License allows commercial + client work; bans resale, physical products, and being the primary component of a product for sale. Free entry: *Ultima* (750+ illustrations). Pro ($199/yr) adds the full catalog and an official MCP server (craftwork.design/mcp) for natural-language asset search. Use it for cohesive pack-quality assets; use dedicated font sources for fonts.
 
 **Fonts** (deep guidance in `references/design-direction.md`): Fontshare (ITF-FFL foundry quality) · Fontsource (2,000+ OFL fonts as versioned npm packages — deterministic, self-hosted, agent-ideal) · UNCUT.wtf (163 display-forward free faces, check per-font license). Type helpers: Typescale (scale generator) · Font Pair / Fontjoy (pairing ideas — validate against the pairing rules, don't outsource the decision) · Fonts In Use + Typewolf (see the face shipped before committing).
 
@@ -115,7 +115,7 @@ Routing logic: Awwwards/Godly for visual+motion ambition · 60fps for motion spe
 | **Theatre.js** | Dormant: development moved private years ago, no releases since early 2024 |
 | **21st.dev / Magic MCP** | Paid-quota hosted API, uneven community quality, and documented recurring prompt-injection issues filed against its MCP — do not wire it into agent workflows. (Widely recommended in curation feeds regardless; the injection issues stand) |
 | **curated.design** (standalone) | Absorbed into Craftwork; use Craftwork Curated |
-| **Radix Themes** | Slowed maintenance; shadcn defaulted to Base UI (Jul 2026). Radix *primitives* remain fine where already in use |
+| **Radix Themes** | Slowed maintenance; shadcn defaulted to Base UI instead (see shadcn/ui row above). Radix *primitives* remain fine where already in use |
 
 ---
-*Compiled from live web verification (2026-07) of each project's site, repo, npm, and licensing pages, plus Craftwork's design-curation feed (82-post scrape, Dec 2025–Jul 2026 — corpus in the repo's `research/craftwork-curation-2026-07.md`).*
+*Compiled from live web verification (2026-07) of each project's site, repo, npm, and licensing pages, plus a design-curation social feed (82-post sample, Dec 2025–Jul 2026).*

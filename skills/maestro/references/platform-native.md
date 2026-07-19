@@ -135,13 +135,15 @@ Start with `withAnimation`; escalate only when needed. Prefer explicit `withAnim
 
 | Use case | Spec |
 |---|---|
-| Tap feedback | `.snappy` = `(response: 0.3, dampingFraction: 0.85)` |
+| Tap feedback | `.snappy` (iOS 17+), ≈ `(response: 0.3, dampingFraction: 0.85)` on the older API |
 | Sheet present | `(0.45, 0.85)` — slight overshoot = "object arrives" |
-| Sheet dismiss | `.smooth` = `(0.5, 1.0)` — exits subtler than entrances |
+| Sheet dismiss | `.smooth` (iOS 17+), ≈ `(0.5, 1.0)` — exits subtler than entrances |
 | Drag follow | `.interactiveSpring()` = `(0.15, 0.86)` — only while gesture-driven |
 | Hero/page transition | `(0.5, 0.85)` |
-| Bouncy reveal (sparingly) | `.bouncy` = `(0.5, 0.7)` — cap at 1–2 places per app |
+| Bouncy reveal (sparingly) | `.bouncy` (iOS 17+), ≈ `(0.5, 0.7)` — cap at 1–2 places per app |
 | Loading loop | `.linear(duration: 1.5).repeatForever(autoreverses: true)` |
+
+`.snappy`/`.smooth`/`.bouncy` are natively `duration`/`extraBounce`-based (iOS 17+); the `response`/`dampingFraction` tuples above are close approximations for the pre-17 `.spring(response:dampingFraction:)` API — verify exact figures if a project pins pre-17 behavior precisely.
 
 Define 3–5 named springs as `Animation` static extensions and reuse; mixing many ad-hoc springs = inconsistent feel. `response > 0.6` feels sluggish outside hero moments.
 
@@ -194,7 +196,7 @@ Escalation order: built-in modifiers → `.visualEffect` → `Canvas` → Metal 
 | Bouncy reveal (FAB, toast) | `spring(stiffness = StiffnessLow, dampingRatio = DampingRatioMediumBouncy)` |
 | Drag follow | `spring(stiffness = StiffnessHigh, dampingRatio = 1f)` |
 
-Stiffness: VeryLow 200, Low 400, MediumLow 700, Medium 1500, High 10000. Damping < 1.0 overshoots (MediumBouncy 0.5, LowBouncy 0.75).
+Stiffness: VeryLow 50, Low 200, MediumLow 400, Medium 1500, High 10000. Damping < 1.0 overshoots (HighBouncy 0.2, MediumBouncy 0.4, LowBouncy 0.75, NoBouncy 1.0).
 
 ### Compose anti-patterns
 

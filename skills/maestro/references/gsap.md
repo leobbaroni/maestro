@@ -466,35 +466,23 @@ Example: `gsap.to(".class", { scale: gsap.utils.distribute({ base: 0.5, amount: 
 
 ## Common mistakes
 
+Gotchas not already called out above (rules already stated in the sections above — ScrollTrigger placement, scrub-vs-toggleActions, `ease:"none"` for horizontal scroll, GSAP's free licensing, `immediateRender`, transform-only animation, `autoAlpha`, `Flip.getState()` timing, the Observer `animating` lock, `refreshPriority`, pin-the-wrapper, and reduced-motion via `matchMedia` — aren't repeated here):
+
 | Mistake | Correct |
 |---|---|
-| ScrollTrigger inside a timeline's child tween | ScrollTrigger goes on the **timeline (or top-level tween) only** — `gsap.timeline({ scrollTrigger: {...} })` |
-| `scrub` + `toggleActions` on one trigger | Pick one; scrub silently wins |
-| Eased tween as `containerAnimation` source | Horizontal scroll tween must be `ease: "none"` |
-| `.npmrc` with GreenSock token / Club signup for SplitText, MorphSVG | Everything ships free in the public `gsap` npm package |
 | Plugin used without `gsap.registerPlugin()` | Register once, top-level, before first use |
-| Stacked `from()`s on same property/element both firing immediately | `immediateRender: false` on the later ones |
 | Chaining steps with `delay:` | Timeline + position parameter |
-| Animating `width/height/top/left` for motion | `x / y / scale` transforms (sub-pixel smooth, no reflow) |
-| `opacity: 0` leaving invisible element clickable | `autoAlpha: 0` |
 | Unscoped selectors in components (matches other instances/page) | `scope` in useGSAP / `gsap.context(cb, root)` / `gsap.utils.selector(root)` |
 | No cleanup on unmount (leaks, tweens on detached nodes) | useGSAP auto-revert, or `ctx.revert()` in the cleanup |
 | GSAP-in-event-handler not cleaned up in React | Wrap the handler in `contextSafe()` |
-| `Flip.getState()` called after the DOM change | Capture state **before** mutating |
 | DrawSVG on an element with no stroke | Set `stroke` + `stroke-width` (CSS or attrs) first |
 | MotionPath `autoRotate` without `align`/`alignOrigin` | Element pivots around its corner — set both |
-| Observer handlers without an `animating` lock | Every wheel tick stacks animations — gate and release `onComplete` |
 | SplitText spans left in DOM / split before fonts load | `revert()` when done; split in `document.fonts.ready` or `autoSplit + onSplit` (return the animation) |
 | Forgetting `ScrollTrigger.refresh()` after dynamic content/images/fonts | Resize is auto; DOM changes are not |
-| ScrollTriggers created out of page order without `refreshPriority` | Create top-to-bottom, or set priorities / `ScrollTrigger.sort()` |
-| Animating the pinned element itself | Pin the wrapper, animate children |
 | `markers: true` or GSDevTools shipped to production | Dev only |
 | `svgOrigin` + `transformOrigin` on the same SVG element | Only one applies — pick one |
 | Expecting timeline `defaults` inside nested timelines | Defaults reach direct children only |
-| `will-change` / `force3D` sprayed on everything | Only on elements that animate |
-| Ignoring `prefers-reduced-motion` | `gsap.matchMedia()` condition → duration 0 or skip |
 | `gsap.context()` nested inside `matchMedia` handler | matchMedia already creates a context — use `mm.revert()` |
-| Infinite `repeat: -1` in seek-driven/rendered compositions | Finite repeats computed from the visible duration |
 
 ---
 *Distilled from: gsap-skills (official), genjutsu, hyperframes.*

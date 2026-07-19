@@ -226,14 +226,16 @@ Proven time-coded shot shapes. Instantiate one per beat, or compose freely from 
 
 Video frames are not web pages. The brand spec is strict on identity (exact hex, fonts, weight relationships, do's/don'ts) but the *application* is yours — web-UI intensities are invisible on video.
 
-| Element | Web | Video (1080p) |
+| Element | Web | Video (1080p, scale with composition width) |
 |---|---|---|
-| Headlines | 32–48px | 64–120px |
-| Body text | 14–16px | 28–42px |
-| Labels | 12px | 18–24px |
+| Headlines | 32–48px | 84–120px |
+| Body text | 14–16px | 44–64px |
+| Labels | 12px | 32–40px |
 | Decorative opacity | 3–8% | 12–25% |
 | Borders | 1px | 2–4px |
 | Padding | 16–32px | 60–140px |
+
+These are readability floors, not stylistic suggestions — video is glanced at, not read; small text is decorative at this scale. Match exactly in engine-specific work: `references/video-remotion.md`.
 
 - **Density:** a beat with 3 elements looks empty; 8–10 feels alive. Every scene: background texture (radial glow, ghost type, grain, grid — never flat solid), midground content, foreground accents (dividers, labels, monospace metadata). Add ~2 decorative elements nobody asked for.
 - **Color presence:** muted is fine, flat is not — at least one color that pulls the eye per scene. Accents at 15–25% for atmosphere, full saturation for focal hits. On light canvases use bolder borders, structural rules, and texture — don't switch to dark. No full-screen linear gradients on dark backgrounds (they band under H.264); use radial or solid + localized glow. Tint neutrals toward the brand hue.

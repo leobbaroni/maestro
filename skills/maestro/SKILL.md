@@ -5,7 +5,7 @@ description: Unified design, motion, 3D, and video super skill. Use for designin
 
 # Maestro
 
-One skill for the full visual stack: **design → motion → 3D → video**. It merges the craft of impeccable, design-kit, genjutsu, design-dna, the official GSAP and Remotion skills, threejs-skills, LottieFiles' motion-design principles, and HyperFrames — deduplicated, conflicts resolved, one voice.
+One skill for the full visual stack: **design → motion → 3D → video**. It merges eight design/motion/video skill projects into one voice — deduplicated, conflicts resolved (full list in the footer).
 
 Everything deep lives in `references/`. This file is the brain: it decides *what to load* and *how to work*. Load only the modules the task needs.
 

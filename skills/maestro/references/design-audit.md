@@ -139,7 +139,7 @@ Code-level and measurable; document findings, don't fix inline. Each 0–4.
 | Dimension | Check for |
 |---|---|
 | Accessibility | Section above |
-| Performance | Animating layout properties (`width/height/top/left/margin/padding` → reflow every frame; use `transform`/`opacity`); unbounded blur/filter/shadow; `will-change` on more than ~5 permanent elements (apply dynamically instead); missing lazy loading; animation loops on `setTimeout`; unnecessary re-renders; bundle cost — if the project only fades and slides, a 30KB animation library is overkill (gzipped: framer-motion ~30KB, GSAP ~25KB, popmotion ~5KB, CSS = 0) |
+| Performance | Animating layout properties (`width/height/top/left/margin/padding` → reflow every frame; use `transform`/`opacity`); unbounded blur/filter/shadow; `will-change` on more than ~5 permanent elements (apply dynamically instead); missing lazy loading; animation loops on `setTimeout`; unnecessary re-renders; an animation library heavier than what the motion actually needs |
 | Theming | Hard-coded colors bypassing tokens; broken/missing dark mode; mixed token types; values that ignore theme switch |
 | Responsive | Fixed widths that break mobile; touch targets < 44×44px; horizontal scroll on narrow viewports; layouts that break at 200% text zoom; missing breakpoints |
 | Anti-patterns | Catalog above |

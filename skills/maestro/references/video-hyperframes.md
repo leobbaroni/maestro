@@ -142,7 +142,7 @@ Two valid architectures — don't mix them blindly:
 
 **B. Single-file GSAP-owned scenes (standalone).** All scenes are plain `<div class="scene">` children living in the DOM for the whole composition — **no `class="clip"` and no `data-*` on scene divs**; only the root carries `data-composition-id`/`data-start`/`data-duration`. Scene 1 is visible by default; scenes 2+ start with `opacity: 0` on the container, and GSAP reveals them. Best for choreographed scene *transitions*, where outgoing and incoming content must animate simultaneously.
 
-Transition discipline in architecture B: every transition follows *position new scene → animate outgoing → swap → animate incoming → clean up overlays*. Outgoing and incoming move at the same timeline position — never fade one out, then run the next one's entrance (that's a jump cut with a dip):
+Transition discipline (why: `references/video-direction.md`) in architecture B: every transition follows *position new scene → animate outgoing → swap → animate incoming → clean up overlays*, both halves at the same timeline position:
 
 ```js
 const T = 4.0;
