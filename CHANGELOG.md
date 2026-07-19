@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.1.0 — 2026-07-19
+
+- Mined @craftwork.design's Instagram curation feed (82 posts, Dec 2025–Jul 2026) via
+  logged-in browser scrape; raw corpus archived in `research/craftwork-curation-2026-07.md`.
+- `toolbox.md` gains: Generative visual & texture tools (Unicorn Studio, ShaderGradient,
+  dither/grain generators, Photopea, browser creative-coding playgrounds, AI media gen);
+  Agent-native design resources (Anthropic/Osmani/Taste/Hallmark skills, retro, MiroMiro,
+  Ship Studio, Craftwork MCP, primeui.com benchmark); Learning & eye training; expanded
+  gallery roles (60fps, section-level, brand archives, type-in-context, Before); type
+  helpers and device-mockup/showcase tools; expanded component-library "also" tier.
+- primeui disambiguated: the curated tool is primeui.com (closed AI site builder), a
+  three-way name collision with PrimeTek's PrimeUI and primeui.store.
+- New rule of engagement: curation-sourced entries (°) are spot-verified only.
+
 ## 2.0.0 — 2026-07-19
 
 - New module `toolbox.md`: live-verified (2026-07) catalog of component libraries
