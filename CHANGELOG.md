@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.3.0 — 2026-07-20
+
+- New `references/companions.md`: maps the operational assets of companion skills
+  (HyperFrames suite frame presets/animation rules/examples, media-use resolution, figma,
+  Craftwork MCP, upstream toolchains) so maestro reaches for installed machinery instead
+  of re-deriving from prose. Wired into the SKILL.md routing table.
+- Restored the curation-feed corpus as a shipped module (`references/toolbox-corpus.md`)
+  — the long tail behind toolbox.md's ° entries now installs with the skill, fixing the
+  2.1.1 removal that made it unreachable.
+- README/setup-prompt module counts updated (17 references).
+
 ## 2.2.0 — 2026-07-19
 
 - Repository ownership and links moved to `leobbaroni` (plugin manifest, marketplace

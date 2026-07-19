@@ -39,9 +39,10 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | Planning any video (story, beats, pacing, transitions) | `video-direction.md` |
 | Rendering video from HTML | `video-hyperframes.md` |
 | Rendering video from React | `video-remotion.md` |
-| Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` |
+| Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` (long tail: `toolbox-corpus.md`) |
 | iOS / Android / desktop-native design or motion | `platform-native.md` |
 | Process questions (grilling, mockups, phases, verification) | `process.md` |
+| Before any video render, media sourcing, or when companion skills may be installed | `companions.md` — prefer installed machinery (frame presets, animation rules, media resolution) over re-deriving |
 
 Load combinations freely — a scroll-driven 3D landing page needs `design-foundations` + `design-direction` + `gsap` + `threejs`; a kinetic-type promo needs `video-direction` + `motion-principles` + one engine module.
 

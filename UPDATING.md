@@ -75,6 +75,8 @@ Update the maestro skill from its upstream sources.
 | video-remotion.md | remotion (authoritative) |
 | platform-native.md | genjutsu |
 | toolbox.md | live web verification — no git upstream; see below |
+| toolbox-corpus.md | frozen curation-feed sample (2026-07) — historical record, only pruned |
+| companions.md | the local skill ecosystem — re-check against an actual skills directory |
 
 Two local-only source layers (design-kit references, hyperframes deep-skill content) have
 no public repo to watch; their guidance only changes when you change it deliberately.

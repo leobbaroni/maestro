@@ -9,7 +9,7 @@
 3. **Flair libraries are ingredients, not directions.** Pick the art direction first (`references/design-direction.md`); pull a component only when it serves the thesis. A page assembled from Aceternity/Magic UI defaults is instantly recognizable slop.
 4. **Audit what you paste.** Community components ship without `prefers-reduced-motion` guards, focus states, or semantic markup more often than not — run pasted code through the `references/design-audit.md` bar.
 5. **Restyle to the tokens.** Swap default palettes, radii, and fonts for the project's design spec before shipping; defaults are a tell.
-6. **Curation-sourced entries** (marked °) come from a design-curation social feed (2026-07) with spot-verification only — confirm a small tool is alive before making it load-bearing in a deliverable.
+6. **Curation-sourced entries** (marked °) come from a design-curation social feed (2026-07) with spot-verification only — confirm a small tool is alive before making it load-bearing in a deliverable. The full raw pool (fonts, templates, packs, Mac apps not curated here) is in `references/toolbox-corpus.md`.
 
 ## Component libraries — React + Tailwind
 

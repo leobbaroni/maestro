@@ -52,7 +52,7 @@ it the best way my harness supports — Claude Code plugin via
 available to me as a user command (tell me to run those two commands), otherwise copy
 skills/maestro into my user skills directory (~/.claude/skills/maestro on macOS/Linux,
 %USERPROFILE%\.claude\skills\maestro on Windows); (3) verify the install by listing the
-skill and confirming skills/maestro/references contains 15 modules; (4) tell me the two
+skill and confirming skills/maestro/references contains 17 modules; (4) tell me the two
 ways to trigger it (just asking for design/motion/video work, or /maestro) and that
 substantial requests start with a short interview (the Grill Gate) — that's by design;
 (5) optionally run "node scripts/check-upstreams.mjs" and tell me if the upstream
@@ -76,7 +76,7 @@ maestro/
 ├── skills/maestro/
 │   ├── SKILL.md                 Router: task→module table, engine choosers, core rules
 │   ├── templates/BRIEF.md       The brief template the Grill Gate fills
-│   └── references/              15 knowledge modules (design, motion, 3D, video, process)
+│   └── references/              17 modules (design, motion, 3D, video, process, toolbox, companions)
 ├── upstreams.json               Pinned source commits and module map
 ├── scripts/check-upstreams.mjs  Drift checker / re-pinner (Node 18+, zero dependencies)
 ├── .github/workflows/           Weekly upstream watch — opens an issue on drift
