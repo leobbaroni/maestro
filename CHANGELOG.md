@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.0 — 2026-07-19
+
+- Repository ownership and links moved to `leobbaroni` (plugin manifest, marketplace
+  manifest, README install commands and setup prompt).
+- README rewritten in a professional register: capabilities, installation matrix,
+  usage contract (Grill Gate + rendered verification), repository layout, maintenance.
+
 ## 2.1.1 — 2026-07-19
 
 Anti-slop / weight pass — 4 parallel adversarial reviews (design, motion/3D, video/native,
