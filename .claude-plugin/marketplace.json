@@ -1,0 +1,19 @@
+{
+  "name": "maestro",
+  "description": "Unified design, motion, 3D, and video super skill for AI coding agents — eight upstream skill projects distilled into one.",
+  "owner": {
+    "name": "TugaPlayz",
+    "email": "leobbaroni@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "maestro",
+      "source": "./",
+      "description": "One skill for the full visual stack: design foundations, art direction, Design DNA, critique/audit, motion principles, CSS/WAAPI/Motion, GSAP, Three.js, generative coding, and video via HyperFrames or Remotion — with a grill-first process.",
+      "author": {
+        "name": "TugaPlayz"
+      },
+      "category": "productivity"
+    }
+  ]
+}

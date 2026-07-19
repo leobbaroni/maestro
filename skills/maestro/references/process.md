@@ -46,7 +46,7 @@ Twenty minutes of interviewing is cheaper than days of correction rounds. But do
 
 ## 2. Brief lock
 
-The grill ends when the brief contains all of the following. Freeze it into a file (SPEC.md / DESIGN.md / the project's brief doc), not chat — it must survive compaction and future sessions.
+The grill ends when the brief contains all of the following. Freeze it into a file (SPEC.md / DESIGN.md / the project's brief doc — template: `templates/BRIEF.md`), not chat — it must survive compaction and future sessions.
 
 | Field | Locked form |
 |---|---|

@@ -1,0 +1,153 @@
+{
+  "$comment": "Upstream sources maestro distills from. `watch` = repo paths whose commits matter; `feeds` = maestro reference modules each upstream informs; `pins` = last commit per watched path at distillation time (managed by scripts/check-upstreams.mjs --pin).",
+  "upstreams": [
+    {
+      "name": "impeccable",
+      "repo": "pbakaus/impeccable",
+      "watch": [
+        "skill"
+      ],
+      "feeds": [
+        "design-foundations.md",
+        "design-direction.md",
+        "design-dna.md",
+        "design-audit.md",
+        "motion-principles.md",
+        "process.md"
+      ],
+      "pins": {
+        "skill": {
+          "sha": "331540ddec18dae74e61c9fc4598e050f5624f71",
+          "date": "2026-07-18T23:06:06Z"
+        }
+      }
+    },
+    {
+      "name": "genjutsu",
+      "repo": "AThevon/genjutsu",
+      "watch": [
+        "skills"
+      ],
+      "feeds": [
+        "design-direction.md",
+        "design-audit.md",
+        "motion-principles.md",
+        "motion-web.md",
+        "gsap.md",
+        "threejs.md",
+        "creative-coding.md",
+        "platform-native.md"
+      ],
+      "pins": {
+        "skills": {
+          "sha": "642e857d2807e273a2e72e02cdbc10fbcb058e66",
+          "date": "2026-07-18T20:04:52Z"
+        }
+      }
+    },
+    {
+      "name": "gsap-skills",
+      "repo": "greensock/gsap-skills",
+      "watch": [
+        "skills"
+      ],
+      "feeds": [
+        "gsap.md"
+      ],
+      "pins": {
+        "skills": {
+          "sha": "a9d6270b6a09827c74ac2d7bfe2a55adaf5fd597",
+          "date": "2026-04-21T23:28:34Z"
+        }
+      }
+    },
+    {
+      "name": "threejs-skills",
+      "repo": "CloudAI-X/threejs-skills",
+      "watch": [
+        "skills"
+      ],
+      "feeds": [
+        "threejs.md"
+      ],
+      "pins": {
+        "skills": {
+          "sha": "260ead4214960c21a74952b54a61184a4708becf",
+          "date": "2026-01-19T21:03:58Z"
+        }
+      }
+    },
+    {
+      "name": "design-dna",
+      "repo": "zanwei/design-dna",
+      "watch": [
+        "SKILL.md",
+        "references"
+      ],
+      "feeds": [
+        "design-dna.md"
+      ],
+      "pins": {
+        "SKILL.md": {
+          "sha": "ae0c91dddf3ce9cc2594884e44575ccc3ae49afa",
+          "date": "2026-03-23T10:09:34Z"
+        },
+        "references": {
+          "sha": "ae0c91dddf3ce9cc2594884e44575ccc3ae49afa",
+          "date": "2026-03-23T10:09:34Z"
+        }
+      }
+    },
+    {
+      "name": "motion-design-skill",
+      "repo": "lottiefiles/motion-design-skill",
+      "watch": [
+        "skills"
+      ],
+      "feeds": [
+        "motion-principles.md"
+      ],
+      "pins": {
+        "skills": {
+          "sha": "b6606e101601ef027f01729a7289e97c329ad0cd",
+          "date": "2026-03-12T09:23:58Z"
+        }
+      }
+    },
+    {
+      "name": "remotion",
+      "repo": "remotion-dev/remotion",
+      "watch": [
+        "packages/skills"
+      ],
+      "feeds": [
+        "video-remotion.md"
+      ],
+      "pins": {
+        "packages/skills": {
+          "sha": "1f7af39b9db3cef7bdc97cd9c4ec3e02091157bb",
+          "date": "2026-07-19T17:33:30Z"
+        }
+      }
+    },
+    {
+      "name": "hyperframes",
+      "repo": "heygen-com/hyperframes",
+      "watch": [
+        "skills"
+      ],
+      "feeds": [
+        "video-direction.md",
+        "video-hyperframes.md",
+        "motion-web.md",
+        "gsap.md"
+      ],
+      "pins": {
+        "skills": {
+          "sha": "49113eb08487b2c53b7404bc26c5e419244ae97f",
+          "date": "2026-07-18T08:36:36Z"
+        }
+      }
+    }
+  ]
+}
