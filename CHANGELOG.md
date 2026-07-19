@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.3.1 — 2026-07-20
+
+- README gains a "Full capabilities: engine and companion dependencies" table: install
+  commands for GSAP, Three.js/R3F, Remotion, and HyperFrames (Node ≥ 22 + FFmpeg), plus
+  how to add the optional HyperFrames deep-skill suite and companion tools
+  (`media-use`, `figma`, `mediabunny`, Craftwork MCP) that `references/companions.md`
+  detects and prefers when present. Makes explicit that maestro's own knowledge has zero
+  runtime dependencies — these are only needed once a task reaches for that capability.
+
 ## 2.3.0 — 2026-07-20
 
 - New `references/companions.md`: maps the operational assets of companion skills

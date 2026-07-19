@@ -59,6 +59,21 @@ substantial requests start with a short interview (the Grill Gate) — that's by
 sources have changed since this copy was distilled.
 ```
 
+## Full capabilities: engine and companion dependencies
+
+Maestro itself has no runtime dependencies — install nothing beyond the skill to get design judgment, motion principles, and critique. The table below is what each rendering engine or companion tool needs, and only matters once a task actually reaches for it:
+
+| Capability | Install | Notes |
+|---|---|---|
+| GSAP animation | `npm install gsap` (+ `npm install @gsap/react` for the React hook) | Or CDN: `https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js` |
+| Three.js / React Three Fiber | `npm install three` (+ `@react-three/fiber @react-three/drei` for React) | |
+| Remotion video | `npx create-video@latest --yes --blank --no-tailwind my-video && cd my-video && npm i` | Scaffolds a fresh project per video; nothing to install globally |
+| HyperFrames video | Node.js **≥ 22** and [FFmpeg](https://ffmpeg.org/download.html) on PATH, then `npx hyperframes init my-video` | The full dev loop (`lint`, `check`, `snapshot`, `preview`, `render`) runs through `npx hyperframes ...` inside that project |
+| HyperFrames deep skills (`hyperframes-animation`, `-creative`, `-core`, `-cli`, `-keyframes`, `-registry`) | Copy the `skills/` folder from [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) into `~/.claude/skills/`, the same way you installed maestro | Optional. Maestro works without them but prefers their frame presets, motion rules, and CLI when present — see `references/companions.md` |
+| `media-use`, `figma`, `mediabunny`, Craftwork MCP | Install per each tool's own source/docs | Optional companions for asset resolution, Figma import, and media probing — maestro detects and defers to them when installed, see `references/companions.md` |
+
+Maestro checks what's actually installed before reaching for any of the above; a design or motion conversation needs none of it.
+
 ## Usage
 
 Maestro activates automatically for design, motion, 3D, and video work, or explicitly via `/maestro`. Two behaviors are intentional:
