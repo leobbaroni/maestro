@@ -4,8 +4,10 @@
     {
       "name": "impeccable",
       "repo": "pbakaus/impeccable",
+      "$comment": "Watch the knowledge layer only. `skill/scripts/` is the Live in-browser iteration toolchain — operational code maestro never distills (companions.md points at it by name, not by API), so watching it produced drift alarms with zero re-distillation work.",
       "watch": [
-        "skill"
+        "skill/reference",
+        "skill/SKILL.src.md"
       ],
       "feeds": [
         "design-foundations.md",
@@ -16,9 +18,13 @@
         "process.md"
       ],
       "pins": {
-        "skill": {
-          "sha": "331540ddec18dae74e61c9fc4598e050f5624f71",
-          "date": "2026-07-18T23:06:06Z"
+        "skill/reference": {
+          "sha": "d0ac67c6e975fd435766353b818210dcba8c6408",
+          "date": "2026-07-20T01:42:41Z"
+        },
+        "skill/SKILL.src.md": {
+          "sha": "c11cc7b58ce69c0723b2c7eb804a45279d06c52e",
+          "date": "2026-07-09T14:30:49Z"
         }
       }
     },

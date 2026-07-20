@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.3.2 — 2026-07-20
+
+Upstream sync run. **No reference module changed** — the only drifted upstream
+(impeccable, `331540d → d146d20`) moved entirely in its Live in-browser iteration
+toolchain: 16 files under `skill/scripts/` plus `reference/live.md` (harness poll
+policy, `event.scaffold` reuse, source locks, accept-error modes). That is operational
+protocol for a tool maestro points at but does not distill; no design guidance,
+API fact, or process rule in maestro was affected.
+
+- `upstreams.json`: narrowed impeccable's watch from `skill` to `skill/reference` +
+  `skill/SKILL.src.md`, so tooling churn no longer raises drift alarms that resolve to
+  no work. Re-pinned all paths; the checker is clean.
+- `UPDATING.md`: documented the watch-the-knowledge-layer rule and this precedent, so a
+  future run narrows a noisy watch instead of re-absorbing the noise.
+
 ## 2.3.1 — 2026-07-20
 
 - README gains a "Full capabilities: engine and companion dependencies" table: install

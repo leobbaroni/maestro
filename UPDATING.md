@@ -8,6 +8,12 @@ the complete playbook; an AI agent can run it end-to-end.
 
 - [`upstreams.json`](upstreams.json) pins the last-seen commit for every watched upstream
   path and maps each upstream to the maestro modules it feeds.
+- **Watch the knowledge layer, not the tooling.** Watched paths should cover only what
+  maestro actually distills. When a drift report resolves to "upstream changed its own
+  scripts/CLI, no maestro module needs editing," that's a signal the watch is too broad —
+  narrow the path rather than absorbing the noise. (Precedent: impeccable is watched at
+  `skill/reference` + `skill/SKILL.src.md`, not all of `skill/`, because `skill/scripts/`
+  is the Live iteration toolchain maestro references by name but never distills.)
 - `node scripts/check-upstreams.mjs` compares pins against the live repos and prints a
   drift report (exit code 1 on drift). `--pin` re-pins after you've absorbed changes.
 - The [upstream-watch GitHub Action](.github/workflows/upstream-watch.yml) runs the check
