@@ -28,6 +28,8 @@ Maestro consolidates eight established design and motion knowledge bases — [im
 /plugin install maestro@maestro
 ```
 
+Maestro is also served by the [cockpit](https://github.com/leobbaroni/cockpit) marketplace — the companion process pack (planning, orchestration, review, debugging, delivery). `/plugin marketplace add leobbaroni/cockpit` gets both from one place.
+
 **Option B — personal skill**
 
 ```bash

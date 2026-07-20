@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.3 — 2026-07-20
+
+- README: maestro is now also served by the [cockpit](https://github.com/leobbaroni/cockpit)
+  marketplace — the companion process pack (pilot, grilling, orchestrate, handoff,
+  diagnosing-bugs, domain-modeling). One marketplace add installs the full stack.
+
 ## 2.3.2 — 2026-07-20
 
 Upstream sync run. **No reference module changed** — the only drifted upstream
