@@ -4,7 +4,7 @@
     {
       "name": "impeccable",
       "repo": "pbakaus/impeccable",
-      "$comment": "Watch the knowledge layer only. `skill/scripts/` is the Live in-browser iteration toolchain — operational code maestro never distills (companions.md points at it by name, not by API), so watching it produced drift alarms with zero re-distillation work.",
+      "$comment": "Watch the knowledge layer only. `skill/scripts/` is the Live in-browser iteration toolchain — operational code maestro never distills (companions.md points at it by name, not by API), so watching it produced drift alarms with zero re-distillation work. Lowest authority on design conflicts (taste-skill > hallmark > impeccable). Reference corpus also vendored in skills/maestro/library/impeccable/ (Apache-2.0, LICENSE + NOTICE carried).",
       "watch": [
         "skill/reference",
         "skill/SKILL.src.md"
@@ -133,6 +133,55 @@
         "packages/skills": {
           "sha": "1f7af39b9db3cef7bdc97cd9c4ec3e02091157bb",
           "date": "2026-07-19T17:33:30Z"
+        }
+      }
+    },
+    {
+      "name": "taste-skill",
+      "repo": "Leonxlnx/taste-skill",
+      "$comment": "Highest-authority design source on conflicts (taste-skill > hallmark > impeccable). Watch skills/ only — research/ is LLM-behavior material maestro does not distill. Corpus also vendored verbatim in skills/maestro/library/taste-skill/ (MIT).",
+      "watch": [
+        "skills"
+      ],
+      "feeds": [
+        "design-audit.md",
+        "design-direction.md",
+        "design-foundations.md",
+        "design-dna.md",
+        "toolbox.md",
+        "motion-web.md",
+        "gsap.md",
+        "process.md"
+      ],
+      "pins": {
+        "skills": {
+          "sha": "0d0aca956ce8c6d268b30ad74e5d93ff829f819b",
+          "date": "2026-06-12T15:10:26Z"
+        }
+      }
+    },
+    {
+      "name": "hallmark",
+      "repo": "nutlope/hallmark",
+      "$comment": "Middle authority on conflicts (taste-skill > hallmark > impeccable). Watch the skill only — site/ is rendered examples. Corpus also vendored verbatim in skills/maestro/library/hallmark/ (MIT).",
+      "watch": [
+        "skills/hallmark"
+      ],
+      "feeds": [
+        "page-anatomy.md",
+        "design-audit.md",
+        "design-direction.md",
+        "design-dna.md",
+        "design-foundations.md",
+        "motion-principles.md",
+        "motion-web.md",
+        "process.md",
+        "toolbox.md"
+      ],
+      "pins": {
+        "skills/hallmark": {
+          "sha": "aeb42fb354ff4efa36ab475773a082315a3af2ce",
+          "date": "2026-06-04T20:42:42Z"
         }
       }
     },

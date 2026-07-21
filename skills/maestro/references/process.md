@@ -24,6 +24,9 @@ Before any substantial design, build, or redesign work, interview the user until
 - Walk the **design tree branch by branch**: each answer opens or closes downstream branches. Resolve dependencies between decisions in order (platform before layout, audience before tone, motion tier before animation specifics).
 - **Never ask what you can look up.** If a question is answerable by exploring the codebase, existing assets, or prior project files, explore instead of asking.
 - If a named reference is behind a login or paywall, ask for a screenshot instead of silently skipping it.
+- **Structure choices are grill material.** For page-scale work, surface the macrostructure and theme as explicit user choices — on a vague brief, offer the domain-matched trio of three categorically different page shapes (`references/page-anatomy.md`), recommended pick first, not seven abstract tones.
+- **Honest-copy pause.** When a stat/proof slot has no user-supplied number, never invent one: pause and ask, mark "metric to confirm", or drop the slot.
+- **Component-scope shortcut.** A brief naming one UI element (button, input, card, modal) skips page-level choices entirely — ship the component with all 8 interaction states and a state-demo wrapper.
 
 **Skip the gate when:**
 
@@ -48,8 +51,10 @@ The grill ends when the brief contains all of the following. Freeze it into a fi
 |---|---|
 | **Audience / register** | One-sentence physical scene: who uses this, where, under what light, in what mood ("a gym-goer between sets, phone in one hand, sweaty thumb"). If the sentence doesn't imply light/dark, density, and tone, sharpen it until it does. |
 | **Platform** | Target surfaces and breakpoints (e.g. mobile-first ~380px + 1440px desktop; 16:9 vs 9:16 for video). |
-| **Style direction** | 1+ concrete references (site/app/screenshot) with *what to steal from each*, plus 2–3 **banned qualities** ("no card grid", "not so text-dense", "no corporate blue"). |
+| **Style direction** | The Design Read one-liner first (`references/design-direction.md` step 0), then 1+ concrete references (site/app/screenshot) with *what to steal from each*, plus 2–3 **banned qualities** ("no card grid", "not so text-dense", "no corporate blue"). |
+| **Page shape + theme** | For page-scale work: the picked macrostructure, nav/footer archetypes, and theme (or the custom fork) from `references/page-anatomy.md` — plus what the previous build used, so this one differs. |
 | **Motion tier** | *calm* (subtle fades, hover states only) · *lively* (micro-interactions, staggered entrances, one animated accent) · *showpiece* (scroll-driven sections, animated hero, page-transition feel). The tier shapes everything downstream. |
+| **Dials** | Brand surfaces also lock DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY values with a one-line reason (inference table: `references/design-direction.md`). DENSITY drives the spacing bands; MOTION crosswalks to the tier above. |
 | **Constraints** | Tech stack, existing tokens/components to honor, real content (actual headline/copy/data — lorem ipsum is auto-rejected), budget/paid-action limits, non-goals. |
 | **Success criteria** | One checkable done-condition ("the table fits 380px with no horizontal scroll", "the hero makes people stop"). Weak criteria ("make it work") burn turns; strong criteria let you loop independently. |
 
@@ -89,6 +94,7 @@ Detect the phase first, declare it in one line ("Phase: X — because <signal>")
 | User says improve / better / polish / refine / "feels off" | **Improvement** | Measurable criteria FIRST, then work |
 | Something is broken, cause unknown, or a prior fix "still" fails | **Debugging** | Reproduce FIRST, then hypothesize |
 | Work exists and matches the brief's shape | **Polish** | Critique loop against the locked brief |
+| An existing live site needs a new look | **Redesign** | Detect the mode, audit before touching |
 
 ### Greenfield: grill → spec → build
 
@@ -119,6 +125,22 @@ Cause unknown, intermittent, or a previous fix "didn't take" → build a red-cap
 3. **Re-render and re-critique.** Loop until the critique returns no findings above the shipping bar or hits diminishing returns.
 4. Production-grade is the bar: beautiful, responsive, fast, precise, bug-free, on brief. No shortcuts unless the user asked for them (when in doubt, ask).
 
+### Redesign: detect the mode, audit before touching
+
+Misclassifying the mode is the biggest source of bad redesign output. Detect first; if ambiguous, ask once ("preserve the brand, or start visually from scratch?"):
+
+| Mode | Meaning | Approach |
+|---|---|---|
+| Greenfield | No existing site, or full overhaul approved | Dial baselines; normal grill → direction → build |
+| Redesign — preserve | Modernize without breaking the brand | Audit first, extract brand tokens, evolve gradually |
+| Redesign — overhaul | New visual language over existing content | Visuals as greenfield; preserve content + IA |
+
+**Audit before touching:** document brand tokens (colors, type, logo, radii), information architecture (page tree, nav, conversion paths), content blocks (working vs filler), signature patterns to keep, slop patterns to retire, the existing dial reading (the starting point, not the baseline), and the **SEO baseline** (ranking pages, meta, structured data, OG) — SEO migration is the #1 redesign risk.
+
+**Never changes silently** (explicit approval required): URL structure / route slugs, primary nav labels, form field names and order (breaks analytics + autofill), the logo/wordmark, legal/consent copy. Preserve copy voice unless a rewrite was asked; honor existing a11y wins; respect analytics-tracked IDs.
+
+**Modernisation levers, in priority order** (stop when the brief is satisfied): typography refresh (biggest lift per unit risk) → spacing & rhythm → color recalibration (desaturate, unify neutrals, keep the brand accent) → motion layer → hero/key-section recomposition → full block replacement (only when unsalvageable). IA + content + SEO sound → targeted evolution (levers 1–4 ≈ 70% of the value at 40% of the risk); structural visual debt → full redesign with strict content preservation; the brand itself changing → greenfield. Exhaustive per-category audit checklist: `library/taste-skill/skills/redesign-skill/SKILL.md`; rebuilding from a studied reference: `references/design-dna.md`.
+
 ## 5. Execution discipline (applies in every phase)
 
 **Think before coding.** State assumptions explicitly; if uncertain, ask. If multiple interpretations exist, present them — don't pick silently. If a simpler approach exists, say so; push back when warranted. If something is unclear, stop, name what's confusing, ask.
@@ -130,6 +152,8 @@ Cause unknown, intermittent, or a previous fix "didn't take" → build a red-cap
 **Goal-driven execution.** Transform tasks into verifiable goals before starting: "add validation" → "write tests for invalid inputs, make them pass"; "fix the bug" → "failing repro test, make it pass". For multi-step work, state the plan as `step → verify: check` lines.
 
 **Paid actions** (media-generation batches, paid APIs, cloud renders, deployments): state the estimated cost and get confirmation before anything non-trivial.
+
+**No placeholder output.** For "ship the whole thing" tasks, banned in delivered code: `// ...`, `// rest of code`, stub TODOs, bare `...`, and prose escapes ("for brevity", "the rest follows the same pattern"). Count the deliverables the request implies, build every one, cross-check the count before responding. On a genuine length limit, stop at a clean breakpoint (end of file/function/section) and mark `[PAUSED — X of Y complete; continue from: <next>]` — never compress or skip the middle.
 
 ## 6. Verification
 
@@ -146,4 +170,4 @@ Cause unknown, intermittent, or a previous fix "didn't take" → build a red-cap
 For mega-requests (5+ asks in one message): echo the asks back as a numbered checklist before working, and report per-item DONE / NOT DONE / PARTIAL at the end — never silent omission.
 
 ---
-*Distilled from: grilling, pilot, mockups, impeccable.*
+*Distilled from: grilling, pilot, mockups, impeccable, taste-skill (redesign protocol, output discipline), hallmark (structure grilling).*

@@ -14,6 +14,7 @@
 
 Run this every time. Never skip discovery, even (especially) when told "just make it look good."
 
+0. **The Design Read** (landing/portfolio/redesign fast pre-commit). One line the whole team can agree on before anything else: *"Reading this as: `<page kind>` for `<audience>`, with a `<vibe>` language, leaning toward `<design system or aesthetic family>`."* If the read genuinely forks, ask exactly one clarifying fork ("clean-minimal or experimental?") — never a question dump; if you can infer confidently, declare it and proceed. The fuller theses below still follow for anything substantial.
 1. **Extract five facts** from the brief: product (what is it), audience (who uses/watches it), mood (3–5 adjectives), references (sites, screenshots, films), constraints (stack, existing brand, deadline, format). If any is missing, ask — one question at a time; each answer reshapes the next question. Never bundle questions.
 2. **Handle vague answers.** "Modern/clean/nice" is not an answer. Offer concrete forks ("clean like Stripe's editorial whitespace, Linear's dense-but-organized, or Apple's dramatic minimalism?"), or invert ("what would feel WRONG? what makes you cringe?"). "Yeah, something like that" is not confirmation — ask which part resonates. If the user insists on skipping, state your assumptions explicitly and proceed.
 3. **Name the feeling.** One sentence: what should the viewer FEEL in the first 3 seconds? Mood first, content second.
@@ -69,7 +70,22 @@ Each direction implies a motion energy, easing family, pacing, and atmosphere la
 | Cultural, fun, consumer, festive | Folk Frequency |
 | Dark, dramatic, intense, cinematic | Shadow Cut |
 
-Web-UI style families (glassmorphism, neumorphism, claymorphism, brutalism, bento grid, flat, skeuomorphic) are treatments, not directions — pick a direction above first, then use a treatment only if it serves it.
+Web-UI style families (glassmorphism, neumorphism, claymorphism, brutalism, bento grid, flat, skeuomorphic) are treatments, not directions — pick a direction above first, then use a treatment only if it serves it. Page-shape and theme selection (macrostructures, component fingerprints, the 20-theme catalog) is its own layer: `references/page-anatomy.md`.
+
+### Aesthetic recipes — pre-committed treatments with exact tokens
+
+Ready palettes for four proven lanes; full component specs in the library. A recipe serves a direction — pick the mood-matched direction first, then reach for the recipe; never let the recipe become the direction.
+
+| Recipe | Tokens / signature | Depth |
+|---|---|---|
+| **Swiss industrial (light brutalist)** | bg `#F4F4F0`/`#EAE8E3`, ink `#050505`–`#111111`, one hazard-red accent `#E61919`/`#FF2A2A`. Macro type `clamp(4rem,10vw,15rem)`, tracking −0.03→−0.06em, leading 0.85–0.95, uppercase; micro mono 10–14px tracked +0.05–0.1em. Zero radius. Hairline grid: `display:grid; gap:1px` on contrasting parent/child backgrounds | `library/taste-skill/skills/brutalist-skill/SKILL.md` |
+| **Tactical telemetry (dark brutalist)** | bg `#0A0A0A`/`#121212` (never `#000`), phosphor text `#EAEAEA`, red accent `#E61919`, optionally ONE terminal-green `#4AF626` element. CRT scanlines: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)`. Pick one brutalist archetype per project, never both | same |
+| **Editorial minimal (document UI)** | canvas `#FFFFFF`/`#F7F6F3`/`#FBFBFA`, ink `#111111`/`#2F3437`, secondary `#787774`, borders `#EAEAEA`/`rgba(0,0,0,0.06)`; muted-pastel accent pairs red `#FDEBEC`/`#9F2F2D`, blue `#E1F3FE`/`#1F6C9F`, green `#EDF3EC`/`#346538`, yellow `#FBF3DB`/`#956400`. Flat bento 1px borders, radius 8–12px, padding 24–40px. CTA `#111`→`#333` hover | `library/taste-skill/skills/minimalist-skill/SKILL.md` |
+| **Soft premium (nested-bezel)** | The nested-bezel card: outer shell `bg-black/5` (or `white/5`), `ring-1 ring-black/5`, `p-1.5`–`p-2`, `rounded-[2rem]`; inner core with own bg, inset top highlight `shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]`, concentric `rounded-[calc(2rem-0.375rem)]`. Button-in-button trailing icon in its own `w-8 h-8 rounded-full`. Motion `cubic-bezier(0.32,0.72,0,1)` ~700ms; `backdrop-blur` only on fixed/sticky | `library/taste-skill/skills/soft-skill/SKILL.md` |
+
+### Generate-first (image → analysis → code)
+
+When an image-gen tool is available and visual quality is central (hero, landing, redesign), an alternative to reference-collection: (1) generate the design image yourself — **one image per section**, never one compressed board, never crop a section out of a larger render; (2) deep-analyze each as a spec — extract copy, type-scale relationships, spacing, palette, component logic; (3) implement faithfully. **Anti-drift is the failure mode:** the coded result must stay the same site as the reference — don't simplify distinctive sections into generic rows or compress generous spacing. Reference-board generators (per-section web comps, mobile flow boards, brand-identity boards): `references/toolbox.md`; depth: `library/taste-skill/skills/image-to-code-skill/SKILL.md`.
 
 ### Presenting options (fan-out)
 
@@ -135,6 +151,30 @@ Highest misfire risk. Context defines "extraordinary": a shader hero on a portfo
 - Iterate visually in a browser — ambitious effects never look right on the first try; "technically works" → "looks extraordinary" is closed by looking, not by code.
 - Verify: wow test (does a fresh viewer react?), removal test (is it missed?), device test (mid-range phone), reduced-motion test, context test (right for THIS brand?).
 
+## The three dials (brand-surface calibration)
+
+Three orthogonal 1–10 dials calibrate landing/portfolio/marketing surfaces — a finer-grained complement to the boldness dial and the motion tier, not a replacement. Declare values (with the reason) at direction time; never silently run the baseline. Keep the literal token names — the library cross-references them.
+
+- **DESIGN_VARIANCE** (1 = perfect symmetry → 10 = artful chaos). Baseline **8**.
+- **MOTION_INTENSITY** (1 = static → 10 = cinematic/physics). Baseline **6**.
+- **VISUAL_DENSITY** (1 = art-gallery airy → 10 = cockpit-packed). Baseline **4**.
+
+Crosswalk so the systems compose: MOTION_INTENSITY 1–3 ≈ motion tier *calm*, 4–7 ≈ *lively*, 8–10 ≈ *showpiece* (`references/process.md`); DESIGN_VARIANCE tracks the boldness dial (1–3 ≈ Quieter, 8–10 ≈ Bolder); VISUAL_DENSITY is a genuinely new axis — it drives the spacing bands in `references/design-foundations.md` and belongs in the brief lock.
+
+Dial inference — read the brief's vibe words into values:
+
+| Signal | VARIANCE | MOTION | DENSITY |
+|---|---|---|---|
+| minimalist / clean / calm / editorial / document-UI | 5–6 | 3–4 | 2–3 |
+| premium consumer / luxury / brand-led | 7–8 | 5–7 | 3–4 |
+| playful / award-tier / experimental / agency | 9–10 | 8–10 | 3–4 |
+| landing / portfolio / marketing (default) | 7–9 | 6–8 | 3–5 |
+| trust-first / public-sector / regulated / a11y-critical | 3–4 | 2–3 | 4–5 |
+| redesign — preserve | match existing | +1 | match |
+| redesign — overhaul | +2 | +2 | match |
+
+Variance mechanics: 1–3 symmetric 12-col, equal padding, centered; 4–7 offset overlaps (`margin-top:-2rem`), mixed aspect ratios, left-aligned headers over centered data; 8–10 masonry, fractional grids (`2fr 1fr 1fr`), massive deliberate empty zones. **Mobile override:** asymmetric layouts at VARIANCE ≥4 collapse to a strict single column below 768px. **Anti-center bias:** a centered hero is banned at VARIANCE >4 (exception: editorial/manifesto/launch where the message is the design). If a page claims MOTION_INTENSITY >4 it must actually move — a static page claiming 7 is broken; can't ship working motion in scope → drop the dial to 3 and ship clean static (`references/motion-web.md`).
+
 ## Delight & signature moments
 
 Delight is earned per-moment, never distributed everywhere. Brand register: delight can live in copy voice, transitions, discovery rewards across the surface. Product register: delight only at completion, first-time actions, error recovery, milestones — reliability carries the rest.
@@ -160,7 +200,7 @@ Delight is earned per-moment, never distributed everywhere. Brand register: deli
 
 A brand system = voice + tokens + distinctive assets, all downstream of the thesis.
 
-- **Voice**: the three physical-object words govern palette mechanics, type character, motion energy, and copy tone simultaneously. Palette IS voice — a calm brand and a restless brand must not share palette mechanics. Don't converge across projects; each surface differentiates from the last. When a cultural-symbol palette is the obvious pull, reach past it; let culture come from type, imagery, copy.
+- **Voice**: the three physical-object words govern palette mechanics, type character, motion energy, and copy tone simultaneously. Palette IS voice — a calm brand and a restless brand must not share palette mechanics. Don't converge across projects; each surface differentiates from the last — operationalized: read the previous build's structure stamp and log before picking, and differ on macrostructure, theme (≥1 of 3 axes), nav, footer, and enrichment (`references/page-anatomy.md`). When a cultural-symbol palette is the obvious pull, reach past it; let culture come from type, imagery, copy.
 - **Tokens**: one canonical spec file; generated code (CSS variables / Tailwind config / Theme.kt / Color+App.swift) are children of it. Interactive elements define all five states: default, hover, focus, active, disabled. Minimal skeleton:
 
 ```yaml
@@ -178,7 +218,7 @@ motion:
 
   Follow with prose: Overview, per-token rationale, Components, Do's and Don'ts. The pattern is *tokens (what) → rationale (why) → components (how they combine)*.
 - **Distinctive assets**:
-  - **Imagery is mandatory when the brief implies it** (restaurant, hotel, travel, fashion, food, photography). Zero images is a bug, not restraint; colored divs where a hero photo belongs is the failure mode. Imagery = photos, product screenshots, custom data-viz, generated SVG, canvas/WebGL scenes. One decisive photo beats five mediocre ones. Search for the brand's physical object ("handmade pasta on a scratched wooden table"), not the category ("Italian food"). Alt text is part of the voice.
+  - **Imagery is mandatory when the brief implies it** (restaurant, hotel, travel, fashion, food, photography). Zero images is a bug, not restraint; colored divs where a hero photo belongs is the failure mode. Imagery = photos, product screenshots, custom data-viz, generated SVG, canvas/WebGL scenes. One decisive photo beats five mediocre ones. Never hand-build UI chrome (browser bars, phone frames, code windows, terminals) in CSS/SVG — real screenshots in a `<figure>`, real device renders, or nothing. Search for the brand's physical object ("handmade pasta on a scratched wooden table"), not the category ("Italian food"). Alt text is part of the voice.
   - **Icons**: one set per project, consistent stroke width (1.5px reads more refined than the 2px default). Custom-draw the 3–4 that matter (nav, logo-adjacent); library for the rest.
   - **Texture**: inline SVG `feTurbulence` grain is the cheapest "expensive" texture — no asset download:
 
@@ -197,6 +237,8 @@ motion:
 ## Typography as art direction
 
 The single highest-leverage decision. Google-Fonts defaults are the #1 tell of template work.
+
+**Headers are roman — globally.** Italic on any heading or display element (including a single italicized emphasis word inside an upright headline) is among the most reliable AI tells. Emphasis in headers comes from weight, accent color, or a drawn underline; italic survives only in body copy. Sole exception: a *preserved existing brand* whose identity is genuinely italic-led (redesign-preserve mode) — never a greenfield choice.
 
 ### Selection procedure (every project, never skip)
 
@@ -292,4 +334,4 @@ All MIT/ISC, commercial-OK: Lucide (neutral default), Phosphor (6 weights — we
 4. Keep the refs; later critique passes cite them as the taste bar.
 
 ---
-*Distilled from: impeccable, design-kit, hyperframes, genjutsu.*
+*Distilled from: impeccable, design-kit, hyperframes, genjutsu, taste-skill (dials, Design Read, aesthetic recipes, generate-first), hallmark (roman headers, diversification).*

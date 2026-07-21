@@ -1,5 +1,43 @@
 # Changelog
 
+## 3.0.0 — 2026-07-20
+
+Two new upstream sources and a new two-layer architecture.
+
+- **Absorbed [taste-skill](https://github.com/Leonxlnx/taste-skill)** (Leonxlnx, MIT): the
+  anti-slop core (em-dash ban, eyebrow caps, premium-palette ban, copy self-audit, CTA
+  hygiene, layout-repetition caps) into design-audit; hero discipline, consistency locks,
+  density bands, and image/asset strategy into design-foundations; the three calibration
+  dials, the Design Read, four aesthetic recipes, and the generate-first pipeline into
+  design-direction; Brief→official-design-system routing and the icon-priority correction
+  (Lucide demoted to when-already-present; Phosphor et al. preferred) into toolbox; React
+  forbidden-motion patterns into motion-web; the Redesign Protocol and no-placeholder
+  output rule into process.
+- **Absorbed [hallmark](https://github.com/nutlope/hallmark)** (Together AI, MIT): NEW
+  module `references/page-anatomy.md` — the structure-selection brain (21 macrostructures,
+  ~50 component fingerprints, 20-theme catalog, genre scoping, enrichment tiers,
+  diversification stamp); ~19 new mechanical gates into design-audit (roman headers,
+  re-drawn-chrome ban, overflow-x clip, input-state discipline, nav/footer fingerprints…);
+  accent ≤3%, the 2+1 font rule, and hero size-by-length brackets into design-foundations;
+  the motion budget (≤3 primitives/page, default-on/off shapes, tooltip asymmetry) into
+  motion-principles; study-verb structure extraction + URL-safety into design-dna;
+  structure grilling + honest-copy pause into process.
+- **New depth layer `skills/maestro/library/`** — three corpora vendored verbatim with
+  their licenses (taste-skill 11 sub-skills; hallmark complete incl. the 20-theme
+  `tokens.css`; impeccable's reference corpus + Apache NOTICE). The judgment layer points
+  into it for exact recipes; `library/README.md` holds the rules of engagement. First
+  verbatim redistribution — NOTICE.md and README licensing rewritten accordingly.
+- **Standing conflict hierarchy: taste-skill > hallmark > impeccable** (contradictions
+  only; everything else composes: hallmark structures → taste polish → impeccable
+  critique). Applied resolutions: Lucide demotion (taste over maestro-current), global
+  roman-header rule and accent ≤3% (hallmark over impeccable-derived values), OKLCH
+  authoring vs hex extraction split, one easing vocabulary (hallmark tokens mapped to
+  maestro's named curves).
+- upstreams.json: both sources watched and pinned; UPDATING.md gains the re-vendor
+  policy and the hierarchy rule; the setup prompt now verifies 18 modules + library.
+
+
+
 ## 2.3.3 — 2026-07-20
 
 - README: maestro is now also served by the [cockpit](https://github.com/leobbaroni/cockpit)

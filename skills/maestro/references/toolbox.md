@@ -11,6 +11,27 @@
 5. **Restyle to the tokens.** Swap default palettes, radii, and fonts for the project's design spec before shipping; defaults are a tell.
 6. **Curation-sourced entries** (marked °) come from a design-curation social feed (2026-07) with spot-verification only — confirm a small tool is alive before making it load-bearing in a deliverable. The full raw pool (fonts, templates, packs, Mac apps not curated here) is in `references/toolbox-corpus.md`.
 
+## Brief → official design system
+
+When a brief reads as one of these verticals, install and use the **official** package — don't recreate its CSS by hand, don't import tokens then override 90%, and run one design system per project (never two in one tree):
+
+| Brief reads as | Reach for | Note |
+|---|---|---|
+| Microsoft / enterprise SaaS | `@fluentui/react-components` | Official Fluent, a11y done |
+| Google-ish / Material product | `@material/web` + Material 3 tokens | Theme via Material Theming |
+| IBM-style B2B analytics | `@carbon/react` + `@carbon/styles` | Mature data-density patterns |
+| Shopify app surfaces | Polaris (web components / React) | Required for Shopify admin |
+| Atlassian / Jira-style | `@atlaskit/*` + `@atlaskit/tokens` | Official Atlassian DS |
+| GitHub-style devtool | `@primer/css` / `@primer/react-brand` | Brand variant for marketing |
+| UK public-sector service | `govuk-frontend` | Regulatorily expected |
+| US public-sector / trust-first | `uswds` | Same |
+| Fast local-business MVP | Bootstrap 5.3 | Boring, fast, works |
+| Accessible React foundation | `@radix-ui/themes` | Primitives + polished theme |
+| Modern SaaS, own the components | shadcn/ui (`npx shadcn@latest add …`) | Never ship default state |
+| Tailwind-based SaaS / indie | Tailwind v4 + `dark:` | Default for small teams |
+
+When the brief is an **aesthetic, not a system** (glassmorphism, bento, brutalism, editorial, kinetic type), there is no official package — build with native CSS + Tailwind + a maintained library, and label borrowed vs official honestly in comments. Apple's Liquid Glass is documented for Apple platforms only; web versions are `backdrop-filter` approximations — label them as such and provide a `prefers-reduced-transparency` solid fallback. Install commands + a labelled approximation skeleton: `library/taste-skill/skills/taste-skill/SKILL.md` appendices.
+
 ## Component libraries — React + Tailwind
 
 | Library | Role | Stack / license | Notes |
@@ -66,6 +87,7 @@ Complements (and competitors) to this skill — worth knowing when a user asks:
 - **Ship Studio** — free MIT desktop app (Tauri) wrapping Claude Code/Codex with live preview, visual editing, and deploys; macOS + Windows.
 - **Craftwork MCP** — natural-language asset search over Craftwork's library (see Asset sources below for the fuller Craftwork entry).
 - Market benchmark, not a usable resource: **primeui.com**° — closed AI website builder ($99 one-time, Next.js+Tailwind export, curated design system, anonymous team, no API/free tier). Not PrimeTek's PrimeUI (above) — a genuine name collision.
+- **Reference-board generators** (vendored, pair with an image model — they output reference *images*, not code): per-section website comps (`library/taste-skill/skills/imagegen-frontend-web/SKILL.md`), mobile app screen/flow boards (`…/imagegen-frontend-mobile/SKILL.md`), brand-identity boards with five logo-concept methods (`…/brandkit/SKILL.md`). Their load-bearing judgment: one image per section; left-text/right-image is the overused AI hero anchor — vary it; lock one palette across the set. Hand renders to the generate-first pipeline in `references/design-direction.md`.
 
 ## Learning & eye training
 
@@ -103,9 +125,9 @@ Routing logic: Awwwards/Godly for visual+motion ambition · 60fps for motion spe
 
 **Fonts** (deep guidance in `references/design-direction.md`): Fontshare (ITF-FFL foundry quality) · Fontsource (2,000+ OFL fonts as versioned npm packages — deterministic, self-hosted, agent-ideal) · UNCUT.wtf (163 display-forward free faces, check per-font license). Type helpers: Typescale (scale generator) · Font Pair / Fontjoy (pairing ideas — validate against the pairing rules, don't outsource the decision) · Fonts In Use + Typewolf (see the face shipped before committing).
 
-**Device mockups & showcasing**: Rotato (3D device renders/video) · Mockuuups Studio · Shots° · LS Graphics / Mr.Mockup° (libraries) · Craftwork's mockup packs (above). Screen capture for case studies: CleanShot, Screen Studio (macOS).
+**Device mockups & showcasing**: Rotato (3D device renders/video) · Mockuuups Studio · Shots° · LS Graphics / Mr.Mockup° (libraries) · Craftwork's mockup packs (above). Screen capture for case studies: CleanShot, Screen Studio (macOS). These produce *real rendered* mockups — sanctioned; hand-building fake browser/phone chrome in CSS/SVG is the banned pattern (`references/design-audit.md`).
 
-**Icons**: Lucide (ISC — the shadcn default) · Phosphor (MIT, 9,000 icons × 6 weights — weight variety as art direction) · **Iconify** (224 sets / ~330k icons behind one API with per-set licenses surfaced — one dependency, every style). One set per project.
+**Icons**: for brand-surface distinctiveness prefer **Phosphor** (MIT, 9,000 icons × 6 weights — weight variety as art direction) · HugeIcons · Radix Icons · Tabler; treat **Lucide** (ISC) as acceptable-when-asked or when the project already runs on it (it is the shadcn default, hence the most recognizable). **Iconify** (224 sets / ~330k icons behind one API with per-set licenses surfaced) when one dependency must cover every style. One family per project; standardize `strokeWidth` globally (1.5 reads more refined than 2.0); never hand-roll SVG icon paths. Logos for social proof: `cdn.simpleicons.org/{slug}` or devicon — real SVG marks, never text wordmarks.
 
 ## Excluded — and why
 

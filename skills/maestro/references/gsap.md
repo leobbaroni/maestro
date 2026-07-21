@@ -483,6 +483,8 @@ Gotchas not already called out above (rules already stated in the sections above
 | `svgOrigin` + `transformOrigin` on the same SVG element | Only one applies — pick one |
 | Expecting timeline `defaults` inside nested timelines | Defaults reach direct children only |
 | `gsap.context()` nested inside `matchMedia` handler | matchMedia already creates a context — use `mm.revert()` |
+| Pinned section (sticky-stack, horizontal-pan) with `start: "top center"` / `"top 80%"` | Pins fire halfway through scroll — pinned triggers use `start: "top top"` + `pin: true`; horizontal-pan adds `end: "+=" + distance, scrub: 1, invalidateOnRefresh: true` (canonical skeletons: `library/taste-skill/skills/taste-skill/SKILL.md` §5) |
+| GSAP + ScrollTrigger for a simple "enter on scroll" reveal | Motion `whileInView` (or IntersectionObserver + CSS) — reserve GSAP for real pin/scrub work |
 
 ---
 *Distilled from: gsap-skills (official), genjutsu, hyperframes.*

@@ -38,7 +38,9 @@ Update the maestro skill from its upstream sources.
    features. Follow the AUTHORING SPEC in UPDATING.md exactly — maestro stays one voice,
    150–500 lines per module, no verbatim wholesale copying.
 4. Conflicts: official sources win on API facts (gsap-skills for GSAP, remotion for
-   Remotion, hyperframes for HyperFrames, design-dna for the DNA schema). Maestro's
+   Remotion, hyperframes for HyperFrames, design-dna for the DNA schema). Design-taste
+   contradictions resolve by the standing hierarchy **taste-skill > hallmark >
+   impeccable** — contradictions only; non-conflicting guidance composes. Maestro's
    editorial voice wins on style and structure.
 5. Run `node scripts/check-upstreams.mjs --pin` to record the new pins.
 6. Bump the version in .claude-plugin/plugin.json (minor for new guidance, patch for
@@ -62,15 +64,33 @@ Update the maestro skill from its upstream sources.
 - Never invent APIs. Never delete a hard warning (the "common mistakes" entries) without
   upstream evidence it's obsolete.
 
+## The vendored library (depth layer)
+
+`skills/maestro/library/` holds verbatim copies of three corpora (taste-skill, hallmark,
+impeccable's reference set) that the distilled modules point into for long-tail depth.
+When the drift watcher flags one of these upstreams:
+
+1. Re-distill the affected judgment modules as usual (steps above).
+2. **Also re-vendor**: re-clone the upstream and replace the corpus wholesale —
+   `library/taste-skill/skills/` from `Leonxlnx/taste-skill:skills/` (the 11 curated
+   sub-skills, excluding `taste-skill-v1` and `gpt-tasteskill`),
+   `library/hallmark/` from `nutlope/hallmark:skills/hallmark/`,
+   `library/impeccable/reference/` + `SKILL.src.md` from `pbakaus/impeccable:skill/`.
+   Carry each LICENSE (and impeccable's NOTICE.md) unchanged. Never hand-edit vendored
+   files — local judgment belongs in the distilled modules.
+3. Spot-check that library paths cited by the distilled modules still exist
+   (`grep -o 'library/[A-Za-z0-9_/.-]*' skills/maestro/references/*.md` → verify each).
+
 ## Module → upstream map
 
 | Module | Fed by |
 |---|---|
-| process.md | impeccable (+ the grilling/pilot/mockups rituals, which have no public upstream) |
-| design-foundations.md | impeccable |
-| design-direction.md | impeccable, genjutsu, hyperframes |
-| design-dna.md | design-dna (authoritative), impeccable |
-| design-audit.md | impeccable, genjutsu |
+| process.md | impeccable, taste-skill, hallmark (+ the grilling/pilot/mockups rituals, which have no public upstream) |
+| design-foundations.md | impeccable, taste-skill, hallmark |
+| design-direction.md | impeccable, genjutsu, hyperframes, taste-skill, hallmark |
+| design-dna.md | design-dna (authoritative), impeccable, hallmark (study), taste-skill |
+| design-audit.md | impeccable, genjutsu, taste-skill, hallmark |
+| page-anatomy.md | hallmark (authoritative — macrostructures, fingerprints, themes) |
 | motion-principles.md | motion-design-skill, genjutsu, impeccable |
 | motion-web.md | genjutsu, hyperframes |
 | gsap.md | gsap-skills (authoritative), genjutsu, hyperframes |

@@ -230,6 +230,15 @@ useMotionValueEvent(x, "change", latest => { /* no re-render */ });
 
 Motion values update the DOM directly, bypassing React renders — the tool for scroll effects, cursor followers, and parallax. `useInView(ref, { once: true, amount: 0.5 })` for booleans; `useAnimate()` for imperative sequences (`await animate("li", { opacity: 1 }, { delay: stagger(0.1, { from: "center" }) })`); `useReducedMotion()` — always branch on it for non-essential motion.
 
+### Forbidden patterns (React / continuous values)
+
+- **`window.addEventListener('scroll', …)` is banned** — fires every frame, unbatched, jank-prone. Use `useScroll()`, GSAP ScrollTrigger, IntersectionObserver, or CSS `animation-timeline: view()`.
+- **Never drive continuous input values through `useState`** (mouse position, scroll progress, pointer physics, magnetic hover) — it re-renders the tree every frame and collapses on mobile. Use `useMotionValue` / `useTransform` / `useScroll` outside the render cycle; same for `requestAnimationFrame` loops touching React state.
+- **Isolate motion in client leaves:** any component using Motion, scroll observation, or pointer physics is an isolated `'use client'` leaf; Server Components render static layout only. `staggerChildren` needs parent `variants` with children in the same client tree.
+- **Claimed motion must ship working:** cut-off ScrollTriggers, jumpy entrances, and missing cleanups are worse than no motion — if the motion tier can't be built properly in scope, drop the tier and ship clean static. Reduced-motion handling is mandatory for anything beyond subtle transitions.
+
+Microinteraction details worth stealing: copy-to-clipboard = the button label swaps to "Copied" for ~1.5s, **no toast** (silent success — a visible effect needs no announcement); command-palette arrow-nav moves a highlight indicator (~120ms) behind stationary items, not the items; a blinking caret lives only inside a typed command line, never as a floating hero cursor.
+
 ### Pitfalls
 
 - No `key` on an `AnimatePresence` child = exit never runs.
@@ -321,4 +330,4 @@ const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches; /
 Design rules for the reduced variant are in `references/motion-principles.md` (Accessibility).
 
 ---
-*Distilled from: genjutsu (css-native, framer-motion), hyperframes-animation adapters, impeccable, LottieFiles motion-design-skill.*
+*Distilled from: genjutsu (css-native, framer-motion), hyperframes-animation adapters, impeccable, LottieFiles motion-design-skill, taste-skill (React forbidden patterns), hallmark (microinteractions).*

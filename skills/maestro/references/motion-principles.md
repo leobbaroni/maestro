@@ -178,6 +178,19 @@ Stagger direction: top-to-bottom (lists), reading order (grids, +20ms per row), 
 
 **Shared events:** when multiple elements react to one trigger, all start within 50ms (staggered landings are fine), with motion originating from the trigger point — closer elements first.
 
+## Motion Budget (page-level)
+
+Two complementary caps — both hold:
+
+- **≤3 distinct motion primitives per page** (a counter + a hover-lift + a marquee = three; a fourth is the slop pull). Cut motion before adding motion. A showpiece tier is still ≤3 primitives — each must earn its place.
+- **2–3 elements in simultaneous active motion** (the existing rule above) — primitives count across the page; this counts what moves at one instant.
+
+Page-shape defaults (`references/page-anatomy.md` shapes): motion **default-on** (ship 2–3 purposeful microinteractions) for bento-grid, stat-led, workbench, marquee-hero, FAQ-accordion pages; **default-off** (stillness is the brand, motion opt-in) for editorial, manifesto, letter, quote-led, type-specimen, long-document, index pages. Some themes multiply durations: stark print-like themes run 0× (static is correct, not a bug); heavy display themes ~0.7×; luxury editorial ~1.2–1.3×.
+
+Interaction details: tooltip delays are asymmetric — pointer hover 800–1000ms, keyboard focus 0ms. Success that is visible needs no announcement (label swap, not toast); optimistic updates roll back with an Undo on failure. Focus rings appear instantly, never animated in.
+
+Hallmark-derived themes name their easing tokens `--ease-out (0.16,1,0.3,1)` / `--ease-in (0.7,0,0.84,0)` / `--ease-in-out (0.65,0,0.35,1)` with 120/220/420ms buckets — `--ease-out` maps to this module's "emphasized out"; keep this module's named-curve table as the one vocabulary, don't fork a second.
+
 ## Pattern Recipes
 
 ### Entrances (ease-out, personality-scaled)
@@ -297,4 +310,4 @@ Stagger direction: top-to-bottom (lists), reading order (grids, +20ms per row), 
 | Everything enters the same way | Default y+opacity on every element | Vary: from left, from right, from scale, opacity-only, letter-spacing |
 
 ---
-*Distilled from: LottieFiles motion-design-skill, genjutsu motion-principles, hyperframes-creative, impeccable.*
+*Distilled from: LottieFiles motion-design-skill, genjutsu motion-principles, hyperframes-creative, impeccable, hallmark (motion budget).*

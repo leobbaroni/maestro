@@ -1,13 +1,21 @@
 # Notice & Attribution
 
-Maestro is a **distillation**: its reference modules are rewritten, merged, and editorially
-resolved guidance informed by the following upstream projects. No upstream files are
-redistributed verbatim; where a module tracks one source closely (schemas, API contracts),
-that source is named in the module's footer.
+Maestro has two layers with different licensing postures:
+
+- **Distilled modules** (`skills/maestro/references/`) are rewritten, merged, and
+  editorially resolved guidance informed by the upstream projects below — no verbatim
+  redistribution. Where a module tracks one source closely (schemas, API contracts), that
+  source is named in the module's footer.
+- **Vendored library** (`skills/maestro/library/`) contains **unmodified verbatim copies**
+  of three permissively licensed corpora, each shipped with its own license file:
+  [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT, © Leonxlnx),
+  [hallmark](https://github.com/nutlope/hallmark) (MIT, © Hallmark contributors /
+  Together AI), and [impeccable](https://github.com/pbakaus/impeccable)'s reference corpus
+  (Apache-2.0, © Paul Bakaus — its upstream NOTICE.md is carried alongside per §4(d)).
 
 | Upstream | What maestro drew from it | License |
 |---|---|---|
-| [impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus | Design craft, typography, layout, color, critique/audit, brand, delight, hardening, process discipline | See upstream LICENSE |
+| [impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus | Design craft, typography, layout, color, critique/audit, brand, delight, hardening, process discipline | Apache-2.0 (reference corpus also vendored) |
 | [genjutsu](https://github.com/AThevon/genjutsu) by Adrien Thevon | Motion principles, CSS/Framer Motion/GSAP patterns, Three.js/R3F, generative canvas, design audit, native platforms (SwiftUI/Compose/mobile/desktop) | MIT |
 | [gsap-skills](https://github.com/greensock/gsap-skills) by GreenSock/Webflow | Authoritative GSAP API guidance: core, timelines, ScrollTrigger, plugins, React, performance | MIT |
 | [threejs-skills](https://github.com/CloudAI-X/threejs-skills) by CloudAI-X | Three.js fundamentals through shaders and postprocessing | No license published; content rewritten, credited here |
@@ -15,6 +23,8 @@ that source is named in the module's footer.
 | [motion-design-skill](https://github.com/lottiefiles/motion-design-skill) by LottieFiles | Universal motion principles: timing, easing, choreography, Disney principles for UI | MIT |
 | [remotion](https://github.com/remotion-dev/remotion) by Remotion | Official Remotion best practices: markup, timing, sequencing, captions, rendering | Remotion License (see upstream) |
 | [hyperframes](https://github.com/heygen-com/hyperframes) by HeyGen | The HTML-to-video composition contract, animation rules/blueprints, video direction craft | See upstream LICENSE |
+| [taste-skill](https://github.com/Leonxlnx/taste-skill) by Leonxlnx | Anti-slop frontend framework, style sub-skills (brutalist/minimalist/soft/brandkit), redesign and image-to-code protocols | MIT (also vendored) |
+| [hallmark](https://github.com/nutlope/hallmark) by Together AI | Macrostructure catalog, component fingerprints, theme system, slop-test gates, audit/redesign/study verbs | MIT (also vendored) |
 
 Maestro's process rituals additionally fold in the interview-first ("grilling"),
 phase-ritual ("pilot"), and mockup-fan-out ("mockups") disciplines from the author's

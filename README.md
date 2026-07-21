@@ -2,11 +2,11 @@
 
 **A unified design, motion, 3D, and video skill for AI coding agents.**
 
-Maestro consolidates eight established design and motion knowledge bases — [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), and [hyperframes](https://github.com/heygen-com/hyperframes) — into a single skill. Every module is distilled and editorially reconciled rather than copied: duplicate guidance is merged, conflicting recommendations are resolved, and the result speaks with one voice.
+Maestro consolidates ten established design and motion knowledge bases — [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), and [hallmark](https://github.com/nutlope/hallmark) — into a single skill with two layers. The **judgment layer** (`references/`, 18 modules) is distilled and editorially reconciled: duplicate guidance merged, conflicting recommendations resolved (design-taste conflicts by the standing hierarchy taste-skill > hallmark > impeccable), one voice throughout. The **depth layer** (`library/`) vendors three complete source corpora verbatim — taste-skill's 11 sub-skills, hallmark's full macrostructure/fingerprint/theme catalog, impeccable's per-action references — so nothing is lost to summarization: the judgment layer selects, then points at the exact library file when a task needs a full recipe, theme token set, or protocol.
 
 ## Capabilities
 
-- **Design** — typography, layout, color, and hierarchy foundations; art direction with a named style catalog; Design DNA extraction from reference UIs; systematic critique, accessibility auditing, and edge-case hardening
+- **Design** — typography, layout, color, and hierarchy foundations; art direction with a named style catalog and calibration dials; whole-page structure selection (21 macrostructures, ~50 component fingerprints, a 20-theme catalog); Design DNA extraction from reference UIs; systematic critique, an extensive anti-slop gate catalog, accessibility auditing, and edge-case hardening
 - **Motion** — engine-agnostic motion principles (timing, easing, choreography); implementation guidance for modern CSS, WAAPI, Motion, and anime.js; a full GSAP reference including ScrollTrigger and plugins
 - **3D and generative** — Three.js from scene fundamentals through shaders, postprocessing, and React Three Fiber; canvas-based generative techniques
 - **Video** — engine-neutral video direction (story structure, beat planning, pacing, transitions) with dedicated modules for both HyperFrames (HTML-to-video) and Remotion (React-to-video)
@@ -54,7 +54,8 @@ it the best way my harness supports — Claude Code plugin via
 available to me as a user command (tell me to run those two commands), otherwise copy
 skills/maestro into my user skills directory (~/.claude/skills/maestro on macOS/Linux,
 %USERPROFILE%\.claude\skills\maestro on Windows); (3) verify the install by listing the
-skill and confirming skills/maestro/references contains 17 modules; (4) tell me the two
+skill and confirming skills/maestro/references contains 18 modules and skills/maestro/library
+exists (the vendored depth layer); (4) tell me the two
 ways to trigger it (just asking for design/motion/video work, or /maestro) and that
 substantial requests start with a short interview (the Grill Gate) — that's by design;
 (5) optionally run "node scripts/check-upstreams.mjs" and tell me if the upstream
@@ -93,7 +94,8 @@ maestro/
 ├── skills/maestro/
 │   ├── SKILL.md                 Router: task→module table, engine choosers, core rules
 │   ├── templates/BRIEF.md       The brief template the Grill Gate fills
-│   └── references/              17 modules (design, motion, 3D, video, process, toolbox, companions)
+│   ├── references/              18 modules (design, page anatomy, motion, 3D, video, process, toolbox, companions)
+│   └── library/                 Depth layer: vendored corpora (taste-skill, hallmark, impeccable) + licenses
 ├── upstreams.json               Pinned source commits and module map
 ├── scripts/check-upstreams.mjs  Drift checker / re-pinner (Node 18+, zero dependencies)
 ├── .github/workflows/           Weekly upstream watch — opens an issue on drift
@@ -114,4 +116,4 @@ When hosted on GitHub, the bundled workflow runs this check every Monday and ope
 
 ## License and attribution
 
-Maestro's own text is released under the [MIT License](LICENSE). It is a distillation: no upstream files are redistributed verbatim, and per-project attribution with license notes is maintained in [NOTICE.md](NOTICE.md). Modules that track a single authoritative source closely (the Design DNA schema, the HyperFrames contract, the Remotion API surface) name that source in their footers.
+Maestro's own text is released under the [MIT License](LICENSE). The judgment layer is a distillation — no verbatim redistribution; modules that track a single authoritative source closely (the Design DNA schema, the HyperFrames contract, the Remotion API surface, the hallmark macrostructure catalog) name that source in their footers. The depth layer (`skills/maestro/library/`) redistributes three permissively licensed corpora verbatim, each with its own license file carried alongside (taste-skill MIT, hallmark MIT, impeccable Apache-2.0 with its NOTICE). Per-project attribution: [NOTICE.md](NOTICE.md).

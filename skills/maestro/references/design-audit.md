@@ -23,6 +23,8 @@ Tag every finding. If unsure between two levels, ask: "Would a user contact supp
 
 Report rules: be direct and specific ("the submit button", not "some elements"); state why each issue hurts users; give concrete fixes, never "consider exploring…"; prioritize ruthlessly — if everything is important, nothing is; do not soften criticism.
 
+**Pre-emit self-critique (before any build is shown).** Score the not-yet-delivered work 1–5 on six axes — philosophy (does it argue a point of view?), hierarchy, execution, specificity (does it fit *this* brief?), restraint, variety. Any axis <3 triggers a revision pass before the user sees it. This is the builder's own gate; the full critique workflow above is the independent pass.
+
 ## Critique Dimensions
 
 ### Nielsen's 10 heuristics — score each 0–4
@@ -85,6 +87,68 @@ Selection: landing/marketing → Jordan, Riley, Casey · dashboard/admin → Ale
 | Redundant copy | Headline restated by subhead restated by button ("Get started" / "Start now") | Every string earns its place; cut or differentiate |
 
 Also check holistic slop signals: layout sameness across sections, generic composition (everything centered, symmetric, evenly weighted), and missed opportunities for personality.
+
+### Brand-surface slop tells (landing / portfolio / marketing)
+
+Production-derived, mechanical, specific to Brand-register surfaces; the general catalog above still applies. Each is P1 unless noted — they ship recognizably templated work.
+
+**The em-dash ban (zero-tolerance).** The em-dash (`—`) and separator en-dash (`–`) are the single most-violated AI stylistic tell. Ban them everywhere user-visible: headlines, eyebrows, pills, body, quotes, captions, button text, alt text. No "sparingly" allowance. Fixes: period, comma, colon, parentheses, line break, or two sentences. Ranges use a hyphen (`2018-2026`). One `—`/`–` anywhere visible = fail. Grep: `grep -rn '—\|–' <out>`.
+
+**Eyebrow restraint (mechanical count).** An eyebrow is the small uppercase wide-tracked label above a headline (signature `text-[11px] uppercase tracking-[0.18em]`). The AI reflex puts one over every section, producing identical rhythm. Hard cap: **max 1 eyebrow per 3 sections**; hero counts as 1. Test: count `uppercase tracking` micro-labels; fail if `count > ceil(sections/3)`. The fix is usually deletion — headline and position already categorize the section. Eyebrows also never sit in a column beside the heading (tag-left / heading-right is its own tell — the heading stacks directly beneath in the same column).
+
+| Tell | Signature | Fix |
+|---|---|---|
+| Section-number eyebrows | `00 / INDEX`, `001 · Capabilities`, `01 / 4` tile pagination | Name the topic in plain words or drop the label |
+| Version labels in hero | `V0.6`, `BETA`, `INVITE-ONLY`, `EARLY ACCESS` | Only if the brief is literally a launch/preview |
+| Decorative status dots | Colored dot before every nav item / list row / badge | Zero by default; only real live state, one per section |
+| Middle-dot overuse | `foo · bar · baz · qux` as default separator | Max 1 `·` per metadata line; prefer columns/hairlines |
+| Locale / weather strips | `Lisbon 14:23 · 18°C` atmosphere text | Banned for ~99% of briefs; a footer address is fine |
+| Scroll cues | `Scroll to explore`, animated mouse-wheel | Delete; the viewer is already at the hero |
+| Photo-credit captions | `Field study no. 12 · <name>` under stock imagery | Only for a real credited photo; else drop |
+| Version footers | `v1.4.2`, `Build 0048` on marketing pages | Banned on marketing/landing/portfolio |
+| Decoration text strips | `BRAND. MOTION. SPATIAL.` mono-caps at hero bottom | Only if it carries real nav links or status |
+| Floating corner sub-text | Small explainer paragraph loose in a section header's corner | Stack under the headline or build an aligned 2-col header |
+| Poetic craftsman labels | `From the field`, `Currently on the bench` | Plain functional labels or none |
+| Fake screenshots / re-drawn chrome | Task lists, terminals, dashboards, browser bars (URL pill + traffic dots), phone frames built from styled `<div>`s/CSS/SVG | Real screenshot in a `<figure>`, real device render, generated image, or none |
+| Invented placeholder personas | Generic testimonial names with stock headshots | Real names/numbers or drop the proof slot |
+
+**Layout-repetition caps.** A layout family (3-col cards, full-width quote, split-text-image) appears at most once per page; ≥8 sections → ≥4 distinct families. Max 2 consecutive image+text zigzag sections — the 3rd breaks the alternation. Max one marquee per page. "Left big headline + right small paragraph" as the default section header is banned — stack vertically (headline, then body ≤65ch) unless the right column carries a real visual. Bento grids: N content items → exactly N cells, no filler; ≥2–3 cells need real visual variation (image, gradient, pattern, tint), not all white-on-white type. Scoring bars with filled background tracks → a number + icon or a trackless inline bar. `border-t` + `border-b` on every row of a long list → pick one, use sparsely; >5 items wants a different component, not a longer list. Structural sameness *across pages* is the deeper fingerprint — `references/page-anatomy.md` owns macrostructure/nav/footer rotation.
+
+**Premium-consumer palette ban.** For cookware / wellness / artisan / luxury / heritage / DTC briefs the reflex is warm beige + brass + espresso. Banned as the default reach (override only if the brand names these colors): backgrounds `#f5f1ea` `#f7f5f1` `#fbf8f1` `#efeae0` `#ece6db` `#faf7f1` `#e8dfcb`; accents `#b08947` `#b6553a` `#9a2436` `#9c6e2a` `#bc7c3a` `#7d5621`; text `#1a1714` `#1a1814` `#1b1814`. Rotate a different family, never the same one twice in a row: cold luxury (silver-grey + chrome + smoke) · forest (deep green + bone + amber) · black-and-tan · cobalt + cream · terracotta + slate · olive + brick + paper · monochrome + one saturated pop. (Rationale: `library/taste-skill/skills/taste-skill/SKILL.md` §4.2.)
+
+**Copy self-audit (before ship).** Re-read every visible string. Flag and rewrite: grammatically-broken phrases, unclear referents, forced metaphors and cute wordplay, mock-poetic micro-meta. When unsure, a plain functional sentence — boring beats cute-but-wrong. Fake-precise numbers (`92%`, `4.1×`) are banned unless from real data or marked mock. One copy register per page — don't mix technical-mono, editorial prose, and marketing punch without a brand reason. When a stat/proof slot has no real number, emit a placeholder marker + "metric to confirm", ask, or drop the slot — never invent.
+
+**CTA and clickable-text hygiene.** One label per intent site-wide ("Get in touch" + "Let's talk" + "Start a project" are one intent). Primary CTA ≤3 words, one line; **no button, nav, footer, or breadcrumb label wraps to 2 lines at any width 320–1920px** — shorten, `white-space: nowrap` + reflow, or collapse. Every CTA passes AA contrast; ghost buttons over photos get a scrim or stroke. Logo walls: real SVG marks (Simple Icons / devicon), monochrome on a hairline, no category labels under logos, under the hero — never the 6-box grid.
+
+Grep sweeps for the brand-slop pass:
+
+```bash
+grep -rn '—\|–' <out>                                    # em/en-dash → zero
+grep -rEn 'uppercase[^"]*tracking' <out> | wc -l          # eyebrows vs ceil(sections/3)
+grep -rniE 'scroll to explore|swipe down' <out>           # scroll cues
+grep -rniE 'v[0-9]+\.[0-9]+|build [0-9]{3,}|invite-only' <out>  # version tells
+```
+
+### Structural gates (mechanical, any register)
+
+| Gate | Smell | Fix |
+|---|---|---|
+| Italic headers | `font-style: italic` on any heading/display element, or an italicized emphasis word inside an upright headline | Headers are roman; emphasis via weight, accent color, or a drawn underline. Italic survives only in body copy (and preserved brand identity — see `design-direction.md`) |
+| Token improvisation | Inline `#hex`/`oklch()`/`font-family` outside the `:root`/`[data-theme]` token block | Every color and font references a named token; lift new values into the block first |
+| Image in a bare `1fr` track | `1fr` grid track holding an `<img>` (resolves to `minmax(auto,1fr)`, overflows phones) | `minmax(0, 1fr)` |
+| Display text without wrap escape | Display-size text lacking `overflow-wrap: anywhere; min-width: 0` | Add both — long compounds must break |
+| All-caps line-height <1.0 | `text-transform: uppercase` with `line-height` below 1.0 (cap collision on wrap) | Floor 1.0 (1.02–1.08 recommended) or drop uppercase |
+| Double sticky at top 0 | In-page `position: sticky; top: 0` beneath a sticky nav also at 0 | Offset the in-page sticky by the nav height; split z-index tiers |
+| Horizontal scroll / wrong clip | Any h-scroll at 320–1920px, or `overflow-x: hidden` breaking sticky | `overflow-x: clip` on **both** html and body (never `hidden`); the overflowing element's parent stays `visible` |
+| Nav fingerprint | Wordmark-left + 4–5 inline links + button-right + hairline + white bg | Rotate the nav archetype (`references/page-anatomy.md`); that shape only with 2 genuine destinations |
+| Footer fingerprint | 4 columns (Product/Company/Resources/Legal) + social row + tiny copyright | Default to another footer archetype; index columns only on a genuine docs root |
+| Hero doesn't fit the fold | Symmetric/top-heavy padding; essential content needs scroll at 1280×800 | `padding-block-end ≥ 1.3×` start; pull display `clamp()` max down; lede ≤2 lines |
+| Decoration without purpose | Cursor/scanline/blob/badge/numeral with no semantic anchor | Every decoration is motivated (a numeral names a real thing) or cut |
+| Icon tells | Mixing 2+ icon libraries; emoji (✨🚀⚡) as feature/step/tier icons | One family per project (prefer Phosphor / HugeIcons / Radix / Tabler; Lucide when the project already runs on it), or custom SVG, or typography |
+| Input-state failures | Border-width shifts between states; focus ring built from `border`; input height ≠ button height; helper slot collapses; disabled by opacity alone | State changes via bg/outline/box-shadow/border-color; `outline: 2px solid` focus; shared 44px height; reserve helper space (`min-height: 1lh`); disabled = opacity + cursor + attribute |
+| Tooltip delay symmetry | Same delay for hover and focus | Hover 800–1000ms; keyboard focus 0ms |
+| Animated focus ring | Focus ring fades in over a transition | Focus indicators appear instantly |
+| Style fall-through | The same default aesthetic (left-margin numbers + huge serif + asymmetric spans) regardless of brief; or extracted reference DNA silently overwritten by a stock theme | One shape of many, on its signal only; studied DNA stays locked once approved |
 
 ### Motion anti-patterns
 
@@ -195,7 +259,9 @@ Test: 100+ char names · emoji in every field · RTL + CJK · offline and thrott
 
 Group findings by severity (P0 → P3). For each: name · location (component/file/line) · category (a11y / performance / theming / responsive / anti-pattern / hardening) · user impact · standard violated (if any) · concrete fix. Then: systemic patterns ("hard-coded colors in 15+ components → tokenize"), positive findings worth keeping, and a prioritized action list. Too many P3s is noise — report what matters. Never report an issue without its impact, and verify before reporting to avoid false positives.
 
+**Brand-surface shipping gate (builder's pre-flight).** Before declaring a landing/portfolio/marketing build done, tick honestly — any un-tickable box means not-done: em/en-dashes zero · page theme locked · one accent everywhere · one radius scale · every CTA passes contrast · no clickable text wraps · hero headline ≤2 lines + subtext ≤20 words · eyebrow count ≤ ceil(sections/3) · ≥4 layout families per 8 sections · real images, no fake-div screenshots · reduced-motion handled · dark and light both tested. (Full 60-box matrix: `library/taste-skill/skills/taste-skill/SKILL.md` §14.) It complements the two-assessment critique — it does not replace it.
+
 To fix style-level findings by regenerating against a quantified profile, see `references/design-dna.md`.
 
 ---
-*Distilled from: impeccable (critique, audit, harden, extract), genjutsu design-audit.*
+*Distilled from: impeccable (critique, audit, harden, extract), genjutsu design-audit, taste-skill (anti-slop core), hallmark (slop-test gates).*

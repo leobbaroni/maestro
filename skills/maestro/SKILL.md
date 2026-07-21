@@ -5,9 +5,9 @@ description: Unified design, motion, 3D, and video super skill. Use for designin
 
 # Maestro
 
-One skill for the full visual stack: **design → motion → 3D → video**. It merges eight design/motion/video skill projects into one voice — deduplicated, conflicts resolved (full list in the footer).
+One skill for the full visual stack: **design → motion → 3D → video**. It merges ten design/motion/video skill projects into one voice — deduplicated, conflicts resolved (full list in the footer).
 
-Everything deep lives in `references/`. This file is the brain: it decides *what to load* and *how to work*. Load only the modules the task needs.
+Two layers. `references/` is the **judgment layer** — distilled, one voice, decides everything. `library/` is the **depth layer** — three full source corpora (taste-skill, hallmark, impeccable) vendored verbatim; the judgment layer points into it for exact recipes, theme token sets, and long-tail protocols (rules of engagement: `library/README.md`). On genuine contradictions between sources the resolution is already encoded in the references, per the hierarchy **taste-skill > hallmark > impeccable**; everything non-conflicting composes. This file is the brain: it decides *what to load* and *how to work*. Load only what the task needs.
 
 ## Rule 0 — The Grill Gate
 
@@ -29,6 +29,7 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | Task | Load |
 |---|---|
 | Any UI build or redesign | `design-foundations.md` + `design-direction.md` |
+| Page-scale work: picking the page shape, section/nav/footer archetypes, theme, hero enrichment | `page-anatomy.md` (full recipes on demand: `library/hallmark/…`) |
 | Match an existing style / reference image / URL | `design-dna.md` |
 | Critique, audit, accessibility, edge-case hardening | `design-audit.md` |
 | Any animation decision (timing, easing, choreography) | `motion-principles.md` |
@@ -44,7 +45,9 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | Process questions (grilling, mockups, phases, verification) | `process.md` |
 | Before any video render, media sourcing, or when companion skills may be installed | `companions.md` — prefer installed machinery (frame presets, animation rules, media resolution) over re-deriving |
 
-Load combinations freely — a scroll-driven 3D landing page needs `design-foundations` + `design-direction` + `gsap` + `threejs`; a kinetic-type promo needs `video-direction` + `motion-principles` + one engine module.
+Load combinations freely — a scroll-driven 3D landing page needs `design-foundations` + `design-direction` + `page-anatomy` + `gsap` + `threejs`; a kinetic-type promo needs `video-direction` + `motion-principles` + one engine module.
+
+A typical page job composes the absorbed sources: hallmark's layer picks the structure (`page-anatomy.md`), taste-skill's layer polishes components and kills slop (`design-foundations.md`, `design-audit.md`), impeccable's layer runs process and critique (`process.md`, `design-audit.md`). They operate at different grain sizes — structure → component → line-level tell — so they stack, not compete. When a task needs a full source protocol (a theme's exact tokens, a fingerprint's DOM recipe, a sub-skill's complete procedure), load the one library file the references point to — never a whole corpus.
 
 ## Engine choosers
 
@@ -92,4 +95,4 @@ Always-on rules, regardless of module:
 
 ---
 
-*Maestro unifies: [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), plus design-kit and the grilling/pilot/mockups process rituals. See NOTICE.md.*
+*Maestro unifies: [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), [hallmark](https://github.com/nutlope/hallmark), plus design-kit and the grilling/pilot/mockups process rituals. See NOTICE.md.*
