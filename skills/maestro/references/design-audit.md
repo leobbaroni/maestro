@@ -133,7 +133,7 @@ grep -rniE 'v[0-9]+\.[0-9]+|build [0-9]{3,}|invite-only' <out>  # version tells
 
 | Gate | Smell | Fix |
 |---|---|---|
-| Italic headers | `font-style: italic` on any heading/display element, or an italicized emphasis word inside an upright headline | Headers are roman; emphasis via weight, accent color, or a drawn underline. Italic survives only in body copy (and preserved brand identity — see `design-direction.md`) |
+| Italic headers | `font-style: italic` on any h1–h6/headline, or an italicized emphasis word inside an upright headline | Headers are roman; emphasis via weight, accent color, or a drawn underline. Italic survives in body copy and in quote-voice display idioms (pull-quote heroes, letter salutations — `page-anatomy.md`), plus preserved brand identity (`design-direction.md`) |
 | Token improvisation | Inline `#hex`/`oklch()`/`font-family` outside the `:root`/`[data-theme]` token block | Every color and font references a named token; lift new values into the block first |
 | Image in a bare `1fr` track | `1fr` grid track holding an `<img>` (resolves to `minmax(auto,1fr)`, overflows phones) | `minmax(0, 1fr)` |
 | Display text without wrap escape | Display-size text lacking `overflow-wrap: anywhere; min-width: 0` | Add both — long compounds must break |

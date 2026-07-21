@@ -128,12 +128,12 @@ Rotate within the genre's cluster. Two consecutive themes must differ on **≥1 
 | Garden | editorial | light warm-oat | roman serif | leaf-green + clay | botanical almanac |
 | Almanac | editorial | light cool | grotesk-sans (600) | slate blue | encyclopaedic reference |
 | Studio | editorial | light cool-grey | high-contrast serif, roman | forest-green | research studio |
-| Riso | editorial | mid warm-peach | risograph-bold (800) | riso cyan + yellow | indie print |
+| Riso | editorial | light warm-peach | risograph-bold (800) | riso cyan + yellow | indie print |
 | Sport | editorial | light near-white | display-condensed, roman | burnt orange | athletic |
 | Brutal | editorial | light near-white | display-heavy (700) | bright red `#E63946` | stark brutalist |
 | Manifesto | editorial | dark near-black | display-heavy all-caps | red `#E51A1A` | political poster |
 | Editorial | editorial | light warm-cream | display-heavy (800) | coral | magazine |
-| Carnival | editorial | mid pink-cream | variable display | mustard + oxblood | loud maximalist |
+| Carnival | editorial | light pink-cream | variable display | mustard + oxblood | loud maximalist |
 | Coral | modern-minimal | light warm-grey | geometric-sans (600) | warm coral | warm fintech |
 | Cobalt | modern-minimal | light cool-white | grotesk-sans | electric cobalt | dev-tool/API |
 | Bloom | atmospheric | light warm off-white | geometric-sans (600) | restrained coral | calm airy |

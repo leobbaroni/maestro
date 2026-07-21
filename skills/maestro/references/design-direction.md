@@ -238,7 +238,7 @@ motion:
 
 The single highest-leverage decision. Google-Fonts defaults are the #1 tell of template work.
 
-**Headers are roman — globally.** Italic on any heading or display element (including a single italicized emphasis word inside an upright headline) is among the most reliable AI tells. Emphasis in headers comes from weight, accent color, or a drawn underline; italic survives only in body copy. Sole exception: a *preserved existing brand* whose identity is genuinely italic-led (redesign-preserve mode) — never a greenfield choice.
+**Headers are roman — globally.** Italic on any heading or headline (including a single italicized emphasis word inside an upright headline) is among the most reliable AI tells. Emphasis in headers comes from weight, accent color, or a drawn underline. Italic survives in body copy and in two display idioms that are quotes-of-a-voice, not headings: the pull-quote/testimonial set at display size and the letter-form salutation (`references/page-anatomy.md` Quote-Led and Letter shapes). Other exception: a *preserved existing brand* whose identity is genuinely italic-led (redesign-preserve mode) — never a greenfield choice.
 
 ### Selection procedure (every project, never skip)
 
@@ -308,7 +308,7 @@ pyftsubset ClashDisplay-Variable.ttf --flavor=woff2 \
 
 ### Icons
 
-All MIT/ISC, commercial-OK: Lucide (neutral default), Phosphor (6 weights — weight-morphing is free micro-delight), Heroicons, Tabler (dashboard coverage), Iconoir (thinner, editorial). One set per project; inline SVG components, not icon fonts.
+All MIT/ISC, commercial-OK — prefer for distinctiveness: Phosphor (6 weights — weight-morphing is free micro-delight), HugeIcons, Radix Icons, Tabler (dashboard coverage), Iconoir (thinner, editorial), Heroicons; Lucide is acceptable when the user asks or the project already runs on it (it's the shadcn default, hence the most recognizable reflex). One set per project; inline SVG components, not icon fonts.
 
 ### Textures, illustration, gradients
 
@@ -319,7 +319,7 @@ All MIT/ISC, commercial-OK: Lucide (neutral default), Phosphor (6 weights — we
 ### Photos & video
 
 - Free stock: Unsplash, Pexels, Coverr (hero loops), Mixkit — fine for placeholder, dangerous for final: the top results are on ten thousand other sites. If shipping stock: search page 5+, crop aggressively, duotone/recolor to the palette. **Verify every hotlinked URL resolves** — guessed image IDs 404 as broken placeholders; fewer confirmed photos beat more guessed ones.
-- Generated beats stock for committed work: exact palette (state hex values in the prompt), reserved negative space where the headline sits ("subject occupies right third, empty left third"), background hex matched to the page for seamless cutouts, one frozen style paragraph varied only by subject for series consistency. Generate at 2× then compress to AVIF/WebP.
+- Generated beats stock for committed work: exact palette (state hex values in the prompt), reserved negative space where the headline sits ("subject occupies right third, empty left third"), background hex matched to the page for invisible cutout edges, one frozen style paragraph varied only by subject for series consistency. Generate at 2× then compress to AVIF/WebP.
 
 ### 3D, motion assets, sound
 

@@ -63,4 +63,4 @@ Treat retired packs as an archive: don't route to them as skills, but their scri
 remain fair game when nothing live covers the need.
 
 ---
-*Companion inventory current as of 2026-07; re-check the skills directory rather than trusting this list blindly.*
+*Distilled from: the local skill ecosystem (HyperFrames suite, media-use, figma, upstream toolchains). Inventory current as of 2026-07; re-check the skills directory rather than trusting this list blindly.*

@@ -1,6 +1,6 @@
 # Keeping maestro current
 
-Maestro is a **distillation** of eight living upstream projects. When those projects
+Maestro is a **distillation** of ten living upstream projects. When those projects
 change, maestro should absorb the changes — without losing its single voice. This file is
 the complete playbook; an AI agent can run it end-to-end.
 
@@ -57,7 +57,9 @@ Update the maestro skill from its upstream sources.
 - Format: `# Title`, one-line purpose in italics, `##` sections, tables for lookup data,
   short load-bearing code snippets only where a rule can't be stated in prose.
 - Length: 150–500 lines per module. Distill hard; resolve conflicts into ONE
-  recommendation (one line for a genuinely contested alternative).
+  recommendation (one line for a genuinely contested alternative). Exempt from the
+  floor: index/inventory modules (companions.md, toolbox.md, toolbox-corpus.md) — their
+  job is routing and currency, not depth; they stay as short as their subject allows.
 - Self-contained: no local file paths, no source-repo internals. Cross-reference sibling
   modules as `references/<name>.md` only when it helps routing.
 - Every module ends with `---` then `*Distilled from: <project names>.*`

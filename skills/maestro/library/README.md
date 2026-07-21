@@ -9,7 +9,7 @@ task needs.*
 
 | Corpus | What it holds | Entry point |
 |---|---|---|
-| `taste-skill/` | Anti-slop frontend framework (v2 core) + 10 focused sub-skills: brandkit, brutalist, minimalist, soft, redesign, image-to-code, stitch, output, imagegen-frontend web/mobile | `taste-skill/skills/<name>/SKILL.md` |
+| `taste-skill/` | 11 sub-skills: the anti-slop v2 core + brandkit, brutalist, minimalist, soft, redesign, image-to-code, stitch, output, imagegen-frontend web/mobile | `taste-skill/skills/<name>/SKILL.md` |
 | `hallmark/` | 21 macrostructures, ~50 component fingerprints, 20 themes across 4 genres, 57 slop-test gates, audit/redesign/study verbs, per-craft references | `hallmark/SKILL.md`, then `hallmark/references/...` |
 | `impeccable/` | Per-action design references (typeset, layout, colorize, critique, audit, harden, delight, brand, …) | `impeccable/reference/<action>.md` |
 

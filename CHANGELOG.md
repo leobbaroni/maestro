@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.0.1 — 2026-07-20
+
+Adversarial-review fixes (fresh reviewer over the 3.0.0 integration; 0 P0 / 1 P1 /
+2 P2 / 6 P3, all fixed):
+
+- **Lucide demotion completed** — design-direction's icon roster still led with
+  "Lucide (neutral default)"; now matches toolbox/design-audit (Phosphor et al.
+  preferred; Lucide when asked or already present).
+- **Italic-display rule made coherent** — the global roman rule now targets
+  headings/headlines and explicitly carves out quote-voice display idioms
+  (pull-quote heroes, letter salutations), matching hallmark's own internal logic;
+  design-audit's gate and page-anatomy's Quote-Led/Letter shapes now agree.
+- UPDATING.md's opening said "eight" upstreams (ten everywhere else); Riso/Carnival
+  paper-band labels corrected to match the module's own thresholds; companions.md
+  gained its attribution footer; gsap.md's footer credits taste-skill; index modules
+  exempted from the 150-line floor in the AUTHORING SPEC; library README sub-skill
+  count wording; one banned-word ("seamless") reword in prose.
+
 ## 3.0.0 — 2026-07-20
 
 Two new upstream sources and a new two-layer architecture.

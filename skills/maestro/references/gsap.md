@@ -487,4 +487,4 @@ Gotchas not already called out above (rules already stated in the sections above
 | GSAP + ScrollTrigger for a simple "enter on scroll" reveal | Motion `whileInView` (or IntersectionObserver + CSS) — reserve GSAP for real pin/scrub work |
 
 ---
-*Distilled from: gsap-skills (official), genjutsu, hyperframes.*
+*Distilled from: gsap-skills (official), genjutsu, hyperframes, taste-skill (scroll-pin skeletons).*
