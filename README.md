@@ -2,7 +2,7 @@
 
 **A unified design, motion, 3D, and video skill for AI coding agents.**
 
-Maestro consolidates ten established design and motion knowledge bases — [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), and [hallmark](https://github.com/nutlope/hallmark) — into a single skill with two layers. The **judgment layer** (`references/`, 18 modules) is distilled and editorially reconciled: duplicate guidance merged, conflicting recommendations resolved (design-taste conflicts by the standing hierarchy taste-skill > hallmark > impeccable), one voice throughout. The **depth layer** (`library/`) vendors three complete source corpora verbatim — taste-skill's 11 sub-skills, hallmark's full macrostructure/fingerprint/theme catalog, impeccable's per-action references — so nothing is lost to summarization: the judgment layer selects, then points at the exact library file when a task needs a full recipe, theme token set, or protocol.
+Maestro consolidates ten established design and motion knowledge bases — [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), and [hallmark](https://github.com/nutlope/hallmark) — into a single skill with two layers. The **judgment layer** (`references/`, 19 modules) is distilled and editorially reconciled: duplicate guidance merged, conflicting recommendations resolved (design-taste conflicts by the standing hierarchy taste-skill > hallmark > impeccable), one voice throughout. The **depth layer** (`library/`) vendors three complete source corpora verbatim — taste-skill's 11 sub-skills, hallmark's full macrostructure/fingerprint/theme catalog, impeccable's per-action references — so nothing is lost to summarization: the judgment layer selects, then points at the exact library file when a task needs a full recipe, theme token set, or protocol.
 
 ## Capabilities
 
@@ -10,7 +10,8 @@ Maestro consolidates ten established design and motion knowledge bases — [impe
 - **Motion** — engine-agnostic motion principles (timing, easing, choreography); implementation guidance for modern CSS, WAAPI, Motion, and anime.js; a full GSAP reference including ScrollTrigger and plugins
 - **3D and generative** — Three.js from scene fundamentals through shaders, postprocessing, and React Three Fiber; canvas-based generative techniques
 - **Video** — engine-neutral video direction (story structure, beat planning, pacing, transitions) with dedicated modules for both HyperFrames (HTML-to-video) and Remotion (React-to-video)
-- **Process** — a brief-locking interview ritual (the Grill Gate), a mockup fan-out with a hard user-approval gate, phase-appropriate workflows, and mandatory rendered verification
+- **Process** — a brief-locking interview ritual (the Grill Gate) that puts the choice of design house in the user's hands, a mockup fan-out with a hard user-approval gate, phase-appropriate workflows, and mandatory rendered verification
+- **Protocols** — the absorbed projects' named actions stay runnable: ~23 refinement and craft actions, four page verbs (build / audit / redesign / study), and 11 style and generation sub-skills, each routed from intent to the exact vendored procedure
 - **Ecosystem** — a live-verified toolbox of component libraries, inspiration galleries, asset sources, and helper tools, including an explicit exclusion list with reasons
 
 ## Installation
@@ -54,7 +55,7 @@ it the best way my harness supports — Claude Code plugin via
 available to me as a user command (tell me to run those two commands), otherwise copy
 skills/maestro into my user skills directory (~/.claude/skills/maestro on macOS/Linux,
 %USERPROFILE%\.claude\skills\maestro on Windows); (3) verify the install by listing the
-skill and confirming skills/maestro/references contains 18 modules and skills/maestro/library
+skill and confirming skills/maestro/references contains 19 modules and skills/maestro/library
 exists (the vendored depth layer); (4) tell me the two
 ways to trigger it (just asking for design/motion/video work, or /maestro) and that
 substantial requests start with a short interview (the Grill Gate) — that's by design;
@@ -79,10 +80,13 @@ Maestro checks what's actually installed before reaching for any of the above; a
 
 ## Usage
 
-Maestro activates automatically for design, motion, 3D, and video work, or explicitly via `/maestro`. Two behaviors are intentional:
+Maestro activates automatically for design, motion, 3D, and video work, or explicitly via `/maestro`. Three behaviors are intentional:
 
 - **Substantial requests begin with a short interview.** The Grill Gate asks one question at a time, each with a recommended answer, until the brief is locked into a written spec. Small tweaks and fully specified requests skip it.
+- **You choose which design house leads.** Maestro carries three with different instincts — structure-led, polish-led, and craft-led — and they produce visibly different work from the same brief. The interview asks early, in terms of what the result looks like rather than which project it came from, recommends one for your register, and locks your answer into the brief. Naming a house outright ends the question and overrides every internal default. Undecided is fine: the mockup fan-out can spend its options on that question, one per house.
 - **Work is not reported done until rendered and reviewed.** Screenshots or rendered frames are compared against the locked brief before completion is claimed.
+
+Named design actions run the originating project's real procedure, not a paraphrase of it: ask for an audit, a critique, a redesign, a study of a reference you admire, a polish pass, "make it bolder", a typography pass, or a brand kit, and maestro routes to that protocol in the vendored library and honors its output contract (report-only protocols do not edit).
 
 Video engines are treated as peers: HyperFrames and Remotion each have a dedicated module, selected by project shape rather than by default.
 
@@ -94,7 +98,7 @@ maestro/
 ├── skills/maestro/
 │   ├── SKILL.md                 Router: task→module table, engine choosers, core rules
 │   ├── templates/BRIEF.md       The brief template the Grill Gate fills
-│   ├── references/              18 modules (design, page anatomy, motion, 3D, video, process, toolbox, companions)
+│   ├── references/              19 modules (design, page anatomy, commands, motion, 3D, video, process, toolbox, companions)
 │   └── library/                 Depth layer: vendored corpora (taste-skill, hallmark, impeccable) + licenses
 ├── upstreams.json               Pinned source commits and module map
 ├── scripts/check-upstreams.mjs  Drift checker / re-pinner (Node 18+, zero dependencies)

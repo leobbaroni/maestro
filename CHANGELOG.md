@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.1.0 — 2026-07-20
+
+The absorbed projects stay *usable*, not just readable, and the user picks whose taste leads.
+
+- **New `references/commands.md`** — the vendored corpora ship runnable protocols, not
+  only knowledge. This module maps an intent to the exact one: impeccable's ~23 named
+  actions (critique, audit, polish, bolder, quieter, distill, harden, onboard, animate,
+  colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, craft, shape,
+  document, extract…), hallmark's four page verbs (build / audit / redesign / study), and
+  taste-skill's 11 sub-skills. It also resolves **overlapping verbs** — impeccable's
+  `audit`, hallmark's `audit`, and taste-skill's slop sweep ask different questions and
+  return different artifacts, so the module says which to run and when running several is
+  the right answer. Protocols needing upstream scripts (`live`, `hooks`, `init` capture)
+  are flagged as such rather than silently half-running.
+- **The design authority is now the user's call** (`process.md` §1a, wired into SKILL.md
+  Rule 0 and the brief lock). Maestro carries three houses with different instincts;
+  the grill asks early which one leads — offered by look and feel, never by skill name —
+  recommends one for the register, pushes once past "whatever looks best", and locks the
+  answer. A named house overrides every default and the standing hierarchy. When the user
+  can't decide from description, the mockup fan-out spends its options on the question,
+  one per house, labeled by look and revealed after the pick.
+- README/AGENTS/UPDATING updated: 19 modules, the protocol capability, the authority pick,
+  a re-vendor step that re-checks commands.md against each corpus's own verb list, and a
+  line-floor exemption for routing modules.
+
 ## 3.0.1 — 2026-07-20
 
 Adversarial-review fixes (fresh reviewer over the 3.0.0 integration; 0 P0 / 1 P1 /

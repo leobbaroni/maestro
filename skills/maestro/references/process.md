@@ -25,6 +25,7 @@ Before any substantial design, build, or redesign work, interview the user until
 - **Never ask what you can look up.** If a question is answerable by exploring the codebase, existing assets, or prior project files, explore instead of asking.
 - If a named reference is behind a login or paywall, ask for a screenshot instead of silently skipping it.
 - **Structure choices are grill material.** For page-scale work, surface the macrostructure and theme as explicit user choices — on a vague brief, offer the domain-matched trio of three categorically different page shapes (`references/page-anatomy.md`), recommended pick first, not seven abstract tones.
+- **The design authority is the user's call, not yours** (next section). Never silently pick which house drives the look.
 - **Honest-copy pause.** When a stat/proof slot has no user-supplied number, never invent one: pause and ask, mark "metric to confirm", or drop the slot.
 - **Component-scope shortcut.** A brief naming one UI element (button, input, card, modal) skips page-level choices entirely — ship the component with all 8 interaction states and a state-demo wrapper.
 
@@ -43,6 +44,28 @@ Before any substantial design, build, or redesign work, interview the user until
 
 Twenty minutes of interviewing is cheaper than days of correction rounds. But don't ceremonialize: a grill that outlives its usefulness is its own failure.
 
+### 1a. Design authority — ask, don't assume
+
+Maestro carries three design houses with genuinely different instincts (`references/commands.md`). On the same brief they produce different work, so **which one leads is a user decision** — one of the first questions in any substantial design grill, and the one to push hardest on, because every later answer inherits from it.
+
+Ask by **look and feel, never by skill name**. The user is picking a result, not a vendor:
+
+| Offer it as | Leads to | Reads as | Best when |
+|---|---|---|---|
+| "Structure-led: a page shaped unlike the usual — the layout itself is the idea" | hallmark | Editorial, art-directed, print-adjacent; strong shapes, committed themes | Landing pages, portfolios, brand sites, anything that must not look templated |
+| "Polish-led: conventional shape, uncommonly well finished — no AI tells anywhere" | taste-skill | Confident, current, premium; the details survive zooming in | Marketing surfaces, launches, redesigns of something already close |
+| "Craft-led: usability and system rigor first, taste in service of the work" | impeccable | Calm, legible, systematic; nothing shouts | Dashboards, product UI, tools, dense data, anything people use daily |
+| "Blend (recommended default)" | all three composing | Structure from one, finish from another, rigor throughout | Most page work — see the composition note in `SKILL.md` |
+
+Mechanics that make the choice real:
+
+- **Show, don't name.** Two or three concrete sentences of what the result looks like per option — a named reference site, the type attitude, how dense it feels. A user who can't picture the outcome can't choose it.
+- **Recommend one and say why** in the same breath (register usually decides it: product surface → craft-led; brand surface → structure- or polish-led).
+- **Push once past a lazy answer.** "Whatever looks best" is not a pick — reply with the two most different options rendered as sentences and ask which one they'd rather land on. If they still decline, choose, state the choice and the reason, and treat it as locked.
+- **Ask preference questions in the same pass:** which of their references they actually love versus merely tolerate; what they never want to see; whether they want the safe or the ambitious version of this brief.
+- **A named house wins over every default and every hierarchy.** "Do it hallmark-style" ends the conversation — the standing `taste-skill > hallmark > impeccable` order only breaks ties the user did not break.
+- **Lock it into the brief** (§2) and honor it downstream: it decides which protocol runs when verbs overlap (`references/commands.md`), and re-opening it mid-build is a direction change that needs the user, not a quiet swap.
+
 ## 2. Brief lock
 
 The grill ends when the brief contains all of the following. Freeze it into a file (SPEC.md / DESIGN.md / the project's brief doc — template: `templates/BRIEF.md`), not chat — it must survive compaction and future sessions.
@@ -50,6 +73,7 @@ The grill ends when the brief contains all of the following. Freeze it into a fi
 | Field | Locked form |
 |---|---|
 | **Audience / register** | One-sentence physical scene: who uses this, where, under what light, in what mood ("a gym-goer between sets, phone in one hand, sweaty thumb"). If the sentence doesn't imply light/dark, density, and tone, sharpen it until it does. |
+| **Design authority** | Which house leads (structure-led / polish-led / craft-led / blend — §1a), who chose it (user or you-by-default), and the one-line reason. Governs which protocol runs when verbs overlap (`references/commands.md`). |
 | **Platform** | Target surfaces and breakpoints (e.g. mobile-first ~380px + 1440px desktop; 16:9 vs 9:16 for video). |
 | **Style direction** | The Design Read one-liner first (`references/design-direction.md` step 0), then 1+ concrete references (site/app/screenshot) with *what to steal from each*, plus 2–3 **banned qualities** ("no card grid", "not so text-dense", "no corporate blue"). |
 | **Page shape + theme** | For page-scale work: the picked macrostructure, nav/footer archetypes, and theme (or the custom fork) from `references/page-anatomy.md` — plus what the previous build used, so this one differs. |
@@ -78,7 +102,7 @@ Default **N = 3**; confirm N with the user during the grill. Uninformed options 
 **Sequence:**
 
 1. **Moodboard.** Extend the user's references to 3–5 total, searching by register, not by industry (industry-search reproduces the category reflex). Present each with one line: *what to steal from it* — a layout grammar, a type attitude, an interaction; never "the whole thing". Get a nod (bundle with open brief questions). If the user said "just go", pick it yourself and state it.
-2. **Fan out.** One design agent per option, in parallel, all fed the same brief + moodboard, plus **one distinct art direction each** — a different color-strategy tier, type pairing, layout grammar. Structurally different, not N accent-color swaps.
+2. **Fan out.** One design agent per option, in parallel, all fed the same brief + moodboard, plus **one distinct art direction each** — a different color-strategy tier, type pairing, layout grammar. Structurally different, not N accent-color swaps. **When the user couldn't pick a design authority from description alone (§1a), spend the fan-out on that question**: one option per house (structure-led / polish-led / craft-led), each run through that house's own protocol, so the pick chooses the authority for the rest of the project as well as this screen. Label them by look, not by house name; reveal which is which after the pick.
 3. **Option requirements.** Each option: one self-contained HTML/CSS/JS file (everything inline, no external requests), real fonts, real content from the brief, contrast floors respected. Each names and **demonstrates its one signature interaction live**, animated to the brief's motion tier, with a `prefers-reduced-motion` alternate. Self-checked at ~380px and 1440px for overflow and for animations actually firing. **One authoring pass each — no browser-iteration loops on throwaways.**
 4. **The gate (hard stop).** Present all N with: art-direction label, one-line concept, signature interaction, and where to look for the motion ("scroll the hero"). Then **stop and wait for the pick**. No implementing, no "head start" on a likely winner.
 5. **On rejection of all N:** ask for two concrete dislikes and one new reference, then regenerate. Never regenerate blind.

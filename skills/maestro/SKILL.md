@@ -15,11 +15,12 @@ Before any **substantial** design/build/redesign work, interview the user first:
 
 - Substantial = new page/screen/site/video, redesign, brand work, anything where taste decisions multiply.
 - Skip when: the request is a small tweak, the brief is already fully specified, or you're mid-iteration on a locked brief.
-- Significant new surfaces also get the **mockup fan-out gate**: N divergent options, the user picks before implementation (`references/process.md`).
+- **The design authority is the user's pick, not yours.** Maestro carries three houses with different instincts; ask early which one leads — by look and feel, never by skill name — recommend one, push once past "whatever looks best", and lock the answer into the brief (`references/process.md` §1a). A house the user names beats every default and every hierarchy.
+- Significant new surfaces also get the **mockup fan-out gate**: N divergent options, the user picks before implementation (`references/process.md`). When the authority is genuinely undecided, spend the fan-out on it — one option per house.
 
 ## Operating loop
 
-1. **Grill** — lock the brief (Rule 0).
+1. **Grill** — lock the brief, including whose design instincts lead (Rule 0).
 2. **Direct** — commit to one art direction before touching code: `references/design-direction.md`. If reference UIs exist, extract their DNA first: `references/design-dna.md`.
 3. **Build** — load the modules for the medium (routing table below). Foundations always apply: `references/design-foundations.md`.
 4. **Verify** — render/screenshot and critique against the locked brief before declaring done: `references/design-audit.md`. Never ship unseen work.
@@ -43,11 +44,14 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` (long tail: `toolbox-corpus.md`) |
 | iOS / Android / desktop-native design or motion | `platform-native.md` |
 | Process questions (grilling, mockups, phases, verification) | `process.md` |
+| Running a named protocol — audit, critique, redesign, study, polish, bolder, typeset, brandkit, image-to-code… | `commands.md` — routes the intent to the exact vendored protocol; run the real procedure, not a lookalike |
 | Before any video render, media sourcing, or when companion skills may be installed | `companions.md` — prefer installed machinery (frame presets, animation rules, media resolution) over re-deriving |
 
 Load combinations freely — a scroll-driven 3D landing page needs `design-foundations` + `design-direction` + `page-anatomy` + `gsap` + `threejs`; a kinetic-type promo needs `video-direction` + `motion-principles` + one engine module.
 
-A typical page job composes the absorbed sources: hallmark's layer picks the structure (`page-anatomy.md`), taste-skill's layer polishes components and kills slop (`design-foundations.md`, `design-audit.md`), impeccable's layer runs process and critique (`process.md`, `design-audit.md`). They operate at different grain sizes — structure → component → line-level tell — so they stack, not compete. When a task needs a full source protocol (a theme's exact tokens, a fingerprint's DOM recipe, a sub-skill's complete procedure), load the one library file the references point to — never a whole corpus.
+A typical page job composes the absorbed sources: hallmark's layer picks the structure (`page-anatomy.md`), taste-skill's layer polishes components and kills slop (`design-foundations.md`, `design-audit.md`), impeccable's layer runs process and critique (`process.md`, `design-audit.md`). They operate at different grain sizes — structure → component → line-level tell — so they stack, not compete. The brief's locked design authority says which one leads when they'd diverge.
+
+The library is not only knowledge — each corpus ships **runnable protocols** (impeccable's ~23 named actions, hallmark's four verbs, taste-skill's 11 sub-skills). `references/commands.md` maps an intent to the exact one and resolves overlapping verbs; run the real procedure and honor its output contract rather than approximating it. Load the single file the references point to — never a whole corpus.
 
 ## Engine choosers
 

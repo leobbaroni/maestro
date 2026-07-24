@@ -58,8 +58,9 @@ Update the maestro skill from its upstream sources.
   short load-bearing code snippets only where a rule can't be stated in prose.
 - Length: 150–500 lines per module. Distill hard; resolve conflicts into ONE
   recommendation (one line for a genuinely contested alternative). Exempt from the
-  floor: index/inventory modules (companions.md, toolbox.md, toolbox-corpus.md) — their
-  job is routing and currency, not depth; they stay as short as their subject allows.
+  floor: index/routing/inventory modules (commands.md, companions.md, toolbox.md,
+  toolbox-corpus.md) — their job is routing and currency, not depth; they stay as short
+  as their subject allows.
 - Self-contained: no local file paths, no source-repo internals. Cross-reference sibling
   modules as `references/<name>.md` only when it helps routing.
 - Every module ends with `---` then `*Distilled from: <project names>.*`
@@ -82,6 +83,9 @@ When the drift watcher flags one of these upstreams:
    files — local judgment belongs in the distilled modules.
 3. Spot-check that library paths cited by the distilled modules still exist
    (`grep -o 'library/[A-Za-z0-9_/.-]*' skills/maestro/references/*.md` → verify each).
+4. Re-check `references/commands.md` against the corpus's own command table or verb
+   list: a renamed, added, or removed protocol silently breaks the intent→protocol
+   routing, and nothing else in the repo would catch it.
 
 ## Module → upstream map
 
@@ -93,6 +97,7 @@ When the drift watcher flags one of these upstreams:
 | design-dna.md | design-dna (authoritative), impeccable, hallmark (study), taste-skill |
 | design-audit.md | impeccable, genjutsu, taste-skill, hallmark |
 | page-anatomy.md | hallmark (authoritative — macrostructures, fingerprints, themes) |
+| commands.md | all three vendored corpora — re-check when a corpus adds, renames, or drops a verb |
 | motion-principles.md | motion-design-skill, genjutsu, impeccable |
 | motion-web.md | genjutsu, hyperframes |
 | gsap.md | gsap-skills (authoritative), genjutsu, hyperframes |
