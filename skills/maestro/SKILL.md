@@ -15,7 +15,7 @@ Before any **substantial** design/build/redesign work, interview the user first:
 
 - Substantial = new page/screen/site/video, redesign, brand work, anything where taste decisions multiply.
 - Skip when: the request is a small tweak, the brief is already fully specified, or you're mid-iteration on a locked brief.
-- **The design authority is the user's pick, not yours.** Maestro carries three houses with different instincts; ask early which one leads — by look and feel, never by skill name — recommend one, push once past "whatever looks best", and lock the answer into the brief (`references/process.md` §1a). A house the user names beats every default and every hierarchy.
+- **The design authority is the user's pick, not yours.** Maestro carries three houses with different instincts; ask early which one leads — by look and feel, never by skill name — recommend one, push once past "whatever looks best", and lock the answer into the brief (`references/process.md` §1a). A named house ends the question and decides which protocol runs when verbs overlap.
 - Significant new surfaces also get the **mockup fan-out gate**: N divergent options, the user picks before implementation (`references/process.md`). When the authority is genuinely undecided, spend the fan-out on it — one option per house.
 
 ## Operating loop
@@ -51,7 +51,7 @@ Load combinations freely — a scroll-driven 3D landing page needs `design-found
 
 A typical page job composes the absorbed sources: hallmark's layer picks the structure (`page-anatomy.md`), taste-skill's layer polishes components and kills slop (`design-foundations.md`, `design-audit.md`), impeccable's layer runs process and critique (`process.md`, `design-audit.md`). They operate at different grain sizes — structure → component → line-level tell — so they stack, not compete. The brief's locked design authority says which one leads when they'd diverge.
 
-The library is not only knowledge — each corpus ships **runnable protocols** (impeccable's ~23 named actions, hallmark's four verbs, taste-skill's 11 sub-skills). `references/commands.md` maps an intent to the exact one and resolves overlapping verbs; run the real procedure and honor its output contract rather than approximating it. Load the single file the references point to — never a whole corpus.
+The library is not only knowledge — each corpus ships **runnable protocols** (impeccable's ~23 named actions, hallmark's default design flow plus three verbs, taste-skill's 11 sub-skills). `references/commands.md` maps an intent to the exact one and resolves overlapping verbs; run the real procedure and honor its output contract rather than approximating it. Load the single file the references point to — never a whole corpus.
 
 ## Engine choosers
 

@@ -11,7 +11,7 @@ Maestro consolidates ten established design and motion knowledge bases — [impe
 - **3D and generative** — Three.js from scene fundamentals through shaders, postprocessing, and React Three Fiber; canvas-based generative techniques
 - **Video** — engine-neutral video direction (story structure, beat planning, pacing, transitions) with dedicated modules for both HyperFrames (HTML-to-video) and Remotion (React-to-video)
 - **Process** — a brief-locking interview ritual (the Grill Gate) that puts the choice of design house in the user's hands, a mockup fan-out with a hard user-approval gate, phase-appropriate workflows, and mandatory rendered verification
-- **Protocols** — the absorbed projects' named actions stay runnable: ~23 refinement and craft actions, four page verbs (build / audit / redesign / study), and 11 style and generation sub-skills, each routed from intent to the exact vendored procedure
+- **Protocols** — the absorbed projects' named actions stay runnable: ~23 refinement and craft actions, a page design flow plus three page verbs (audit / redesign / study), and 11 style and generation sub-skills, each routed from intent to the exact vendored procedure
 - **Ecosystem** — a live-verified toolbox of component libraries, inspiration galleries, asset sources, and helper tools, including an explicit exclusion list with reasons
 
 ## Installation

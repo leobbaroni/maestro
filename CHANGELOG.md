@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.1.1 — 2026-07-20
+
+Adversarial-review fixes on 3.1.0 — maestro's share of a 0 P0 / 4 P1 / 4 P2 / 3 P3 pass.
+
+- **`commands.md` flagged the wrong protocols.** `typeset` and `layout` require impeccable's
+  detector script and their own text forbids proceeding without it, but carried no caveat —
+  maestro would have promised a judgment-only fallback the source prohibits. Meanwhile `init`
+  was flagged as needing the upstream install when the deliverable it names (PRODUCT.md /
+  DESIGN.md) runs fine vendored; only its optional live-mode step doesn't. The caveat is now
+  three honest cases: blocked, partly blocked, degrades cleanly.
+- The overlap table said impeccable's `audit` scores usability heuristics; the source calls
+  itself "a code-level audit, not a design critique" (heuristics belong to `critique`) —
+  corrected, and it no longer contradicts commands.md's own table sixty lines above.
+- `ios` / `android` / `interaction-design` / `product` moved out of the protocol table: the
+  source loads them automatically by platform, so they are references, not invocable commands.
+- "hallmark's four verbs" was wrong in SKILL.md, README, and the 3.1.0 entry — hallmark has a
+  default design flow plus three verbs; there is no `build` verb to type.
+- §1a offered Blend as the "recommended default" while the recommendation rule mapped every
+  register to a single house, leaving it unreachable; blend now has a real trigger (mixed
+  register, or a brief pulling both ways).
+- Scoped the "a named house overrides the hierarchy" claim. A named house ends the question and
+  decides which protocol runs — but the source hierarchy was applied at distillation time and is
+  baked into the reference prose; it was never a runtime dial to override.
+
 ## 3.1.0 — 2026-07-20
 
 The absorbed projects stay *usable*, not just readable, and the user picks whose taste leads.
@@ -8,8 +32,8 @@ The absorbed projects stay *usable*, not just readable, and the user picks whose
   only knowledge. This module maps an intent to the exact one: impeccable's ~23 named
   actions (critique, audit, polish, bolder, quieter, distill, harden, onboard, animate,
   colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, craft, shape,
-  document, extract…), hallmark's four page verbs (build / audit / redesign / study), and
-  taste-skill's 11 sub-skills. It also resolves **overlapping verbs** — impeccable's
+  document, extract…), hallmark's default design flow plus its three verbs (audit /
+  redesign / study), and taste-skill's 11 sub-skills. It also resolves **overlapping verbs** — impeccable's
   `audit`, hallmark's `audit`, and taste-skill's slop sweep ask different questions and
   return different artifacts, so the module says which to run and when running several is
   the right answer. Protocols needing upstream scripts (`live`, `hooks`, `init` capture)

@@ -12,7 +12,11 @@ Say the protocol you're running out loud ("running the `typeset` protocol on the
 4. **Run it under maestro's constitution.** Where a protocol contradicts a distilled module, the module wins — the references already encode the cross-source resolution (`taste-skill > hallmark > impeccable` on genuine contradictions).
 5. **Honor its output contract.** `audit`-class protocols report and do not edit. Build-class protocols emit code. Study-class protocols emit a diagnosis, and a portable spec only when the user opts in.
 
-**Scripts are not vendored.** Protocols that drive a CLI, a browser session, or a hook (`live`, `hooks`, `init`'s context capture, the CLI flows) need the upstream project installed — the knowledge is here, the machinery is not. Detect and route per `companions.md`; if it's absent, say so and run the parts that are pure judgment.
+**Scripts are not vendored** — the knowledge is here, the machinery is not. Detect and route per `companions.md`. Three cases, and the difference matters:
+
+- **Blocked without it:** `typeset` and `layout` require the detector scan and explicitly forbid substituting grep or proceeding unscanned — their own rule is *halt and report*. Say so rather than running a lookalike pass; the judgment in `design-foundations.md` is available, but do not present it as having run the protocol.
+- **Partly blocked:** `live` and `hooks` are the machinery. `init` writes PRODUCT.md and DESIGN.md with ordinary file tools and runs vendored; only its optional live-mode configuration step needs the upstream install.
+- **Degrades cleanly:** `critique` and `polish` say in their own text to continue when the scan is unavailable — run them, and note the deterministic pass was skipped.
 
 ## Refinement & craft protocols (impeccable)
 
@@ -30,8 +34,8 @@ Product-register work: an interface exists and needs to get better along a named
 | First-run, empty states, activation | `onboard` | Design the cold-start experience |
 | Add motion | `animate` | Purposeful animation (pair with `motion-principles.md`) |
 | Add color to a monochrome UI | `colorize` | Strategic color introduction |
-| Fix type hierarchy / fonts | `typeset` | Typography pass |
-| Fix spacing / rhythm / hierarchy | `layout` | Layout and spatial pass |
+| Fix type hierarchy / fonts | `typeset` | Typography pass **(detector required — halts without upstream install)** |
+| Fix spacing / rhythm / hierarchy | `layout` | Layout and spatial pass **(detector required — halts without upstream install)** |
 | Add personality | `delight` | Signature moments, earned per-moment |
 | Push past convention | `overdrive` | One extraordinary moment, user-approved |
 | Fix copy, labels, errors | `clarify` | UX-copy pass |
@@ -39,11 +43,12 @@ Product-register work: an interface exists and needs to get better along a named
 | Diagnose UI slowness | `optimize` | Performance diagnosis and fix |
 | Build a feature end-to-end | `craft` | Shape then build |
 | Plan UX before code | `shape` | Pre-code UX/UI planning |
-| Capture project context | `init` | PRODUCT.md / DESIGN.md setup **(needs upstream install)** |
+| Capture project context | `init` | Codebase crawl + strategic interview → PRODUCT.md / DESIGN.md; runs vendored (only its optional live-mode config step needs the upstream install) |
 | Write DESIGN.md from code | `document` | Reverse-engineer the system from the codebase |
 | Pull tokens/components out | `extract` | Promote one-offs into the design system |
 | Browser variant picking | `live` | In-page variant generation **(needs upstream install)** |
-| Platform-specific craft | `ios` · `android` · `interaction-design` · `product` | Deep per-surface references |
+
+Not commands: `ios`, `android`, `interaction-design`, and `product` are register references the source loads automatically from the project's platform — read them for per-surface depth, don't try to invoke them.
 
 ## Page-shape protocols (hallmark)
 
@@ -82,7 +87,7 @@ Three corpora, three houses, and some verbs appear in more than one. They are **
 
 | Verb | impeccable asks | hallmark asks | taste-skill asks |
 |---|---|---|---|
-| **audit** | Is this usable, accessible, fast? (heuristics + technical, product register) | Does this read as AI-generated? (structural + slop gates, brand register) | Which specific tells and category defaults are present? |
+| **audit** | Is this accessible, fast, themed, responsive? (code-level technical checks, product register — explicitly *not* a design critique; that's `critique`) | Does this read as AI-generated? (structural + slop gates, brand register) | Which specific tells and category defaults are present? |
 | **redesign** | — (use `bolder`/`distill`/`polish` for in-place refinement) | New structure inside existing boundaries, content preserved | Audit-then-fix an existing site without breaking its brand |
 | **study / extract** | `extract` promotes existing code into a system | `study` reads an admired reference into DNA | image-to-code generates the reference, then reads it |
 

@@ -55,15 +55,15 @@ Ask by **look and feel, never by skill name**. The user is picking a result, not
 | "Structure-led: a page shaped unlike the usual — the layout itself is the idea" | hallmark | Editorial, art-directed, print-adjacent; strong shapes, committed themes | Landing pages, portfolios, brand sites, anything that must not look templated |
 | "Polish-led: conventional shape, uncommonly well finished — no AI tells anywhere" | taste-skill | Confident, current, premium; the details survive zooming in | Marketing surfaces, launches, redesigns of something already close |
 | "Craft-led: usability and system rigor first, taste in service of the work" | impeccable | Calm, legible, systematic; nothing shouts | Dashboards, product UI, tools, dense data, anything people use daily |
-| "Blend (recommended default)" | all three composing | Structure from one, finish from another, rigor throughout | Most page work — see the composition note in `SKILL.md` |
+| "Blend" | all three composing | Structure from one, finish from another, rigor throughout | Mixed-register work (a marketing site with a real app behind it), or a brief that pulls two ways |
 
 Mechanics that make the choice real:
 
 - **Show, don't name.** Two or three concrete sentences of what the result looks like per option — a named reference site, the type attitude, how dense it feels. A user who can't picture the outcome can't choose it.
-- **Recommend one and say why** in the same breath (register usually decides it: product surface → craft-led; brand surface → structure- or polish-led).
+- **Recommend one and say why** in the same breath. Register usually decides it: product surface → craft-led; brand surface → structure-led when the shape should surprise, polish-led when the shape is settled and the finish carries it; mixed register or a brief pulling both ways → blend, naming which house owns which layer.
 - **Push once past a lazy answer.** "Whatever looks best" is not a pick — reply with the two most different options rendered as sentences and ask which one they'd rather land on. If they still decline, choose, state the choice and the reason, and treat it as locked.
 - **Ask preference questions in the same pass:** which of their references they actually love versus merely tolerate; what they never want to see; whether they want the safe or the ambitious version of this brief.
-- **A named house wins over every default and every hierarchy.** "Do it hallmark-style" ends the conversation — the standing `taste-skill > hallmark > impeccable` order only breaks ties the user did not break.
+- **A named house ends the question.** "Do it hallmark-style" is the answer; stop offering alternatives. Scope of the pick: it decides whose instincts lead the look and which protocol runs when verbs overlap (`references/commands.md`). It does not reopen source conflicts already resolved inside the modules — the `taste-skill > hallmark > impeccable` order was applied at distillation time and is baked into the reference prose, not a runtime dial.
 - **Lock it into the brief** (§2) and honor it downstream: it decides which protocol runs when verbs overlap (`references/commands.md`), and re-opening it mid-build is a direction change that needs the user, not a quiet swap.
 
 ## 2. Brief lock
