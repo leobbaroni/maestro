@@ -5,9 +5,9 @@ description: Unified design, motion, 3D, and video super skill. Use for designin
 
 # Maestro
 
-One skill for the full visual stack: **design → motion → 3D → video**. It merges ten design/motion/video skill projects into one voice — deduplicated, conflicts resolved (full list in the footer).
+One skill for the full visual stack: **design → motion → 3D → video**. It merges eleven design/motion/video skill projects into one voice — deduplicated, conflicts resolved (full list in the footer).
 
-Two layers. `references/` is the **judgment layer** — distilled, one voice, decides everything. `library/` is the **depth layer** — three full source corpora (taste-skill, hallmark, impeccable) vendored verbatim; the judgment layer points into it for exact recipes, theme token sets, and long-tail protocols (rules of engagement: `library/README.md`). On genuine contradictions between sources the resolution is already encoded in the references, per the hierarchy **taste-skill > hallmark > impeccable**; everything non-conflicting composes. This file is the brain: it decides *what to load* and *how to work*. Load only what the task needs.
+Two layers. `references/` is the **judgment layer** — distilled, one voice, decides everything. `library/` is the **depth layer** — four source corpora (taste-skill, hallmark, impeccable verbatim; video-shotcraft as a partial vendor); the judgment layer points into it for exact recipes, theme token sets, and long-tail protocols (rules of engagement: `library/README.md`). On genuine contradictions between sources the resolution is already encoded in the references, per the hierarchy **taste-skill > hallmark > impeccable**; everything non-conflicting composes. This file is the brain: it decides *what to load* and *how to work*. Load only what the task needs.
 
 ## Rule 0 — The Grill Gate
 
@@ -106,4 +106,4 @@ Always-on rules, regardless of module:
 
 ---
 
-*Maestro unifies: [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), [hallmark](https://github.com/nutlope/hallmark), plus design-kit and the grilling/pilot/mockups process rituals. See NOTICE.md.*
+*Maestro unifies: [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), [hallmark](https://github.com/nutlope/hallmark), [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft), plus design-kit and the grilling/pilot/mockups process rituals. See NOTICE.md.*

@@ -10,6 +10,7 @@
         "skill/SKILL.src.md"
       ],
       "feeds": [
+        "commands.md",
         "design-foundations.md",
         "design-direction.md",
         "design-dna.md",
@@ -19,12 +20,12 @@
       ],
       "pins": {
         "skill/reference": {
-          "sha": "d0ac67c6e975fd435766353b818210dcba8c6408",
-          "date": "2026-07-20T01:42:41Z"
+          "sha": "8634c538fbf860fcdd2a54c31676beb78a44eff4",
+          "date": "2026-07-25T01:43:04Z"
         },
         "skill/SKILL.src.md": {
-          "sha": "c11cc7b58ce69c0723b2c7eb804a45279d06c52e",
-          "date": "2026-07-09T14:30:49Z"
+          "sha": "8634c538fbf860fcdd2a54c31676beb78a44eff4",
+          "date": "2026-07-25T01:43:04Z"
         }
       }
     },
@@ -32,7 +33,20 @@
       "name": "genjutsu",
       "repo": "AThevon/genjutsu",
       "watch": [
-        "skills"
+        "skills/_jutsu/canvas-generative",
+        "skills/_jutsu/compose-graphics",
+        "skills/_jutsu/compose-motion",
+        "skills/_jutsu/compose-multiplatform",
+        "skills/_jutsu/css-native",
+        "skills/_jutsu/design-audit",
+        "skills/_jutsu/desktop-principles",
+        "skills/_jutsu/framer-motion",
+        "skills/_jutsu/gsap",
+        "skills/_jutsu/mobile-principles",
+        "skills/_jutsu/motion-principles",
+        "skills/_jutsu/swiftui-graphics",
+        "skills/_jutsu/swiftui-motion",
+        "skills/_jutsu/threejs-r3f"
       ],
       "feeds": [
         "design-direction.md",
@@ -48,8 +62,65 @@
         "skills": {
           "sha": "642e857d2807e273a2e72e02cdbc10fbcb058e66",
           "date": "2026-07-18T20:04:52Z"
+        },
+        "skills/_jutsu/canvas-generative": {
+          "sha": "0c6ea76072736913321a37112e4a32e23d371f8b",
+          "date": "2026-04-26T09:36:33Z"
+        },
+        "skills/_jutsu/compose-graphics": {
+          "sha": "0c6ea76072736913321a37112e4a32e23d371f8b",
+          "date": "2026-04-26T09:36:33Z"
+        },
+        "skills/_jutsu/compose-motion": {
+          "sha": "bd12dac0847c9f98667bba782123445a6c6d4728",
+          "date": "2026-07-24T04:29:58Z"
+        },
+        "skills/_jutsu/compose-multiplatform": {
+          "sha": "bd12dac0847c9f98667bba782123445a6c6d4728",
+          "date": "2026-07-24T04:29:58Z"
+        },
+        "skills/_jutsu/css-native": {
+          "sha": "3e1b138048c34cbffd1d21df5313437cc54fb942",
+          "date": "2026-07-24T04:40:12Z"
+        },
+        "skills/_jutsu/design-audit": {
+          "sha": "bd12dac0847c9f98667bba782123445a6c6d4728",
+          "date": "2026-07-24T04:29:58Z"
+        },
+        "skills/_jutsu/desktop-principles": {
+          "sha": "0c6ea76072736913321a37112e4a32e23d371f8b",
+          "date": "2026-04-26T09:36:33Z"
+        },
+        "skills/_jutsu/framer-motion": {
+          "sha": "0c6ea76072736913321a37112e4a32e23d371f8b",
+          "date": "2026-04-26T09:36:33Z"
+        },
+        "skills/_jutsu/gsap": {
+          "sha": "bd12dac0847c9f98667bba782123445a6c6d4728",
+          "date": "2026-07-24T04:29:58Z"
+        },
+        "skills/_jutsu/mobile-principles": {
+          "sha": "bd12dac0847c9f98667bba782123445a6c6d4728",
+          "date": "2026-07-24T04:29:58Z"
+        },
+        "skills/_jutsu/motion-principles": {
+          "sha": "a41ae8b04334e7edce6c4289d9068aa65cf5a24e",
+          "date": "2026-07-24T04:30:01Z"
+        },
+        "skills/_jutsu/swiftui-graphics": {
+          "sha": "bd12dac0847c9f98667bba782123445a6c6d4728",
+          "date": "2026-07-24T04:29:58Z"
+        },
+        "skills/_jutsu/swiftui-motion": {
+          "sha": "bd12dac0847c9f98667bba782123445a6c6d4728",
+          "date": "2026-07-24T04:29:58Z"
+        },
+        "skills/_jutsu/threejs-r3f": {
+          "sha": "0c6ea76072736913321a37112e4a32e23d371f8b",
+          "date": "2026-04-26T09:36:33Z"
         }
-      }
+      },
+      "$comment": "Watch the 14 fed sub-skills individually. Excluded on purpose: skills/_jutsu/ui-ux-pro-max (Python tooling + CSV data), skills/cast and skills/paint (orchestrator plumbing) — together 93% of the last drift and zero maestro edits. The checker passes each path to GitHub's commits?path= prefix API, so exclusion can only be expressed by enumerating what to include."
     },
     {
       "name": "gsap-skills",
@@ -123,8 +194,9 @@
     {
       "name": "remotion",
       "repo": "remotion-dev/remotion",
+      "$comment": "Watch packages/skills/skills, one segment narrower than packages/skills — the parent also holds package.json, whose version bumps every release and would drift the pin unconditionally.",
       "watch": [
-        "packages/skills"
+        "packages/skills/skills"
       ],
       "feeds": [
         "video-remotion.md"
@@ -133,6 +205,10 @@
         "packages/skills": {
           "sha": "1f7af39b9db3cef7bdc97cd9c4ec3e02091157bb",
           "date": "2026-07-19T17:33:30Z"
+        },
+        "packages/skills/skills": {
+          "sha": "d134f49f602e7d6de096f48727c5bcca5db0533d",
+          "date": "2026-07-24T17:02:26Z"
         }
       }
     },
@@ -144,6 +220,7 @@
         "skills"
       ],
       "feeds": [
+        "commands.md",
         "design-audit.md",
         "design-direction.md",
         "design-foundations.md",
@@ -168,6 +245,7 @@
         "skills/hallmark"
       ],
       "feeds": [
+        "commands.md",
         "page-anatomy.md",
         "design-audit.md",
         "design-direction.md",
@@ -188,9 +266,12 @@
     {
       "name": "video-shotcraft",
       "repo": "Vincentwei1021/video-shotcraft",
-      "$comment": "Authoritative for product-demo video craft; does not participate in the design-taste hierarchy. Watch the knowledge layer only — gallery/ (108MB previews), template/ (23MB project), and the audio binaries are deliberately not vendored (see skills/maestro/library/video-shotcraft/README.md).",
+      "$comment": "Authoritative for product-demo video craft; does not participate in the design-taste hierarchy. Watch everything maestro re-vendors: demos/ and template/src/ are the tuned parameter truth the shot cards point at (knowledge, not tooling), so they must fire drift. Not vendored and not watched: gallery/ (108MB previews), template/out/ + template/public/ (22MB), audio binaries. Split documented in skills/maestro/library/video-shotcraft/VENDOR-NOTES.md.",
       "watch": [
         "references",
+        "demos",
+        "template/src",
+        "assets/lib",
         "SKILL.md"
       ],
       "feeds": [
@@ -207,6 +288,18 @@
         "SKILL.md": {
           "sha": "1664426c2479929145d47c3e30f4486aecc826dd",
           "date": "2026-07-23T11:30:53Z"
+        },
+        "demos": {
+          "sha": "4cd934323c38fa336026e6eb7176ade12dbeca86",
+          "date": "2026-07-23T13:56:23Z"
+        },
+        "template/src": {
+          "sha": "741938f1a8159b274a7164b95ed6d1f0e0513c69",
+          "date": "2026-07-19T05:45:41Z"
+        },
+        "assets/lib": {
+          "sha": "741938f1a8159b274a7164b95ed6d1f0e0513c69",
+          "date": "2026-07-19T05:45:41Z"
         }
       }
     },
@@ -214,20 +307,57 @@
       "name": "hyperframes",
       "repo": "heygen-com/hyperframes",
       "watch": [
-        "skills"
+        "skills/hyperframes-core",
+        "skills/hyperframes-cli",
+        "skills/hyperframes-creative",
+        "skills/hyperframes-animation",
+        "skills/hyperframes-keyframes",
+        "skills/hyperframes-registry",
+        "skills/hyperframes/SKILL.md"
       ],
       "feeds": [
         "video-direction.md",
         "video-hyperframes.md",
+        "video-sound.md",
         "motion-web.md",
-        "gsap.md"
+        "gsap.md",
+        "companions.md"
       ],
       "pins": {
         "skills": {
           "sha": "49113eb08487b2c53b7404bc26c5e419244ae97f",
           "date": "2026-07-18T08:36:36Z"
+        },
+        "skills/hyperframes-core": {
+          "sha": "e7f9918d21f9fa57f1799c7b3ba38963cfcb52f1",
+          "date": "2026-07-24T21:12:48Z"
+        },
+        "skills/hyperframes-cli": {
+          "sha": "4582881d002c361afff59cc1c74ae072a50e17f7",
+          "date": "2026-07-25T01:42:07Z"
+        },
+        "skills/hyperframes-creative": {
+          "sha": "696cbdbbd0e5c83faf72c767126d4a153110f130",
+          "date": "2026-07-21T16:41:40Z"
+        },
+        "skills/hyperframes-animation": {
+          "sha": "696cbdbbd0e5c83faf72c767126d4a153110f130",
+          "date": "2026-07-21T16:41:40Z"
+        },
+        "skills/hyperframes-keyframes": {
+          "sha": "b9be0b26254fe7b759c6310036866f02d9d3d72b",
+          "date": "2026-07-15T13:19:14Z"
+        },
+        "skills/hyperframes-registry": {
+          "sha": "b9be0b26254fe7b759c6310036866f02d9d3d72b",
+          "date": "2026-07-15T13:19:14Z"
+        },
+        "skills/hyperframes/SKILL.md": {
+          "sha": "4582881d002c361afff59cc1c74ae072a50e17f7",
+          "date": "2026-07-25T01:42:07Z"
         }
-      }
+      },
+      "$comment": "Watch the six core skills maestro distills, plus the router SKILL.md whose route table is the one file any workflow add/rename/remove must touch - that single file preserves the companions.md signal while dropping the workflow pipelines maestro only name-checks."
     }
   ]
 }

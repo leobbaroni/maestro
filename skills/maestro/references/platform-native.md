@@ -66,7 +66,7 @@ Content must decelerate, not stop dead. SwiftUI: project `DragGesture.Value.pred
 - **TalkBack:** Compose semantics via modifiers; `clearAndSetSemantics { contentDescription; role = Role.Button; stateDescription }` to announce a custom composable as one element; `traversalIndex` for reading order.
 - **Dynamic type:** SwiftUI system styles scale free; custom fonts via `.font(.custom(_, size:, relativeTo: .body))`. Compose: Material typography + read `LocalDensity.current.fontScale` to relax `maxLines` above ~1.3.
 - **Contrast (WCAG AA):** 4.5:1 normal text, 3:1 large text (≥18pt or ≥14pt bold) and non-text UI. Never color alone — pair with icon/label/pattern.
-- **Reduced motion:** SwiftUI `@Environment(\.accessibilityReduceMotion)`; UIKit `UIAccessibility.isReduceMotionEnabled`. Android nuance: `Settings.Global.ANIMATOR_DURATION_SCALE == 0f` is only the developer-options toggle; the user-facing setting (Android 14+, "Remove animations") is `AccessibilityManager.areTransitionsEnabled()` (API 34+) — check that first, fall back to the scale. Under reduce: keep opacity/cross-fades, kill large translations, scale-from-zero, parallax, loops (`snap()` in Compose, `.none`/zero offsets in SwiftUI).
+- **Reduced motion:** SwiftUI `@Environment(\.accessibilityReduceMotion)`; UIKit `UIAccessibility.isReduceMotionEnabled`. Android nuance: `Settings.Global.ANIMATOR_DURATION_SCALE == 0f` is only the developer-options toggle. Prefer `ValueAnimator.areAnimatorsEnabled()` (API 26+) — it reads the same user setting with far wider device coverage than `AccessibilityManager.areTransitionsEnabled()` (API 34+), which only matters on Android 14+. Under reduce: keep opacity/cross-fades, kill large translations, scale-from-zero, parallax, loops (`snap()` in Compose, `.none`/zero offsets in SwiftUI).
 - **Checklist:** every interactive element labeled with role; 200% font scale without truncation/overlap; every gesture has a non-gesture alternative (button, menu); no time-limited-only interactions.
 
 ## Mobile: Performance Budgets
@@ -122,7 +122,7 @@ Use a new window only for: document peers (one window = one document, own undo s
 | Single value | `withAnimation { }` or `.animation(_, value:)` |
 | 3+ ordered states | `phaseAnimator` (iOS 17+) — sequential phases, settles on last |
 | Parallel time-based tracks | `keyframeAnimator` (iOS 17+) — one `KeyframeTrack` per keypath |
-| Custom drawing interpolation | `animatableData` / `@Animatable` macro (iOS 17+) |
+| Custom drawing interpolation | `animatableData`; the `@Animatable` macro is iOS 26+ |
 | Shared element / hero | `matchedGeometryEffect(id:in:)` — same id, same `Namespace` |
 | Gesture-driven | `DragGesture`/`MagnifyGesture` + `.offset`/`.scaleEffect` |
 | Loop | `.repeatForever(autoreverses:)` — use `.linear`/`.easeInOut`, not springs |
@@ -135,7 +135,7 @@ Start with `withAnimation`; escalate only when needed. Prefer explicit `withAnim
 
 | Use case | Spec |
 |---|---|
-| Tap feedback | `.snappy` (iOS 17+), ≈ `(response: 0.3, dampingFraction: 0.85)` on the older API |
+| Tap feedback | `.snappy` (iOS 17+), ≈ `(response: 0.5, dampingFraction: 0.85)` on the older API |
 | Sheet present | `(0.45, 0.85)` — slight overshoot = "object arrives" |
 | Sheet dismiss | `.smooth` (iOS 17+), ≈ `(0.5, 1.0)` — exits subtler than entrances |
 | Drag follow | `.interactiveSpring()` = `(0.15, 0.86)` — only while gesture-driven |
@@ -227,7 +227,8 @@ Stiffness: VeryLow 50, Low 200, MediumLow 400, Medium 1500, High 10000. Damping 
 |---|---|
 | SwiftUI | `@Environment(\.accessibilityReduceMotion)` |
 | UIKit | `UIAccessibility.isReduceMotionEnabled` |
-| Android 14+ | `AccessibilityManager.areTransitionsEnabled()` (API 34+, user-facing) |
+| Android (preferred) | `ValueAnimator.areAnimatorsEnabled()` (API 26+, user-facing) |
+| Android 14+ only | `AccessibilityManager.areTransitionsEnabled()` (API 34+) |
 | Android <14 | `Settings.Global.ANIMATOR_DURATION_SCALE == 0f` (dev-options fallback) |
 | Web | `@media (prefers-reduced-motion: reduce)` / `matchMedia` |
 

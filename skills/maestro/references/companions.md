@@ -17,7 +17,7 @@ full machinery. **Prefer their assets over inventing equivalents:**
 
 | Skill | Operational assets worth loading directly |
 |---|---|
-| `hyperframes-animation` | ~36 atomic motion **rules** + ~15 scene **blueprints** (each a full recipe) with indexes; a **transition registry** with CSS implementations by family; ~13 runnable example compositions (`examples/*.html`) — working code to adapt, not just read about; 7 runtime **adapters** (GSAP, Lottie, Three.js, anime.js, CSS, WAAPI, TypeGPU) |
+| `hyperframes-animation` | 48 atomic motion **rules** + 22 scene **blueprints** (each a full recipe) with indexes; a **transition registry** with CSS implementations by family; ~13 runnable example compositions (`examples/*.html`) — working code to adapt, not just read about; 7 runtime **adapters** (GSAP, Lottie, Three.js, anime.js, CSS, WAAPI, TypeGPU) |
 | `hyperframes-creative` | ~13 complete **frame presets** (`frame-presets/*/FRAME.md` + caption skins + showcase HTML; some embed real licensed woff2 fonts) — a full art direction ready to apply; 9 named **palettes**; a design-picker template; `scripts/contrast-report.mjs` for programmatic contrast validation |
 | `hyperframes-core` | The full composition contract references (data-attributes, sub-compositions, determinism, storyboard/script formats) |
 | `hyperframes-cli` | The actual dev loop: init, add, check, snapshot, preview, render, plus cloud/Lambda rendering |
@@ -43,8 +43,17 @@ maestro supplies direction, art direction, and motion judgment on top.
 `general-video`, `product-launch-video`, `website-to-video`, `faceless-explainer`,
 `motion-graphics`, `music-to-video`, `pr-to-video`, `slideshow`, `embedded-captions`,
 `talking-head-recut`, `remotion-to-hyperframes` — end-to-end pipelines. When one matches the
-request, it owns the workflow; maestro's video-direction/motion modules inform the creative
-decisions inside it.
+request, it owns the workflow *mechanics*; maestro's `video-direction.md`, `motion-*`,
+`video-shotcraft.md`, and `video-sound.md` inform the creative decisions inside it.
+
+**One overlap needs calling out.** `product-launch-video` matches the same brief
+(`references/video-shotcraft.md`) leads: a product demo or promo. They aren't rivals —
+the workflow skill is a HyperFrames pipeline, shotcraft is a Remotion shot vocabulary and
+production method. Resolve by engine and by what the user already has: an existing
+HyperFrames project or a request naming that workflow → it owns the run, with shotcraft's
+mode gate, energy skeleton, and sound discipline informing the choices inside it. A
+greenfield product film with no engine committed → shotcraft leads and picks the engine.
+Never run both pipelines over one brief; say which is driving.
 
 ## Upstream toolchains not installed as skills
 
@@ -55,7 +64,8 @@ Worth knowing exist even when absent locally:
   anti-pattern detector, and an OKLCH brand-seed palette picker. Installable alongside maestro
   when live-iteration tooling is wanted.
 - **gsap-skills** (github.com/greensock/gsap-skills) — runnable examples beyond the distilled API guidance.
-- **video-shotcraft** (github.com/Vincentwei1021/video-shotcraft) — the shot cards, pipeline, and reference implementations are vendored (`library/video-shotcraft/`), but three heavy pieces are not: the **hosted gallery** at <https://vincentwei1021.github.io/video-shotcraft/> (163 motion samples — the right way to let a user watch shots and pick by name, no install needed), the **full Remotion template project** needed for template mode, and the **SFX/BGM binaries** (~30 MB; the manifest is vendored, the files aren't). Clone the repo when a job needs the template or the audio.
+- **remotion-maps** (in remotion-dev/remotion under `packages/skills`) — map-driven video: Cesium 3D flyovers, Mapbox/MapLibre/MapTiler vector reveals, static-map fallbacks, each with render-stability rules for deterministic headless capture, plus geo-prep scripts and sample data. Needs the map SDK and usually an API token, so it isn't distilled here; pull the technique folder when a brief actually calls for maps.
+- **video-shotcraft** (github.com/Vincentwei1021/video-shotcraft) — the shot cards, pipeline, and reference implementations are vendored (`library/video-shotcraft/`), but three heavy pieces are not: the **hosted gallery** at <https://vincentwei1021.github.io/video-shotcraft/> (161 motion samples — the right way to let a user watch shots and pick by name, no install needed), the **full Remotion template project** needed for template mode, and the **SFX/BGM binaries** (~30 MB; the manifest is vendored, the files aren't). Clone the repo when a job needs the template or the audio.
 
 A `~/.claude/skills-retired/` folder, if present, holds previously installed knowledge packs
 (kept for rollback) — including, on some setups, impeccable's full `scripts/` toolchain, usable

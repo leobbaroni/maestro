@@ -267,6 +267,8 @@ Hallmark-derived themes name their easing tokens `--ease-out (0.16,1,0.3,1)` / `
 }
 ```
 
+The blanket kill is the safety net for CSS you don't own, not the answer for your own: it strips the state feedback and hierarchy cues reduced-motion users still need. Author a per-animation alternative — keep the state change, drop the spatial travel — and let the global rule catch third-party styles.
+
 - **Vestibular triggers** (avoid or provide alternatives): large-scale zoom, full-screen positional transitions, spinning elements >100px, parallax >2 layers, rapid direction changes.
 - **Cognitive:** same interaction = same animation every time; pause control for anything >5s; never convey critical information through motion alone.
 - Focus indicators must never be hidden by animation; text must meet contrast at every frame of a transition; don't block interaction during animation unless intentional.

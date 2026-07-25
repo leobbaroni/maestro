@@ -85,7 +85,9 @@ Ready palettes for four proven lanes; full component specs in the library. A rec
 
 ### Generate-first (image → analysis → code)
 
-When an image-gen tool is available and visual quality is central (hero, landing, redesign), an alternative to reference-collection: (1) generate the design image yourself — **one image per section**, never one compressed board, never crop a section out of a larger render; (2) deep-analyze each as a spec — extract copy, type-scale relationships, spacing, palette, component logic; (3) implement faithfully. **Anti-drift is the failure mode:** the coded result must stay the same site as the reference — don't simplify distinctive sections into generic rows or compress generous spacing. Reference-board generators (per-section web comps, mobile flow boards, brand-identity boards): `references/toolbox.md`; depth: `library/taste-skill/skills/image-to-code-skill/SKILL.md`.
+When an image-gen tool is available and visual quality is central (hero, landing, redesign), an alternative to reference-collection: (1) generate the design image yourself — **one image per section**, never one compressed board, never crop a section out of a larger render; (2) deep-analyze each as a spec — extract copy, type-scale relationships, spacing, palette, component logic; (3) implement faithfully. **Anti-drift is the failure mode:** the coded result must stay the same site as the reference — don't simplify distinctive sections into generic rows or compress generous spacing.
+
+**Truth binds claims, not demonstrations.** Author whatever illustrative material the concept needs at full fidelity — entries, covers, thumbnails, sample data — label it synthetic wherever a visitor could mistake it for real, and hand the user the replacement list. What stays uninventable is commercial and factual: prices, customers, benchmarks, endpoints, capabilities the product doesn't have. Refusing a bold direction because its demonstration data doesn't exist yet is timidity wearing honesty's clothes. Reference-board generators (per-section web comps, mobile flow boards, brand-identity boards): `references/toolbox.md`; depth: `library/taste-skill/skills/image-to-code-skill/SKILL.md`.
 
 ### Presenting options (fan-out)
 
@@ -130,6 +132,12 @@ Bold means distinctive, not "more effects." Amplify the existing language before
 - **Design-system lock**: if tokens/DESIGN.md exist, treat them as the boundary. New colors, fonts, radii, shadows, or effects require explicit user approval and a documented system update.
 - **Motion**: one meaningful moment of emphasis, not scroll-fade on every section.
 - Verify: "if I said 'AI made this bolder,' would they believe me instantly?" Yes = failed.
+
+Three calibration corrections, in order of how often they cost commitment:
+
+- **A pinned world pins the world, not its softest rendition.** The full material range of that world stays in play; a rendition matching what any model ships for it failed the check at execution, not at selection.
+- **Negative constraints rule out devices, not energy.** "No gamification, no hype" bans those devices. Adjectives describing the product's *behavior* — quiet support, calm coaching — do not dictate the surface's energy.
+- **The subject is not a license for the default.** A bookish, warm, or child-facing brief doesn't soften the calibration: book cloth, thread, jackets, endpapers, and shelf ephemera span the whole saturated spectrum, and cream paper is the smallest corner of that world. Cream + serif for a book subject is the default wearing the subject's clothes.
 
 ### Quieter (loud → refined)
 

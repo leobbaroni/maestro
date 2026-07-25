@@ -38,7 +38,7 @@ Beyond that base vocabulary, keep slots for **custom foley on distinctive action
 
 | Phrase | Shape |
 |---|---|
-| **Finale (the reliable one)** | `riser` as assembly begins → ~35 frames later `impact` on the lockup landing, the loudest cue in the film → ~25 frames later `sparkle` as the resonance |
+| **Finale (the reliable one)** | `riser` as assembly begins → ~35 frames later `impact` on the lockup landing, the peak of the closing phrase → ~25 frames later `sparkle` as the resonance |
 | Scene change | one soft `transition`, once per new scene |
 | Title card | one unified `swoosh-quick` across every card in the film |
 | Click / confirm | `click-camera`, given the highest SFX volume |
@@ -56,10 +56,10 @@ The working vocabulary of a product film, as actually deployed in the reference 
 | Title card appears | one `swoosh-quick` | Same cue for every title card in the film — consistency reads as intent |
 | Light sweep, reveal beam, closing flash | `sparkle` | The resonance, not the hit |
 | Typing on screen | `keyboard` foley | Long sample, windowed to the typed span |
-| Click / confirm / capture | `click-camera` | Loudest SFX in the film |
+| Click / confirm / capture | `click-camera` | Loudest SFX in the film (~0.6) — a deliberate choice: the moment the user "acts" outranks the brand landing |
 | List items dropping in | short `pop` ×N | Apply the anti-machine-gun treatment below |
 | Finale assembly begins | `riser` | Opens the three-part closing phrase |
-| Lockup lands | `impact` | Peak loudness of the whole film |
+| Lockup lands | `impact` | Peak of the closing phrase (~0.55) — the film's second-loudest cue |
 
 Two cautions carried from the source: a film's audio folder accumulates **dead assets** (downloaded, never wired) — prune or label them rather than leaving ambiguity about what's live; and any cue whose provenance you can't name is a licensing risk, not a stylistic one.
 
@@ -121,7 +121,7 @@ The discipline above is identical everywhere; only the primitive changes.
 | Engine | How cues play |
 |---|---|
 | **Remotion / shotcraft** | Wrap each table entry in a `<Sequence from={cue.from}>` around an `<Audio>`; the `durationInFrames` does the truncation. Frame-accurate by construction |
-| **HyperFrames** | The framework owns media playback — declare the audio and let the renderer seek it. Never call `.play()`; a self-driving media element breaks deterministic rendering (`video-hyperframes.md`) |
+| **HyperFrames** | Three adaptations. **Time is seconds, not frames** — divide every frame figure here by the fps before use (35 frames ≈ 1.17s at 30fps). Relative pinning has a native primitive: `data-start="<clip-id> + N"` references another clip's start plus an offset, which is exactly the `SHOTS.<shot>.from + offset` discipline expressed in the composition contract — use it rather than computing absolute times. And the framework owns playback: declare the audio with `data-volume` for levels and let the renderer seek it; never call `.play()`, since a self-driving media element breaks deterministic rendering. Envelope fades are volume tweens on the timeline (`video-hyperframes.md`) |
 | **Any engine** | Cues are data, not code in components. If a scene component contains an audio call, it's in the wrong place |
 
 ## Sourcing and licensing

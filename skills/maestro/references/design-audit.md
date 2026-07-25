@@ -29,7 +29,7 @@ Report rules: be direct and specific ("the submit button", not "some elements");
 
 ### Nielsen's 10 heuristics — score each 0–4
 
-Honest scoring: 4 = genuinely excellent; most real interfaces total 20–32/40.
+Honest scoring: 4 = genuinely excellent; most real interfaces total 20–32/40. Score a heuristic `n/a` with a one-line reason when the surface genuinely can't exercise it — 7 (Flexibility and efficiency) and 10 (Help and documentation) commonly don't apply to landing pages, campaigns, and portfolios — then renormalize to the applicable maximum (`24/32`, never `/40` over a partial set) and read the band off the percentage: 90%+ excellent, 70%+ good, 50%+ acceptable, 30%+ poor, below that critical.
 
 | # | Heuristic | Check for |
 |---|---|---|
@@ -53,7 +53,7 @@ Three types: **intrinsic** (task complexity — structure it: steps, defaults, p
 8-item checklist — count failures (0–1 low, 2–3 moderate, 4+ critical):
 single focus · chunking (≤4 items/group) · visual grouping · clear hierarchy · one decision at a time · ≤4 visible options per decision point · no cross-screen memory demands · progressive disclosure.
 
-**Working-memory rule (≤4 items)**: nav ≤5 top-level items; ≤4 form fields per group; 1 primary + 1–2 secondary buttons (rest in menu); ≤4 dashboard metrics above fold; ≤3 pricing tiers. 5–7 simultaneous items = group them; 8+ = users skip, misclick, abandon.
+**Working-memory rule (≤4 items)**: nav ≤5 top-level items; ≤4 form fields per group; 1 primary + 1–2 secondary buttons (rest in menu); ≤4 dashboard metrics above fold; ≤3 pricing tiers; docs sidebars ≤4 sibling choices per level before grouping; long-form articles one reading path, related links gathered in one block at the end rather than scattered mid-flow; portfolio and gallery indexes one decision per screen (which piece to open), not filter + sort + tag at once. 5–7 simultaneous items = group them; 8+ = users skip, misclick, abandon.
 
 ### Personas — walk the primary action as 2–3 of these
 
@@ -175,7 +175,7 @@ Score 0–4: 0 = fails WCAG A · 2 = partial effort, significant gaps · 4 = AA 
 | Semantics | Real `<button>`/`<a>` (a clickable `<div>`/`<span>` needs `role="button"` + `tabIndex` + `onKeyDown`); proper heading hierarchy; landmarks; labeled inputs; meaningful alt text |
 | Live announcements | Screen reader announces loading/success/error via live regions |
 | Color independence | Never meaning by color alone; test high-contrast mode |
-| Reduced motion | An animated project with zero `prefers-reduced-motion` handling is a **critical violation** |
+| Reduced motion | An animated project with zero `prefers-reduced-motion` handling is a **critical violation**. A global `0.01ms` kill counts as handling only for third-party CSS — inside your own code it destroys the state feedback and hierarchy cues those users still need, so report it as its own finding. Also flag flashing above threshold and motion that blocks focus, reading, or task completion |
 | Decorative motion | Background particles, ambient motion, Lottie illustrations need `aria-hidden="true"` |
 
 Grep sweeps (adapt globs to stack):

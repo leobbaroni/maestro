@@ -1,6 +1,6 @@
 # Keeping maestro current
 
-Maestro is a **distillation** of ten living upstream projects. When those projects
+Maestro is a **distillation** of eleven living upstream projects. When those projects
 change, maestro should absorb the changes — without losing its single voice. This file is
 the complete playbook; an AI agent can run it end-to-end.
 
@@ -46,8 +46,10 @@ Update the maestro skill from its upstream sources.
 6. Bump the version in .claude-plugin/plugin.json (minor for new guidance, patch for
    corrections), add a CHANGELOG.md entry naming which modules changed and why, and
    commit everything.
-7. If the user has maestro installed at ~/.claude/skills/maestro, offer to refresh that
-   copy from skills/maestro.
+7. Maestro is normally consumed as a plugin (served by the cockpit marketplace), so a
+   pushed commit reaches users when they update the plugin — tell them to do that rather
+   than copying files. Only if a personal copy exists at ~/.claude/skills/maestro, offer
+   to refresh it, and flag it as a duplicate of the plugin.
 ```
 
 ## AUTHORING SPEC (for anyone editing modules)
@@ -69,9 +71,9 @@ Update the maestro skill from its upstream sources.
 
 ## The vendored library (depth layer)
 
-`skills/maestro/library/` holds verbatim copies of three corpora (taste-skill, hallmark,
-impeccable's reference set) that the distilled modules point into for long-tail depth.
-When the drift watcher flags one of these upstreams:
+`skills/maestro/library/` holds four corpora that the distilled modules point into for
+long-tail depth — taste-skill, hallmark, and impeccable's reference set as verbatim copies,
+plus video-shotcraft as a partial vendor. When the drift watcher flags one of these:
 
 1. Re-distill the affected judgment modules as usual (steps above).
 2. **Also re-vendor**: re-clone the upstream and replace the corpus wholesale —
@@ -80,11 +82,13 @@ When the drift watcher flags one of these upstreams:
    `library/hallmark/` from `nutlope/hallmark:skills/hallmark/`,
    `library/impeccable/reference/` + `SKILL.src.md` from `pbakaus/impeccable:skill/`,
    `library/video-shotcraft/` from `Vincentwei1021/video-shotcraft` — **partial vendor**:
-   `references/`, `demos/` minus `_textures/`, `assets/lib/`, `assets/audio/ATTRIBUTION.md`,
-   `SKILL.md`; never `gallery/`, `template/`, or the audio binaries (that split and its
-   reasons are documented in `library/video-shotcraft/README.md` — keep them in sync).
-   Carry each LICENSE (and impeccable's NOTICE.md) unchanged. Never hand-edit vendored
-   files — local judgment belongs in the distilled modules.
+   `references/`, `demos/` minus `_textures/`, `template/src/` + `TEMPLATE.md` + its config
+   files, `assets/lib/`, `assets/scripts/`, `assets/audio/ATTRIBUTION.md`, `SKILL.md`;
+   never `gallery/`, `template/out/`, `template/public/`, `demos/_textures/`, or the audio
+   binaries. **Preserve `library/video-shotcraft/VENDOR-NOTES.md`** — it is maestro-authored,
+   not upstream, and documents that split; keep it in sync and never overwrite it with the
+   upstream README. Carry each LICENSE (and impeccable's NOTICE.md) unchanged. Never
+   hand-edit vendored files — local judgment belongs in the distilled modules.
 3. Spot-check that library paths cited by the distilled modules still exist
    (`grep -o 'library/[A-Za-z0-9_/.-]*' skills/maestro/references/*.md` → verify each).
 4. Re-check `references/commands.md` against the corpus's own command table or verb
@@ -109,7 +113,7 @@ When the drift watcher flags one of these upstreams:
 | gsap.md | gsap-skills (authoritative), genjutsu, hyperframes |
 | threejs.md | threejs-skills, genjutsu |
 | creative-coding.md | genjutsu |
-| video-direction.md | hyperframes |
+| video-direction.md | hyperframes, video-shotcraft (the product-film handoff) |
 | video-hyperframes.md | hyperframes (authoritative) |
 | video-remotion.md | remotion (authoritative) |
 | platform-native.md | genjutsu |

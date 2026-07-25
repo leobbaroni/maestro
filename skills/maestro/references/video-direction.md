@@ -2,6 +2,8 @@
 
 *Engine-neutral craft for directing any video: story, beats, pacing, narration, typography, transitions, blueprints, and format.*
 
+For a **product demo or launch promo built from a real app or site**, `references/video-shotcraft.md` leads — it gates the production mode, supplies the shot vocabulary, and carries a proven whole-film energy skeleton, then routes back here for story and beats. Sound for any film, any engine: `references/video-sound.md`.
+
 ## Story spine
 
 Lead with why it's valuable, not with what it is or how it was made — the **reverse iceberg**.
@@ -214,15 +216,25 @@ Proven time-coded shot shapes. Instantiate one per beat, or compose freely from 
 
 **Kinetic type beats** *(3–12s; the workhorse — hook, problem, benefits, CTA, outro)* — Flat, centered, bold type where the motion IS the words: a fixed line swaps a token in place by hard cut, or a statement builds across full-screen beats — each phrase its own distinct entrance — onto a spring-pop payoff. Reach for it whenever the words carry the shot and there's no set, surface, or click.
 
-**Data count-up** *(6–12s; problem, proof, intro)* — Numbers and charts are the hero: a count-up ring or headline number, a trend chart drawing itself, a tilted stat grid — traversed by a camera that pushes through (or scrolls across) to land on one hero metric. Count with rounded integers on tabular figures; optionally grow the font size with the value for escalation. Use when the data carries the argument.
+**Data count-up** *(4–12s; hook, problem, intro, feature, proof)* — Numbers and charts are the hero: a count-up ring or headline number, a trend chart drawing itself, a tilted stat grid — traversed by a camera that pushes through (or scrolls across) to land on one hero metric. Count with rounded integers on tabular figures; optionally grow the font size with the value for escalation. Use when the data carries the argument.
 
 **Logo assemble** *(4.5–11s; intro, CTA, outro)* — The brand mark builds itself from parts: elements orbit and assemble, letters cascade in, an outline draws on stroke-by-stroke, or the camera pushes through negative space — resolving into a centered lockup, optionally extended to a URL/CTA. The wordless premium brand sting.
 
 **Comparison split** *(4–6s; feature)* — Two paired items of equal weight enter from opposite wings with mirrored 3D "book-open" tilts and hold side-by-side; an inner-edge badge spring-pops on each to punctuate. For an A/B or "X + Y together" — exactly two items, weighed at once, not sequential steps.
 
-**Device showcase** *(7–10s; feature)* — A device mockup or floating window held as hero while its screens cycle through a real flow, presented by a camera ranging from a static hold to a continuous 3D push. Use to show a feature experienced inside its real interface. Cousin: the cursor-driven demo, where a visible cursor clicks through a reconstructed UI and the camera chases each interaction.
+**Device showcase** *(5–11s; feature, intro)* — A device mockup or floating window held as hero while its screens cycle through a real flow, presented by a camera ranging from a static hold to a continuous 3D push. Use to show a feature experienced inside its real interface. Cousin: the cursor-driven demo, where a visible cursor clicks through a reconstructed UI and the camera chases each interaction.
 
 **Grid assemble** *(3–10s; features, benefits, social proof)* — N items (tiles, cards, logos, list lines) self-assemble in a staggered cascade into a grid or vertical list and hold; an optional camera zoom-out reveals the array inside a vaster whole. The shape for enumerating breadth at once — a feature grid, an accumulating benefit list, a logo wall. Cap total stagger (~450ms feel) so long lists don't become waiting.
+
+**Prompt and answer** *(5–12s; hook, intro, feature, CTA)* — A prompt, query, or command types character-by-character into a real product input — chat composer, search bar, terminal, URL bar — and the machine answers: status theater holds the beat, then streaming text, an action log, diff cards, a chart, or a generated artifact arrives. The keyboard is the actor and the product is the responder; any cursor work only primes the input or lands the submit, and every state change after that is the machine's. Cut at the submit and the ask itself is the show. Distinct from kinetic typography (nothing answers) and from a cursor demo (there the pointer causes every change). Most run 7–12s — the response needs room to arrive.
+
+**Agent working theater** *(4–12s; feature)* — One trigger beat — a click, a menu pick, a scan already running — hands the frame to the machine, which then visibly works: a spinner holds, status phrases swap, counters tick. The receipt cascades in and then *mutates*: rows arrive and check off, badges flip, labels strike through. End mid-list — the work reads as ongoing. Use when the state change over time IS the demo; no typed prompt, and at most one igniting click before the cursor leaves.
+
+**Panel live-sync** *(5–12s; feature)* — A bipartite stage: an inspector or editor panel bound to a target surface, where one continuous gesture — value scrub, dropdown pick, handle drag, inline retype — changes the coupled surface in the same beat. Two to four short cause→effect couplets, held on the last edit. The camera's only job is keeping both halves co-visible; it never chases. The shape for "change this, watch it change."
+
+**Scroll to artifact** *(5–12s; feature)* — The frame travels vertically along one long full-bleed surface — a transcript, task feed, or analysis document, no device frame — by camera pan or content scroll; the traversal itself is the evidence. Then ONE focal interaction pivots to the deliverable: a chip click, a quote highlight, a row expand opening onto the artifact. Evidence first, payoff last.
+
+**Zoom-out reveal** *(7–11s; hook, benefits)* — Open tight on one full-bleed detail — a graphic macro or a small UI region — let micro-action play in close-up, then ONE continuous decelerating zoom-out reveals the containing whole; the frame locks wide and element-level payoff carries on. Nothing assembles: the world was whole all along, and the single outward move re-scopes its meaning. The structural inverse of every push-in shape. No zoom-in anywhere in the shot.
 
 ## Frame craft
 

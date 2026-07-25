@@ -11,7 +11,7 @@ task needs.*
 |---|---|---|
 | `taste-skill/` | 11 sub-skills: the anti-slop v2 core + brandkit, brutalist, minimalist, soft, redesign, image-to-code, stitch, output, imagegen-frontend web/mobile | `taste-skill/skills/<name>/SKILL.md` |
 | `hallmark/` | 21 macrostructures, ~50 component fingerprints, 20 themes across 4 genres, 57 slop-test gates, audit/redesign/study verbs, per-craft references | `hallmark/SKILL.md`, then `hallmark/references/...` |
-| `impeccable/` | Per-action design references (typeset, layout, colorize, critique, audit, harden, delight, brand, …) | `impeccable/reference/<action>.md` |
+| `impeccable/` | Per-action design references (typeset, layout, colorize, critique, audit, harden, delight, …) plus the pre-edit quality floor (`craft-floor.md`), the new-surface flow (`new-work.md`), and per-mode depth (`operate.md`) | `impeccable/reference/<action>.md` |
 | `video-shotcraft/` | 106 product-video shot cards with tuned reference implementations, the eight-stage pipeline, aesthetic-rule precedents, sound design and beat-sync method. Partial vendor — see its own README for what stays upstream | `video-shotcraft/README.md`, then `references/shots/<card>.md` |
 
 ## Rules of engagement

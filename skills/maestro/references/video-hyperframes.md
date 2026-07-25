@@ -62,7 +62,7 @@ Required: a sized root `<div>` with `data-composition-id` / `data-start="0"` / `
 
 ### Clips (timed children)
 
-A clip is any element with `data-start`, `data-duration` (where required), and `data-track-index`. **`class="clip"` is required on visible timed elements** (`<div>`, `<img>`, …) — without it the runtime keeps the element visible for the whole composition. Omit it on `<video>` (framework manages visibility) and `<audio>` (no visual). **Clips must be DIRECT children of the composition root** — a clip nested in a wrapper `<div>` is not registered (a wrapped `<video>` renders black). To wrap or transform a clip, put the wrapper *inside* the clip.
+A clip is any element with `data-start`, `data-duration` (where required), and `data-track-index`. **`class="clip"` is required on visible timed elements** (`<div>`, `<img>`, …) — without it the runtime keeps the element visible for the whole composition. Omit it on `<video>` (framework manages visibility) and `<audio>` (no visual). **Visual clips must be DIRECT children of the composition root** — a `class="clip"` element nested in a wrapper `<div>` is not registered as a clip, so its `data-start`/`data-duration` are ignored and it stays visible for the whole composition. To wrap or transform a clip, put the wrapper *inside* the clip. `<video>`/`<audio>` are exempt: the framework finds media with a flat DOM query and seeks it at any depth.
 
 | Attribute | Required | Meaning |
 |---|---|---|
@@ -167,6 +167,8 @@ Banned for visual state (breaks renders):
 
 Also avoid:
 
+- CSS `transition` on any element the timeline animates — transitions interpolate on wall-clock time independently of the seek and flicker under out-of-order sampling. Hint the compositor with `will-change: transform` instead when many tweens run at once.
+
 - Animating outside the visual-property allowlist: `opacity`, `x`, `y`, `scale`, `rotation`, `color`, `backgroundColor`, `borderRadius`, transforms. Never animate `display` or `visibility`. Never tween `width`/`height`/`top`/`left` for layout moves.
 - `gsap.set()` on clip elements from later scenes (not in the DOM at load) — use `tl.set(selector, vars, time)` at or after the clip's `data-start`.
 - Two timelines animating the same property on the same element at once (overwrite order can flip between renders).
@@ -193,7 +195,7 @@ GSAP is the default for ~95% of motion. Others coexist by registering so the fra
 
 Types: `string`, `number`, `color`, `boolean`, `enum` (requires `options`). Always set useful defaults. Prefer declarative bindings — `data-var-src="id"` substitutes an element's `src` (authored `src` = fallback), `data-var-text="id"` substitutes its text (children preserved) — and every scalar variable is auto-applied as a `--{id}` CSS custom property on the root, so `var(--accent)` just works. For logic beyond substitution, read once at init via `window.__hyperframes.getVariables()` — variables don't change mid-render. Override per render with `render --variables '{"title":"Q4"}'` / `--variables-file`, per sub-comp instance with `data-variable-values`.
 
-**Media.** `<video>`/`<audio>` must be a **direct child of the host composition root** (`index.html`) — never inside a sub-comp `<template>` or any wrapper `<div>`, or it is never seeked/decoded and renders blank/black, and no validator catches it. Video is `muted playsinline`; sound always travels on a separate `<audio>` element, even from the same source file:
+**Media.** `<video>`/`<audio>` seek and decode at **any nesting depth** — host root, a wrapper `<div>`, or inside a sub-comp `<template>`. The runtime finds media with a flat document query, resolves each element's owning composition, and rebases its local `data-start` by the accumulated start of every ancestor composition. Placement is a **timeline** decision, not a correctness one: media at the host root is animated by the main timeline at global time; media inside a scene's sub-comp is animated by that sub-comp's own timeline at scene-local time — and a sub-comp timeline can never reach host elements. A blank or black panel is a real bug, not a placement symptom — treat it as render-blocking. Video is `muted playsinline`; sound always travels on a separate `<audio>` element, even from the same source file:
 
 ```html
 <video id="a-roll" class="clip" src="assets/demo.mp4"
@@ -202,7 +204,7 @@ Types: `string`, `number`, `color`, `boolean`, `enum` (requires `options`). Alwa
        data-start="0" data-duration="12" data-track-index="10" data-volume="1"></audio>
 ```
 
-Rules: never call play/pause/seek; never animate a timed media element's dimensions (animate an untimed wrapper positioned around it — the framework forces `opacity: 1` on active timed elements, so opacity tricks also go on a wrapper); a sub-comp timeline cannot reach host elements, so all motion on host media is authored on the main timeline at global time; trim with `data-media-start`; fade volume by tweening `volume` on the timeline (`tl.to("#bgm", { volume: 0, duration: 1 }, t)`), keeping `data-volume` as the static baseline; add `crossorigin="anonymous"` for external media needing canvas capture.
+Rules: never call play/pause/seek; never animate a timed media element's dimensions (animate an untimed wrapper positioned around it — the framework forces `opacity: 1` on active timed elements, so opacity tricks also go on a wrapper); a sub-comp timeline cannot reach host elements, so motion on host-root media is authored on the main timeline at global time — or keep the media inside the sub-comp whose timeline drives it, at scene-local time; trim with `data-media-start`; fade volume by tweening `volume` on the timeline (`tl.to("#bgm", { volume: 0, duration: 1 }, t)`), keeping `data-volume` as the static baseline; add `crossorigin="anonymous"` for external media needing canvas capture.
 
 ### Recurring patterns
 
@@ -213,7 +215,7 @@ Rules: never call play/pause/seek; never animate a timed media element's dimensi
 
 ## Storyboard → build workflow
 
-Plan in `STORYBOARD.md` — one markdown file Studio renders as a contact sheet. YAML frontmatter carries global direction (`format`, `message`, `arc`, `audience`); one `## Frame N — Title` section per frame with `- key: value` bullets (`status`: outline → built → animated, `src`, `duration`, `transition_in`, `scene`, `voiceover`, `poster`) and free-form narrative below. Unknown keys are preserved; the parser is lenient and never throws.
+Plan in `STORYBOARD.md` — one markdown file Studio renders as a contact sheet. YAML frontmatter carries global direction (`format`, `duration`, `message`, `arc`, `audience` — `duration` is the brief's advisory length expectation that assembly reports the actual cut against, not a gate); one `## Frame N — Title` section per frame with `- key: value` bullets (`status`: outline → built → animated, `src`, `duration`, `transition_in`, `scene`, `voiceover`, `poster`) and free-form narrative below. Unknown keys are preserved; the parser is lenient and never throws.
 
 ```markdown
 ---

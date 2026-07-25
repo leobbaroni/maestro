@@ -60,6 +60,7 @@ type Props = { readonly title: string }; // `type`, not `interface`, for default
 - `<Folder name="Marketing">…</Folder>` organizes the sidebar (letters, numbers, hyphens only).
 - Nest one composition inside another: `<Sequence width={W} height={H}><Inner /></Sequence>`.
 - Assets live in `public/`; reference via `staticFile("name.ext")`. Remote URLs work directly.
+- **Maps** (animated globes, flyovers, route reveals) have a dedicated upstream technique family — Cesium, Mapbox, MapLibre, MapTiler, and static-map recipes with their own render-stability rules for headless capture. Heavy and API-token-gated, so maestro points rather than distills: see `references/companions.md`.
 - For Studio editability, wrap elements users should manipulate: `<div>` → `<Interactive.Div>`, and give `Interactive`/`Solid`/`Sequence` a descriptive `name` prop.
 
 ## Timing: interpolate, Easing, spring

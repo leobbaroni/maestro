@@ -1,5 +1,87 @@
 # Changelog
 
+## 3.3.0 — 2026-07-25
+
+Absorbed four drifted upstreams (impeccable, genjutsu, remotion, hyperframes) and fixed the
+3.2.0 review findings. **Two live correctness bugs, both found by re-reading the sources
+rather than by inspection.**
+
+### Correctness
+
+- **HyperFrames reversed its media-placement rule.** maestro said `<video>`/`<audio>` must be
+  a direct child of the host composition root or it "renders blank/black and no validator
+  catches it." Upstream now seeks media at any nesting depth, resolving each element's owning
+  composition and rebasing its start. Placement is a *timeline* decision (which timeline
+  animates it), not a correctness one — and a blank panel is now a real bug rather than a
+  placement symptom. Three edits in `video-hyperframes.md`, plus a new determinism rule: CSS
+  `transition` on any timeline-animated element flickers under out-of-order sampling.
+- **impeccable dropped the halt-and-report rule** that 3.1.1 had just added to `commands.md`.
+  `typeset` and `layout` no longer refuse to run without the detector, so maestro was
+  refusing two protocols that no longer refuse. They move to "degrades cleanly".
+- **Three platform-native API errors** (genjutsu): Android reduce-motion should prefer
+  `ValueAnimator.areAnimatorsEnabled()` (API 26+) over `areTransitionsEnabled()` (API 34+,
+  wrong in two places); the `@Animatable` macro is iOS 26+, not 17+; `.snappy` approximates
+  `response: 0.5`, not 0.3 — maestro's own table already listed its siblings at 0.5.
+
+### Dead citations from impeccable's restructure
+
+It deleted `brand`, `codex`, and `interaction-design`, renamed `product` → `operate`, and
+turned `craft` into a deprecation stub. `commands.md` cited four of those. Fixed, plus:
+`init` writes PRODUCT.md only (never DESIGN.md), `new-work` replaces `craft` as the
+build-a-surface protocol, and `doctor` is documented as user-invocable outside the table.
+Re-vendored the corpus (32 → 34 reference files).
+
+**The recurrence mechanism is now closed:** `commands.md` was absent from every vendored
+corpus's `feeds` list, so drift reports never named the one module a verb rename breaks
+hardest. Added to impeccable, taste-skill, and hallmark.
+
+### New guidance absorbed
+
+- Two more surface modes beyond Brand/Product — **Read** (docs, guides: structure for
+  comprehension first) and **Experience** (portfolios: the artifact leads, the interface
+  recedes), picked from the surface rather than the product (`design-foundations.md`).
+- The blanket `prefers-reduced-motion` kill is a safety net for third-party CSS, not the
+  answer for your own — it strips the state feedback those users still need
+  (`motion-principles.md`, `design-audit.md`).
+- Nielsen heuristics may score `n/a` and renormalize (`24/32`, never `/40` over a partial
+  set); working-memory limits extended to docs sidebars, long-form reading paths, and
+  gallery indexes (`design-audit.md`).
+- Three calibration corrections and "truth binds claims, not demonstrations"
+  (`design-direction.md`); the standing canon exit in every options round (`process.md`).
+- Five new scene blueprints for the AI-product-demo family — prompt-and-answer, agent
+  working theater, panel live-sync, scroll-to-artifact, zoom-out reveal — plus two corrected
+  duration/role bands (`video-direction.md`). Rule and blueprint counts corrected to 48/22.
+- Remotion's new maps technique family is routed, not distilled (`companions.md`) —
+  dependency-heavy and token-gated, matching how maestro already treats bulk add-ons.
+
+### 3.2.0 review fixes (1 P0 · 4 P1 · 10 P2 · 6 P3)
+
+- **P0:** ten shot cards — including most of the default energy arc — had implementations
+  only in the un-vendored template, so the module's own read-the-implementation rule was
+  unsatisfiable on its recommended path. Vendored `template/src` (147 KB of the template's
+  23 MB; the bulk is rendered output and textures), which also brings `Main.tsx`, the SFX pin
+  table the sound module is drawn from. **All 106 cards now resolve.**
+- SKILL.md still said ten upstreams and three corpora; README's licensing paragraph omitted
+  a redistributed Apache-2.0 corpus; UPDATING contradicted itself in one section.
+- `impact` and `click-camera` were both declared the film's loudest cue — the source's own
+  numbers (0.55 vs 0.6) settle it for click-camera.
+- `video-sound.md`'s engine-neutrality claim now handles HyperFrames properly: seconds not
+  frames, and `data-start="<clip> + N"` as the native relative-pinning primitive.
+- companions.md and SKILL.md handed the same product-promo job to different owners — now
+  resolved by engine and by what the user already has.
+- The vendor manifest was a maestro-authored file sitting at the upstream README's path
+  inside a tree documented as unmodified copies → renamed `VENDOR-NOTES.md` and excluded
+  from re-vendoring. Preview-clip count corrected 163 → 161; `capture-template.mjs` vendored.
+
+### Watch scopes narrowed
+
+genjutsu now watches its 14 fed sub-skills individually (excluding the Python tooling and
+orchestrator plumbing that were 93% of its drift and produced zero edits); hyperframes
+watches the six core skills plus the router's SKILL.md, which is the one file any workflow
+add/rename must touch — preserving the companions signal while dropping 44% of the diff
+surface; remotion drops one segment to `packages/skills/skills`, whose parent carries a
+`package.json` that version-bumps every release.
+
 ## 3.2.0 — 2026-07-25
 
 Eleventh upstream: **[video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft)**

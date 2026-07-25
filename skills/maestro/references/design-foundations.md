@@ -14,6 +14,10 @@ Decide the register first; it changes every downstream default.
 | Color | Palette is voice; a dominant color can own the page | Restrained + semantic; accent reserved for primary action, selection, state |
 | Responsive | Fluid everything | Structural (collapse sidebar, restack table), not fluid type |
 
+Two more surface modes carry their own defaults and sit in neither column. **Read** (docs, articles, guides, help, changelogs): structure for comprehension first — prose measure and wayfinding outrank component density — then make the reading experience worth staying in; takes Product's typography and consistency rules. **Experience** (portfolios, galleries, showcases): the artifact leads from the first viewport and the interface recedes; takes Brand's permissions but spends them on the work, not on the frame.
+
+Pick the mode from the surface in front of you, not from the product. A tool's landing page is Brand. A fashion house's documentation is Read. A docs index is Read, not Brand.
+
 ## Typography
 
 ### Scale

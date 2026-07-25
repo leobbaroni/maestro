@@ -14,13 +14,13 @@ Say the protocol you're running out loud ("running the `typeset` protocol on the
 
 **Scripts are not vendored** — the knowledge is here, the machinery is not. Detect and route per `companions.md`. Three cases, and the difference matters:
 
-- **Blocked without it:** `typeset` and `layout` require the detector scan and explicitly forbid substituting grep or proceeding unscanned — their own rule is *halt and report*. Say so rather than running a lookalike pass; the judgment in `design-foundations.md` is available, but do not present it as having run the protocol.
-- **Partly blocked:** `live` and `hooks` are the machinery. `init` writes PRODUCT.md and DESIGN.md with ordinary file tools and runs vendored; only its optional live-mode configuration step needs the upstream install.
-- **Degrades cleanly:** `critique` and `polish` say in their own text to continue when the scan is unavailable — run them, and note the deterministic pass was skipped.
+- **Blocked without it:** `doctor` is entirely its script and has no manual substitute. `new-work` and `visualize` depend on the concept roll and the approval-page server: the roll assigns which direction gets built precisely so it isn't your own ranking, so substituting judgment isn't running the protocol. `new-work` also spawns named subagents that ship with the upstream skill. Say so rather than running a lookalike pass.
+- **Partly blocked:** `live` and `hooks` are the machinery. `init` writes PRODUCT.md with ordinary file tools; only the context-resolution path it assumes and its optional live-mode config step need the upstream install.
+- **Degrades cleanly:** `critique`, `polish`, `typeset`, `layout`. Critique's own rule is that a skipped detector fails the run *unless* the detector is genuinely missing or crashes after a real attempt. Polish reads the hook's findings and adds no scan of its own. `typeset` and `layout` dropped their former halt-and-report rule upstream — run them, and say the unscanned verify gate went unmet. In all four, note the deterministic pass was skipped; never present judgment as having run the detector.
 
 ## Refinement & craft protocols (impeccable)
 
-Product-register work: an interface exists and needs to get better along a named axis. `library/impeccable/reference/<name>.md`.
+Refinement work: an interface exists and needs to get better along a named axis. `library/impeccable/reference/<name>.md`. Protocols now branch on **visitor mode** — Persuade / Operate / Read / Experience — rather than a brand-vs-product split; pick the mode from the surface in front of you, not from the product (`design-foundations.md`).
 
 | Intent | Protocol | What it does |
 |---|---|---|
@@ -34,21 +34,23 @@ Product-register work: an interface exists and needs to get better along a named
 | First-run, empty states, activation | `onboard` | Design the cold-start experience |
 | Add motion | `animate` | Purposeful animation (pair with `motion-principles.md`) |
 | Add color to a monochrome UI | `colorize` | Strategic color introduction |
-| Fix type hierarchy / fonts | `typeset` | Typography pass **(detector required — halts without upstream install)** |
-| Fix spacing / rhythm / hierarchy | `layout` | Layout and spatial pass **(detector required — halts without upstream install)** |
+| Fix type hierarchy / fonts | `typeset` | Typography pass; the detector scan is one of its two assessments |
+| Fix spacing / rhythm / hierarchy | `layout` | Layout and spatial pass; same two-assessment shape as `typeset` |
 | Add personality | `delight` | Signature moments, earned per-moment |
 | Push past convention | `overdrive` | One extraordinary moment, user-approved |
 | Fix copy, labels, errors | `clarify` | UX-copy pass |
 | Adapt across devices | `adapt` | Responsive/device pass (native variant: `adapt.native`) |
 | Diagnose UI slowness | `optimize` | Performance diagnosis and fix |
-| Build a feature end-to-end | `craft` | Shape then build |
+| Build a new surface end-to-end | `new-work` | Visual authority → concept roll → direction contract → build → finish. **Needs upstream install** — the roll and the approval page are the procedure, not decoration: the roll exists so the direction isn't your own ranking. `craft` is now a deprecated alias for this and adds nothing |
 | Plan UX before code | `shape` | Pre-code UX/UI planning |
-| Capture project context | `init` | Codebase crawl + strategic interview → PRODUCT.md / DESIGN.md; runs vendored (only its optional live-mode config step needs the upstream install) |
+| Capture project context | `init` | Codebase crawl + strategic interview → PRODUCT.md **only**; it explicitly does not write DESIGN.md (that's `document`, or `new-work`'s documenter at finish) |
 | Write DESIGN.md from code | `document` | Reverse-engineer the system from the codebase |
 | Pull tokens/components out | `extract` | Promote one-offs into the design system |
 | Browser variant picking | `live` | In-page variant generation **(needs upstream install)** |
 
-Not commands: `ios`, `android`, `interaction-design`, and `product` are register references the source loads automatically from the project's platform — read them for per-surface depth, don't try to invoke them.
+Also user-invocable but outside the protocol table: `doctor` (reports and repairs drift between a project's captured artifacts, config, and hook versus the installed skill — pure maintenance, **needs upstream install**), `hooks <on|off|status|…>`, and `pin` / `unpin`. Maestro has no equivalent; route the user to the installed source rather than approximating one.
+
+Not commands, don't try to invoke them: `ios` / `android` are platform references the source loads from the project's declared platform · `operate` is Operate/Read mode depth, linked rather than auto-loaded · `craft-floor` is the pre-edit quality floor the source loads immediately before touching UI · `new-work`, `routing`, and `visualize` are internal flows it loads for itself. Read any of them for depth. `brand`, `codex`, and `interaction-design` were retired upstream — `brand` into the visitor modes and `new-work`, `codex` into `craft-floor`'s model-defect block, `interaction-design` with no replacement (maestro keeps that craft in `design-foundations.md` and `design-audit.md`).
 
 ## Page-shape protocols (hallmark)
 
