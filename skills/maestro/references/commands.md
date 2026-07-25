@@ -81,6 +81,19 @@ Brand-register component polish, style commitments, and generation pipelines. `l
 | Hand a spec to an external design tool | `stitch-skill` | Translates the rules into a portable `DESIGN.md` |
 | "Ship the whole thing, no stubs" | `output-skill` | Anti-truncation delivery discipline (also in `process.md`) |
 
+## Product-video modes (video-shotcraft)
+
+Not verbs — a mode gate that runs before any production work, and it is the user's pick (`video-shotcraft.md` Rule 1). Never default one.
+
+| Intent | Protocol | What it does |
+|---|---|---|
+| "Like the reference film, with my product" | template mode — clone upstream, follow `template/TEMPLATE.md` | Shot-by-shot asset, copy, and brand replacement |
+| "New direction, just build it" | autonomous — `library/video-shotcraft/references/pipeline.md` | Stages 0–7 continuous, decisions recorded, no stage-gates |
+| "I want to approve the creative calls" | co-creation — `library/video-shotcraft/references/guided-free-creation.md` | Sign-off at brief → decisions → direction → shot mapping → storyboard, then rejoins the pipeline at stage 4 |
+| One cinematic shot, any engine | a card from `library/video-shotcraft/references/shots/` + its `demos/<name>/` implementation | Adapt one recipe; read the demo for the tuned parameters |
+| Score a finished cut | `library/video-shotcraft/references/sound-design.md` (+ `music-beat-sync.md` when there's a track) | Runs after picture lock — judgment layer in `video-sound.md` |
+| Pre-delivery review | `library/video-shotcraft/references/final-review.md` | Independent clean-context reviewer, frame-numbered evidence. **Reports only** |
+
 ## Overlapping verbs — resolve, don't guess
 
 Three corpora, three houses, and some verbs appear in more than one. They are **not** interchangeable: they ask different questions and return different artifacts.
@@ -96,4 +109,4 @@ Resolution order: **the user's locked design authority wins** (`process.md` brie
 Running more than one is often correct and is the point of the merge: hallmark `audit` for structure, then impeccable `critique` for usability, then taste-skill's mechanical slop sweep for line-level tells. Say which passes you're running and why; report their findings as one severity-ranked list (`design-audit.md`), not three.
 
 ---
-*Distilled from: impeccable (command table), hallmark (verbs), taste-skill (sub-skills). Protocol bodies live verbatim in `library/`.*
+*Distilled from: impeccable (command table), hallmark (verbs), taste-skill (sub-skills), video-shotcraft (modes). Protocol bodies live verbatim in `library/`.*

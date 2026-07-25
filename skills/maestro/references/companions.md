@@ -55,6 +55,7 @@ Worth knowing exist even when absent locally:
   anti-pattern detector, and an OKLCH brand-seed palette picker. Installable alongside maestro
   when live-iteration tooling is wanted.
 - **gsap-skills** (github.com/greensock/gsap-skills) — runnable examples beyond the distilled API guidance.
+- **video-shotcraft** (github.com/Vincentwei1021/video-shotcraft) — the shot cards, pipeline, and reference implementations are vendored (`library/video-shotcraft/`), but three heavy pieces are not: the **hosted gallery** at <https://vincentwei1021.github.io/video-shotcraft/> (163 motion samples — the right way to let a user watch shots and pick by name, no install needed), the **full Remotion template project** needed for template mode, and the **SFX/BGM binaries** (~30 MB; the manifest is vendored, the files aren't). Clone the repo when a job needs the template or the audio.
 
 A `~/.claude/skills-retired/` folder, if present, holds previously installed knowledge packs
 (kept for rollback) — including, on some setups, impeccable's full `scripts/` toolchain, usable

@@ -199,6 +199,8 @@ Reserve the heaviest effects (GPU shader moments, 3D set pieces) for 1–3 hero 
 
 ## Audio direction
 
+Direction-level calls only; the production discipline — the central SFX pin table, relative pinning, genre-not-event vocabulary, anti-machine-gun technique, and the full beat-sync method — is `references/video-sound.md`. One order governs both: **the picture locks before the sound is pinned.**
+
 - **SFX mark state changes.** One cue per meaningful moment — a shutter click on a capture, a chime on a resolve, a cut-to-silence before a reveal. Silence is a tool: dropping the drone right before the payoff makes the payoff.
 - **Music sets the grid.** With a track, cut on downbeats and land hero moments on hits; 3+ rapid cuts should sit on consecutive beats. With VO only, the narration's stress points are the grid.
 - **Audio-reactive motion** (driving properties from the track's frequency bands): keep text/logo reactions subtle (≤5% scale pulse, modest glow) — reactive motion on small elements reads as jitter; backgrounds can push 10–30%. The audio supplies *timing and intensity*; the visual vocabulary still comes from the brand. Never: equalizer bars, spectrum analyzers, waveform displays, strobing, rainbow cycling.

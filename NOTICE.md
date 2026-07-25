@@ -7,11 +7,15 @@ Maestro has two layers with different licensing postures:
   redistribution. Where a module tracks one source closely (schemas, API contracts), that
   source is named in the module's footer.
 - **Vendored library** (`skills/maestro/library/`) contains **unmodified verbatim copies**
-  of three permissively licensed corpora, each shipped with its own license file:
+  of four permissively licensed corpora, each shipped with its own license file:
   [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT, © Leonxlnx),
   [hallmark](https://github.com/nutlope/hallmark) (MIT, © Hallmark contributors /
-  Together AI), and [impeccable](https://github.com/pbakaus/impeccable)'s reference corpus
-  (Apache-2.0, © Paul Bakaus — its upstream NOTICE.md is carried alongside per §4(d)).
+  Together AI), [impeccable](https://github.com/pbakaus/impeccable)'s reference corpus
+  (Apache-2.0, © Paul Bakaus — its upstream NOTICE.md is carried alongside per §4(d)), and
+  a subset of [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft)
+  (Apache-2.0, © Wei Yihao — shot cards, pipeline, demos and components; its preview
+  gallery, template project, and audio binaries are not redistributed. Third-party audio
+  it references carries separate per-file licensing recorded in its ATTRIBUTION manifest).
 
 | Upstream | What maestro drew from it | License |
 |---|---|---|
@@ -25,6 +29,7 @@ Maestro has two layers with different licensing postures:
 | [hyperframes](https://github.com/heygen-com/hyperframes) by HeyGen | The HTML-to-video composition contract, animation rules/blueprints, video direction craft | See upstream LICENSE |
 | [taste-skill](https://github.com/Leonxlnx/taste-skill) by Leonxlnx | Anti-slop frontend framework, style sub-skills (brutalist/minimalist/soft/brandkit), redesign and image-to-code protocols | MIT (also vendored) |
 | [hallmark](https://github.com/nutlope/hallmark) by Together AI | Macrostructure catalog, component fingerprints, theme system, slop-test gates, audit/redesign/study verbs | MIT (also vendored) |
+| [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) by Wei Yihao | Product-video shot vocabulary, production pipeline, aesthetic-rule precedents, sound design and music beat-sync | Apache-2.0 (partially vendored) |
 
 Maestro's process rituals additionally fold in the interview-first ("grilling"),
 phase-ritual ("pilot"), and mockup-fan-out ("mockups") disciplines from the author's

@@ -2,14 +2,15 @@
 
 **A unified design, motion, 3D, and video skill for AI coding agents.**
 
-Maestro consolidates ten established design and motion knowledge bases — [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), and [hallmark](https://github.com/nutlope/hallmark) — into a single skill with two layers. The **judgment layer** (`references/`, 19 modules) is distilled and editorially reconciled: duplicate guidance merged, conflicting recommendations resolved (design-taste conflicts by the standing hierarchy taste-skill > hallmark > impeccable), one voice throughout. The **depth layer** (`library/`) vendors three complete source corpora verbatim — taste-skill's 11 sub-skills, hallmark's full macrostructure/fingerprint/theme catalog, impeccable's per-action references — so nothing is lost to summarization: the judgment layer selects, then points at the exact library file when a task needs a full recipe, theme token set, or protocol.
+Maestro consolidates eleven established design, motion, and video knowledge bases — [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), [hallmark](https://github.com/nutlope/hallmark), and [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) — into a single skill with two layers. The **judgment layer** (`references/`, 21 modules) is distilled and editorially reconciled: duplicate guidance merged, conflicting recommendations resolved (design-taste conflicts by the standing hierarchy taste-skill > hallmark > impeccable), one voice throughout. The **depth layer** (`library/`) vendors four source corpora verbatim — taste-skill's 11 sub-skills, hallmark's full macrostructure/fingerprint/theme catalog, impeccable's per-action references, and video-shotcraft's shot cards with their tuned implementations — so nothing is lost to summarization: the judgment layer selects, then points at the exact library file when a task needs a full recipe, theme token set, shot parameter table, or protocol.
 
 ## Capabilities
 
 - **Design** — typography, layout, color, and hierarchy foundations; art direction with a named style catalog and calibration dials; whole-page structure selection (21 macrostructures, ~50 component fingerprints, a 20-theme catalog); Design DNA extraction from reference UIs; systematic critique, an extensive anti-slop gate catalog, accessibility auditing, and edge-case hardening
 - **Motion** — engine-agnostic motion principles (timing, easing, choreography); implementation guidance for modern CSS, WAAPI, Motion, and anime.js; a full GSAP reference including ScrollTrigger and plugins
 - **3D and generative** — Three.js from scene fundamentals through shaders, postprocessing, and React Three Fiber; canvas-based generative techniques
-- **Video** — engine-neutral video direction (story structure, beat planning, pacing, transitions) with dedicated modules for both HyperFrames (HTML-to-video) and Remotion (React-to-video)
+- **Video** — engine-neutral direction (story structure, beat planning, pacing, transitions); **product demo and promo film led by a 106-card shot vocabulary** with tuned reference implementations, a mode gate, and an eight-stage pipeline; dedicated engine modules for HyperFrames (HTML-to-video) and Remotion (React-to-video)
+- **Sound** — the audio layer as a first-class module: one declarative SFX pin table authored after picture lock, relative frame pinning, genre-not-event vocabulary, anti-machine-gun technique, and a music beat-sync method that fits the grid, pins slams to real kick accents, and verifies the render to a ≤3-frame tolerance
 - **Process** — a brief-locking interview ritual (the Grill Gate) that puts the choice of design house in the user's hands, a mockup fan-out with a hard user-approval gate, phase-appropriate workflows, and mandatory rendered verification
 - **Protocols** — the absorbed projects' named actions stay runnable: ~23 refinement and craft actions, a page design flow plus three page verbs (audit / redesign / study), and 11 style and generation sub-skills, each routed from intent to the exact vendored procedure
 - **Ecosystem** — a live-verified toolbox of component libraries, inspiration galleries, asset sources, and helper tools, including an explicit exclusion list with reasons
@@ -55,7 +56,7 @@ it the best way my harness supports — Claude Code plugin via
 available to me as a user command (tell me to run those two commands), otherwise copy
 skills/maestro into my user skills directory (~/.claude/skills/maestro on macOS/Linux,
 %USERPROFILE%\.claude\skills\maestro on Windows); (3) verify the install by listing the
-skill and confirming skills/maestro/references contains 19 modules and skills/maestro/library
+skill and confirming skills/maestro/references contains 21 modules and skills/maestro/library
 exists (the vendored depth layer); (4) tell me the two
 ways to trigger it (just asking for design/motion/video work, or /maestro) and that
 substantial requests start with a short interview (the Grill Gate) — that's by design;
@@ -73,6 +74,8 @@ Maestro itself has no runtime dependencies — install nothing beyond the skill 
 | Three.js / React Three Fiber | `npm install three` (+ `@react-three/fiber @react-three/drei` for React) | |
 | Remotion video | `npx create-video@latest --yes --blank --no-tailwind my-video && cd my-video && npm i` | Scaffolds a fresh project per video; nothing to install globally |
 | HyperFrames video | Node.js **≥ 22** and [FFmpeg](https://ffmpeg.org/download.html) on PATH, then `npx hyperframes init my-video` | The full dev loop (`lint`, `check`, `snapshot`, `preview`, `render`) runs through `npx hyperframes ...` inside that project |
+| Product-video shot previews, template mode, or the SFX/BGM library | Clone [Vincentwei1021/video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) | Optional. The shot cards, tuned demos, and components are vendored; the 108 MB preview gallery, the full template project, and the audio binaries are not. Browse shots online instead at [the hosted gallery](https://vincentwei1021.github.io/video-shotcraft/) |
+| Music beat-sync analysis | Python with `librosa` + `scipy` (e.g. `uv run --with librosa --with scipy --python 3.11`), FFmpeg for post-render verification | Only for films cut to a music track |
 | HyperFrames deep skills (`hyperframes-animation`, `-creative`, `-core`, `-cli`, `-keyframes`, `-registry`) | Copy the `skills/` folder from [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) into `~/.claude/skills/`, the same way you installed maestro | Optional. Maestro works without them but prefers their frame presets, motion rules, and CLI when present — see `references/companions.md` |
 | `media-use`, `figma`, `mediabunny`, Craftwork MCP | Install per each tool's own source/docs | Optional companions for asset resolution, Figma import, and media probing — maestro detects and defers to them when installed, see `references/companions.md` |
 
@@ -98,7 +101,7 @@ maestro/
 ├── skills/maestro/
 │   ├── SKILL.md                 Router: task→module table, engine choosers, core rules
 │   ├── templates/BRIEF.md       The brief template the Grill Gate fills
-│   ├── references/              19 modules (design, page anatomy, commands, motion, 3D, video, process, toolbox, companions)
+│   ├── references/              21 modules (design, page anatomy, commands, motion, 3D, video + shotcraft/sound, process, toolbox, companions)
 │   └── library/                 Depth layer: vendored corpora (taste-skill, hallmark, impeccable) + licenses
 ├── upstreams.json               Pinned source commits and module map
 ├── scripts/check-upstreams.mjs  Drift checker / re-pinner (Node 18+, zero dependencies)

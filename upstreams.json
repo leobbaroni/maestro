@@ -186,6 +186,31 @@
       }
     },
     {
+      "name": "video-shotcraft",
+      "repo": "Vincentwei1021/video-shotcraft",
+      "$comment": "Authoritative for product-demo video craft; does not participate in the design-taste hierarchy. Watch the knowledge layer only — gallery/ (108MB previews), template/ (23MB project), and the audio binaries are deliberately not vendored (see skills/maestro/library/video-shotcraft/README.md).",
+      "watch": [
+        "references",
+        "SKILL.md"
+      ],
+      "feeds": [
+        "video-shotcraft.md",
+        "video-sound.md",
+        "video-direction.md",
+        "commands.md"
+      ],
+      "pins": {
+        "references": {
+          "sha": "4cd934323c38fa336026e6eb7176ade12dbeca86",
+          "date": "2026-07-23T13:56:23Z"
+        },
+        "SKILL.md": {
+          "sha": "1664426c2479929145d47c3e30f4486aecc826dd",
+          "date": "2026-07-23T11:30:53Z"
+        }
+      }
+    },
+    {
       "name": "hyperframes",
       "repo": "heygen-com/hyperframes",
       "watch": [

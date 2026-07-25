@@ -39,6 +39,9 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | 3D scenes, WebGL, shaders, R3F | `threejs.md` |
 | Generative art, canvas experiments, particles, noise | `creative-coding.md` |
 | Planning any video (story, beats, pacing, transitions) | `video-direction.md` |
+| **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 106 shot cards, eight-stage pipeline |
+| One cinematic moment inside any video, any engine | `video-shotcraft.md` (pull a single shot card) |
+| Sound design, SFX pin tables, music beat-sync — any engine | `video-sound.md` |
 | Rendering video from HTML | `video-hyperframes.md` |
 | Rendering video from React | `video-remotion.md` |
 | Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` (long tail: `toolbox-corpus.md`) |
@@ -64,7 +67,9 @@ The library is not only knowledge — each corpus ships **runnable protocols** (
 | Timeline choreography, scroll-driven stories, text splitting, SVG morph | GSAP |
 | One-off programmatic tween, no dependency budget | WAAPI |
 
-**Video** — HyperFrames and Remotion are peers; choose by project shape:
+**Video** — ask what the film *is* before asking which engine renders it.
+
+Product demo or launch promo built from a real app or site → **shotcraft leads** (`video-shotcraft.md`): it gates the mode, supplies the shot vocabulary and the pipeline, and renders through Remotion, so `video-remotion.md` still governs the API and determinism underneath it. For everything else HyperFrames and Remotion remain peers, chosen by project shape:
 
 | Signal | Engine |
 |---|---|
@@ -73,6 +78,8 @@ The library is not only knowledge — each corpus ships **runnable protocols** (
 | Video embedded in a product (Player, per-user renders, SaaS) | Remotion |
 | Composition authored mostly by an agent from a storyboard | HyperFrames |
 | Team already invested in one of them | That one |
+
+Nothing here is displaced by shotcraft: `video-direction.md` still plans story and beats for any engine, `video-sound.md` scores any engine, and a single shot card is worth pulling into a HyperFrames composition as readily as a Remotion one — adapt it, don't transplant it.
 
 Both demand **determinism**: no `Date.now()`, no `Math.random()` without a seeded/framework source, no free-running media or CSS animations that ignore the frame clock. Each engine module states its own rules — respect them exactly.
 

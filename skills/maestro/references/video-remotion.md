@@ -2,6 +2,8 @@
 
 *Author videos as React components rendered deterministically frame-by-frame; `useCurrentFrame()` is the only clock.*
 
+For a product demo or launch promo, `references/video-shotcraft.md` is the craft layer above this one — it brings the mode gate, a 106-card shot vocabulary with tuned implementations, and the production pipeline, while every rule below still governs the code it emits. Audio for any Remotion film: `references/video-sound.md`.
+
 ## Mental Model
 
 - A Remotion video is a React component tree. The renderer screenshots it once per frame; frames may render in parallel, out of order, on different threads.

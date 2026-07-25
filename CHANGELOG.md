@@ -1,5 +1,49 @@
 # Changelog
 
+## 3.2.0 — 2026-07-25
+
+Eleventh upstream: **[video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft)**
+(Wei Yihao, Apache-2.0) becomes the lead for product demo and promo film — without
+displacing anything.
+
+- **New `references/video-shotcraft.md`** — the lead module for product/demo video: the
+  three-mode gate (template / autonomous / co-creation) that must be settled before any
+  production work and is the user's to pick; the 106-card shot vocabulary with a
+  one-pass frontmatter harvest so selection doesn't mean opening 106 files; the
+  proven per-segment energy skeleton; the real-screenshot doctrine and its
+  three-piece capture set (full-page 2× texture, per-element cutouts, `layout.json`);
+  the read-the-exact-demo rule; and still-frame acceptance per shot.
+- **New `references/video-sound.md`** — sound as a first-class, **engine-neutral** module,
+  because the discipline is identical for HyperFrames, Remotion, and shotcraft and only
+  the playback primitive differs. Covers the picture-locks-first ordering (and why: three
+  full re-pins, two of them pure downstream cost), the central declarative SFX pin table,
+  **relative pinning** (`SHOTS.<shot>.from + offset`, never bare frames), vocabulary
+  chosen by genre rather than by UI event, a moment→cue lookup, the riser→impact→sparkle
+  finale phrase, mixing levels, the three-move anti-machine-gun treatment, and the full
+  beat-sync method — least-squares grid fit (don't trust the tempo scalar), kick-band
+  accent detection for slam placement, `beatF()` timelines, and mandatory post-render
+  verification to ≤3 frames.
+- **Nothing is obsoleted.** `video-direction.md` still plans story and beats for any
+  engine and now points at the sound module for production discipline; `video-remotion.md`
+  still governs the API and determinism that shotcraft renders through, and says so;
+  `video-hyperframes.md` gains the sound module with its framework-owned-playback caveat;
+  a single shot card is explicitly portable into a HyperFrames composition. SKILL.md's
+  video chooser now asks what the film *is* before which engine renders it.
+- **Partial vendor** at `library/video-shotcraft/` (2.1 MB of 164 MB upstream): the 106
+  shot cards, the tuned reference implementation per card, the pipeline/aesthetic-rules/
+  final-review/beat-sync/sound-design references, the copy-in components, and the audio
+  manifest. Deliberately not redistributed — the 108 MB preview gallery (browse it hosted
+  instead), the 23 MB template project, and the ~30 MB of audio binaries; the split and
+  its reasons are documented in that library's own README and in the re-vendor policy.
+- `commands.md` gains the mode gate; `companions.md` gains the upstream retrieval routes;
+  upstreams.json watches and pins it; NOTICE/README/UPDATING updated (21 modules, eleven
+  upstreams, four vendored corpora, plus the optional librosa/FFmpeg tooling for beat sync).
+
+*Known deviation:* both new modules run under the AUTHORING SPEC's 150-line floor (114 and
+134) while sitting mid-pack on substance (2291 and 1760 words, against design-dna's 2397) —
+they use long prose lines rather than many short table rows. Padding them to clear a line
+count would make them worse, so they ship as-is.
+
 ## 3.1.1 — 2026-07-20
 
 Adversarial-review fixes on 3.1.0 — maestro's share of a 0 P0 / 4 P1 / 4 P2 / 3 P3 pass.

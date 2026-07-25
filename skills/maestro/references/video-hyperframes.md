@@ -2,6 +2,8 @@
 
 *The write-HTML-render-video engine: composition contract, determinism rules, media handling, and the build loop.*
 
+Sound design for a HyperFrames film follows `references/video-sound.md` — the pin-table discipline is engine-neutral, with one adaptation: the framework owns playback, so cues are declared and seeked, never `.play()`ed. Individual shot recipes from `references/video-shotcraft.md` adapt here too; its pipeline assumes Remotion, its motion vocabulary doesn't.
+
 ## Mental model
 
 HyperFrames renders video from HTML. A composition is an HTML file whose DOM declares timing with `data-*` attributes, whose animation runtime is seekable, and whose media playback is owned by the framework. The renderer takes a time value and produces a pixel buffer — there is no "playback." Every frame is a fresh seek, possibly sampled out of order or in parallel, so every frame must be reproducible from its time value alone: same input time → same pixels.

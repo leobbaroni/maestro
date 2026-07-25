@@ -78,7 +78,11 @@ When the drift watcher flags one of these upstreams:
    `library/taste-skill/skills/` from `Leonxlnx/taste-skill:skills/` (the 11 curated
    sub-skills, excluding `taste-skill-v1` and `gpt-tasteskill`),
    `library/hallmark/` from `nutlope/hallmark:skills/hallmark/`,
-   `library/impeccable/reference/` + `SKILL.src.md` from `pbakaus/impeccable:skill/`.
+   `library/impeccable/reference/` + `SKILL.src.md` from `pbakaus/impeccable:skill/`,
+   `library/video-shotcraft/` from `Vincentwei1021/video-shotcraft` — **partial vendor**:
+   `references/`, `demos/` minus `_textures/`, `assets/lib/`, `assets/audio/ATTRIBUTION.md`,
+   `SKILL.md`; never `gallery/`, `template/`, or the audio binaries (that split and its
+   reasons are documented in `library/video-shotcraft/README.md` — keep them in sync).
    Carry each LICENSE (and impeccable's NOTICE.md) unchanged. Never hand-edit vendored
    files — local judgment belongs in the distilled modules.
 3. Spot-check that library paths cited by the distilled modules still exist
@@ -97,7 +101,9 @@ When the drift watcher flags one of these upstreams:
 | design-dna.md | design-dna (authoritative), impeccable, hallmark (study), taste-skill |
 | design-audit.md | impeccable, genjutsu, taste-skill, hallmark |
 | page-anatomy.md | hallmark (authoritative — macrostructures, fingerprints, themes) |
-| commands.md | all three vendored corpora — re-check when a corpus adds, renames, or drops a verb |
+| commands.md | all four vendored corpora — re-check when a corpus adds, renames, or drops a verb or mode |
+| video-shotcraft.md | video-shotcraft (authoritative — cards, pipeline, aesthetic rules) |
+| video-sound.md | video-shotcraft (sound-design, music-beat-sync), hyperframes, remotion |
 | motion-principles.md | motion-design-skill, genjutsu, impeccable |
 | motion-web.md | genjutsu, hyperframes |
 | gsap.md | gsap-skills (authoritative), genjutsu, hyperframes |
