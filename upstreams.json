@@ -20,12 +20,12 @@
       ],
       "pins": {
         "skill/reference": {
-          "sha": "8634c538fbf860fcdd2a54c31676beb78a44eff4",
-          "date": "2026-07-25T01:43:04Z"
+          "sha": "25934b9f6f488432d35a5a1c4c72c2cf494f6a6b",
+          "date": "2026-07-28T16:47:36Z"
         },
         "skill/SKILL.src.md": {
-          "sha": "8634c538fbf860fcdd2a54c31676beb78a44eff4",
-          "date": "2026-07-25T01:43:04Z"
+          "sha": "6769b1879ab2bc2fb8c9fc690554ac248fd7b20c",
+          "date": "2026-07-26T02:16:17Z"
         }
       }
     },
@@ -207,8 +207,8 @@
           "date": "2026-07-19T17:33:30Z"
         },
         "packages/skills/skills": {
-          "sha": "d134f49f602e7d6de096f48727c5bcca5db0533d",
-          "date": "2026-07-24T17:02:26Z"
+          "sha": "d3ec0e63672fddc9f6bbbc5e1072cbb6b2e0fc28",
+          "date": "2026-07-28T06:48:54Z"
         }
       }
     },
@@ -282,24 +282,24 @@
       ],
       "pins": {
         "references": {
-          "sha": "4cd934323c38fa336026e6eb7176ade12dbeca86",
-          "date": "2026-07-23T13:56:23Z"
+          "sha": "d4915443232e89527fdc9d7e79f132ba411fc440",
+          "date": "2026-07-28T07:18:36Z"
         },
         "SKILL.md": {
-          "sha": "1664426c2479929145d47c3e30f4486aecc826dd",
-          "date": "2026-07-23T11:30:53Z"
+          "sha": "3d15c4bffd18a667ef6e920f7f27dbe7d891bf54",
+          "date": "2026-07-28T06:31:48Z"
         },
         "demos": {
-          "sha": "4cd934323c38fa336026e6eb7176ade12dbeca86",
-          "date": "2026-07-23T13:56:23Z"
+          "sha": "ba60245f104b6d57c109eb02f0015e99fe89f47d",
+          "date": "2026-07-26T15:40:59Z"
         },
         "template/src": {
           "sha": "741938f1a8159b274a7164b95ed6d1f0e0513c69",
           "date": "2026-07-19T05:45:41Z"
         },
         "assets/lib": {
-          "sha": "741938f1a8159b274a7164b95ed6d1f0e0513c69",
-          "date": "2026-07-19T05:45:41Z"
+          "sha": "bb79f7c997ca2450b0c75c30bf87a0745090702d",
+          "date": "2026-07-25T15:40:15Z"
         }
       }
     },
@@ -333,8 +333,8 @@
           "date": "2026-07-24T21:12:48Z"
         },
         "skills/hyperframes-cli": {
-          "sha": "4582881d002c361afff59cc1c74ae072a50e17f7",
-          "date": "2026-07-25T01:42:07Z"
+          "sha": "d287e5244c1e6d9051642f94f368ef7a1e26bd34",
+          "date": "2026-07-28T11:27:09Z"
         },
         "skills/hyperframes-creative": {
           "sha": "696cbdbbd0e5c83faf72c767126d4a153110f130",

@@ -1,11 +1,11 @@
 ---
 name: video-shotcraft
-description: 用镜头配方卡 + 已验收模板 + 代码/音频资产制作电影感产品视频（Remotion + 真实页面截图 + 2.5D 运镜 + 节奏卡点 + 声音设计）。当用户要求"用 video-shotcraft 做视频/宣传片"、把前端项目/网页做成产品视频、点名 Ink Press 模板或要求复刻模板片效果，或要用镜头卡做单个动效镜头时使用。
+description: Create cinematic product videos from shot recipe cards, a validated template, and code/audio assets (Remotion + real page screenshots + 2.5D camera moves + beat-synced cuts + sound design). Use when the user asks to turn a frontend project or webpage into a product video, says "use video-shotcraft to make a video/promo", names the Ink Press template or asks to reproduce its effect, or wants a single shot card's motion. 用镜头配方卡 + 已验收模板 + 代码/音频资产制作电影感产品视频（Remotion + 真实页面截图 + 2.5D 运镜 + 节奏卡点 + 声音设计）。当用户要求"用 video-shotcraft 做视频/宣传片"、把前端项目/网页做成产品视频、点名 Ink Press 模板或要求复刻模板片效果，或要用镜头卡做单个动效镜头时使用。
 ---
 
 # video-shotcraft：电影感产品视频制作
 
-一个自包含的制作能力库：106 张镜头配方卡（附 demo 实现源码与动态样片
+一个自包含的制作能力库：104 张镜头配方卡（附 demo 实现源码与动态样片
 画廊）、一支已验收的完整宣传片模板、可复用组件与音频资产、六阶段工作流。
 当前 focus 是 web/桌面产品宣传片，但镜头卡本身是通用动效词汇——
 也可以单独抽卡做任意视频里的单个镜头。
@@ -126,6 +126,8 @@ SFX；只有完整分镜确认后才进入最终素材采集。用户从 Gallery
    用户已选好音乐 → 开工前先做节奏分析（librosa 网格拟合求真实
    BPM/相位 + 带通找鼓点重音），时间线用拍号 `beatF(n)` 写，渲后从
    成片抽音轨回测切点误差 ≤3f。方法论见 `references/music-beat-sync.md`。
+   配了 BGM 的片子终渲固定交付两版：带 BGM 版 + 无 BGM 版（保留 SFX），
+   靠 `bgm` inputProp 从同一时间线渲出，方便用户后期自配音乐。
 
 6. **用镜头卡动效必须先解析 Gallery 索引并读准确的 demo 实现代码。**
    先用 `gallery/api/library.json` 校验卡名与 `style-key`，再按卡片文档的
@@ -183,13 +185,21 @@ SFX；只有完整分镜确认后才进入最终素材采集。用户从 Gallery
   helpers(rand/shake/camera/motion)。FlatPanel 与 helpers/camera 需要
   `three` + `@react-three/fiber` + `@remotion/three` 依赖，其余仅需 remotion。
 - `assets/scripts/capture-template.mjs` 复制后改顶部 CONFIG（BASE/路由/选择器）。
-- `assets/audio/` 音效直接复制使用（免费商用授权，见 audio/ATTRIBUTION.md）；
-  `assets/audio/bgm/` 是节奏感强的 BGM 备选。
+- `assets/audio/` 音效直接复制使用（免费商用授权，见 audio/ATTRIBUTION.md）：
+  `audio/bgm/` 是节奏感强的 BGM 备选；`audio/sfx/<类别>/` 149 个音效按场景分 16 类
+  （transition impact riser camera ui text paper film light data scifi mech
+  glass fluid crowd counter），找音先进类别目录，清单见 sound-design.md。
+  词汇表 sparkle 的目录名是 `light/`（无 `sparkle/`）；S1 禁音色不禁动作——
+  画面真有点击/开关就该配拟音，但 `ui/` 里一半是合成反馈音（tone/bleep/
+  notification）需逐个试听、不可整目录放行（名单见 sound-design 3.3）；
+  长样本与轻音素材各有名单需特殊处理（sound-design 4.1）。
 - `demos/` 各卡实现源码：多数为自包含灰阶 demo（部分 import
   `demos/_fixtures/Fixtures.tsx` 的假 UI 场景件，个别 import
   `demos/_textures/` 的真实页面纹理），copy 进 Remotion 项目即可跑。
 - `template/` 完整可渲染工程：`npm install && npx remotion render
   src/index.ts AiflPromo out/promo.mp4`。
-- `gallery/` 静态画廊：`cd gallery && python3 -m http.server 4178`
-  后浏览器打开，106 卡 161 条动态样片可浏览/搜索/多选复制卡名——
-  适合让用户看着样片挑镜头。
+- `gallery/` 静态画廊：优先直接给用户在线版
+  https://vincentwei1021.github.io/video-shotcraft/library.html ；
+  本地跑则先 `gallery/fetch-media.sh` 拉样片（mp4 不在 git 里），再
+  `cd gallery && python3 -m http.server 4178`。104 卡 161 条动态样片
+  可浏览/搜索/多选复制卡名——适合让用户看着样片挑镜头。

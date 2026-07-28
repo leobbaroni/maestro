@@ -2,7 +2,7 @@
 
 *Author videos as React components rendered deterministically frame-by-frame; `useCurrentFrame()` is the only clock.*
 
-For a product demo or launch promo, `references/video-shotcraft.md` is the craft layer above this one — it brings the mode gate, a 106-card shot vocabulary with tuned implementations, and the production pipeline, while every rule below still governs the code it emits. Audio for any Remotion film: `references/video-sound.md`.
+For a product demo or launch promo, `references/video-shotcraft.md` is the craft layer above this one — it brings the mode gate, a 104-card shot vocabulary with tuned implementations, and the production pipeline, while every rule below still governs the code it emits. Audio for any Remotion film: `references/video-sound.md`.
 
 ## Mental Model
 
@@ -36,7 +36,7 @@ export const FadeIn = () => {
 
 ## Project & Compositions
 
-Scaffold: `npx create-video@latest --yes --blank --no-tailwind my-video && cd my-video && npm i`. Preview: `npx remotion studio --no-open` (long-running; prints URL). Sanity-check a frame: `npx remotion still <comp-id> --scale=0.25 --frame=30` (`--frame` is zero-based; 30 = 1s at 30fps).
+Scaffold: `npx create-video@latest --yes --blank --no-tailwind my-video && cd my-video && npm i`. Preview: `npx remotion studio --no-open` (long-running; prints the URL, and re-running it just reprints the URL of the server already up). Open one composition directly at `/<composition-id>` — e.g. `http://localhost:3000/MapAnimation` — instead of navigating the sidebar. Sanity-check a frame: `npx remotion still <comp-id> --scale=0.25 --frame=30` (`--frame` is zero-based; 30 = 1s at 30fps).
 
 A `<Composition>` registers a renderable video: `id`, `component`, `width`, `height`, `fps`, `durationInFrames`.
 
@@ -62,6 +62,17 @@ type Props = { readonly title: string }; // `type`, not `interface`, for default
 - Assets live in `public/`; reference via `staticFile("name.ext")`. Remote URLs work directly.
 - **Maps** (animated globes, flyovers, route reveals) have a dedicated upstream technique family — Cesium, Mapbox, MapLibre, MapTiler, and static-map recipes with their own render-stability rules for headless capture. Heavy and API-token-gated, so maestro points rather than distills: see `references/companions.md`.
 - For Studio editability, wrap elements users should manipulate: `<div>` → `<Interactive.Div>`, and give `Interactive`/`Solid`/`Sequence` a descriptive `name` prop.
+
+### Studio interactivity is a code-shape contract
+
+The Studio reads the source to decide what it can select, drag, resize, and keyframe. **Anything it can't read literally goes grey and stops being editable** — so on a film that a human will tune visually, interactivity outranks the usual DRY instincts. Decide this once per project: components meant to be edited in Studio follow the rules below; pure-code compositions don't have to.
+
+- **Styles inline.** A plain object literal on `style`. No referring to constants, no spreading a memoized base, no arithmetic inside the object.
+- **Animate with `interpolate()` written inline on the property that changes** — not assigned to a variable and then referenced. Only `frame` may be the input variable. Output range, easing, extrapolation, and the `output` option are hardcoded literals; the *input* range may additionally use `durationInFrames`, `fps`, `width`, `height` destructured straight from `useVideoConfig()`, including bare identifiers, multiplication by a number (`2 * fps`), and subtraction of a number (`durationInFrames - 1`). Anything beyond that — an arbitrary variable, `Math.PI`, a computed start offset — is not readable.
+- **Use the `scale`, `translate`, and `rotate` CSS properties, not `transform`.** Only the individual properties are interactively editable.
+- **Composition metadata inline**: `width`, `height`, `fps`, `durationInFrames`, and `defaultProps` literal on the tag, no type assertions. `calculateMetadata()` is for the genuinely dynamic part only — returning constants from it just hides them from the editor.
+- **Effects arrays inline too**, with the same hardcoded-parameter rule, and never built conditionally (`enabled ? [...] : []` is not animatable). Render two elements instead if one variant needs the effect and the other doesn't.
+- **Fixed copy stays inline** in the element rather than being extracted into a constant — text used once and never varied is editable in place. Reach for a prop or variable only when the text is dynamic or genuinely reused.
 
 ## Timing: interpolate, Easing, spring
 
@@ -145,7 +156,7 @@ import { fade } from "@remotion/transitions/fade";
 - Presentations: `fade()`, `slide({direction: "from-left" | "from-right" | "from-top" | "from-bottom"})`, `wipe()`, `flip()`, `clockWipe()` — each imported from `@remotion/transitions/<name>`.
 - Timings: `linearTiming({durationInFrames})`, `springTiming({config: {damping: 200}, durationInFrames})`. Get real length with `timing.getDurationInFrames({fps})` (springs without explicit duration depend on fps).
 - **Transitions overlap scenes and SHORTEN total duration**: two 60f scenes + 15f transition = 105f, not 120f. Compute composition duration as `sum(scenes) - sum(transitions)`.
-- `<TransitionSeries.Overlay durationInFrames={20}>` renders an effect (e.g. `<LightLeak />` from `@remotion/light-leaks`) over the cut **without** changing duration; optional `offset` shifts it. An overlay cannot be adjacent to a transition or another overlay.
+- `<TransitionSeries.Overlay durationInFrames={20}>` renders an effect over the cut **without** changing duration; optional `offset` shifts it. An overlay cannot be adjacent to a transition or another overlay. The stock choice is `<LightLeak />` from `@remotion/light-leaks` (Remotion 4.0.415+), which reveals across the first half of its duration and retracts across the second.
 
 ## Layout for Video
 
@@ -262,7 +273,7 @@ import { blur } from "@remotion/effects/blur";
 <Video src={src} effects={[blur({ radius: 8 })]} />;
 ```
 
-`npx remotion add @remotion/effects`. Large catalog: color (`brightness`, `contrast`, `duotone`, `grayscale`, `hue`, `saturation`, `tint`, `invert`, `colorKey`, `thermalVision`), blur (`blur`, `zoomBlur`, `linearProgressiveBlur`, `radialProgressiveBlur`), light (`glow`, `dropShadow`, `shine`, `lightTrail`, `vignette`, `lightLeak` from `@remotion/light-leaks`, `starburst` from `@remotion/starburst`), distortion (`barrelDistortion`, `chromaticAberration`, `fisheye`, `wave`, `mirror`, `cornerPin`, `noiseDisplacement`), texture (`halftone`, `pixelate`, `scanlines`, `noise`, `paper`, `dotGrid`, `pattern`, `roughenEdges`), and more. Most import from `@remotion/effects/<slug>`. Effects use WebGL2 — enable for renders with `Config.setChromiumOpenGlRenderer('angle')` in `remotion.config.ts` (or `--gl=angle`).
+`npx remotion add @remotion/effects`. Large catalog: color (`brightness`, `contrast`, `duotone`, `grayscale`, `hue`, `saturation`, `tint`, `invert`, `colorKey`, `thermalVision`), blur (`blur`, `zoomBlur`, `linearProgressiveBlur`, `radialProgressiveBlur`), light (`glow`, `dropShadow`, `shine`, `lightTrail`, `vignette`, `lightLeak`, `starburst`), distortion (`barrelDistortion`, `chromaticAberration`, `fisheye`, `wave`, `mirror`, `cornerPin`, `noiseDisplacement`), texture (`halftone`, `pixelate`, `scanlines`, `noise`, `paper`, `dotGrid`, `pattern`, `roughenEdges`, `emboss`, `burlap`, `speckle`), plus gradients, dissolves, and generative patterns. Nearly all import from `@remotion/effects/<slug>`; the exception is `uvTranslate()` and `xyTranslate()`, which share `@remotion/effects/translate`. `lightLeak` and `starburst` moved into this catalog — import them as effects from `@remotion/effects`, not from their own packages. The standalone `@remotion/light-leaks` package still ships the `<LightLeak>` *component* used inside a transition overlay, which is a different thing from the effect function of the same name. Effects use WebGL2 — enable for renders with `Config.setChromiumOpenGlRenderer('angle')` in `remotion.config.ts` (or `--gl=angle`).
 
 Custom reusable effects: `createEffect()` from `remotion` (`type` reverse-DNS id, `backend: "2d" | "webgl2" | "webgpu"`, `calculateKey`, `setup`/`apply`/`cleanup`, `schema`, `validateParams`). Prefer `"2d"` unless shader math is needed. Preference order for any visual effect: plain HTML/CSS/SVG/filter/blend animation → catalog effect → `createEffect()` → custom `<HtmlInCanvas onPaint>` (Chrome 149+ with a flag; never nest `<HtmlInCanvas>`).
 
@@ -285,8 +296,11 @@ const frequencies = visualizeAudio({ fps, frame, audioData, numberOfSamples: 256
 ```bash
 npx remotion render                      # render (interactive comp pick) — or: npx remotion render MyComp out.mp4
 npx remotion still MyComp --frame=30     # single frame
-npx remotion render MyComp --props='{"title":"Hi"}'
+npx remotion render MyComp --props=props.json       # a file — portable
+npx remotion render MyComp --props='{"title":"Hi"}' # inline — POSIX shells only
 ```
+
+**Pass props as a file when the command has to run anywhere.** Inline JSON is fine on macOS and Linux, but Windows shells strip the inner quotes and Remotion receives malformed JSON — so any render command you write into a script, a README, or a plan uses a `.json` file. (This is also how a scored film ships its no-music cut: `video-sound.md`.)
 
 | Target | Command |
 |---|---|

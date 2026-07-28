@@ -92,7 +92,7 @@ Not verbs — a mode gate that runs before any production work, and it is the us
 | "Like the reference film, with my product" | template mode — clone upstream, follow `template/TEMPLATE.md` | Shot-by-shot asset, copy, and brand replacement |
 | "New direction, just build it" | autonomous — `library/video-shotcraft/references/pipeline.md` | Stages 0–7 continuous, decisions recorded, no stage-gates |
 | "I want to approve the creative calls" | co-creation — `library/video-shotcraft/references/guided-free-creation.md` | Sign-off at brief → decisions → direction → shot mapping → storyboard, then rejoins the pipeline at stage 4 |
-| One cinematic shot, any engine | a card from `library/video-shotcraft/references/shots/` + its `demos/<name>/` implementation | Adapt one recipe; read the demo for the tuned parameters |
+| One cinematic shot, any engine | a card from `library/video-shotcraft/references/shots/<category>/` + its `demos/<category>/<name>/` implementation | Adapt one recipe; read the demo for the tuned parameters |
 | Score a finished cut | `library/video-shotcraft/references/sound-design.md` (+ `music-beat-sync.md` when there's a track) | Runs after picture lock — judgment layer in `video-sound.md` |
 | Pre-delivery review | `library/video-shotcraft/references/final-review.md` | Independent clean-context reviewer, frame-numbered evidence. **Reports only** |
 

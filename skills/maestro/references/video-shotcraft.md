@@ -1,6 +1,6 @@
 # Video Shotcraft
 
-*The lead for product demo and promo video: a 106-card shot vocabulary with tuned reference implementations, a mode gate, an eight-stage pipeline, and a real-screenshot doctrine. Renders through Remotion — this is the craft layer above `video-remotion.md`, not a replacement for it.*
+*The lead for product demo and promo video: a 104-card shot vocabulary with tuned reference implementations, a mode gate, an eight-stage pipeline, and a real-screenshot doctrine. Renders through Remotion — this is the craft layer above `video-remotion.md`, not a replacement for it.*
 
 ## When shotcraft leads
 
@@ -25,7 +25,7 @@ Three modes for a full promo. They do not merge. Decide before asset capture, st
 | **Autonomous** | A new direction, no interruptions | Derive visual direction, shot mapping, storyboard, assets, and audio; record decisions and run straight through to the cut without stage-gates |
 | **Co-creation** | Control of the creative calls | Propose with evidence, then pause for user sign-off at product brief → requirement decisions → visual direction → shot mapping → final storyboard; then continue into the pipeline's asset capture |
 
-When the user supplies a project, URL, recording, or screenshots but hasn't chosen: run one **minimal read-only product inspection** (positioning, core features, page visuals, presentable states, asset risks — no edits to their project, no sensitive data, no video code). Then present all three modes with a specific recommendation and its trade-offs, and point them at the hosted gallery to pick shots by watching them: <https://vincentwei1021.github.io/video-shotcraft/>. Wait for the pick — never default one.
+When the user supplies a project, URL, recording, or screenshots but hasn't chosen: run one **minimal read-only product inspection** (positioning, core features, page visuals, presentable states, asset risks — no edits to their project, no sensitive data, no video code). Then present all three modes with a specific recommendation and its trade-offs, and point them at the hosted gallery to pick shots by watching them: <https://vincentwei1021.github.io/video-shotcraft/library.html>. Always send the hosted one — the preview clips are no longer stored in the repository, so a local gallery has to fetch its media first and is the fallback, not the default. Wait for the pick — never default a mode.
 
 Two standing exceptions: naming the template means template mode is chosen; naming specific shot cards fixes those as constraints (resolve the names, read each card in full, locate its exact demo) but still leaves autonomous-vs-co-creation open for a full film. In co-creation, "you decide" or "skip the confirmations" switches the run to autonomous — record the switch and stop asking; don't claim autonomy while still gating.
 
@@ -42,24 +42,39 @@ Two standing exceptions: naming the template means template mode is chosen; nami
 
 ## Shot cards — the vocabulary
 
-106 cards in `library/video-shotcraft/references/shots/`, each with frontmatter carrying **name · one-line description · when to use · duration · energy**, then intent, motion core, a parameter table with tuning feel, sound notes, and known traps. Read in full only the ones you pick.
+104 cards in `library/video-shotcraft/references/shots/<category>/`, each with frontmatter carrying **name · one-line description · when to use · duration · energy**, then intent, motion core, a parameter table with tuning feel, sound notes, and known traps. Read in full only the ones you pick.
 
 **The cards and every other vendored file are Chinese-language source** (the frontmatter keys below are `name` / `一句话` / `适用` / `时长` / `能量`). Read them in the original — the parameter tables and known-traps sections are the value, and a translation round-trip is where precision goes missing.
 
-Don't open 106 files to choose. Harvest every frontmatter in one pass, then filter:
+Cards and demos are filed under the same ten functional categories, so a narrative slot maps straight to a directory. Each card belongs to exactly one; cross-over cards are filed by what they're most often used *for* (a speed-ramp freeze is rhythm, not camera).
+
+| Category | Owns |
+|---|---|
+| `opening/` | Openers and brand — establishing the film, wordmark and key-visual entrances |
+| `typography/` | Type and title cards — headlines, taglines, chapter breaks, their entrance and rhythm |
+| `ui-entrance/` | Interface arrival and display — UI, card walls, lists materializing, flooding in, massing |
+| `camera/` | Camera and space — 2.5D/3D lensing: push, pull, pan, tilt, surface grazes |
+| `data/` | Data and metrics — charts, number reveals, KPI and milestone narration |
+| `interaction/` | Interaction and feature demo — action chains, AI responses, input and toggle shots |
+| `transition/` | Seams — every between-shot technique; the technique cards concentrate here |
+| `rhythm/` | Rhythm and montage — beat cuts, cut patterns, segment breathing, speed control |
+| `effects/` | Light and emphasis — sweeps, neon, hit feedback; the emphasis layer over everything |
+| `outro/` | Endings — closing collapse, group photo, UI-to-brand morphs |
+
+Don't open 104 files to choose. Scan one category's frontmatter per narrative slot, or harvest the lot in one pass:
 
 ```bash
 # one-line summary of every card: name, what it's for, duration, energy
-awk '/^---$/{f=!f; next} f' library/video-shotcraft/references/shots/*.md
-# or narrow first — cards are named after what they do
-ls library/video-shotcraft/references/shots/ | grep -E 'transition|camera|type|title'
+awk '/^---$/{f=!f; next} f' library/video-shotcraft/references/shots/*/*.md
+# or scan a single slot's category
+awk '/^---$/{f=!f; next} f' library/video-shotcraft/references/shots/transition/*.md
 ```
 
-Card names are descriptive and cluster by job — `*-transitions` and `*-wipe` for seam work, `*-camera-moves` and `crane`/`crash-zoom`/`graze`/`steep-tilt` for lensing, `type-*`/`typewriter`/`letterspace`/`text-*` for typography, `*-title`/`brand-*` for openers, `*-moves` for reusable technique families. When a user picks from the hosted gallery they'll hand you a card name (optionally `card · style`); resolve it to the file and its demo rather than reinterpreting the name.
+Within a category, card names are descriptive — `*-transitions` and `*-wipe` for seam work, `*-camera-moves` and `crane`/`crash-zoom`/`graze`/`steep-tilt` for lensing, `type-*`/`typewriter`/`letterspace`/`text-*` for typography, `*-title`/`brand-*` for openers, `*-moves` for reusable technique families. When a user picks from the hosted gallery they'll hand you a card name (optionally `card · style`); resolve it to its category and file rather than reinterpreting the name.
 
 Defaults per segment (a single-instance precedent, labelled as such upstream — starting points, not mandates): brand open → `brand-ink-open`; protagonist → `spotlight-hero-card`; feature climb → `deck-deal-flyin`, `type-and-filter`, `list-stack-press`, `row-embed`, `document-typewriter-reveal`; breather → `paper-title-card`; finale → `outro-group-photo-launch`. Seams between chosen shots get their transition style picked last, from the transition cards, with those frames drawn from the neighbouring shots' budgets.
 
-Where each card's implementation lives: 96 cards resolve to `library/video-shotcraft/demos/<name>/`; ten — including most of the defaults above, plus `hires-rasterize-3d-text` — are implemented in the reference film instead, at `library/video-shotcraft/template/src/...`. Every card names its own path in its *参考实现* section; both locations are vendored, so the read-the-implementation rule holds for all 106.
+Where each card's implementation lives: 95 cards resolve to `library/video-shotcraft/demos/<category>/<name>/` — same category as the card — and the nine defaults listed just above are implemented in the reference film instead, at `library/video-shotcraft/template/src/...`. Every card names its own path in its *参考实现* section; both locations are vendored, so the read-the-implementation rule holds for all 104.
 
 Selection order: pick the film's energy skeleton first, then fill each slot from the cards. The default skeleton for a 30–60s multi-feature product film (`library/video-shotcraft/references/sequences/promo-energy-arc.md`):
 
@@ -76,6 +91,7 @@ Breather title cards run 50–55 frames (~1.8s), 2–4 per film, one after every
 
 `library/video-shotcraft/references/aesthetic-rules.md` codifies the standard as precedents in five families: **R** rhythm, **Q** texture/camera/composition, **S** sound, **C** copy, **P** process. The load-bearing ones beyond the doctrine above:
 
+- **Text meant to be read has a minimum effective height** — captions ≥5% of frame height (≥56px at 1080p; 60px is the recommended step), secondary text like subtitles, stats, and URLs ≥3% (≥32px). *Effective* height is `fontSize × every ancestor scale × perspective compression` (`cos(rotY)` for a 3D shot), measured on the rendered frame rather than read out of the code. Type has exactly two states: **texture** — decorative small type inside a screenshot cutout, which must be visibly softened or dimmed so nobody tries to read it — or **meant to be read**, at size and with enough contrast (a scrim or shadow over light backgrounds). There is no middle state; text that was "reflowed for legibility" but still lands under the line is the failure case, and unreadable text is better deleted. The sign-off URL or call to action is the last line in the film that should be small. Self-check: pull a frame from every captioned shot, scale it to 480px wide to simulate a phone in-feed, and read it.
 - **Camera stays steady** — no handheld shake by default on product film. Frame for readability: dense shots face-on, text close-ups laterally level, stylized tilts validated per shot.
 - **Object close-up needs all four**: oblique tilt angle, perceptible height, an orbit, and a contrasting dark material background. The source's self-check is whether the subject reads as having volume and standing out from its surroundings.
 - **Under 3D perspective, rasterize UI textures at 2–4× their display size and downsample** — and scale up with layout-level CSS `zoom`, never `transform: scale`. Blurry text is a texture-resolution problem first, and the zoom-vs-scale distinction is the actual fix.
@@ -108,13 +124,17 @@ Eight stages in `library/video-shotcraft/references/pipeline.md` — 0 product u
 
 Stage 6 is `video-sound.md`. Stage 7 is `library/video-shotcraft/references/final-review.md`, run by an independent reviewer against product goal, feature completeness, visual direction, card fidelity, storyboard consistency, data safety, audio/rhythm, and technical quality — reporting per item with frame-number evidence.
 
+A scored film renders **both cuts at stage 7**, not only at final delivery: with BGM, and without BGM but with SFX intact, from the same timeline via the `bgm` input prop (`video-sound.md`). The reviewer needs both to check they actually match, and the second render is what the recipient uses to lay their own music under the film.
+
 ## Assets
 
 `library/video-shotcraft/assets/lib/` components are **copied into the target project** and modified freely, never imported as a dependency: `PageCam` (the 2.5D page camera every real-page shot is built on), `DigitRoll`, `FlashCut`, `Caption`, `FlatPanel`, `VerticalTicker`, plus `helpers/` (rand, shake, camera, motion). `FlatPanel` and `helpers/camera` need `three` + `@react-three/fiber` + `@remotion/three`; the rest need only Remotion.
 
-`library/video-shotcraft/demos/` holds the tuned implementation for 96 cards — copy into a Remotion project and run; most are self-contained, nine import real-page textures that stay upstream. The remaining ten live in `library/video-shotcraft/template/src/`, whose `aifl/Main.tsx` also carries the central SFX pin table behind `video-sound.md`. The page-capture script stage 4 uses is at `library/video-shotcraft/assets/scripts/capture-template.mjs`.
+`library/video-shotcraft/demos/<category>/` holds the tuned implementation for 95 cards — copy into a Remotion project and run. Most are self-contained; 71 import the shared fake-UI fixtures at `demos/_fixtures/`, which is vendored, and four import real-page textures that are not. The remaining nine live in `library/video-shotcraft/template/src/`, whose `aifl/Main.tsx` also carries the central SFX pin table behind `video-sound.md`. The page-capture script stage 4 uses is at `library/video-shotcraft/assets/scripts/capture-template.mjs`.
 
-Left upstream: the preview gallery, the template's rendered output and page textures, and the SFX/BGM binaries — `companions.md` has the retrieval routes, `library/video-shotcraft/VENDOR-NOTES.md` the full split, and `library/video-shotcraft/assets/audio/ATTRIBUTION.md` the manifest of what audio exists and under which license.
+The audio library — `bgm/` plus 149 sounds across 16 category folders — is documented in `library/video-shotcraft/assets/audio/`: `ATTRIBUTION.md` for what exists and under which license, `AUDITION-2026-07-27.md` for per-file duration, measured peak, and suggested pin point. `video-sound.md` carries the category map and the selection discipline.
+
+Left upstream: the preview gallery, the template's rendered output and page textures, the four demos' real-page textures, and the SFX/BGM binaries themselves — `companions.md` has the retrieval routes and `library/video-shotcraft/VENDOR-NOTES.md` the full split.
 
 ---
 *Distilled from: video-shotcraft (authoritative — shot cards, pipeline, aesthetic rules).*

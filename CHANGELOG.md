@@ -1,5 +1,107 @@
 # Changelog
 
+## 3.4.0 — 2026-07-28
+
+Absorbed the drift in video-shotcraft (four watched paths), remotion, and hyperframes-cli.
+**The shot library reorganized itself under maestro's feet**, and the sound library grew from
+a flat folder into a categorized one — both of which invalidate paths maestro told agents to
+read.
+
+### Paths that stopped resolving
+
+- **Shot cards and demos are now filed under ten functional categories** (`opening`,
+  `typography`, `ui-entrance`, `camera`, `data`, `interaction`, `transition`, `rhythm`,
+  `effects`, `outro`). Every path maestro published gained a segment: cards live at
+  `references/shots/<category>/<name>.md`, implementations at `demos/<category>/<name>/`.
+  The frontmatter-harvest recipe (`shots/*.md`) matched nothing after the move and is fixed;
+  the category table is now in the module, since picking a narrative slot now picks a
+  directory.
+- **Two cards were retired upstream** — `hires-rasterize-3d-text` and `scene-locked-title`
+  (plus the `snorricam-lock` style). The count is **104 cards, 95 with demo implementations,
+  nine implemented in the reference film** — and the nine are now exactly the default
+  energy-arc picks, which is the cleanest that split has ever been.
+- **The preview clips left git.** The hosted gallery is now the only zero-setup way to let a
+  user watch shots and pick by name; a local gallery has to fetch its media first. maestro
+  links `…/library.html` and says so in three places.
+
+### Sound — the module nearly doubled
+
+The upstream sound library was restructured into `bgm/` plus **149 sounds across 16
+categories**, and audited file by file. What that produced is the kind of specific,
+hard-won material the distilled layer exists to carry:
+
+- **The category map, with the two mappings nobody guesses**: the vocabulary's `sparkle`
+  is filed under `light/` (there is no `sparkle/`), and whoosh shares `transition/` with
+  scene changes. The other eleven categories are the custom-foley layer.
+- **`ui/` is a trap and now says so.** It is the one category holding both real switch foley
+  and synthesized confirmation tones — the latter being exactly what the genre rule excludes.
+  Audition it file by file; the original sample names (`tone`, `bleep`, `alert`,
+  `notification`) give the synthetic ones away.
+- **Corrected: maestro banned the wrong thing.** The old text banned "click/pluck/glass tap
+  families", which reads as banning *actions* — while the source bans a *timbre* and the
+  reference film's own loudest cue is a real camera shutter on a click, and `glass/` is real
+  material. The rule is now stated as written upstream, with the discriminating question
+  (does it sound like the object, or like a game engine's feedback tone?) — and maestro's own
+  cue table no longer contradicts its own ban.
+- **`volume` is a multiplier, not a target level.** A sample peaking at −24.6 dB played at
+  `volume={1}` is still −24.6 dB, while BGM at 0.34 sits near −9.4 dB — so "turn it up to 1.0"
+  is not a fix for the seven quiet files in the library. Three routes in order: swap the
+  sample, pre-normalize on ingest, or gain above 1 (Remotion genuinely amplifies — but the
+  *preview clamps to 1.0* on the legacy audio path, so judge on the render and check for
+  clipping).
+- **Long samples need explicit windows** — 21 files exceed 5s — with the windowing criteria:
+  room tone runs the shot, action samples run the gesture, and impacts with long reverb tails
+  are the exception that should *not* be cut tight.
+- **Byte-identical duplicates defeat the anti-machine-gun move.** Four pairs in the library
+  are the same asset under two names; alternating between a pair is not alternating. Hash on
+  ingest rather than trusting filenames.
+- **A scored film ships two cuts** — with BGM, and without BGM but with SFX intact — rendered
+  from the same timeline via a boolean `bgm` input prop, at the acceptance stage rather than
+  at final delivery. Not a second project, and not an ffmpeg track-strip afterwards.
+
+### Legibility, in two modules
+
+- **Minimum effective text height**, new in `video-shotcraft.md` as the source's Q11 and in
+  `video-direction.md` as an engine-neutral floor: captions ≥5% of frame height, secondary
+  text ≥3%, measured as `fontSize × ancestor scale × perspective compression` **on the
+  rendered frame**, not read out of the code. Type has exactly two honest states — texture
+  (deliberately unreadable) or meant-to-be-read; the middle state, reflowed "for legibility"
+  but still under the floor, is the failure that survives review because it looks handled.
+- Remotion's own layout floors (84px headline, 44px supporting at 1080 wide) were checked
+  against maestro's frame-craft table and **match exactly** — no edit, verified rather than
+  assumed.
+
+### Remotion
+
+- **Studio interactivity is a code-shape contract**, and the upstream skill went from a stub
+  to a full specification. maestro now carries it: styles as inline object literals,
+  `interpolate()` written inline on the animated property with only `frame` as input,
+  hardcoded output range/easing/extrapolation, `scale`/`translate`/`rotate` instead of
+  `transform`, composition metadata and `defaultProps` inline, effects arrays literal and
+  never conditional, fixed copy inline rather than extracted. Stated with its tradeoff:
+  this fights the usual DRY instincts, so it's a per-project decision — anything the Studio
+  can't read literally goes grey and stops being editable.
+- **Corrected: `lightLeak` and `starburst` moved into `@remotion/effects`.** maestro told
+  agents to import them from `@remotion/light-leaks` and `@remotion/starburst`, which would
+  now fail for the effect functions. The standalone package still ships the `<LightLeak>`
+  *component* for transition overlays (4.0.415+) — a different thing with the same name.
+- **`--props` as a file, not inline JSON**, wherever a render command is written down:
+  Windows shells strip the inner quotes and Remotion receives malformed JSON. The same
+  finding drives the no-music cut above.
+- Studio: open a composition directly at `/<composition-id>`; re-running `studio` reprints
+  the URL of the server already up.
+
+### Also
+
+- `--resolution landscape|portrait|square` at HyperFrames scaffold time, rather than resizing
+  a project later.
+- HyperFrames CLI's drift was skill-attribution telemetry (`--skill` now persists in
+  `hyperframes.json`); nothing maestro documents changed. Verified, not absorbed.
+- Vendored corpus refreshed wholesale: `template/`'s project config restored,
+  `assets/audio/AUDITION-2026-07-27.md` added (per-file duration, measured peak, suggested
+  pin point — what makes the windowing and level rules usable without the binaries), and the
+  `_textures` dependency count corrected from nine demos to four.
+
 ## 3.3.0 — 2026-07-25
 
 Absorbed four drifted upstreams (impeccable, genjutsu, remotion, hyperframes) and fixed the

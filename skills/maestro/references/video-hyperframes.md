@@ -242,7 +242,7 @@ Everything runs through `npx hyperframes` (Node ≥ 22 + FFmpeg).
 
 | Command | One line |
 |---|---|
-| `npx hyperframes init my-video` | Scaffold a project (or `capture <url>` to seed from a site). |
+| `npx hyperframes init my-video` | Scaffold a project (or `capture <url>` to seed from a site). Set the aspect at scaffold time with `--resolution landscape\|portrait\|square` (or their `-4k` variants) rather than resizing later. |
 | `npx hyperframes add <name>` | Install a registry block/component (shader transitions, prebuilt scenes). |
 | `npx hyperframes lint` | Fast static checks — run early and often while writing. |
 | `npx hyperframes check` | The browser gate: lint + runtime errors + layout/overflow + motion verification + contrast in one seek pass; must pass with 0 findings. |

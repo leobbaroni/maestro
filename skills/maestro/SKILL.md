@@ -39,7 +39,7 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | 3D scenes, WebGL, shaders, R3F | `threejs.md` |
 | Generative art, canvas experiments, particles, noise | `creative-coding.md` |
 | Planning any video (story, beats, pacing, transitions) | `video-direction.md` |
-| **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 106 shot cards, eight-stage pipeline |
+| **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 104 shot cards, eight-stage pipeline |
 | One cinematic moment inside any video, any engine | `video-shotcraft.md` (pull a single shot card) |
 | Sound design, SFX pin tables, music beat-sync — any engine | `video-sound.md` |
 | Rendering video from HTML | `video-hyperframes.md` |

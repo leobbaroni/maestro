@@ -272,21 +272,33 @@ tokens、启动方式和数据风险。根据项目证据和用户已有描述�
 
 **具体操作**（细节与判例见 `references/sound-design.md`）：
 
-1. 读 `references/sound-design.md`，从 `assets/audio/` 复制音效
-   （免费商用授权，来源见 `assets/audio/ATTRIBUTION.md`）。
+1. 读 `references/sound-design.md`，从 `assets/audio/sfx/<类别>/` 复制音效
+   （免费商用授权，来源见 `assets/audio/ATTRIBUTION.md`）。音效按场景分 16
+   个类别目录，先按需要的动作定类别（运镜→transition、落地→impact、
+   打字→text、翻页→paper、光效→**light**…），再在类别里挑音色。
+   注意词汇表的 `sparkle` 对应的目录名是 `light/`，库里没有 `sparkle/`。
 2. **BGM**：用户已指定 → 阶段 0 已做节奏分析，此处只做混音
    （音量压低 ~0.34 给 SFX 留 headroom，interpolate 首尾淡入淡出）。
    未指定 → 按片种选强鼓点、强节奏的电子底（tech-house 类），判据是
    "典型的产品宣传视频"气质而不是"好听"；候选曲必须垫进成片试听，
    单听曲子选型不可靠；`assets/audio/bgm/` 有节奏感强的备选。
+   BGM 的 `<Audio>` 用布尔 inputProp（如 `bgm`，默认 `true`）单独包住，
+   与 SFX 解耦——终渲要从同一时间线出带 BGM / 无 BGM 两版成片。
 3. **SFX 用电影系词汇按镜头语言选**：运镜=whoosh、落地=impact、
-   铺垫=riser、光效=sparkle、转场=transition；禁用游戏 UI 音包
-   （click/pluck/glass 类 tap 一耳朵出戏）。
+   铺垫=riser、光效=sparkle（目录 `light/`）、转场=transition；
+   禁用游戏音包**音色**（合成器 pluck/bloop、卡通弹跳一耳朵出戏）。
+   注意"禁游戏音"禁的是音色不是动作——画面真有点击/开关/碎裂就该配
+   它的拟音，判别问句见 aesthetic-rules S1。但 **`ui/` 要逐个试听、不能
+   整目录放行**：18 个里只有 `switch-*` 等少数是真实开关拟音，一半以上是
+   合成反馈音（tone/bleep/notification），正属 S1 排除的质感——逐文件
+   取舍表见 sound-design 3.3。`glass/` 是真实碎裂材质音，不在禁列。
 4. **声明式钉帧表集中管理 + 相对钉帧**：单文件 `{ from, src, volume }[]`
    数组，逐条注释对应的画面动作，每条包 `<Sequence from={s.from}>`。
    **from 一律写相对表达式**——`SHOTS.x.from + offset`，卡点片写
    `beatF(n)`——绝不写裸数字帧号。时间线平移时钉帧表自动跟随，
-   免除全表重钉。长样本靠 Sequence duration 截断而非剪音频文件。
+   免除全表重钉。**长样本（>5s，库里 21 个）必须显式给 `durationInFrames`**
+   ——靠 Sequence 截断而非剪音频文件；漏给会拖到动作结束后还在响。
+   清单与截断判据见 sound-design 4.1。
 5. 连发防机枪感三招：双样本交替、音量阶梯递减（如 pop 六连
    0.40→0.25）、间隔加速贴动画曲线（密到糊成一片时让声音淡出成 swoosh）。
 6. 通用音之外留"贴画面定制"槽位：有辨识度的画面动作配它自己的拟音
@@ -294,7 +306,13 @@ tokens、启动方式和数据风险。根据项目证据和用户已有描述�
 7. 强鼓点 BGM 的片子 SFX 克制：鼓点本身就是节拍音，SFX 只钉画面
    独有动作，大 slam 只给 2–3 处峰值。
 8. 结尾固定句式：riser（组装段起）→ impact（字标落地，全片音量峰值）
-   → sparkle（余韵）。
+   → sparkle（余韵，取自 `sfx/light/`）。
+9. **音量按素材实测峰值给，不照抄区间**：`volume` 是乘法系数不是目标
+   音量——常规 0.2–0.6 的前提是素材峰值贴近 0dB。库里 7 个录得轻的素材
+   （峰值 <-12dB，最轻 -24.6dB）给到 1.0 仍比 BGM 低十几 dB，会被鼓底
+   盖住：**首选换同类别里录得好的素材，或预归一化后入库**；必要时可给
+   >1 的增益（Remotion 支持真实放大，但预览钳到 1.0，须以渲染产物验峰
+   防削波）。名单与三条出路见 sound-design 4.1。
 
 **产出**：带声整片；SFX 钉帧表（相对帧表达式+音源+音量+注释）；
 音频文件入 repo 并记录来源授权。
@@ -304,7 +322,10 @@ tokens、启动方式和数据风险。根据项目证据和用户已有描述�
 **常见坑**：
 
 - 画面没锁就铺音效：全表重对的连带成本（见前置条件）。
-- 按 UI 事件语义选音色（click/confirmation/minimize）：片种错位，整批推翻。
+- 按 UI 事件语义选音色（合成器 confirmation/minimize 提示音）：片种错位，整批推翻。
+  但别过度矫正到"完全不给交互动作配音"——那违反 S4 拟音优先。
+- 长样本不给 durationInFrames：声音盖过后续镜头（库里 21 个 >5s）。
+- 照抄 0.2–0.6 音量区间不看素材峰值：轻音素材钉了等于没钉。
 - 凭感觉散铺音效不建表：帧号漂移后无法整体平移，也无法和分镜表对照。
 
 ---
@@ -318,9 +339,16 @@ tokens、启动方式和数据风险。根据项目证据和用户已有描述�
 **具体操作**：
 
 1. 全片渲染最新版，ffmpeg 抽全部关键帧（每镜头至少：入场中、
-   动作峰值、落定后三帧）。
+   动作峰值、落定后三帧）。配了 BGM 的片子在此处就渲出两版——带 BGM 版
+   和无 BGM 版（保留 SFX），无 BGM 版靠阶段 6 预留的 `bgm` inputProp
+   从同一时间线渲出：写一个 `props-nobgm.json`（内容 `{"bgm":false}`）
+   然后 `npx remotion render … --props=props-nobgm.json`（跨平台可靠；
+   macOS/Linux 也可内联 `--props='{"bgm":false}'`，Windows shell 会剥掉
+   内联 JSON 的双引号，必须走文件）。不另建工程、不用 ffmpeg 后期抽轨。
+   命名区分（如 `promo.mp4` / `promo-nobgm.mp4`）。
 2. **独立终检（必做）**：派一个干净上下文的 subagent 做第三方审查。
-   不给它制作过程中的辩解、修改历史或“应该通过”的暗示，只提供：最新版成片、
+   不给它制作过程中的辩解、修改历史或“应该通过”的暗示，只提供：最新版成片
+   （配 BGM 的片子含两版，供 A8 校验）、
    抽出的关键帧、创作模式、产品简报、需求到执行决策表、确认或记录的视觉方向/tokens、styleframe 或跳过理由、
    功能到镜头映射、
    Gallery 卡名与具体变体、`library.json` 中对应记录、卡片文档定位到的准确
@@ -339,11 +367,13 @@ tokens、启动方式和数据风险。根据项目证据和用户已有描述�
    全部切点误差 ≤3f 才算过。
 6. 审查报告的修复项回到阶段 3/5/6 小循环：方案或分镜偏差回阶段 3，画面实现
    问题回阶段 5，声音问题回阶段 6；直到 checklist 通过后终渲出片。
+   终渲重复步骤 1 的双版本渲染——配 BGM 的片子交付带 BGM / 无 BGM 两版，
+   无 BGM 版方便用户后期自配音乐或平台配乐。
 
 **产出**：独立审查报告（final-review + aesthetic-rules checklist + 帧号证据）
-+ 终渲成片。
++ 终渲成片（带 BGM / 无 BGM 两版）。
 
-**交付物**：审查报告 + 成片。
+**交付物**：审查报告 + 成片两版（带 BGM + 无 BGM）。
 
 **常见坑**：
 

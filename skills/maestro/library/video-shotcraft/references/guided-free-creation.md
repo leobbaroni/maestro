@@ -134,8 +134,10 @@ Gallery（https://vincentwei1021.github.io/video-shotcraft/）只是用户浏览
 2. 用索引中的 `source` 定位并完整读取 `references/shots/*.md`；
 3. 按卡片“参考实现”的明确路径，把具体样式解析到准确的 demo TSX；若文档只写
    demo 目录，读取目录文件并根据导出名、注释和样式语义确定对应文件；
-4. 将索引中的 `styles[].media.url` 解析为本地 `gallery/media/` 参考样片，并在
-   设计 spec 记录：卡名、style-key、卡片文档、准确 demo TSX、参考样片；
+4. 将索引中的 `styles[].media.url` 解析为参考样片（本地 `gallery/media/`
+   若无 mp4，先跑 `gallery/fetch-media.sh` 从 release 拉取，或直接用在线
+   Gallery 对应链接），并在设计 spec 记录：卡名、style-key、卡片文档、
+   准确 demo TSX、参考样片；
 5. 如卡片需要通用组件，再读取并复制 `assets/lib/` 的对应文件；
 6. 保留 demo 中已经调校的缓动、时值配比、遮罩时机和“已知坑/命门”参数；
 7. 只替换目标产品的截图、布局坐标、文案、品牌 token 和必要的构图参数。
