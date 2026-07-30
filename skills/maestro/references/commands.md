@@ -96,6 +96,23 @@ Not verbs — a mode gate that runs before any production work, and it is the us
 | Score a finished cut | `library/video-shotcraft/references/sound-design.md` (+ `music-beat-sync.md` when there's a track) | Runs after picture lock — judgment layer in `video-sound.md` |
 | Pre-delivery review | `library/video-shotcraft/references/final-review.md` | Independent clean-context reviewer, frame-numbered evidence. **Reports only** |
 
+## Generative-media asks (banana-pro-director, cinema-worldbuilder)
+
+Prompting an image or video *model*. Read `generative-direction.md` first — the grammar, the continuity ledger, and the pre-flight are shared by every row here, and skipping them is what makes assets drift apart.
+
+| Intent | Protocol | What it does |
+|---|---|---|
+| "Build me this character" / a reference image dropped in | character lock → `CHARACTERS.md` (`generative-stills.md` Step 0) | Free-form development or reference extraction, mirrored back and written down before any prompt exists |
+| "Outfit reference", "character on white", "the base" | base reference, direct or composite path (`generative-stills.md` Step 1) | The locked look every later asset quotes. Ask which path — they need different prompts |
+| "Character sheet", "model sheet", "ref sheet", "multi-angle" | 6-panel sheet (`generative-stills.md` Step 2) | One prompt, one frame, six angles. **Blocked until an approved base exists** |
+| "Scene", "plate", "environment", a described setting | plate, with or without characters (`generative-stills.md` Step 3) | Inherits the scene's cinema mode. Never offered unprompted |
+| "Face shot", "chest-up", "close-up detail" | detail portrait (`generative-stills.md` Step 4) | Higher-fidelity model, gated on an explicit ask and its cost stated once |
+| "Seedance prompt", "make this a video", a scene for generation | prompted shot or sequence (`generative-video.md`) | Three-part paragraph, camera block quoted whole, runtime in three places, diegetic audio |
+| A brief that implies several assets | asset manifest (`generative-direction.md`) | Orders the whole set and locks the cinema mode once across all of it, before the first prompt |
+| "It came out wrong" | failure table (`generative-direction.md`) | Symptom → actual cause → fix. Change one variable per re-roll, never re-roll blind |
+
+Two gates bind every row: **the pre-prompt check** (short, bulleted, wait for the nod) and **the pre-flight on the finished text** — no names, no brands, no age words, no invented detail, no aspect ratio, no image placeholders.
+
 ## Overlapping verbs — resolve, don't guess
 
 Three corpora, three houses, and some verbs appear in more than one. They are **not** interchangeable: they ask different questions and return different artifacts.

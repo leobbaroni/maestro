@@ -42,6 +42,7 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 104 shot cards, eight-stage pipeline |
 | One cinematic moment inside any video, any engine | `video-shotcraft.md` (pull a single shot card) |
 | Sound design, SFX pin tables, music beat-sync — any engine | `video-sound.md` |
+| **Prompting an image or video model** — character references, model sheets, plates, prompted shots | `generative-direction.md` first (grammar, ledger, pre-flight), then `generative-stills.md` or `generative-video.md` |
 | Rendering video from HTML | `video-hyperframes.md` |
 | Rendering video from React | `video-remotion.md` |
 | Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` (long tail: `toolbox-corpus.md`) |
@@ -80,6 +81,8 @@ Product demo or launch promo built from a real app or site → **shotcraft leads
 | Team already invested in one of them | That one |
 
 Nothing here is displaced by shotcraft: `video-direction.md` still plans story and beats for any engine, `video-sound.md` scores any engine, and a single shot card is worth pulling into a HyperFrames composition as readily as a Remotion one — adapt it, don't transplant it.
+
+**Generated, not rendered** is a different axis from all of the above. When the frames come out of an image or video *model* rather than out of code, the engine chooser doesn't apply — `generative-direction.md` and its two surface modules do. The trade is exact: a renderer hits a spec twice and a model never does, so anything that must be frame-exact, versionable, or re-renderable stays in code, while photoreal humans, real-world locations, and material texture are what generation is for. The two compose — a generated plate makes an establishing shot inside a Remotion or HyperFrames edit, and a locked character sheet is art direction no renderer produces.
 
 Both demand **determinism**: no `Date.now()`, no `Math.random()` without a seeded/framework source, no free-running media or CSS animations that ignore the frame clock. Each engine module states its own rules — respect them exactly.
 

@@ -67,6 +67,14 @@ Worth knowing exist even when absent locally:
 - **remotion-maps** (in remotion-dev/remotion under `packages/skills`) — map-driven video: Cesium 3D flyovers, Mapbox/MapLibre/MapTiler vector reveals, static-map fallbacks, each with render-stability rules for deterministic headless capture, plus geo-prep scripts and sample data. Needs the map SDK and usually an API token, so it isn't distilled here; pull the technique folder when a brief actually calls for maps.
 - **video-shotcraft** (github.com/Vincentwei1021/video-shotcraft) — the shot cards, pipeline, and reference implementations are vendored (`library/video-shotcraft/`), but three heavy pieces are not: the **hosted gallery** at <https://vincentwei1021.github.io/video-shotcraft/library.html> (161 motion samples — the right way to let a user watch shots and pick by name, no install needed; the preview clips now live in a release rather than the repo, so a local gallery must fetch its media first), the **full Remotion template project** needed for template mode, and the **SFX/BGM binaries** (~30 MB; the manifest is vendored, the files aren't). Clone the repo when a job needs the template or the audio.
 
+- **Higgsfield** (higgsfield.ai) — a hosted generative-media platform, not an installable skill: a
+  browser UI where the user pastes a prompt, attaches reference images, and picks the aspect
+  ratio. maestro composes the text; the platform runs it. Nothing here shells out to it, no
+  credential is ever needed on this side, and generation costs the user credits — so name the
+  asset count before a batch runs. `generative-stills.md` and `generative-video.md` carry the
+  per-surface adapters (Banana Pro, Soul Cinema, GPT-2, Seedance); the grammar above them is
+  engine-neutral and holds for any comparable platform.
+
 A `~/.claude/skills-retired/` folder, if present, holds previously installed knowledge packs
 (kept for rollback) — including, on some setups, impeccable's full `scripts/` toolchain, usable
 in place (e.g. `node skills-retired/impeccable/scripts/palette.mjs` for a brand-seed color).

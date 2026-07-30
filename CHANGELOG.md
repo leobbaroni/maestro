@@ -1,5 +1,75 @@
 # Changelog
 
+## 3.5.0 — 2026-07-30
+
+**A new capability family: prompting image and video models.** Two author-written skills —
+`banana-pro-director` (stills) and `cinema-worldbuilder` (Seedance video) — rewritten and
+integrated as three modules over a vendored copy of both originals.
+
+Everywhere else in maestro the deliverable is code that deterministically renders frames.
+Here it is text a model interprets, and the same text twice returns two different images.
+That is a different discipline, so it gets its own family rather than an extension of the
+video modules — and `SKILL.md` now states the trade explicitly: a renderer hits a spec twice
+and a model never does, so frame-exact work stays in code while photoreal humans, real
+locations, and material texture are what generation is for. The two compose.
+
+### The integration
+
+The two sources turned out to be one discipline split across two files: the five cinema modes
+(M1–M5 with their ARRI/Panavision/Tiffen/Kodak specs), the entire reference-reading section,
+and the naming/brand/age-blind/no-invention/no-aspect-ratio rules were near-verbatim in both.
+Stated once now in `generative-direction.md`; `generative-stills.md` and `generative-video.md`
+inherit them and carry only what differs.
+
+- **`generative-direction.md`** — the shared grammar: the five-mode table, the photoreal
+  stack, reference reading, the continuity ledger, the batch manifest, the pre-flight, and
+  the failure table.
+- **`generative-stills.md`** — character lock → base reference (direct or composite path) →
+  multi-angle sheet → plates → detail portraits, in that order because each locks what the
+  next inherits.
+- **`generative-video.md`** — the three-part prompt paragraph, runtime discipline, per-shot
+  timing, diegetic audio, mode stacking, and a fully worked prompt.
+
+### Four things neither original had
+
+- **A continuity ledger.** Identity locking is the entire value of both skills, and the lock
+  lived only in conversation — one context reset and it was gone, which is exactly when drift
+  starts. `CHARACTERS.md` and `WORLD.md` now hold it, with the rule that the ledger is the
+  source of truth and anything not in it and not in the user's message is a question rather
+  than an invention.
+- **A batch manifest.** A brief is rarely one asset, and composing prompts one at a time is
+  how the cinema mode drifts between a plate and the shot it was supposed to match. The
+  manifest orders the whole set, **locks the mode once across all of it**, and shows the count
+  before generation starts costing credits.
+- **Palette derivation.** The atmospheric mode demands named hex values and neither skill said
+  where they come from — inventing them is the same failure as inventing a version number.
+  Now routed through `design-dna.md` extraction against a reference, four to eight anchors,
+  written into `WORLD.md` so every later asset of that location quotes the same numbers.
+- **A failure table.** Generative misbehaviour is diagnosable and re-rolling blind is the least
+  informative response available. Symptom → actual cause → fix, for merged panels, identity
+  drift across a sheet, grey backdrops, hallucinated wardrobe, a face that won't match its
+  reference, a camera that stabilizes when the mode forbids it, music leaking into diegetic
+  audio, and plastic texture despite the stack. Change one variable per attempt; record what
+  worked.
+
+### Also
+
+- **The moderation pre-flight now states its reasons.** The naming, brand, and age-blind rules
+  were written as style rules; they are filter behaviour. Age words in particular add nothing
+  a body-and-wardrobe description doesn't and push an adult subject toward misclassification —
+  and the module says plainly that these pipelines depict adults only, and that a brief which
+  would put a minor in a photoreal generated frame is one to decline rather than rephrase.
+- **The engine-neutral split.** The grammar is stated without vendor names; each surface module
+  ends with a Higgsfield adapter carrying every current specific (Banana Pro, Soul Cinema's
+  two-step, GPT-2 gating and its credit cost, Seedance's format). Product names churn; ARRI
+  and Kodak grammar doesn't.
+- **Both originals vendored** to `library/higgsfield-directors/` with a manifest. They have no
+  upstream repo, so they are deliberately *not* in `upstreams.json` and the drift checker does
+  not watch them — when the author revises the originals, re-copy by hand.
+- Routing wired through `SKILL.md`, `commands.md` (eight new intent rows), and `companions.md`
+  (Higgsfield as a hosted platform, not an installable skill — no credentials on this side,
+  and the user's credits are spent per asset).
+
 ## 3.4.0 — 2026-07-28
 
 Absorbed the drift in video-shotcraft (four watched paths), remotion, and hyperframes-cli.
