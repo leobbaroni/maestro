@@ -41,11 +41,17 @@ maestro supplies direction, art direction, and motion judgment on top.
 
 ## Workflow skills (video production)
 
-`general-video`, `product-launch-video`, `website-to-video`, `faceless-explainer`,
-`motion-graphics`, `music-to-video`, `pr-to-video`, `slideshow`, `embedded-captions`,
-`talking-head-recut`, `remotion-to-hyperframes` — end-to-end pipelines. When one matches the
-request, it owns the workflow *mechanics*; maestro's `video-direction.md`, `motion-*`,
-`video-shotcraft.md`, and `video-sound.md` inform the creative decisions inside it.
+`general-video`, `product-launch-video`, `faceless-explainer`, `motion-graphics`,
+`music-to-video`, `pr-to-video`, `slideshow`, `embedded-captions`, `talking-head-recut`,
+`remotion-to-hyperframes` — end-to-end pipelines. When one matches the request, it owns the
+workflow *mechanics*; maestro's `video-direction.md`, `motion-*`, `video-shotcraft.md`, and
+`video-sound.md` inform the creative decisions inside it.
+
+`website-to-video` is a **conditional** eleventh: it ships with upstream's `npx skills add`
+route but not with the `hyperframes@claude-plugins-official` plugin, which carries it as a
+documentation guide instead. Check that it is installed before routing to it, and when it is
+absent, drive the capture through `hyperframes-cli` and direct the result here rather than
+naming a skill that will not resolve.
 
 **One overlap needs calling out.** `product-launch-video` matches the same brief
 (`references/video-shotcraft.md`) leads: a product demo or promo. They aren't rivals —

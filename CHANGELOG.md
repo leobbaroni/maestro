@@ -1,13 +1,29 @@
 # Changelog
 
+## 3.6.2 — 2026-08-03
+
+Companion facts re-derived from the installed plugin rather than from a catalog listing. 3.6.1
+took the listing at its word and it was wrong in a way that would have broken routing.
+
+- **`website-to-video` is conditional, and `companions.md` now says so.** It ships with
+  upstream's `npx skills add` route but **not** with the
+  `hyperframes@claude-plugins-official` plugin, which carries it as a documentation guide
+  instead. It sat in the workflow-skills list as though it were always routable, so a plugin
+  user's website-capture request would have been handed to a name that resolves to nothing.
+  Now marked conditional with the fallback written next to it: drive the capture through
+  `hyperframes-cli` and bring the result back here.
+- **19 skills, not 21, and no `hyperframes-media`** — that skill does not exist in any installed
+  build. The README's companion row is corrected, and its cost figure replaced with a measured
+  one (~2,540 always-on tokens for the suite, against maestro's own ~180).
+
 ## 3.6.1 — 2026-08-03
 
 Companion-install instructions corrected. Both were harder than reality.
 
 - **The HyperFrames deep skills install in one command**, from Anthropic's official
-  marketplace: `/plugin install hyperframes@claude-plugins-official` brings all 21 skills.
+  marketplace: `/plugin install hyperframes@claude-plugins-official` brings the whole suite.
   The README told you to hand-copy a `skills/` folder from the upstream repo. It also now
-  states the always-on cost — ~4,850 tokens for 21 descriptions — so the choice is informed.
+  states the always-on cost, so the choice is informed. *(Counts corrected in 3.6.2.)*
 - **`media-use` and `figma` ship inside that suite.** They were listed on the row below as
   "install per each tool's own source/docs", sending you looking for a distribution that
   doesn't separately exist.
