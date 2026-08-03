@@ -204,6 +204,28 @@ Delight is earned per-moment, never distributed everywhere. Brand register: deli
 - **Copy is a delight surface**: playful 404s, encouraging empty states — matched to brand (banks warm, not wacky). Write product-specific loading messages ("Syncing your team's changes…"), never generic AI filler ("Herding pixels", "Teaching robots to dance") — instantly recognizable slop.
 - Verify: still pleasant after 100 uses; users notice the goal, not the garnish; performant; shareable.
 
+## Medium assignment — what gets coded and what gets rendered
+
+Before building from an approved design, **inventory its visible ingredients in writing** and give each one an implementation medium: semantic HTML/CSS, authored SVG, an existing project asset, a generated raster, a sourced raster, an icon library, canvas/WebGL, or an accepted omission. The same list names the compositional commitments — nav items and icons, headline levels and their scale relationship, signature geometry like seams, masks, and overlaps, and each section's arrangement and density. **An element never written down is the element the build silently drops**, and a 150-word direction summary cannot carry this.
+
+**The medium follows what the region shows, never what feels buildable in the current stack.** That inversion is where an approved design most often dies:
+
+| The region is | Medium | Because |
+|---|---|---|
+| A human figure, a product object, machinery, anything with lighting and depth | Raster | No build session authors this as vectors, however line-drawn the style looks |
+| A named texture — woven cloth, paper grain, fabric, leather, brushed metal | Raster | The name alone settles it. A CSS gradient is not a texture medium, and "layered CSS textures" is not a medium at all |
+| Precise geometry, hard-edged shape systems, diagrams, countable elements, controls | Authored SVG | A session can specify these exactly — which is also where SVG's range ends |
+| Expressive motion, shaders, anything interactive | Canvas / WebGL | A raster flattens what should move, scale, and respond |
+
+**Raster is for what the world paints; code is for what the world draws, animates, or reacts with** — and choosing code there is ambition, not economy. Writing "silhouette" for a photographic figure, or "CSS" for a sculpted panel's finish, is not a medium choice; it is the quiet deletion of the approved design, and it is how a comp full of physical material becomes a flat page with the same section order. Dropping an image-native region is a scope decision the user makes at the approval point, never a silent flattening after it.
+
+Two commitments the inventory has to carry as **quantities**, because both pass every checklist while being the wrong design:
+
+- **Density and coverage** for any field built from many small elements — "thousands of glyphs over two-thirds of the fold, dense at the top, fading into the path". A field rebuilt at a tenth of its density is not that design.
+- **The typeface's compression class**, verified by rendering one headline word against the reference before building on it. A visibly wider or lighter silhouette means the face is wrong, and every section built on it inherits the miss.
+
+**The primary action is signature material.** When the design physically works the main CTA — dissolving, stamping, eroding it — that treatment belongs to the page's most important element. Shrinking it to a border trick or a few decorative pixels is the compliance-token version of commitment.
+
 ## Brand systems
 
 A brand system = voice + tokens + distinctive assets, all downstream of the thesis.

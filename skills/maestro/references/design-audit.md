@@ -94,7 +94,7 @@ Production-derived, mechanical, specific to Brand-register surfaces; the general
 
 **The em-dash ban (zero-tolerance).** The em-dash (`—`) and separator en-dash (`–`) are the single most-violated AI stylistic tell. Ban them everywhere user-visible: headlines, eyebrows, pills, body, quotes, captions, button text, alt text. No "sparingly" allowance. Fixes: period, comma, colon, parentheses, line break, or two sentences. Ranges use a hyphen (`2018-2026`). One `—`/`–` anywhere visible = fail. Grep: `grep -rn '—\|–' <out>`.
 
-**Eyebrow restraint (mechanical count).** An eyebrow is the small uppercase wide-tracked label above a headline (signature `text-[11px] uppercase tracking-[0.18em]`). The AI reflex puts one over every section, producing identical rhythm. Hard cap: **max 1 eyebrow per 3 sections**; hero counts as 1. Test: count `uppercase tracking` micro-labels; fail if `count > ceil(sections/3)`. The fix is usually deletion — headline and position already categorize the section. Eyebrows also never sit in a column beside the heading (tag-left / heading-right is its own tell — the heading stacks directly beneath in the same column).
+**Eyebrow restraint (mechanical count).** An eyebrow is the small uppercase wide-tracked label above a headline (signature `text-[11px] uppercase tracking-[0.18em]`). The AI reflex puts one over every section, producing identical rhythm. Hard cap: **max 1 eyebrow per 3 sections**; hero counts as 1. *(impeccable has since hardened this to an outright ban — "no brief earns it back; the heading carries its own weight." The cap stands as maestro's rule, since taste-skill leads on design-taste conflicts, but the ban is the defensible stricter position when a surface wants maximum restraint.)* Test: count `uppercase tracking` micro-labels; fail if `count > ceil(sections/3)`. The fix is usually deletion — headline and position already categorize the section. Eyebrows also never sit in a column beside the heading (tag-left / heading-right is its own tell — the heading stacks directly beneath in the same column).
 
 | Tell | Signature | Fix |
 |---|---|---|
@@ -103,6 +103,7 @@ Production-derived, mechanical, specific to Brand-register surfaces; the general
 | Decorative status dots | Colored dot before every nav item / list row / badge | Zero by default; only real live state, one per section |
 | Middle-dot overuse | `foo · bar · baz · qux` as default separator | Max 1 `·` per metadata line; prefer columns/hairlines |
 | Locale / weather strips | `Lisbon 14:23 · 18°C` atmosphere text | Banned for ~99% of briefs; a footer address is fine |
+| Sketch-style SVG standing in for illustration | `loose-sketch` / `doodle` class names, hand-drawn paths, `feTurbulence` grain | Real illustration or none. This bans SVG *imitating pictures* — SVG doing geometry, diagrams, animated linework, and shader-driven effects stay first-class |
 | Scroll cues | `Scroll to explore`, animated mouse-wheel | Delete; the viewer is already at the hero |
 | Photo-credit captions | `Field study no. 12 · <name>` under stock imagery | Only for a real credited photo; else drop |
 | Version footers | `v1.4.2`, `Build 0048` on marketing pages | Banned on marketing/landing/portfolio |

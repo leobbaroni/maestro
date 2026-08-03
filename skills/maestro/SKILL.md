@@ -7,7 +7,7 @@ description: Unified design, motion, 3D, and video super skill. Use for designin
 
 One skill for the full visual stack: **design → motion → 3D → video**. It merges eleven design/motion/video skill projects into one voice — deduplicated, conflicts resolved (full list in the footer).
 
-Two layers. `references/` is the **judgment layer** — distilled, one voice, decides everything. `library/` is the **depth layer** — four source corpora (taste-skill, hallmark, impeccable verbatim; video-shotcraft as a partial vendor); the judgment layer points into it for exact recipes, theme token sets, and long-tail protocols (rules of engagement: `library/README.md`). On genuine contradictions between sources the resolution is already encoded in the references, per the hierarchy **taste-skill > hallmark > impeccable**; everything non-conflicting composes. This file is the brain: it decides *what to load* and *how to work*. Load only what the task needs.
+Two layers. `references/` is the **judgment layer** — distilled, one voice, decides everything. `library/` is the **depth layer** — nine source corpora vendored verbatim, so every bundled tool stays runnable at full capability rather than only summarized; the judgment layer points into it for exact recipes, theme token sets, and long-tail protocols (rules of engagement: `library/README.md`). On genuine contradictions between sources the resolution is already encoded in the references, per the hierarchy **taste-skill > hallmark > impeccable**; everything non-conflicting composes. This file is the brain: it decides *what to load* and *how to work*. Load only what the task needs.
 
 ## Rule 0 — The Grill Gate
 
@@ -55,7 +55,9 @@ Load combinations freely — a scroll-driven 3D landing page needs `design-found
 
 A typical page job composes the absorbed sources: hallmark's layer picks the structure (`page-anatomy.md`), taste-skill's layer polishes components and kills slop (`design-foundations.md`, `design-audit.md`), impeccable's layer runs process and critique (`process.md`, `design-audit.md`). They operate at different grain sizes — structure → component → line-level tell — so they stack, not compete. The brief's locked design authority says which one leads when they'd diverge.
 
-The library is not only knowledge — each corpus ships **runnable protocols** (impeccable's ~23 named actions, hallmark's default design flow plus three verbs, taste-skill's 11 sub-skills). `references/commands.md` maps an intent to the exact one and resolves overlapping verbs; run the real procedure and honor its output contract rather than approximating it. Load the single file the references point to — never a whole corpus.
+The library is not only knowledge — **every bundled source ships its runnable protocols there**: impeccable's ~23 named actions, hallmark's default design flow plus three verbs, taste-skill's 11 sub-skills, genjutsu's `cast` and `paint` orchestrators over 14 technique jutsu, GreenSock's eight GSAP skills, design-dna's schema, LottieFiles' motion-design skill, shotcraft's modes, and the two generative-media directors. `references/commands.md` maps an intent to the exact one and resolves overlapping verbs; run the real procedure and honor its output contract rather than approximating it. Load the single file the references point to — never a whole corpus.
+
+Two sources are deliberately *not* vendored, and the reason matters when routing: **threejs-skills** declares no license, so it can't be redistributed here (the distillation in `threejs.md` stands alone; clone the repo for the corpus), and **remotion** and **hyperframes** ship their own agent skills through their own CLIs — Remotion's now self-updates on upgrade — so a vendored snapshot would be a stale competitor to the live one. `companions.md` routes to the installed skill instead.
 
 ## Engine choosers
 

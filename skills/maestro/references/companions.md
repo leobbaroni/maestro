@@ -35,6 +35,7 @@ maestro supplies direction, art direction, and motion judgment on top.
   are the fallback and the "what to pick" judgment layer.
 - **`figma`** — imports Figma designs, tokens, and animations into compositions.
 - **`mediabunny`** — programmatic media probing/handling (durations, dimensions).
+- **Media treatments are a resolved primitive, not an improvisation.** When `media-use` is installed, vague footage feedback and named looks (grades, LUTs, film treatments, effects) resolve through its treatment references *before* editing. Don't substitute a generic LUT, a CSS filter, an overlay, or an opacity tween for a canonical treatment that exists — and keep text, layout, and motion edits in their own domain rather than smuggling them into a treatment.
 - **Craftwork MCP** (craftwork.design/mcp, Pro) — if connected, natural-language asset search
   over the pack library from inside the session.
 
@@ -63,7 +64,9 @@ Worth knowing exist even when absent locally:
   upstream ships an operational toolchain: live in-browser design iteration, an automated
   anti-pattern detector, and an OKLCH brand-seed palette picker. Installable alongside maestro
   when live-iteration tooling is wanted.
-- **gsap-skills** (github.com/greensock/gsap-skills) — runnable examples beyond the distilled API guidance.
+- **threejs-skills** (github.com/CloudAI-X/threejs-skills) — ten Three.js skills (fundamentals, geometry, materials, lighting, textures, shaders, postprocessing, animation, loaders, interaction). **The only bundled source not vendored into `library/`**, because the upstream declares no license and can't be redistributed inside an MIT plugin. `threejs.md` is a complete distillation and stands alone; clone the repo yourself if you want the corpus.
+- **gsap-skills** (github.com/greensock/gsap-skills) — the skills themselves are vendored (`library/gsap-skills/`); what stays upstream is the framework `examples/` tree (Nuxt, React, Vue, vanilla starters) and its assets.
+- **genjutsu's `ui-ux-pro-max`** (github.com/AThevon/genjutsu) — 1.7 MB of Python tooling and CSV datasets, excluded from the vendor for size and its Python dependency. The other 14 sub-skills plus the `cast` and `paint` orchestrators are vendored.
 - **remotion-maps** (in remotion-dev/remotion under `packages/skills`) — map-driven video: Cesium 3D flyovers, Mapbox/MapLibre/MapTiler vector reveals, static-map fallbacks, each with render-stability rules for deterministic headless capture, plus geo-prep scripts and sample data. Needs the map SDK and usually an API token, so it isn't distilled here; pull the technique folder when a brief actually calls for maps.
 - **video-shotcraft** (github.com/Vincentwei1021/video-shotcraft) — the shot cards, pipeline, and reference implementations are vendored (`library/video-shotcraft/`), but three heavy pieces are not: the **hosted gallery** at <https://vincentwei1021.github.io/video-shotcraft/library.html> (161 motion samples — the right way to let a user watch shots and pick by name, no install needed; the preview clips now live in a release rather than the repo, so a local gallery must fetch its media first), the **full Remotion template project** needed for template mode, and the **SFX/BGM binaries** (~30 MB; the manifest is vendored, the files aren't). Clone the repo when a job needs the template or the audio.
 

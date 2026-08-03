@@ -20,8 +20,8 @@
       ],
       "pins": {
         "skill/reference": {
-          "sha": "25934b9f6f488432d35a5a1c4c72c2cf494f6a6b",
-          "date": "2026-07-28T16:47:36Z"
+          "sha": "bcfb7efc46a5354819bedf3ecc9ab2a117eb89df",
+          "date": "2026-08-03T02:56:39Z"
         },
         "skill/SKILL.src.md": {
           "sha": "6769b1879ab2bc2fb8c9fc690554ac248fd7b20c",
@@ -207,8 +207,8 @@
           "date": "2026-07-19T17:33:30Z"
         },
         "packages/skills/skills": {
-          "sha": "d3ec0e63672fddc9f6bbbc5e1072cbb6b2e0fc28",
-          "date": "2026-07-28T06:48:54Z"
+          "sha": "a836136e52f749d980cd4683d6b616d253a17b2a",
+          "date": "2026-08-03T10:18:16Z"
         }
       }
     },
@@ -329,20 +329,20 @@
           "date": "2026-07-18T08:36:36Z"
         },
         "skills/hyperframes-core": {
-          "sha": "e7f9918d21f9fa57f1799c7b3ba38963cfcb52f1",
-          "date": "2026-07-24T21:12:48Z"
+          "sha": "9cbab0c78ae1ff62026129a51417392308c389df",
+          "date": "2026-07-28T23:00:07Z"
         },
         "skills/hyperframes-cli": {
-          "sha": "d287e5244c1e6d9051642f94f368ef7a1e26bd34",
-          "date": "2026-07-28T11:27:09Z"
+          "sha": "30f38307411908237201ed227f5350aa18ba156e",
+          "date": "2026-07-31T20:30:07Z"
         },
         "skills/hyperframes-creative": {
           "sha": "696cbdbbd0e5c83faf72c767126d4a153110f130",
           "date": "2026-07-21T16:41:40Z"
         },
         "skills/hyperframes-animation": {
-          "sha": "696cbdbbd0e5c83faf72c767126d4a153110f130",
-          "date": "2026-07-21T16:41:40Z"
+          "sha": "3a6b7f06127102be719aa4d91f1a8b40b299a0c6",
+          "date": "2026-07-31T04:52:30Z"
         },
         "skills/hyperframes-keyframes": {
           "sha": "b9be0b26254fe7b759c6310036866f02d9d3d72b",
@@ -353,8 +353,8 @@
           "date": "2026-07-15T13:19:14Z"
         },
         "skills/hyperframes/SKILL.md": {
-          "sha": "4582881d002c361afff59cc1c74ae072a50e17f7",
-          "date": "2026-07-25T01:42:07Z"
+          "sha": "6cab53a681bf159ffe34f66506a8004e38213fae",
+          "date": "2026-07-29T15:27:07Z"
         }
       },
       "$comment": "Watch the six core skills maestro distills, plus the router SKILL.md whose route table is the one file any workflow add/rename/remove must touch - that single file preserves the companions.md signal while dropping the workflow pipelines maestro only name-checks."

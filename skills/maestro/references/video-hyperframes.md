@@ -76,7 +76,11 @@ A clip is any element with `data-start`, `data-duration` (where required), and `
 
 The visibility window is inclusive of both ends (`start ≤ t ≤ start + duration`), so the final frame holds the animation's resolved end state — a reveal landing exactly on `data-duration` still renders.
 
-Authoring hints: `data-hidden` hides an element in both preview and render (non-destructive toggle); `data-layout-allow-overflow` marks intentional overflow for `check` (inherited down the subtree — scope it narrowly); `data-layout-ignore` excludes an element from layout audits. Legacy aliases: `data-layer` → `data-track-index`, `data-end` → `data-duration`.
+Authoring hints: `data-hidden` hides an element in both preview and render (non-destructive toggle); `data-layout-ignore` excludes an element from layout audits. Legacy aliases: `data-layer` → `data-track-index`, `data-end` → `data-duration`.
+
+**Layout waivers are per-defect, not general.** `check` treats a layout error as a defect unless a snapshot proves the layering is deliberate, and then you mark it with the *specific* waiver: `data-layout-allow-overflow`, `data-layout-allow-overlap`, `data-layout-allow-occlusion`, or `data-layout-allow-caption-zone` for intentional lower-third and caption-band copy sitting inside `--caption-zone`. Each silences only its own audit — the caption waiver does not excuse overflow — so pair them when a region genuinely needs two. All apply to the marked element and every descendant, so scope them to the narrowest wrapper that owns the intentional behavior.
+
+**Declare a WebGPU dependency.** A composition that cannot render without WebGPU gets `data-requires-webgpu` on its composition root; without it, local capture silently screenshots the no-GPU fallback when auto-detection picks software rendering, and you get a clean-looking render of the wrong thing. With it, capture fails loudly instead. Inside a WebGPU adapter, register queue completion **synchronously** in the seek handler — `e.detail.waitUntil(device.queue.onSubmittedWorkDone())` — so the framework waits for submitted GPU work before screenshotting. And handle a repeated seek at the same time as a re-render of that exact time, never as a step forward: while Studio is paused the same timestamp is re-dispatched to keep the swapchain presented, and advancing simulation state on it is how a paused composition drifts.
 
 ### Tracks — temporal, not visual
 
@@ -251,6 +255,8 @@ Everything runs through `npx hyperframes` (Node ≥ 22 + FFmpeg).
 | `npx hyperframes render --quality draft\|high --output out.mp4` | Render the MP4 — only after the user approves; verify the output file exists and has plausible size. |
 
 Render is user-gated: never auto-render just because checks pass.
+
+**Three different timeouts, and only one is a wall clock.** `--timeout` bounds page navigation and render-readiness (defaults 10000 / 3000 ms). `--capture-budget` is a separate *cooperative* budget for the work after navigation — fonts, assets, vision, contact sheets — and it cannot interrupt native work already in flight. Whatever deadline the caller wraps around the command is a third one, and when it fires the capture's result is simply unknown: it does not prove the capture failed. Raise `--timeout` for a slow site and `--capture-budget` for a heavy page, rather than shortening an outer deadline and reading the timeout as a verdict.
 
 ---
 

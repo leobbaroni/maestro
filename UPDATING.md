@@ -1,6 +1,6 @@
 # Keeping maestro current
 
-Maestro is a **distillation** of eleven living upstream projects. When those projects
+Maestro is a **distillation** of eleven living upstream projects, over a vendored depth layer of nine corpora. When those projects
 change, maestro should absorb the changes — without losing its single voice. This file is
 the complete playbook; an AI agent can run it end-to-end.
 
@@ -71,24 +71,52 @@ Update the maestro skill from its upstream sources.
 
 ## The vendored library (depth layer)
 
-`skills/maestro/library/` holds four corpora that the distilled modules point into for
-long-tail depth — taste-skill, hallmark, and impeccable's reference set as verbatim copies,
-plus video-shotcraft as a partial vendor. When the drift watcher flags one of these:
+`skills/maestro/library/` holds **nine** corpora that the distilled modules point into for
+long-tail depth. The vendoring principle: **every bundled source ships its runnable protocols**,
+so a named action executes the originating project's real procedure rather than maestro's
+paraphrase. Eight track a public upstream:
+
+| Corpus | Vendored from | Scope |
+|---|---|---|
+| `taste-skill/` | `Leonxlnx/taste-skill:skills/` | The 11 curated sub-skills; excludes `taste-skill-v1` and `gpt-tasteskill` |
+| `hallmark/` | `nutlope/hallmark:skills/hallmark/` | Whole skill |
+| `impeccable/` | `pbakaus/impeccable:skill/` | `reference/` + `SKILL.src.md`; Apache-2.0, carry `NOTICE.md` |
+| `genjutsu/` | `AThevon/genjutsu:skills/` | The 14 fed `_jutsu/` sub-skills + `cast/SKILL.md` + `paint/SKILL.md`; **excludes `_jutsu/ui-ux-pro-max`** (1.7 MB of Python + CSV) |
+| `gsap-skills/` | `greensock/gsap-skills:skills/` | The 8 skills + `llms.txt`; excludes `examples/` and `assets/` |
+| `design-dna/` | `zanwei/design-dna` | `SKILL.md` + `references/`; excludes translated READMEs |
+| `motion-design-skill/` | `lottiefiles/motion-design-skill:skills/` | Whole skill |
+| `video-shotcraft/` | `Vincentwei1021/video-shotcraft` | **Partial** — see the file list below |
+
+The ninth, `higgsfield-directors/`, does **not** track an upstream:
+
+> **`library/higgsfield-directors/` has no upstream and the drift checker will never flag it.**
+> It holds two author-written skills (`banana-pro-director.md`, `cinema-worldbuilder.md`)
+> supplied from the maestro author's own setup — deliberately absent from `upstreams.json`,
+> because there is no repository to watch. Do not "fix" that by adding an entry. It goes stale
+> silently, so when the author says they've revised the originals, re-copy them by hand and
+> re-distill `generative-direction.md`, `generative-stills.md`, and `generative-video.md`.
+
+When the drift watcher flags one of the eight watched corpora:
 
 1. Re-distill the affected judgment modules as usual (steps above).
-2. **Also re-vendor**: re-clone the upstream and replace the corpus wholesale —
-   `library/taste-skill/skills/` from `Leonxlnx/taste-skill:skills/` (the 11 curated
-   sub-skills, excluding `taste-skill-v1` and `gpt-tasteskill`),
-   `library/hallmark/` from `nutlope/hallmark:skills/hallmark/`,
-   `library/impeccable/reference/` + `SKILL.src.md` from `pbakaus/impeccable:skill/`,
-   `library/video-shotcraft/` from `Vincentwei1021/video-shotcraft` — **partial vendor**:
-   `references/`, `demos/` minus `_textures/`, `template/src/` + `TEMPLATE.md` + its config
-   files, `assets/lib/`, `assets/scripts/`, `assets/audio/ATTRIBUTION.md`, `SKILL.md`;
-   never `gallery/`, `template/out/`, `template/public/`, `demos/_textures/`, or the audio
-   binaries. **Preserve `library/video-shotcraft/VENDOR-NOTES.md`** — it is maestro-authored,
-   not upstream, and documents that split; keep it in sync and never overwrite it with the
-   upstream README. Carry each LICENSE (and impeccable's NOTICE.md) unchanged. Never
-   hand-edit vendored files — local judgment belongs in the distilled modules.
+2. **Also re-vendor**: re-clone the upstream and replace that corpus wholesale, per the scope
+   column above. `video-shotcraft` is the only partial one — take `references/`, `demos/` minus
+   `_textures/`, `template/src/` + `TEMPLATE.md` + its config files (`package.json`,
+   `remotion.config.ts`, `tsconfig.json`), `assets/lib/`, `assets/scripts/`, the `.md` files in
+   `assets/audio/` (`ATTRIBUTION.md` and the audition data), and `SKILL.md`; never `gallery/`,
+   `template/out/`, `template/public/`, `demos/_textures/`, or the audio binaries.
+   **Preserve every `VENDOR-NOTES.md`** — they are maestro-authored manifests, not upstream
+   files, and several corpora have one. Keep them in sync and never overwrite one with an
+   upstream README. Carry each LICENSE (and impeccable's NOTICE.md) unchanged. Never hand-edit
+   vendored files — local judgment belongs in the distilled modules.
+
+   **Licence check before vendoring anything new.** A corpus with no declared licence does not
+   get copied in: maestro ships MIT, and redistributing unlicensed source inside it is not ours
+   to do. `threejs-skills` is the standing example — distilled in `threejs.md`, deliberately
+   absent from `library/`, and named in `companions.md` as clone-it-yourself. Two more are
+   excluded on different grounds: **remotion** and **hyperframes** ship their own agent skills
+   through their own CLIs (Remotion's self-updates during `npx remotion upgrade`), so a vendored
+   snapshot would be a stale second copy competing with the live one.
 3. Spot-check that library paths cited by the distilled modules still exist
    (`grep -o 'library/[A-Za-z0-9_/.-]*' skills/maestro/references/*.md` → verify each).
 4. Re-check `references/commands.md` against the corpus's own command table or verb
@@ -105,7 +133,7 @@ plus video-shotcraft as a partial vendor. When the drift watcher flags one of th
 | design-dna.md | design-dna (authoritative), impeccable, hallmark (study), taste-skill |
 | design-audit.md | impeccable, genjutsu, taste-skill, hallmark |
 | page-anatomy.md | hallmark (authoritative — macrostructures, fingerprints, themes) |
-| commands.md | all four vendored corpora — re-check when a corpus adds, renames, or drops a verb or mode |
+| commands.md | every vendored corpus — re-check when any of them adds, renames, or drops a verb, mode, or sub-skill |
 | video-shotcraft.md | video-shotcraft (authoritative — cards, pipeline, aesthetic rules) |
 | video-sound.md | video-shotcraft (sound-design, music-beat-sync), hyperframes, remotion |
 | motion-principles.md | motion-design-skill, genjutsu, impeccable |
@@ -116,6 +144,9 @@ plus video-shotcraft as a partial vendor. When the drift watcher flags one of th
 | video-direction.md | hyperframes, video-shotcraft (the product-film handoff) |
 | video-hyperframes.md | hyperframes (authoritative) |
 | video-remotion.md | remotion (authoritative) |
+| generative-direction.md | banana-pro-director + cinema-worldbuilder (shared grammar), impeccable (comp-as-page, prompt-travels-with-asset) |
+| generative-stills.md | banana-pro-director (authoritative) |
+| generative-video.md | cinema-worldbuilder (authoritative) |
 | platform-native.md | genjutsu |
 | toolbox.md | live web verification — no git upstream; see below |
 | toolbox-corpus.md | frozen curation-feed sample (2026-07) — historical record, only pruned |

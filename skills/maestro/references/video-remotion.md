@@ -12,6 +12,7 @@ For a product demo or launch promo, `references/video-shotcraft.md` is the craft
 - Randomness must be deterministic: use `random(seed)` from `remotion`, never `Math.random()` / `Date.now()` — a value that differs between frames or render threads produces flicker.
 - Async work (fetching data, Lottie JSON, captions) must hold the frame open with `delayRender()` / `continueRender()` (or the `useDelayRender()` hook) and `cancelRender(err)` on failure.
 - Install packages with `npx remotion add <pkg>` (picks the matching version) for all `@remotion/*` packages, `mediabunny`, and `zod`.
+- **The CLI keeps its own agent skills current.** It detects an outdated installed Remotion skill set and refreshes it during `npx remotion upgrade` — so when guidance here conflicts with a freshly upgraded local skill, the local one is newer. Check `npx remotion versions` before trusting any version-gated API below.
 
 ```tsx
 import { useCurrentFrame, interpolate, Easing } from "remotion";
@@ -96,7 +97,15 @@ Canonical curves:
 | Preset without custom cubic | `Easing.inOut(Easing.cubic)` |
 | Spring feel without spring() | `Easing.spring()` (Remotion helper) |
 
-Named presets, most linear → most curved: `Easing.quad`, `Easing.cubic` (good default), `Easing.sin`, `Easing.exp`, `Easing.circle`. Direction rule: **`Easing.out` for entrances** (arrive with momentum), **`Easing.in` for exits** (leave with gravity).
+Named presets, most linear → most curved: `Easing.quad`, `Easing.cubic` (good default), `Easing.sin`, `Easing.exp`, `Easing.circle`. Direction rule: **`Easing.out` for entrances** (arrive with momentum), **`Easing.in` for exits** (leave with gravity). `Easing.spring({damping: 200})` is the no-bounce push — spring feel without leaving `interpolate()`.
+
+Three options worth knowing beyond easing and extrapolation:
+
+| Option | Does |
+|---|---|
+| `output: 'perceptual-scale'` | **Add to every scale animation.** A linear scale ramp reads as decelerating to the eye — the larger the scale gets, the smaller each increment looks. This compensates |
+| `posterize: 3` | Samples every *n*th frame only, deliberately dropping the effective frame rate for a stepped, stop-motion look. An artistic choice, not a performance one |
+| Multiple keyframes | The input and output ranges take any number of points. For per-segment easing, pass an **array of `n − 1` easings**: `interpolate(frame, [0, 1*fps, 9*fps, 10*fps], [0, 1, 1, 0], { easing: [Easing.bezier(0.16, 1, 0.3, 1), Easing.linear, Easing.spring({damping: 200})], … })` — one in, one hold, one out, in a single call |
 
 Studio-editable style: keep the `interpolate()` call **inline in the `style` prop** and prefer individual transform properties:
 
@@ -134,6 +143,7 @@ Work in seconds via `const { fps } = useVideoConfig()` — write `2 * fps`, not 
 ```
 
 - Default layout is an absolute fill covering the frame; `layout="none"` for inline content.
+- **`<AbsoluteFill>` itself takes the timing props** (`from`, `durationInFrames`, `premountFor`) and registers as an interactive sequence in Studio — so a scene wrapper rarely needs a `<Sequence>` around it. So do `<Interactive.*>`, `<Img>`, `<AnimatedImage>`, `<CanvasImage>`, `<HtmlInCanvas>`, `<Solid>`, `<Gif>`, and `<Video>`/`<Audio>` from `@remotion/media`. Wrap in `<Sequence>` only when a component doesn't support them.
 - **Always premount** sequences (`premountFor={1 * fps}`) so media/assets load before appearing.
 - Negative `from` **trims** the start of an animation (`<Sequence from={-15}>` starts 15 frames in). `durationInFrames` trims/unmounts the end. Trim and delay by nesting: outer `from={30}`, inner `from={-15}`.
 - Sequences nest for complex timing.
@@ -156,7 +166,13 @@ import { fade } from "@remotion/transitions/fade";
 - Presentations: `fade()`, `slide({direction: "from-left" | "from-right" | "from-top" | "from-bottom"})`, `wipe()`, `flip()`, `clockWipe()` — each imported from `@remotion/transitions/<name>`.
 - Timings: `linearTiming({durationInFrames})`, `springTiming({config: {damping: 200}, durationInFrames})`. Get real length with `timing.getDurationInFrames({fps})` (springs without explicit duration depend on fps).
 - **Transitions overlap scenes and SHORTEN total duration**: two 60f scenes + 15f transition = 105f, not 120f. Compute composition duration as `sum(scenes) - sum(transitions)`.
-- `<TransitionSeries.Overlay durationInFrames={20}>` renders an effect over the cut **without** changing duration; optional `offset` shifts it. An overlay cannot be adjacent to a transition or another overlay. The stock choice is `<LightLeak />` from `@remotion/light-leaks` (Remotion 4.0.415+), which reveals across the first half of its duration and retracts across the second.
+- `<TransitionSeries.Overlay durationInFrames={20}>` renders an effect over the cut **without** changing duration; optional `offset` shifts it. An overlay cannot be adjacent to a transition or another overlay. The stock choice is a light leak — see Effects below for the current shape.
+
+### Structuring a multi-scene video
+
+One file per scene, assembled by a `<TransitionSeries>` whose sequences are `name`d, then **register every scene as its own `<Composition>` inside a `<Folder>`** alongside the assembled video. That second registration is what makes the project editable rather than just renderable: with a scene registered under the same component, double-clicking its sequence in the main timeline jumps straight to that composition, and the user can trim each scene's head and tail visually before any transition is added.
+
+Keep every `durationInFrames` an inline literal, in the scene compositions and in the series alike. The duplication is deliberate — a computed duration is invisible to the editor, and redundancy that stays editable beats a single source of truth that doesn't.
 
 ## Layout for Video
 
@@ -273,7 +289,24 @@ import { blur } from "@remotion/effects/blur";
 <Video src={src} effects={[blur({ radius: 8 })]} />;
 ```
 
-`npx remotion add @remotion/effects`. Large catalog: color (`brightness`, `contrast`, `duotone`, `grayscale`, `hue`, `saturation`, `tint`, `invert`, `colorKey`, `thermalVision`), blur (`blur`, `zoomBlur`, `linearProgressiveBlur`, `radialProgressiveBlur`), light (`glow`, `dropShadow`, `shine`, `lightTrail`, `vignette`, `lightLeak`, `starburst`), distortion (`barrelDistortion`, `chromaticAberration`, `fisheye`, `wave`, `mirror`, `cornerPin`, `noiseDisplacement`), texture (`halftone`, `pixelate`, `scanlines`, `noise`, `paper`, `dotGrid`, `pattern`, `roughenEdges`, `emboss`, `burlap`, `speckle`), plus gradients, dissolves, and generative patterns. Nearly all import from `@remotion/effects/<slug>`; the exception is `uvTranslate()` and `xyTranslate()`, which share `@remotion/effects/translate`. `lightLeak` and `starburst` moved into this catalog — import them as effects from `@remotion/effects`, not from their own packages. The standalone `@remotion/light-leaks` package still ships the `<LightLeak>` *component* used inside a transition overlay, which is a different thing from the effect function of the same name. Effects use WebGL2 — enable for renders with `Config.setChromiumOpenGlRenderer('angle')` in `remotion.config.ts` (or `--gl=angle`).
+`npx remotion add @remotion/effects`. Large catalog: color (`brightness`, `contrast`, `duotone`, `grayscale`, `hue`, `saturation`, `tint`, `invert`, `colorKey`, `thermalVision`), blur (`blur`, `zoomBlur`, `linearProgressiveBlur`, `radialProgressiveBlur`), light (`glow`, `dropShadow`, `shine`, `lightTrail`, `vignette`, `lightLeak`, `starburst`), distortion (`barrelDistortion`, `chromaticAberration`, `fisheye`, `wave`, `mirror`, `cornerPin`, `noiseDisplacement`), texture (`halftone`, `pixelate`, `scanlines`, `noise`, `paper`, `dotGrid`, `pattern`, `roughenEdges`, `emboss`, `burlap`, `speckle`), plus gradients, dissolves, and generative patterns. Nearly all import from `@remotion/effects/<slug>`; the exception is `uvTranslate()` and `xyTranslate()`, which share `@remotion/effects/translate`. Effects use WebGL2 — enable for renders with `Config.setChromiumOpenGlRenderer('angle')` in `remotion.config.ts` (or `--gl=angle`).
+
+**Light leaks are an effect now, not a component.** `lightLeak` and `starburst` moved into this catalog and **the standalone `@remotion/light-leaks` package with its `<LightLeak>` component is gone** — apply the effect to a canvas component instead, on Remotion **4.0.500+**:
+
+```tsx
+import { lightLeak } from "@remotion/effects/light-leak";
+import { interpolate, Solid, useCurrentFrame, useVideoConfig } from "remotion";
+
+const { durationInFrames, width, height } = useVideoConfig();
+<Solid width={width} height={height} effects={[lightLeak({
+  seed, hueShift,
+  progress: interpolate(useCurrentFrame(), [0, durationInFrames - 1], [0, 1], {
+    extrapolateLeft: "clamp", extrapolateRight: "clamp",
+  }),
+})]} />;
+```
+
+`progress` drives the whole gesture — the leak reveals across the first half and retracts across the second — so ramping it 0→1 across the overlay's own duration is what makes it read as a leak rather than a wash. Keep that `interpolate()` inline so Studio can keyframe it.
 
 Custom reusable effects: `createEffect()` from `remotion` (`type` reverse-DNS id, `backend: "2d" | "webgl2" | "webgpu"`, `calculateKey`, `setup`/`apply`/`cleanup`, `schema`, `validateParams`). Prefer `"2d"` unless shader math is needed. Preference order for any visual effect: plain HTML/CSS/SVG/filter/blend animation → catalog effect → `createEffect()` → custom `<HtmlInCanvas onPaint>` (Chrome 149+ with a flag; never nest `<HtmlInCanvas>`).
 

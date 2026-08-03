@@ -481,6 +481,7 @@ Gotchas not already called out above (rules already stated in the sections above
 | Forgetting `ScrollTrigger.refresh()` after dynamic content/images/fonts | Resize is auto; DOM changes are not |
 | `markers: true` or GSDevTools shipped to production | Dev only |
 | `svgOrigin` + `transformOrigin` on the same SVG element | Only one applies — pick one |
+| Percentage `transformOrigin` on SVG built with `createElementNS` | A detached, hidden, or zero-size element exposes no usable geometry when GSAP resolves the percentage, so the pivot lands wrong. Attach and size the SVG *before* constructing the timeline, pass an explicit `svgOrigin` when you know the canvas coordinates, or draw the animated geometry around local `(0,0)` inside a positioning `<g>` so the centre pivot needs no measured bounding box |
 | Expecting timeline `defaults` inside nested timelines | Defaults reach direct children only |
 | `gsap.context()` nested inside `matchMedia` handler | matchMedia already creates a context — use `mm.revert()` |
 | Pinned section (sticky-stack, horizontal-pan) with `start: "top center"` / `"top 80%"` | Pins fire halfway through scroll — pinned triggers use `start: "top top"` + `pin: true`; horizontal-pan adds `end: "+=" + distance, scrub: 1, invalidateOnRefresh: true` (canonical skeletons: `library/taste-skill/skills/taste-skill/SKILL.md` §5) |

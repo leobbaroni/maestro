@@ -1,5 +1,94 @@
 # Changelog
 
+## 3.6.0 — 2026-08-03
+
+Absorbed drift across impeccable, remotion, and hyperframes; **vendored four more corpora so
+every bundled tool is runnable, not just summarized**; and corrected `UPDATING.md`, which had
+gone stale in ways that would have misled the next re-distillation.
+
+### Corrected: light leaks (3.4.0 shipped this wrong)
+
+**`<LightLeak>` and the `@remotion/light-leaks` package are gone.** In 3.4.0 maestro fixed the
+import path and kept the component; upstream then removed the component path entirely. A light
+leak is now `lightLeak()` from `@remotion/effects/light-leak` applied to a canvas component,
+with `progress` ramped 0→1 across the overlay's duration — and it needs **4.0.500+**, not the
+4.0.415 maestro published. Both places that named the component are fixed.
+
+### Full-capability vendoring
+
+Only five of eleven sources had a depth layer, so genjutsu, GSAP, design-dna, and
+motion-design existed in maestro **only as maestro's summary of them**. Now vendored:
+
+- **`library/genjutsu/`** — the two runnable orchestrators (`cast` for motion and
+  micro-interactions on an existing UI, `paint` for a full visual universe) over the 14
+  technique sub-skills, spanning web, Jetpack Compose, and SwiftUI. Excludes `ui-ux-pro-max`
+  (1.7 MB of Python and CSV, four times everything else here, needs a Python runtime).
+- **`library/gsap-skills/`** — GreenSock's own eight skills plus `llms.txt`. Authoritative on
+  GSAP API facts, so it outranks `gsap.md` on conflicts.
+- **`library/design-dna/`** — the DNA schema and generation guide; authoritative on the JSON shape.
+- **`library/motion-design-skill/`** — LottieFiles' principles, patterns, and Lottie handoff.
+
+Routed through `commands.md` with two new sections, so these are reachable by intent rather
+than by knowing they exist. `library/README.md` rewritten for all nine corpora.
+
+**Two sources stay out, and the reasons are now written down.** `threejs-skills` **declares no
+license** — redistributing it inside an MIT plugin isn't ours to do, so `threejs.md` stands
+alone and `companions.md` says clone it yourself. `remotion` and `hyperframes` ship their own
+agent skills through their own CLIs (Remotion's self-updates during `npx remotion upgrade`), so
+a vendored snapshot would be a stale competitor to the live one.
+
+### impeccable — real design doctrine, not tooling churn
+
+- **Medium assignment**, new in `design-direction.md`: inventory an approved design's visible
+  ingredients in writing and give each an implementation medium, because *an element never
+  written down is the element the build silently drops*. The medium follows what the region
+  **shows**, never what feels buildable in the current stack — figures, product objects, and
+  named textures (cloth, paper grain, leather, brushed metal) are raster whatever the stack,
+  and a CSS gradient is not a texture medium. **Raster is for what the world paints; code is
+  for what the world draws, animates, or reacts with.** Plus density and typeface-compression
+  as written quantity commitments, and the primary action as signature material.
+- **The comp is king**, new in `process.md`: building from an approved mockup runs in two
+  phases, reproduction before enhancement, with exactly three concessions (fonts, icons, defects
+  in the comp). **The overlap comparison is the authority, never your conviction** — models
+  systematically believe their recreation succeeded when it did not. And prove the hero viewport
+  against the comp before building any later section, since every section inherits its shortfall.
+- **The stack is the user's decision** on greenfield — asked once, recorded, `delegated` when
+  handed back.
+- Sketch-style SVG standing in for illustration added to the anti-slop table.
+- **Conflict resolved, not silently absorbed:** impeccable hardened its eyebrow cap into an
+  outright ban. taste-skill leads on design-taste conflicts, so maestro keeps the mechanical cap
+  and records the ban as the defensible stricter position.
+
+### remotion, beyond the light-leak fix
+
+`output: 'perceptual-scale'` (add it to every scale animation — linear scale reads as
+decelerating), `posterize`, multi-keyframe easing arrays of `n − 1` items, `Easing.spring`
+damping. **`<AbsoluteFill>` now takes the timing props** and registers as an interactive
+sequence, so scene wrappers rarely need a `<Sequence>`. New multi-scene structure: one file per
+scene, each registered as its own composition inside a folder so the timeline is navigable and
+trimmable, with inline durations kept redundant on purpose because a computed one is invisible
+to the editor. The CLI now self-updates its skills on upgrade.
+
+### hyperframes
+
+Layout waivers are per-defect (`data-layout-allow-caption-zone` joins overflow/overlap/
+occlusion and silences only its own audit). `data-requires-webgpu` on a composition root turns
+a silent no-GPU fallback screenshot into a loud failure. WebGPU seek contract: register queue
+completion synchronously, and treat a repeated seek at the same timestamp as a re-render, never
+a step forward. Three distinct timeouts distinguished — `--timeout`, the cooperative
+`--capture-budget`, and the caller's own deadline, which proves nothing when it fires. SVG
+geometry must exist before GSAP resolves a percentage `transformOrigin`. Media treatments
+resolve through `media-use` rather than being improvised as a CSS filter.
+
+### UPDATING.md
+
+Said four vendored corpora when there were five and are now nine; carried a stale
+video-shotcraft file list; omitted the three generative modules from the module map; named only
+one `VENDOR-NOTES.md` to preserve when several exist. Most importantly it said nothing about
+`higgsfield-directors/` having **no upstream** — so the drift checker will never flag it and a
+future session might "fix" that by inventing an entry. Now stated in a callout, along with a
+licence check before vendoring anything new.
+
 ## 3.5.0 — 2026-07-30
 
 **A new capability family: prompting image and video models.** Two author-written skills —

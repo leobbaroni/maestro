@@ -44,6 +44,8 @@ Before any substantial design, build, or redesign work, interview the user until
 
 Twenty minutes of interviewing is cheaper than days of correction rounds. But don't ceremonialize: a grill that outlives its usefulness is its own failure.
 
+**On a greenfield surface, the stack is the user's decision, not yours.** When there's no framework or scaffold and the request implies building, ask once — plain static HTML/CSS, a named framework, or your recommendation — plus any deploy target that constrains the answer. Record the outcome in the brief, including `delegated: <what you chose and why>` when they hand it back, so later sessions know the choice was offered rather than assumed.
+
 ### 1a. Design authority — ask, don't assume
 
 Maestro carries three design houses with genuinely different instincts (`references/commands.md`). On the same brief they produce different work, so **which one leads is a user decision** — one of the first questions in any substantial design grill, and the one to push hardest on, because every later answer inherits from it.
@@ -179,6 +181,18 @@ Misclassifying the mode is the biggest source of bad redesign output. Detect fir
 **Paid actions** (media-generation batches, paid APIs, cloud renders, deployments): state the estimated cost and get confirmation before anything non-trivial.
 
 **No placeholder output.** For "ship the whole thing" tasks, banned in delivered code: `// ...`, `// rest of code`, stub TODOs, bare `...`, and prose escapes ("for brevity", "the rest follows the same pattern"). Count the deliverables the request implies, build every one, cross-check the count before responding. On a genuine length limit, stop at a clean breakpoint (end of file/function/section) and mark `[PAUSED — X of Y complete; continue from: <next>]` — never compress or skip the middle.
+
+## 5a. Building from an approved mockup — the comp is king
+
+When a mockup or comp has been approved, it is the specification, and the build runs in two phases.
+
+**Phase one is reproduction, not interpretation.** Rebuild the comp at its own breakpoint until a screenshot at the comp's width and height overlaps it near pixel-for-pixel — materials, components, elevation, assets, and implied design language included. Exactly three concessions exist: **fonts** (the closest obtainable face), **icons** (an exact match unless the user already chose a library), and **genuine defects in the comp itself**, like a spelling error. Everything else matches.
+
+**The overlap comparison is the authority, never your conviction.** Models systematically believe their HTML, CSS, and SVG recreation succeeded when it did not — so put the screenshot beside the comp at identical dimensions after every region, and judge from that. When a region keeps losing the comparison, stop recreating it in code and produce it as a rendered asset composited into the page.
+
+**Prove the hero before building past it.** Render the first viewport, capture it, and set it beside the comp's first viewport *before* any later section. The hero carries the run's ambition and every following section inherits its shortfall. Judge scale and density as quantities: a field at a tenth of the comp's coverage, or type at half its weight, is a different design. Five minutes of retry here is what a rebuild verdict at the finish costs when this check is skipped.
+
+Only once reproduction holds does **phase two** begin: static regions that should live become animated or interactive, reveals and motion go in, then responsiveness across the surface's devices. Where the comp doesn't cover the whole surface, continue inside its recorded world — a component the comp never shows inherits the system's corner language, line weights, and materials, and may not introduce container styles, border weights, or chrome the comp never uses.
 
 ## 6. Verification
 

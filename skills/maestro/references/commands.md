@@ -96,6 +96,26 @@ Not verbs — a mode gate that runs before any production work, and it is the us
 | Score a finished cut | `library/video-shotcraft/references/sound-design.md` (+ `music-beat-sync.md` when there's a track) | Runs after picture lock — judgment layer in `video-sound.md` |
 | Pre-delivery review | `library/video-shotcraft/references/final-review.md` | Independent clean-context reviewer, frame-numbered evidence. **Reports only** |
 
+## Motion, creative-coding & cross-platform protocols (genjutsu)
+
+genjutsu ships two orchestrators, not just knowledge. They adapt to web, Jetpack Compose, and SwiftUI — the only bundled source that does.
+
+| Intent | Protocol | What it does |
+|---|---|---|
+| "Make this UI feel alive", add motion / micro-interactions / wow-factor to something that exists | `library/genjutsu/cast/SKILL.md` | Scans the stack, proposes an interaction thesis, loads the sub-skills it needs, implements it |
+| "Give this a whole visual identity", art direction → system → build → audit in one pass | `library/genjutsu/paint/SKILL.md` | The full anti-slop visual pipeline. Overlaps hallmark's page flow — see the verb table below |
+| One technique, not a pipeline — GSAP, R3F, canvas, Framer Motion, CSS-native, Compose or SwiftUI motion/graphics, platform principles | `library/genjutsu/_jutsu/<name>/SKILL.md` | 14 sub-skills, loadable directly |
+
+## Engine & schema authorities (gsap-skills, design-dna, motion-design-skill)
+
+These three don't compete on taste — each is simply authoritative in its own domain, and outranks maestro's distillation on facts inside it.
+
+| Intent | Protocol | Authority |
+|---|---|---|
+| Any GSAP API question, plugin surface, ScrollTrigger behaviour, React integration, performance tuning | `library/gsap-skills/skills/<name>/SKILL.md` (8 skills + `llms.txt`) | **Wins over `gsap.md` on API facts** |
+| Extract a reference UI into a structured profile, or generate from one | `library/design-dna/SKILL.md` → `references/schema.md` | **Wins on the JSON schema shape** |
+| Motion principles, named patterns, timing/easing depth, Lottie handoff | `library/motion-design-skill/skills/motion-design/` | Principle-level; engine implementation stays with the engine module |
+
 ## Generative-media asks (banana-pro-director, cinema-worldbuilder)
 
 Prompting an image or video *model*. Read `generative-direction.md` first — the grammar, the continuity ledger, and the pre-flight are shared by every row here, and skipping them is what makes assets drift apart.
@@ -115,7 +135,7 @@ Two gates bind every row: **the pre-prompt check** (short, bulleted, wait for th
 
 ## Overlapping verbs — resolve, don't guess
 
-Three corpora, three houses, and some verbs appear in more than one. They are **not** interchangeable: they ask different questions and return different artifacts.
+Three design houses, and some verbs appear in more than one. They are **not** interchangeable: they ask different questions and return different artifacts.
 
 | Verb | impeccable asks | hallmark asks | taste-skill asks |
 |---|---|---|---|
@@ -125,7 +145,9 @@ Three corpora, three houses, and some verbs appear in more than one. They are **
 
 Resolution order: **the user's locked design authority wins** (`process.md` brief lock) → else what the register implies (product surface → impeccable; page/brand surface → hallmark or taste-skill) → else ask, offering the two candidates in one line each. Never silently pick when the answer changes the artifact the user receives.
 
+**genjutsu's `paint` sits alongside these rather than inside them.** It runs a full visual pipeline — art direction, system, build, audit — so it overlaps hallmark's page flow at the whole-surface grain. Pick `paint` when the work is motion-forward or cross-platform (Compose, SwiftUI), and the design houses when it is a web page whose structure and taste are the question. `paint`'s audit step is genjutsu's own; it does not replace the three-house audit stack below.
+
 Running more than one is often correct and is the point of the merge: hallmark `audit` for structure, then impeccable `critique` for usability, then taste-skill's mechanical slop sweep for line-level tells. Say which passes you're running and why; report their findings as one severity-ranked list (`design-audit.md`), not three.
 
 ---
-*Distilled from: impeccable (command table), hallmark (verbs), taste-skill (sub-skills), video-shotcraft (modes). Protocol bodies live verbatim in `library/`.*
+*Distilled from: impeccable (command table), hallmark (verbs), taste-skill (sub-skills), genjutsu (cast/paint + 14 jutsu), gsap-skills, design-dna, motion-design-skill, video-shotcraft (modes), banana-pro-director, cinema-worldbuilder. Protocol bodies live verbatim in `library/`.*

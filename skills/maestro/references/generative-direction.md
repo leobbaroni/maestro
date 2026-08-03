@@ -48,6 +48,10 @@ Three rules make the ledger worth keeping:
 
 Append what worked, too. When a re-roll finally lands, record the phrasing that fixed it next to the outfit — that line is worth more than the spec around it.
 
+**The prompt travels with the asset.** The thread that wrote a prompt knows what the image contains, why, and how it is meant to sit in the work; a later session composing with that asset has none of it. So store each generated asset's exact prompt beside it — a sidecar file or a column in the ledger — and read those prompts before building anything on top of them. When a subagent produces assets, the prompt is part of what it returns, not a detail it consumed. Prefer generating anything build-critical in the thread that will use it.
+
+**If you ever prompt for a designed page rather than a scene, state the skeleton literally.** Nav bar and its items, headline block and its scale, each section in order, the footer. A prompt that leads with atmosphere gets atmosphere back — the model paints the fish market instead of the fish market's *website*. Self-check the render: if it could hang as a poster, or reads as a photograph with some text on it, it isn't a page; regenerate with the layout scaffold stated more plainly.
+
 ## The five cinema modes
 
 One camera vocabulary across stills and video, so a plate and the shot it feeds share visual DNA. Pick the mode from the scene, then pull its spec whole — mixing halves of two modes produces the averaged, characterless grade this grammar exists to avoid.
