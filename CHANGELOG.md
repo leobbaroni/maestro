@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.6.1 — 2026-08-03
+
+Companion-install instructions corrected. Both were harder than reality.
+
+- **The HyperFrames deep skills install in one command**, from Anthropic's official
+  marketplace: `/plugin install hyperframes@claude-plugins-official` brings all 21 skills.
+  The README told you to hand-copy a `skills/` folder from the upstream repo. It also now
+  states the always-on cost — ~4,850 tokens for 21 descriptions — so the choice is informed.
+- **`media-use` and `figma` ship inside that suite.** They were listed on the row below as
+  "install per each tool's own source/docs", sending you looking for a distribution that
+  doesn't separately exist.
+
 ## 3.6.0 — 2026-08-03
 
 Absorbed drift across impeccable, remotion, and hyperframes; **vendored four more corpora so
