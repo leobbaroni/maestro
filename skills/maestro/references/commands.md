@@ -127,11 +127,13 @@ Prompting an image or video *model*. Read `generative-direction.md` first — th
 | "Character sheet", "model sheet", "ref sheet", "multi-angle" | 6-panel sheet (`generative-stills.md` Step 2) | One prompt, one frame, six angles. **Blocked until an approved base exists** |
 | "Scene", "plate", "environment", a described setting | plate, with or without characters (`generative-stills.md` Step 3) | Inherits the scene's cinema mode. Never offered unprompted |
 | "Face shot", "chest-up", "close-up detail" | detail portrait (`generative-stills.md` Step 4) | Higher-fidelity model, gated on an explicit ask and its cost stated once |
-| "Seedance prompt", "make this a video", a scene for generation | prompted shot or sequence (`generative-video.md`) | Three-part paragraph, camera block quoted whole, runtime in three places, diegetic audio |
-| A brief that implies several assets | asset manifest (`generative-direction.md`) | Orders the whole set and locks the cinema mode once across all of it, before the first prompt |
+| "Make this a video", a scene for generation, or a named engine's prompt format | prompted shot or sequence (`generative-video.md`) | Three-part paragraph, camera block quoted whole, runtime in three places, diegetic audio |
+| "Which model should I use", or any first generative ask in a project | **model gate** (`generative-direction.md`) | Establishes the reachable engines, maps the job to capabilities rather than names, records the pick in `MODELS.md`. Runs before the first prompt exists |
+| "Which is better", a load-bearing asset, or a quality complaint that smells like the engine | **bake-off** (`generative-direction.md`) | Same prompt across several engines, axes named before looking, then synthesized — pick the winner, composite across engines, or extract the phrasing that worked |
+| A brief that implies several assets | asset manifest (`generative-direction.md`) | Orders the whole set, locks the cinema mode once across all of it, and carries the engine per row — before the first prompt |
 | "It came out wrong" | failure table (`generative-direction.md`) | Symptom → actual cause → fix. Change one variable per re-roll, never re-roll blind |
 
-Two gates bind every row: **the pre-prompt check** (short, bulleted, wait for the nod) and **the pre-flight on the finished text** — no names, no brands, no age words, no invented detail, no aspect ratio, no image placeholders.
+Three gates bind every row: **the model gate** (which engine, asked not assumed — every model name in maestro is a filled-in adapter, never a default), **the pre-prompt check** (short, bulleted, wait for the nod), and **the pre-flight on the finished text** — no names, no brands, no age words, no invented detail, no aspect ratio, no image placeholders.
 
 ## Overlapping verbs — resolve, don't guess
 

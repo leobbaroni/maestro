@@ -130,14 +130,29 @@ When a plate already exists for this scene, **the video inherits the plate's cin
 
 Working the other way, a shot that needs an environment nobody has plated yet is a signal to build the plate first: it is cheaper to iterate a still than a video, and the approved plate becomes the reference image the shot is generated against.
 
-## Platform adapter — Higgsfield Seedance
+## Platform adapters
 
-The format above is the Seedance format; these are the platform specifics.
+**The prompt format above is engine-neutral.** Shot structure, the camera block, the diegetic audio rule, runtime discipline, and the standalone-prompt rule hold on any video model. What varies per engine is a short list — establish it for whichever engine the user picked at the model gate (`generative-direction.md`), and record it in `MODELS.md`:
+
+| Adapter slot | What to establish | Why it bites |
+|---|---|---|
+| Reference attachment | UI upload · library selection · `@image` tag · API field | A shot generated without its plate attached is a different shot |
+| Aspect ratio | UI setting or prompt parameter | If it is a UI setting, framing stays plain language |
+| **Native audio** | Generated, absent, or optional | **Decides whether the diegetic rule is load-bearing or dead weight.** An engine with no audio track means the audio line is wasted prompt budget; one that generates audio means a leaked genre word scores your scene |
+| Max runtime per generation | The hard ceiling | Sets where a sequence has to be cut into separate generations |
+| Image-to-video | Supported, and how the still is passed | Determines whether "plate first, then shot" is available at all |
+| Camera control | Prompt-described, or explicit parameters | Some engines take movement as structured input rather than prose |
+
+**Runtime and image-to-video support are the two that reshape the plan**, not just the prompt — check them before the manifest is priced, not after a shot comes back truncated.
+
+### Worked example — Higgsfield Seedance
+
+One filled-in instance, not a default. Verify before relying on it.
 
 - **Prompts are text-only.** Reference images attach in the Higgsfield UI, or are selected from the character/environment library there. No `@image` tags, no `<<<image_n>>>` placeholders.
 - **Aspect ratio is a UI setting**, never a line in the prompt.
-- **Audio is generated natively** — which is exactly why the diegetic rule is load-bearing rather than stylistic.
-- The five camera blocks are in `library/higgsfield-directors/cinema-worldbuilder.md`, written for Seedance and pasted verbatim with the lens length and runtime filled in.
+- **Audio is generated natively** — which is exactly why the diegetic rule is load-bearing rather than stylistic here.
+- The five camera blocks are in `library/higgsfield-directors/cinema-worldbuilder.md`, written for Seedance and pasted verbatim with the lens length and runtime filled in. **On another engine they are a starting point, not tuned text** — a block tuned for one model is prose to another, so re-verify that the camera actually did what it says before trusting it across a sequence.
 - Stills built on the same platform feed it directly as reference assets: `generative-stills.md`.
 
 The full original director is `library/higgsfield-directors/cinema-worldbuilder.md`.

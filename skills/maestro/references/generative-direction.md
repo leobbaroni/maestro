@@ -18,9 +18,62 @@ The two families compose rather than compete: generative plates make excellent e
 
 **Photoreal is the default posture.** Every prompt describes a real subject in a real frame — never plastic, never CGI, never commercial gloss. Stylization is an explicit override the user asks for, noted in the ledger when they do.
 
+## The model gate — the engine is the user's choice, never a default
+
+**No module in this family names a model you should reach for.** Every model name that appears anywhere in maestro is a filled-in example of an adapter, never a prescription — image and video engines turn over faster than any document can track, and a skill that hard-codes today's best model is wrong within a season and silently wrong after that. Treat a named model the way you treat a version number: something to verify this session, never to recall.
+
+Ask before the first prompt is composed. Same discipline as cockpit's crew proposal for language models, applied to rendering engines.
+
+**1. Read what is actually reachable.** Name the engines *this user can run right now* — a platform subscription they have, an API key in the environment, a local install, a CLI that is authenticated. Do not recite a canon of models they may not have access to. If exactly one engine is reachable, say so in a line and skip to composing; there is no choice to present.
+
+**2. Map the job to capabilities, not to names.** What an asset needs is stable even as the models churn:
+
+| The asset needs | Ask for the engine that is strongest at |
+|---|---|
+| A character who survives across twelve assets | **Reference fidelity** — copying an uploaded face rather than re-interpreting it |
+| A six-panel sheet, a designed page, a specific layout | **Prompt adherence** — following structural instruction over making a pretty frame |
+| Skin, fabric weave, hair at the strand | **Texture realism** at the fidelity tier you are paying for |
+| Hands, jewelry, legible text in frame | **Detail integrity** — the classic failure surface |
+| A moving shot that holds together | **Temporal stability** and physical plausibility across the runtime |
+| Forty exploratory frames before a direction is chosen | **Speed and cost per generation**, with fidelity deliberately traded away |
+
+**3. Propose concretely, for this batch.** One line per asset kind: what it needs, which reachable engine you would point at it, and why — plus the honest cost and latency. A table the user can correct beats a paragraph of hedging.
+
+**4. Offer the real alternatives and ask once.** Your proposal (recommended) · **one engine for everything** (simplest, cheapest, accepts its weak axis) · **a bake-off** (below — best output, highest cost) · **custom**. A model the user names explicitly always wins and is never re-litigated.
+
+**5. Write the answer down.** Record it in the ledger as `MODELS.md`, per asset kind rather than globally, with the date and the reason:
+
+```markdown
+## street-01 batch · locked 2026-08-04
+Base reference + sheet: <engine A> — held the face across all six panels in the bake-off
+Detail portraits:        <engine B> — visible pore texture at 4:5; ~3x the credit cost, approved
+Video shots:             <engine C> — only reachable engine with native audio
+Rejected: <engine D> for sheets — merged panels 2 and 3 on both attempts
+```
+
+Then stop asking. Re-open the gate only when the work changes character — a new asset kind, a quality complaint that traces to the engine, or the user asking.
+
+## The bake-off — compare engines, then synthesize
+
+When an asset is load-bearing — the character lock every later asset quotes, the hero shot, the plate a whole sequence is built on — one engine's single answer is a guess. Run several and choose with evidence.
+
+**Hold everything constant except the engine.** Same composed prompt, same reference images, same framing. If you change the wording per engine to suit it, you are comparing prompts, not engines, and you cannot carry the result forward.
+
+**Score on the axes that matter for this asset**, named before you look at the outputs — deciding what "better" means after seeing them is how a preference gets rationalized into a finding. For a character base: identity fidelity to the reference · skin and fabric texture · hands and jewelry integrity · adherence to the framing asked for. For a shot: temporal stability · physical plausibility · whether the camera did what the block said.
+
+**Then synthesize, because the winner is rarely one engine.** Three ways to combine, in increasing order of effort:
+
+- **Pick the winner outright** when one leads on every axis that matters. Say which axes, so the choice is auditable.
+- **Composite across engines.** Take the strongest output as a *reference image* into a second engine — the face from one, re-rendered into the environment another handles better. This is the composite path in `generative-stills.md`, applied across engines rather than within one.
+- **Extract the phrasing that worked and re-run.** Sometimes one engine's output reveals that a line was ambiguous. Fix the prompt, re-run everywhere, and note it in the ledger — that line is worth more than the image that exposed it.
+
+**State the cost before running one.** A four-engine bake-off on a six-asset manifest is twenty-four generations. Propose it for the assets that earn it and single-engine everything downstream of an approved lock.
+
+Record the outcome in `MODELS.md` — including what lost and how, because the next batch should not re-run a comparison that already has an answer.
+
 ## The continuity ledger — the lock has to outlive the conversation
 
-Identity locking is the whole value of this family, and a lock held only in conversation dies at the next context reset. **Write it down.** Two files at the project root, appended as specs lock:
+Identity locking is the whole value of this family, and a lock held only in conversation dies at the next context reset. **Write it down.** Three files at the project root, appended as specs lock — `CHARACTERS.md`, `WORLD.md`, and the `MODELS.md` from the gate above:
 
 **`CHARACTERS.md`** — one section per character:
 
@@ -121,18 +174,19 @@ A brief is rarely one asset. Composing prompts one at a time is how the cinema m
 
 **Emit an asset manifest first** — a table the user approves before any prompt is written:
 
-| # | Asset | Kind | Character / location | Mode | Depends on |
-|---|---|---|---|---|---|
-| 1 | runner base, street-01 | still base reference | silver-runner | M2 | character lock |
-| 2 | runner sheet, street-01 | 6-panel | silver-runner | M2 | 1 |
-| 3 | rooftop night plate | environment plate | rooftop-north | M1 | palette from WORLD.md |
-| 4 | rooftop approach, 8s | video shot | silver-runner @ rooftop-north | M1 | 1, 3 |
+| # | Asset | Kind | Character / location | Mode | Engine | Depends on |
+|---|---|---|---|---|---|---|
+| 1 | runner base, street-01 | still base reference | silver-runner | M2 | bake-off, 3 engines | character lock |
+| 2 | runner sheet, street-01 | 6-panel | silver-runner | M2 | winner of 1 | 1 |
+| 3 | rooftop night plate | environment plate | rooftop-north | M1 | per `MODELS.md` | palette from WORLD.md |
+| 4 | rooftop approach, 8s | video shot | silver-runner @ rooftop-north | M1 | per `MODELS.md` | 1, 3 |
 
-Three rules the manifest enforces that per-prompt work cannot:
+Four rules the manifest enforces that per-prompt work cannot:
 
 - **Lock the cinema mode once, at the manifest level.** Everything that will be cut together shares it. A still that feeds a video shot inherits that shot's mode — that pairing is the reason both surfaces share one grammar.
+- **Carry the engine per row, from `MODELS.md`.** The column is not decoration: it is where a bake-off gets scheduled on the one asset that earns it, and where every downstream row inherits that winner instead of re-opening the question.
 - **Respect the dependency order.** A model sheet needs an approved base; a shot needs its character locked and its location plated. Building out of order means rebuilding.
-- **Name the whole set before pricing it.** Generation costs money and time per asset; the user should see the count before the first one runs, not discover it at asset nine.
+- **Name the whole set before pricing it.** Generation costs money and time per asset, and a bake-off multiplies its row. The user should see the count and the multiplier before the first one runs, not discover it at asset nine.
 
 Then compose down the list, confirming each prompt before delivering it. Keep the manifest updated with what exists — it is the shot list and the progress tracker in one.
 

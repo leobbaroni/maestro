@@ -171,20 +171,36 @@ Extreme face fidelity. Real skin texture with visible pores, fine peach fuzz alo
 
 The extra fidelity earns its cost only when the face *is* the image. For full body, sheets, and scenes, the general model is the better tool.
 
-## Platform adapter — Higgsfield
+## Platform adapters
 
-The grammar above is engine-neutral; these are the current specifics.
+**Everything above is engine-neutral, and deliberately so.** The four steps, the ordering, the pre-prompt check, and the prompt skeletons hold on any image model. What changes per platform is a short, mechanical list — and you fill it in for whichever engine the user picked at the model gate, rather than assuming the one written below.
 
-| This module's term | Higgsfield |
+Fill this in per platform, once, and keep it in `MODELS.md`:
+
+| Adapter slot | What to establish |
+|---|---|
+| Engine per step | Which reachable engine runs the direct path, the composite path, the sheet, plates, and detail portraits — they need not be the same one, and often should not be |
+| Reference attachment | UI upload · `@image` tag · `<<<image_n>>>` placeholder · API field. **Getting this wrong silently ruins every composite prompt** |
+| Aspect ratio | UI setting, or a prompt-body parameter. If it is a UI setting, framing stays plain language in the text |
+| Negative prompts | Supported and useful · supported and harmful · absent |
+| Fidelity tiers | Whether a higher-fidelity tier exists for detail portraits, and what it costs relative to the base model |
+
+**Say the cost difference once**, get the go-ahead, then stop mentioning it.
+
+### Worked example — Higgsfield
+
+One filled-in instance of the table above, not a default. Verify it still holds before relying on it; platform lineups change without notice.
+
+| This module's term | Higgsfield, as of this writing |
 |---|---|
 | Direct path (Step 1) | **Banana Pro** (Nano Banana) |
 | Composite path (Step 1, two steps) | **Soul Cinema** — Step A then Step B, both generations run here |
 | Multi-angle sheet, plates | **Banana Pro** |
 | Detail portrait model | **GPT-2** — higher fidelity at face-and-shoulders range, costs more credits than Banana Pro |
 
-Platform rules that apply to every prompt: **reference images attach in the Higgsfield UI**, never as `@image` tags or `<<<image_n>>>` placeholders in the prompt text. **Aspect ratio is set in the UI**, never written into the prompt body — describe framing in words ("full body", "chest-up portrait", "wide establishing"). Sheets are typically 16:9, plates 21:9 or 2.39:1, portraits 4:5 or 1:1, but all of that is a UI setting. **No negative prompt blocks** — this workflow doesn't use them.
+Platform rules on this one: **reference images attach in the Higgsfield UI**, never as `@image` tags or `<<<image_n>>>` placeholders in the prompt text. **Aspect ratio is set in the UI**, never written into the prompt body — describe framing in words ("full body", "chest-up portrait", "wide establishing"). Sheets are typically 16:9, plates 21:9 or 2.39:1, portraits 4:5 or 1:1, but all of that is a UI setting. **No negative prompt blocks** — this workflow doesn't use them.
 
-The full original director, with its worked examples, is `library/higgsfield-directors/banana-pro-director.md`.
+The full original director, with its worked examples, is `library/higgsfield-directors/banana-pro-director.md`. Read it for the *method*; treat its model names as one platform's answer, not the answer.
 
 ---
 *Distilled from: banana-pro-director (authoritative — asset order, mode structures, prompt scaffolds).*

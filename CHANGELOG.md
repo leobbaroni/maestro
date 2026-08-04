@@ -1,5 +1,46 @@
 # Changelog
 
+## 3.7.0 — 2026-08-03
+
+**The rendering engine becomes the user's pick, not maestro's.** The generative-media family
+shipped in 3.5.0 with its grammar engine-neutral but its *platform* effectively hard-coded: one
+adapter, one vendor, specific model names sitting exactly where a default would sit. Image and
+video engines turn over faster than any document can track, so a skill that names today's best
+model is wrong within a season and silently wrong after that.
+
+- **New: the model gate** (`generative-direction.md`), built like cockpit's crew proposal for
+  language models. Read what is *actually reachable* this session rather than reciting a canon;
+  map the job to **capabilities rather than names** — reference fidelity, prompt adherence,
+  texture realism, detail integrity, temporal stability, cost per generation; propose per asset
+  kind; ask once; write the answer to a new `MODELS.md`, joining `CHARACTERS.md` and `WORLD.md`
+  in the ledger. One reachable engine means one line and no ceremony.
+- **New: the bake-off.** For a load-bearing asset — the character lock everything quotes, the
+  hero shot, the plate a sequence is built on — run the same prompt across several engines with
+  **only the engine varying**, score on axes named *before* looking at the outputs, then
+  **synthesize**: the winner is rarely one engine on every axis. Three combination paths, in
+  increasing effort: pick outright, composite across engines (the strongest output becomes a
+  reference image into a second engine), or extract the phrasing the comparison exposed and
+  re-run everywhere. Cost is stated before it runs — four engines over six assets is
+  twenty-four generations.
+- **Every model name now sits inside a "Worked example" block**, never a table row that reads as
+  a default. Both surface modules gained a blank **adapter table** to fill per platform instead:
+  reference attachment, aspect ratio, negative prompts, and fidelity tiers for stills; plus
+  native audio, max runtime, image-to-video, and camera control for video. Two of those reshape
+  the *plan* rather than the prompt — runtime sets where a sequence must be cut, and
+  image-to-video decides whether "plate first, then shot" exists at all — so both are checked
+  before the manifest is priced.
+- **Surfaced at Rule 0**, as a peer of the design-authority pick, because a gate that lives only
+  inside a reference module never fires for a request that did not load it. The engine-chooser
+  section now says why the two decisions differ: a renderer is picked on technical grounds you
+  can evaluate, a generative engine on output quality nobody can predict from a spec sheet —
+  which makes it a question rather than a judgment call.
+- The asset manifest carries an **engine column** per row, so a bake-off is scheduled on the one
+  asset that earns it and every downstream row inherits that winner instead of re-opening the
+  question. `commands.md` gains rows for both gates and now names three, not two.
+- Honest caveat now written down: the five camera blocks are tuned text **for one engine**. On
+  another they are a starting point, and the module says to verify the camera did what the block
+  said before trusting it across a sequence.
+
 ## 3.6.2 — 2026-08-03
 
 Companion facts re-derived from the installed plugin rather than from a catalog listing. 3.6.1
