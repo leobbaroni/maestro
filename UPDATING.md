@@ -94,7 +94,7 @@ The ninth, `higgsfield-directors/`, does **not** track an upstream:
 > supplied from the maestro author's own setup — deliberately absent from `upstreams.json`,
 > because there is no repository to watch. Do not "fix" that by adding an entry. It goes stale
 > silently, so when the author says they've revised the originals, re-copy them by hand and
-> re-distill `generative-direction.md`, `generative-stills.md`, and `generative-video.md`.
+> re-distill `generative-direction.md`, `generative-stills.md`, `generative-video.md`, and `generative-production.md`.
 
 When the drift watcher flags one of the eight watched corpora:
 
@@ -147,6 +147,7 @@ When the drift watcher flags one of the eight watched corpora:
 | generative-direction.md | banana-pro-director + cinema-worldbuilder (shared grammar), impeccable (comp-as-page, prompt-travels-with-asset) |
 | generative-stills.md | banana-pro-director (authoritative) |
 | generative-video.md | cinema-worldbuilder (authoritative) |
+| generative-production.md | banana-pro-director + cinema-worldbuilder, plus a user-supplied multi-shot production brief (anchor-and-stack referencing, prompt freezing, start-frame motion collapse, edit prompts) — **no upstream repo; drift checking will never flag it** |
 | platform-native.md | genjutsu |
 | toolbox.md | live web verification — no git upstream; see below |
 | toolbox-corpus.md | frozen curation-feed sample (2026-07) — historical record, only pruned |

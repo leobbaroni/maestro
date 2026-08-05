@@ -8,6 +8,7 @@ A different discipline from the rest of maestro's video work. Everywhere else th
 
 | Job | Lead |
 |---|---|
+| **A multi-shot piece — a sequence, a recurring character, anything with an arc** | **`generative-production.md`** — the phased pipeline. Config, story, cast, look, then the whole storyboard approved before a single generation runs |
 | Character reference, outfit base, model sheet, environment plate, photoreal still | `generative-stills.md` |
 | Prompted video shot or sequence from a text description and reference images | `generative-video.md` |
 | Story spine, beat planning, pacing, transition taxonomy for any of the above | `video-direction.md` — still the planning layer; it decides *what* the shots are, this family decides how to ask for them |
@@ -73,7 +74,7 @@ Record the outcome in `MODELS.md` — including what lost and how, because the n
 
 ## The continuity ledger — the lock has to outlive the conversation
 
-Identity locking is the whole value of this family, and a lock held only in conversation dies at the next context reset. **Write it down.** Three files at the project root, appended as specs lock — `CHARACTERS.md`, `WORLD.md`, and the `MODELS.md` from the gate above:
+Identity locking is the whole value of this family, and a lock held only in conversation dies at the next context reset. **Write it down.** Four files at the project root, appended as specs lock — `CHARACTERS.md`, `WORLD.md`, the `MODELS.md` from the gate above, and `ASSETS.md` for every recurring thing that is not a person (props, wardrobe, vehicles, objects that must stay the same across shots — its format and the extraction pass that fills it are in `generative-production.md` Phase 2):
 
 **`CHARACTERS.md`** — one section per character:
 
@@ -105,7 +106,7 @@ Append what worked, too. When a re-roll finally lands, record the phrasing that 
 
 **If you ever prompt for a designed page rather than a scene, state the skeleton literally.** Nav bar and its items, headline block and its scale, each section in order, the footer. A prompt that leads with atmosphere gets atmosphere back — the model paints the fish market instead of the fish market's *website*. Self-check the render: if it could hang as a poster, or reads as a photograph with some text on it, it isn't a page; regenerate with the layout scaffold stated more plainly.
 
-## The five cinema modes
+## The six cinema modes
 
 One camera vocabulary across stills and video, so a plate and the shot it feeds share visual DNA. Pick the mode from the scene, then pull its spec whole — mixing halves of two modes produces the averaged, characterless grade this grammar exists to avoid.
 
@@ -116,12 +117,15 @@ One camera vocabulary across stills and video, so a plate and the shot it feeds 
 | **M3 Action / Combat** | Combat, chase, stunts, mechs, debris, smoke, destruction | Alexa 35 | Panavision Ultra Vintage 2× anamorphic 40/55/75/100mm T2.3 | Handheld and shaky **throughout** — constant micro-jitter, reactive, often orbital; no stabilized shot anywhere | Black Pro-Mist 1/4 | Kodak Vision3 250D, 800 ASA, documentary-meets-sci-fi grit, dusty haze, palette per scene |
 | **M4 Performance / Concert** | Stage, arena, festival pit, jumbotron, lightstick crowd | Alexa 35 | Panavision Ultra Vintage 2× anamorphic 40/55/75/100mm T2.3 | Mixed pit-photographer handheld, low-angle shake, orbital passes, hard cuts | Black Pro-Mist 1/4 | Kodak Vision3 250D fine grain, desaturated cool with warm bloom, stage-lighting cast, heavy haze, sweat sheen |
 | **M5 Atmospheric / Empty** | Abandoned, no-humans, landscape, weather, world-establishing — the environment *is* the subject | Alexa Mini LF | Panavision Ultra Vintage 2× anamorphic 35→85mm T2.3 | Locked-off or extremely slow push/pull; never handheld | Black Pro-Mist 1/4 | Kodak Vision3 250D, 400 ASA, palette-driven with named hex values, strong negative space, weathered material |
+| **M6 Device-authentic** | Must read as *captured*, not produced — lifestyle, personal-archive, someone-standing-nearby framing, the dominant register of contemporary social and music-video work | Current flagship smartphone, named by generation | The phone's own focal lengths: ~13mm ultrawide · ~24mm main · 48–120mm equivalent telephoto at its optical zoom steps | Handheld with real human unsteadiness, or set down and left; never a dolly, never a crane | **None** — the computational pipeline replaces it | Natural color science, film-like tonal response, mild sensor noise in shadows, slight bloom around practical highlights, realistic edge softness. **No HDR look, no oversharpening, no artificial clarity** |
 
-All five run **24fps at a 180° shutter**. A slow-motion beat is an intercut 96fps frame at the impact, shutter held at 180° so the blur stays natural — never a change to the base rate.
+M6 is the one mode whose realism comes from **restraint rather than equipment**, and it inverts the usual failure. The other five degrade toward flat and characterless; M6 degrades toward *too good* — a frame that is sharper, better lit, and better composed than any phone produces reads instantly as generated. Name the device and its optics, keep the framing casually imperfect, describe the artifacts (bloom, shadow noise, edge softness) as positives, and state the negatives — no HDR, no clarity, no CGI appearance — because a model's default is to make it beautiful. It pairs with the photoreal stack but **replaces the stack's film-emulation sentence**, since a phone is not shooting Vision3.
+
+Modes M1–M5 run **24fps at a 180° shutter**; M6 runs at the device's own capture rate. A slow-motion beat is an intercut 96fps frame at the impact, shutter held at 180° so the blur stays natural — never a change to the base rate.
 
 **Lens by framing, across all modes:** 32–40mm wide establishing, full body, groups · 50–55mm medium, two-shot, waist-up · 75mm tight portrait, single-character isolation · 85–100mm extreme close — eyes, lips, jewelry, fabric. Default to 55mm (M1/M3/M4) or 50mm (M2) when the framing isn't specified; M5 lives at the wide end.
 
-The five paste-ready camera blocks — the full sentence each mode contributes to a prompt, with lens and runtime slots — are in `library/higgsfield-directors/cinema-worldbuilder.md`. Pull the one for the chosen mode verbatim; they are tuned text, not a summary to paraphrase.
+The five paste-ready camera blocks for M1–M5 — the full sentence each mode contributes to a prompt, with lens and runtime slots — are in `library/higgsfield-directors/cinema-worldbuilder.md`. Pull the one for the chosen mode verbatim; they are tuned text, not a summary to paraphrase.
 
 **Stacking modes.** A sequence that cuts between worlds — a white void intercut with a kitchen, action intercut with performance — gets **one camera block per shot, per its own mode.** Averaging two modes into one grade destroys the cut, which was the point of cutting.
 

@@ -43,7 +43,8 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 104 shot cards, eight-stage pipeline |
 | One cinematic moment inside any video, any engine | `video-shotcraft.md` (pull a single shot card) |
 | Sound design, SFX pin tables, music beat-sync — any engine | `video-sound.md` |
-| **Prompting an image or video model** — character references, model sheets, plates, prompted shots | `generative-direction.md` first (grammar, ledger, pre-flight), then `generative-stills.md` or `generative-video.md` |
+| **Prompting an image or video model** — character references, model sheets, plates, prompted shots | `generative-direction.md` first (grammar, ledger, model gate, pre-flight), then `generative-stills.md` or `generative-video.md` |
+| **A generated piece with more than one shot** — a sequence, a recurring character, an arc | `generative-production.md` — the phased pipeline. **Storyboard the whole thing and get it approved before generating anything**; composing shot-by-shot is how continuity is lost |
 | Rendering video from HTML | `video-hyperframes.md` |
 | Rendering video from React | `video-remotion.md` |
 | Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` (long tail: `toolbox-corpus.md`) |

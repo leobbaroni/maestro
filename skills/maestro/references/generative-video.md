@@ -2,6 +2,14 @@
 
 *Prompting a video model from a scene description and reference images: one continuous paragraph in three labelled parts, a camera block pulled whole from the scene's cinema mode, a runtime stated in three places, and diegetic audio only. The shared grammar, ledger, pre-flight, and failure table live in `generative-direction.md`; read that first.*
 
+## First: is there an approved still for this shot?
+
+**If yes, most of this module does not apply.** A start frame carries composition, wardrobe, lighting, grade, atmosphere, and environment — all already approved — and the prompt collapses to the motion alone. Re-describing what the frame already shows invites the model to re-interpret exactly what it should be preserving. Go to `generative-production.md` Phase 6 for the motion-line form and its four rules.
+
+The full prompt below is for **text-to-video**: no start frame, references attached as guidance rather than as the literal opening image. It is the harder path for continuity, and on a multi-shot piece it is worth generating the still first specifically to avoid it.
+
+For anything beyond a single shot — a sequence, recurring characters, a piece with an arc — run `generative-production.md` instead of composing prompts one at a time. This module is the prompt craft; that one is the pipeline.
+
 ## The loop
 
 1. **Reference material in** — character images, environment plates, wardrobe shots, mood references. A purely environmental scene needs none.
@@ -28,7 +36,7 @@ Every **new** scene gets five lines before the full prompt:
 
 ```
 Here's what I'm about to prompt:
-— Mode: [M1 Narrative / M2 Studio / M3 Action / M4 Performance / M5 Atmospheric]
+— Mode: [M1 Narrative / M2 Studio / M3 Action / M4 Performance / M5 Atmospheric / M6 Device-authentic]
 — Scene: [one line]
 — Characters: [who's in frame by visual marker, or "none / environment plate"]
 — Camera: [lens length, key movement — e.g. "55mm anamorphic, handheld with slight breath"]
@@ -152,7 +160,7 @@ One filled-in instance, not a default. Verify before relying on it.
 - **Prompts are text-only.** Reference images attach in the Higgsfield UI, or are selected from the character/environment library there. No `@image` tags, no `<<<image_n>>>` placeholders.
 - **Aspect ratio is a UI setting**, never a line in the prompt.
 - **Audio is generated natively** — which is exactly why the diegetic rule is load-bearing rather than stylistic here.
-- The five camera blocks are in `library/higgsfield-directors/cinema-worldbuilder.md`, written for Seedance and pasted verbatim with the lens length and runtime filled in. **On another engine they are a starting point, not tuned text** — a block tuned for one model is prose to another, so re-verify that the camera actually did what it says before trusting it across a sequence.
+- The five camera blocks (M1–M5; M6 has none — it is written from the mode row itself) are in `library/higgsfield-directors/cinema-worldbuilder.md`, written for Seedance and pasted verbatim with the lens length and runtime filled in. **On another engine they are a starting point, not tuned text** — a block tuned for one model is prose to another, so re-verify that the camera actually did what it says before trusting it across a sequence.
 - Stills built on the same platform feed it directly as reference assets: `generative-stills.md`.
 
 The full original director is `library/higgsfield-directors/cinema-worldbuilder.md`.

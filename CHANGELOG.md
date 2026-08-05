@@ -1,5 +1,53 @@
 # Changelog
 
+## 3.8.0 — 2026-08-03
+
+**New module: `generative-production.md` — the phased pipeline for a multi-shot generative
+piece.** The family could compose an excellent single prompt and had no answer for "make a
+seven-shot film with the same person in it." The manifest table in `generative-direction.md`
+ordered assets but stopped short of a production method, so shot 1 got generated because it was
+easy to start and every later shot then negotiated against an accident. Seven phases, each with
+a gate: config → beat sheet → cast **and prop extraction** → look lock → **storyboard approved
+as one artifact** → keystone still first, then the rest in dependency order → motion → continuity
+audit. Nothing generates until the board is signed off, because while it is still text a change
+costs a sentence.
+
+Five mechanisms carry it, drawn from a worked production brief the user supplied:
+
+- **The anchor.** Every shot names one already-approved image it must match for composition,
+  lighting, grade, and atmosphere. This converts "keep it consistent" — which no model can act
+  on — into an input it can copy. Shot 1 has no anchor; that is what makes it the keystone.
+- **The explicit reference stack.** Each shot lists exactly which images attach, by ledger
+  handle. A shot that comes back wrong is nearly always a shot whose stack was short one entry,
+  and a listed stack turns that from a mystery into a lookup.
+- **Prop and wardrobe extraction, in its own phase**, into a new **`ASSETS.md`** ledger file
+  joining `CHARACTERS.md`, `WORLD.md`, and `MODELS.md`. A recurring object drifts exactly like a
+  face does — and a prop *described in words* is re-invented every generation while a prop
+  *attached as a reference image* is copied. Its `Appears in` column doubles as the regeneration
+  dependency map.
+- **The prompt freeze.** Written in full at storyboard time, in the text the model will actually
+  receive, and unchanged after approval — including for improvements noticed mid-generation. A
+  changed prompt is a changed shot and goes back through the board.
+- **Start-frame motion collapse.** When the engine accepts the approved still as the opening
+  frame, the video prompt drops to the motion alone: the frame already carries composition,
+  wardrobe, light, grade, and environment, so re-describing any of it invites re-interpretation
+  of exactly what should be preserved. `generative-video.md` now opens by asking whether a still
+  exists and routes there when it does — its full three-part prompt is the text-to-video path,
+  which is materially harder for continuity and now says so.
+
+Also new:
+
+- **The edit prompt**, a fourth asset kind. "Remove the person, leave the seat empty, keep
+  everything else exactly the same" — name one change, say those words, never re-describe the
+  scene, and always run against an approved original rather than another edit. This is how a
+  piece gets rhyme shots at a fidelity no re-generation matches.
+- **M6 Device-authentic**, a sixth cinema mode. The other five are Alexa-and-Panavision and
+  degrade toward flat; M6 is a named smartphone and degrades toward *too good* — a frame sharper
+  and better composed than any phone produces reads instantly as generated. Its realism comes
+  from restraint: keep the framing casually imperfect, describe the artifacts as positives, and
+  state the negatives, because a model's default is to make it beautiful. It replaces the
+  photoreal stack's film-emulation sentence rather than adding to it.
+
 ## 3.7.0 — 2026-08-03
 
 **The rendering engine becomes the user's pick, not maestro's.** The generative-media family
