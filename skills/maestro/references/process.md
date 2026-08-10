@@ -11,7 +11,10 @@ The two most expensive failure modes are **building before the brief is locked**
 | Incoming request | First move |
 |---|---|
 | Significant new screen/page/surface | Mockup fan-out + user gate (§3) |
+| Any video | **Film kind first (§1b)** — the user picks what the film *is*; the engine follows. Then the direction round (§3a), which fans out on beat sheets and styleframes, never on rendered films |
 | Small tweak, fully-specified change | Just do it — then verify (§6) |
+
+**Surfaces and films gate differently, and the difference is cost.** A mockup option is one self-contained HTML file authored in a single pass, so three of them are cheap and the gate sits before implementation. A film option is minutes of encode, so the gate sits *before any render* and the artifacts compared are a beat sheet and one still. Do not copy §3's mechanics onto video: three rendered films to choose from is a gate nobody can afford, and it arrives after the expensive part rather than before it.
 
 ## 1. The Grill Gate
 
@@ -68,6 +71,33 @@ Mechanics that make the choice real:
 - **A named house ends the question.** "Do it hallmark-style" is the answer; stop offering alternatives. Scope of the pick: it decides whose instincts lead the look and which protocol runs when verbs overlap (`references/commands.md`). It does not reopen source conflicts already resolved inside the modules — the `taste-skill > hallmark > impeccable` order was applied at distillation time and is baked into the reference prose, not a runtime dial.
 - **Lock it into the brief** (§2) and honor it downstream: it decides which protocol runs when verbs overlap (`references/commands.md`), and re-opening it mid-build is a direction change that needs the user, not a quiet swap.
 
+### 1b. Film kind — ask, don't assume
+
+The same discipline as §1a, applied to video. **What the film physically *is* is a user decision**, and it is the one that decides everything downstream — the engine, the asset pipeline, what "good" even looks like, and what the film can and cannot show. Asking it costs one turn; discovering it after a render costs the render.
+
+Ask by **what appears on screen, never by engine name**. "Canvas or HyperFrames?" is a question about our implementation and the user has no way to answer it. "Do we show your actual product, or an abstract film about it?" is a question about their film.
+
+| Offer it as | Becomes | Reads as | Best when |
+|---|---|---|---|
+| "Your product, shown as it really is — real screens, real data, real flows" | shotcraft → Remotion (`video-shotcraft.md`) | A product demo or launch film; credible, specific, the thing itself | There is a real app or site, and **the screens themselves carry the story** |
+| "Abstract — light, type, and shape carrying the idea; no UI on screen" | canvas (`video-canvas.md`) | A brand film or title sequence; atmospheric, premium, made of glow | Selling a feeling, a launch beat, or something with no UI to show yet |
+| "Designed frames — layout, cards, charts, captions doing the explaining" | HyperFrames (`video-hyperframes.md`) | An explainer or a data film; clear, readable, information-led | What must land is **words or numbers the screens never show** |
+| "Filmed-looking — real people, places and texture, **generated rather than shot**" | generative (`generative-direction.md`, then `generative-production.md`) | Photoreal footage; human, physical, cinematic | Humans, locations, or material texture are the subject and no camera exists |
+| "Footage you already have, packaged — captions, lower-thirds, overlays on your clip" | the companion workflows in `companions.md` (`embedded-captions`, `talking-head-recut`) | Your own clip, dressed | A recording exists and the film *is* that recording |
+
+Mechanics, matching §1a:
+
+- **Show, don't name.** Two or three sentences of what the result looks like — never the module or engine name. The user is picking a film, not a renderer.
+- **Recommend one and say why**, from what they already have. A URL or an app in the repo → the product film. A brand beat with nothing to screenshot → abstract. A script full of numbers and steps → designed frames. Humans or places with no camera → filmed-looking. A clip in hand → packaged.
+- **The product film and designed frames overlap constantly** — a SaaS launch film is both. Discriminate by what carries the story: **the product film when the screens themselves are the argument; designed frames when the point is words or numbers the screens never show.** A film that needs both is a product film with designed frames inside it, not a third kind — say which one leads.
+- **Push once past a lazy answer.** "Whatever looks best" gets the two most different options as sentences and a "which of these two would you rather land on?" If they still decline, choose, state the choice and the reason, write it into the brief (§2), and treat it as locked.
+- **Some answers foreclose others, and say so plainly.** Photoreal humans cannot be rendered from code, and a frame-exact, re-renderable spec cannot be generated from a model — a renderer hits a spec twice and a model never does. **And filmed-looking does not mean we use your footage**: a model generates new frames, it never edits yours; footage in hand is the packaged kind. Naming the trade at the fork prevents a mid-project engine change, which is a rebuild.
+- **A named kind ends the question**, and it goes in the brief (§2). Changing it later is a direction change that needs the user, not a quiet swap.
+
+Only after the kind is locked does the **engine signal table** in `SKILL.md` run — and then only as a tiebreaker *within* the chosen kind. Production constraints live there, not in the table above: an existing React codebase to reuse, or video embedded in a product, points designed frames at Remotion rather than HyperFrames. That is plumbing the user cannot picture and should never be asked to choose. It never overrides the user's pick.
+
+**Two things are still the agent's call**, because the user cannot evaluate them: whether the environment can render at all (headless browser, Node version, FFmpeg), and determinism. Report a blocking constraint as a constraint — "that kind needs a browser this machine doesn't have; the nearest thing that works is X" — rather than silently substituting a different film.
+
 ## 2. Brief lock
 
 The grill ends when the brief contains all of the following. Freeze it into a file (SPEC.md / DESIGN.md / the project's brief doc — template: `templates/BRIEF.md`), not chat — it must survive compaction and future sessions.
@@ -76,6 +106,7 @@ The grill ends when the brief contains all of the following. Freeze it into a fi
 |---|---|
 | **Audience / register** | One-sentence physical scene: who uses this, where, under what light, in what mood ("a gym-goer between sets, phone in one hand, sweaty thumb"). If the sentence doesn't imply light/dark, density, and tone, sharpen it until it does. |
 | **Design authority** | Which house leads (structure-led / polish-led / craft-led / blend — §1a), who chose it (user or you-by-default), and the one-line reason. Governs which protocol runs when verbs overlap (`references/commands.md`). |
+| **Film kind** | Which kind the user picked (§1b) — product-as-it-is · abstract · designed frames · filmed-looking · packaged — who chose it, and the engine it selects. Video only. Changing it later is a direction change, not a swap |
 | **Platform** | Target surfaces and breakpoints (e.g. mobile-first ~380px + 1440px desktop; 16:9 vs 9:16 for video). |
 | **Style direction** | The Design Read one-liner first (`references/design-direction.md` step 0), then 1+ concrete references (site/app/screenshot) with *what to steal from each*, plus 2–3 **banned qualities** ("no card grid", "not so text-dense", "no corporate blue"). |
 | **Page shape + theme** | For page-scale work: the picked macrostructure, nav/footer archetypes, and theme (or the custom fork) from `references/page-anatomy.md` — plus what the previous build used, so this one differs. |
@@ -89,6 +120,8 @@ The grill ends when the brief contains all of the following. Freeze it into a fi
 ## 3. Mockup fan-out (hard user gate)
 
 Never build a significant new screen, page, or visual redesign from a single guess. The user picks from options before implementation.
+
+**Surfaces only.** Video has its own round with a different artifact and a different gate point — §3a. The mechanics below assume an option costs one authoring pass; a film option costs a render, which is why they are separate sections rather than one with a caveat.
 
 **When to fan out vs. build straight:**
 
@@ -111,6 +144,41 @@ Default **N = 3**; confirm N with the user during the grill. Uninformed options 
 5. **On rejection of all N:** ask for two concrete dislikes and one new reference, then regenerate. Never regenerate blind.
 6. **Implement the winner** in the real app using the project's actual components, tokens, and data — the mockup is a design contract, not code to paste. Merge ideas from losing options only if the user named them in the pick ("2, but with 3's header"). Record the direction and pick in the project log.
 
+## 3a. Video direction round (the film's equivalent gate)
+
+§3 does not transfer. **Fan out on direction, not on films** — and climb a ladder, because the artifacts get more expensive at every rung. Text is free, a still costs something, a render costs the most; so the choice narrows on text and only the finalist earns a picture.
+
+**When to fan out vs. go straight:**
+
+| Situation | Path |
+|---|---|
+| A film with a real budget, a launch, or anything the user will publish | Run the ladder, gate on the pick |
+| The tone is contested, or the user is undecided between two registers | Run the ladder |
+| A locked house style, a film in an existing series, or a named reference to match | Straight to the beat sheet — the style already answered it (Rule 0's build-first exception), **and only where the render is local and free**; a paid, long, or remote render keeps its approval regardless |
+| **The user waived the round** — shotcraft's autonomous mode, "you decide", "no check-ins" | Straight to the beat sheet. **The waiver is a delegated pick, not an absent one**: choose the direction, state it in one line before building, and record the waiver in the brief |
+| A short internal or throwaway clip | Straight to the beat sheet |
+
+**Sequence — two rounds, narrowing:**
+
+1. **Reference pass.** Two or three films in the register — not the industry. One line each on what to steal: a pacing, a transition grammar, a type attitude.
+2. **Round one — directions in text. Free.** 2–3 structurally different directions, each as: a name, a one-line visual thesis, three to five keywords, its type/colour/material stance, its camera character, and the trade it makes. Plus a beat sheet each. Structurally different means a different spine and a different pacing bias — three colour variants of one storyboard is not a fan-out.
+3. **Narrow to one** (two at most) on the text alone. This is the round that does the work, and it costs nothing.
+4. **Round two — one styleframe, for the finalist only.** The single frame that most carries the look. Present it with its beat sheet and runtime.
+5. **The gate (hard stop).** Then **stop and wait for the pick**. Nothing renders before it — not a test encode, not "just the first beat". *Narrow exception:* where two directions differ on **pacing** in a way a still cannot show, a sub-two-second motion test is allowed **only when the render is local and free**. Never for a paid or remote engine, and never as a rendered cut of the film — using a rendered video as the style proposal is a known trap: it is expensive, and the psychological cost of changing direction once one exists is exactly what this gate is protecting.
+6. **Then the storyboard proposal** in `video-direction.md` runs inside the winning direction — echo line, frame table, style/duration footer, "approve or adjust". A frame change here costs seconds; the same change after build costs minutes.
+7. **Then build**, still-framing each shot as it lands rather than rendering the whole film to find beat two mistimed.
+
+**N is 2–3, not 3+** — two genuinely different directions beat three variations of one, and for the filmed kind each extra option is a paid generation. It is not a cost cap on the code-rendered kinds, where a styleframe is free local CPU.
+
+**Two kinds need a carve-out, and skipping it is how this round backfires:**
+
+- **Filmed / generative.** Here a styleframe **is** a paid, metered, non-deterministic generation priced like a frame of the final film — and re-rolls are normal, so a naive three-option round can spend six to nine generations before the user has chosen anything. Run the model gate and the asset manifest in `generative-direction.md` **first**, treat the styleframes as a priced batch the user approves, and where the budget won't carry it, narrow on text alone and generate one styleframe for the leading direction only. `generative-production.md`'s "nothing generates before the board is approved" holds, with this round's single finalist styleframe as its one named exception.
+- **Product / shotcraft.** A styleframe needs pixels, but shotcraft's rule is that full capture happens **only after the storyboard is released** — capture earlier and you recapture. Resolve it with a **minimal pre-capture**: the few screenshots and design tokens that one frame needs, under the brief's data policy, and explicitly *not* the three-piece set (2× textures, per-element cutouts, layout table). Full capture stays behind the released storyboard at step 6.
+
+**On rejection of all N:** ask for two concrete dislikes and one reference film, then regenerate. Never regenerate blind.
+
+**The standing exit applies here too**, exactly as in §3: the category-standard version, played straight, is always available and is the user's door, never yours.
+
 ## 4. Phase rituals
 
 Detect the phase first, declare it in one line ("Phase: X — because <signal>"), then run its ritual. If the user names the phase explicitly, trust that over detection.
@@ -128,7 +196,7 @@ Detect the phase first, declare it in one line ("Phase: X — because <signal>")
 1. Run the Grill Gate (section 1) until the brief locks (section 2).
 2. Freeze answers into files: the brief/spec (rules, constraints, non-goals — the contract) and a build plan with acceptance criteria per step.
 3. Offer a done-condition the user can drive the build with.
-4. Build. New significant UI surfaces route through the mockup gate (section 3) before implementation.
+4. Build. New significant UI surfaces route through the mockup gate (§3) before implementation; **films fork instead to the film-kind pick (§1b) and the direction round (§3a)**, before anything renders.
 5. Before designing anything in an existing project, read what's there first: existing design system, tokens, theme, at least one representative component or page. Don't reinvent what works; branch out only for a UX win.
 
 ### Improvement: criteria before work

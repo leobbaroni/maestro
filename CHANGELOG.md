@@ -1,5 +1,66 @@
 # Changelog
 
+## 3.10.0 — 2026-08-10
+
+**The video engine stops being the agent's silent decision.** Design authority was the user's
+pick (§1a) and the generative model was the user's pick (3.7.0), but the *film's kind* — the
+most consequential of the three, since it decides what the film physically is — was resolved
+by the agent reading a signal table. That asymmetry is gone.
+
+### §1b — Film kind, asked the way §1a asks
+
+The user picks what appears on screen, and that answer selects the engine:
+
+| Offered as | Becomes |
+|---|---|
+| "Your product, shown as it really is" | shotcraft → Remotion |
+| "Abstract — light, type, shape; no UI" | canvas |
+| "Designed frames — words and numbers doing the explaining" | HyperFrames |
+| "Filmed-looking — real people and places, **generated rather than shot**" | generative |
+| "Footage you already have, packaged" | the caption/overlay companion workflows |
+
+The governing rule: *"Canvas or HyperFrames?" is a question about our implementation and the
+user has no way to answer it.* Two options were fixed after review — **"Filmed" was renamed**
+because a user holding a screen recording would have picked it and been handed *generated*
+people instead of their own footage, and **"inside our existing React app" was cut** from the
+user-facing table as plumbing wearing a film's clothes; it lives in the agent-side signal table
+where it belongs. A fifth row was added for footage in hand, which previously matched no kind at
+all while `companions.md` routed it happily.
+
+The old ten-row signal table survives, **demoted to a tiebreaker inside the user's pick, never a
+substitute for it**. Two calls stay the agent's, because the user cannot evaluate them: whether
+the machine can render at all, and determinism.
+
+### §3a — the film's gate, on a different cost curve from §3
+
+§3 is now scoped **surfaces only**, because its mechanics assume an option costs one authoring
+pass. A film option costs a render, so §3a climbs a ladder instead: **free text directions
+first — name, visual thesis, keywords, type/colour/material, camera character, the trade it
+makes — narrow to one on text alone, and generate a styleframe only for the finalist.** Nothing
+renders before the pick.
+
+Review caught that the first draft of this section was *more expensive than the source it
+encodes*, which undercut its own argument; the ladder is upstream's, restored. It also caught
+three holes now closed:
+
+- **The filmed kind breaks the "stills are cheap" premise** — there a styleframe *is* a paid,
+  metered generation priced like a final frame, and re-rolls are normal, so a naive three-option
+  round could spend six to nine generations before the user chose anything. It now runs through
+  the model gate and asset manifest first, as a priced batch.
+- **The product kind breaks the ordering** — shotcraft's rule is that capture happens only after
+  the storyboard is released, but a styleframe needs pixels. Resolved with a **minimal
+  pre-capture**: the few screenshots one frame needs, never the three-piece set.
+- **A waived round is still a pick.** Shotcraft's autonomous mode promises no interruptions while
+  §3a declared a hard stop — the two collided on the most common video job in maestro. A waiver
+  is now a *delegated* pick: choose the direction, state it in one line, record it.
+
+### Consistency
+
+Film kind is a brief-lock field; the greenfield ritual forks by medium; `companions.md` no
+longer says shotcraft "picks the engine"; `generative-production.md` names the finalist
+styleframe as the one generation permitted before board approval; and the router carries a
+gating row above the video rows. Also fixed: the routing table still said 104 shot cards.
+
 ## 3.9.0 — 2026-08-10
 
 **A third rendering engine, and the largest upstream absorption since 3.0.0.**

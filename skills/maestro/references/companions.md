@@ -59,7 +59,9 @@ the workflow skill is a HyperFrames pipeline, shotcraft is a Remotion shot vocab
 production method. Resolve by engine and by what the user already has: an existing
 HyperFrames project or a request naming that workflow → it owns the run, with shotcraft's
 mode gate, energy skeleton, and sound discipline informing the choices inside it. A
-greenfield product film with no engine committed → shotcraft leads and picks the engine.
+greenfield product film with no engine committed → **run the film-kind pick first**
+(`process.md` §1b). If the user chooses the product film, shotcraft leads; choosing between the
+workflow skill and the module is then a tiebreaker inside that pick, never a substitute for it.
 Never run both pipelines over one brief; say which is driving.
 
 ## Upstream toolchains not installed as skills

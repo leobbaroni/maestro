@@ -16,7 +16,8 @@ Before any **substantial** design/build/redesign work, interview the user first:
 - Substantial = new page/screen/site/video, redesign, brand work, anything where taste decisions multiply.
 - Skip when: the request is a small tweak, the brief is already fully specified, or you're mid-iteration on a locked brief.
 - **The design authority is the user's pick, not yours.** Maestro carries three houses with different instincts; ask early which one leads — by look and feel, never by skill name — recommend one, push once past "whatever looks best", and lock the answer into the brief (`references/process.md` §1a). A named house ends the question and decides which protocol runs when verbs overlap.
-- Significant new surfaces also get the **mockup fan-out gate**: N divergent options, the user picks before implementation (`references/process.md`). When the authority is genuinely undecided, spend the fan-out on it — one option per house.
+- Significant new surfaces also get the **mockup fan-out gate**: N divergent options, the user picks before implementation (`references/process.md` §3). When the authority is genuinely undecided, spend the fan-out on it — one option per house.
+- **For any video, the film's *kind* is the user's pick too, and it comes before the engine** (`references/process.md` §1b). Ask what appears on screen — their real product · abstract light and type · designed frames of words and data · filmed-looking people and places, *generated rather than shot* · footage they already have, packaged — **never which engine renders it**, which is a question about our implementation that they cannot answer. That answer selects the engine; the signal table in the chooser below is only a tiebreaker within it, and it is where production constraints like an existing React codebase live. Films then gate through §3a, which climbs a ladder: **free text directions first, a styleframe only for the finalist, nothing rendered before the pick.**
 - **A locked style is a pre-answered brief — build first, don't interview.** When the look is already committed (a named house style, a brand system, a prior film in the same series), it has *already* answered design authority, register, banned qualities, and motion feel — which is the entire thing this gate exists to establish, so the interview buys nothing but a round-trip. Take only what nothing can infer (duration, aspect ratio, brand colour), emit the **beat sheet**, and build: a cut communicates better than a storyboard, and the user redirects from something real. Two limits — a paid, long, or remote render is still a paid action and gets approval first (`references/process.md`), and this exception is about a *locked* style, never about an open one. When the look is genuinely undecided the gate applies in full, because that is a taste decision and it is the user's.
 - **The rendering engine is the user's pick too, whenever frames come out of a model rather than out of code.** Never assume an image or video model, and never inherit one from an example in these modules — every model name in maestro is a filled-in adapter, not a default, and engine lineups turn over faster than this skill can track. Ask which engines are actually reachable, map the job to capabilities rather than to names, and for a load-bearing asset offer a **bake-off**: same prompt across several engines, scored on axes named in advance, then synthesized — the winner is rarely one engine on every axis. Full gate and comparison protocol: `references/generative-direction.md`.
 
@@ -40,13 +41,14 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | GSAP, ScrollTrigger, SplitText, Flip, scroll stories | `gsap.md` |
 | 3D scenes, WebGL, shaders, R3F | `threejs.md` |
 | Generative art, canvas experiments, particles, noise | `creative-coding.md` |
+| **Any video — before routing** | **`process.md` §1b first: the user picks what the film *is*; that answer selects the row below.** Then §3a's direction round gates on beat sheets, styleframe only for the finalist |
 | Planning any video (story, beats, pacing, transitions) | `video-direction.md` |
-| **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 104 shot cards, eight-stage pipeline |
+| **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 152 shot cards, eight-stage pipeline |
 | One cinematic moment inside any video, any engine | `video-shotcraft.md` (pull a single shot card) |
 | Sound design, SFX pin tables, music beat-sync — any engine | `video-sound.md` |
 | **Prompting an image or video model** — character references, model sheets, plates, prompted shots | `generative-direction.md` first (grammar, ledger, model gate, pre-flight), then `generative-stills.md` or `generative-video.md` |
 | **A generated piece with more than one shot** — a sequence, a recurring character, an arc | `generative-production.md` — the phased pipeline. **Storyboard the whole thing and get it approved before generating anything**; composing shot-by-shot is how continuity is lost |
-| **Motion-graphics promo, brand film, title sequence, animated ad — a film made of light rather than of UI** | `video-canvas.md` — **the lead for this shape.** One pure `drawFrame(ctx, t)` producing a scrubbable HTML player and an MP4 from one source, no browser at render time |
+| **Motion-graphics promo, brand film, title sequence, animated ad — a film made of light rather than of UI** | `video-canvas.md` — **the lead once the user picks this kind (§1b).** One pure `drawFrame(ctx, t)` producing a scrubbable HTML player and an MP4 from one source, no browser at render time |
 | Rendering video from HTML | `video-hyperframes.md` |
 | Rendering video from React | `video-remotion.md` |
 | Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` (long tail: `toolbox-corpus.md`) |
@@ -74,9 +76,19 @@ Two sources are deliberately *not* vendored, and the reason matters when routing
 | Timeline choreography, scroll-driven stories, text splitting, SVG morph | GSAP |
 | One-off programmatic tween, no dependency budget | WAAPI |
 
-**Video** — ask what the film *is* before asking which engine renders it.
+**Video** — **the user picks what the film is; you pick how it renders.**
 
-Two films answer before the engine table does. **Real product UI on screen** — a demo or launch promo built from an actual app or site → **shotcraft leads** (`video-shotcraft.md`): it gates the mode, supplies the shot vocabulary and the pipeline, and renders through Remotion, so `video-remotion.md` still governs the API and determinism underneath it. **No product on screen, and light is the subject** — a motion-graphics promo, brand film, title sequence, animated ad → **`video-canvas.md` leads**. For everything else the three engines are peers, chosen by project shape:
+Ask the film-kind question first (`process.md` §1b) — what appears on screen, phrased as a film rather than as an engine. That answer selects the path:
+
+| The user picked | Path |
+|---|---|
+| Their real product, shown as it is | **shotcraft** (`video-shotcraft.md`) — gates the mode, supplies the shot vocabulary and pipeline, renders through Remotion, so `video-remotion.md` still governs the API and determinism underneath |
+| Abstract — light, type, shape, no UI | **canvas** (`video-canvas.md`) |
+| Designed frames — words, numbers, steps to read | **HyperFrames** (`video-hyperframes.md`) |
+| Filmed — real people, places, texture | **generative** (`generative-direction.md`, then its production pipeline) — a different axis entirely, see below |
+| Inside their existing React app | **Remotion** (`video-remotion.md`) |
+
+**The table below is a tiebreaker inside that pick, never a substitute for it.** Use it when the kind leaves two engines open, or when the environment forecloses one — not to overrule what the user chose:
 
 | Signal | Engine |
 |---|---|

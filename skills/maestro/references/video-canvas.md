@@ -161,7 +161,7 @@ Each names the artifact you will actually see when it is broken.
 
 A committed house style — the palette, the type family, the ground rules — is a **brief field, not an engine default**. Ask for it once, record it, then stop asking.
 
-**When a style is locked, build first.** A fixed style has already answered design authority, register, banned qualities, and motion feel, which is exactly what the Grill Gate exists to establish — so the interview buys nothing and the beat sheet in your reply is the better review artifact. Take duration and aspect ratio, which nothing can infer, plus a brand colour if one exists, then produce the beat sheet and build. Everything after the first cut is conversation.
+**When a style is locked, build first** — and skip the direction round; `process.md` §3a says the same, because a locked style has already made the pick that round exists to gate. A fixed style has already answered design authority, register, banned qualities, and motion feel, which is exactly what the Grill Gate exists to establish — so the interview buys nothing and the beat sheet in your reply is the better review artifact. Take duration and aspect ratio, which nothing can infer, plus a brand colour if one exists, then produce the beat sheet and build. Everything after the first cut is conversation.
 
 **When the style is genuinely open**, Rule 0 applies normally: it is a taste decision and it is the user's.
 

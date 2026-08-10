@@ -91,6 +91,8 @@ One cinema mode for the whole piece, from `generative-direction.md`, plus the pa
 
 Lock the **grade sentence** too: the one or two lines about color response that every prompt will close with. It is quoted verbatim into every shot, which is what makes seven separate generations look like one shoot.
 
+**One generation is permitted before the board exists**, and only one: the single finalist styleframe from `process.md` §3a's direction round, which runs at this phase and is what selects the look being locked. Everything else waits for the board.
+
 ## Phase 4 — the storyboard, and the approval that matters
 
 **This is the artifact the user approves, and it is the point of the whole pipeline.** Every shot, fully specified, presented together — before a single generation runs.

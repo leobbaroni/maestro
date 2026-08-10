@@ -25,6 +25,8 @@ The two families compose rather than compete: generative plates make excellent e
 
 Ask before the first prompt is composed. Same discipline as cockpit's crew proposal for language models, applied to rendering engines.
 
+**This is the second question, not the first.** `process.md` §1b already asked what the film *is*, and "filmed — real people, places, texture" is what routes here. That pick is settled; this gate asks only *which engine* generates it. Do not re-open the kind — a user who chose photoreal footage has ruled out the code-rendered paths, and offering them again reads as not having listened.
+
 **1. Read what is actually reachable.** Name the engines *this user can run right now* — a platform subscription they have, an API key in the environment, a local install, a CLI that is authenticated. Do not recite a canon of models they may not have access to. If exactly one engine is reachable, say so in a line and skip to composing; there is no choice to present.
 
 **2. Map the job to capabilities, not to names.** What an asset needs is stable even as the models churn:

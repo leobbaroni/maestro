@@ -17,6 +17,8 @@ Shotcraft's focus is web/desktop product film. The cards themselves are general 
 
 ## The mode gate — settle it before anything else
 
+**Where this sits.** `process.md` §1b picks the film kind — choosing the product film is what selects shotcraft — and §3a's direction round runs next, narrowing on free text directions before one finalist styleframe. Only then does the mode gate below decide how the *rest* of the pipeline is gated. **Autonomous mode is the user delegating the direction pick, not the round ceasing to exist**: choose the direction, state it in one line, record the waiver, and go.
+
 Three modes for a full promo. They do not merge. Decide before asset capture, storyboard, or a line of code; if the user already chose, execute that and do not re-ask or silently switch.
 
 | Mode | The user gets | The agent does |
@@ -102,7 +104,7 @@ Breather title cards run 50–55 frames (~1.8s), 2–4 per film, one after every
 
 ## Asset capture — the three-piece set
 
-Real-page shots are built on captured geometry, not on screenshots alone. Capture only *after* the storyboard is released — capturing earlier means recapturing, because page states and scope aren't settled yet. Start the product's dev server (or use a window-capture tool for desktop apps) and produce three artifacts per page:
+Real-page shots are built on captured geometry, not on screenshots alone. Capture only *after* the storyboard is released — with **one exception**: §3a's finalist styleframe needs pixels first, so run a *minimal pre-capture* of the few screenshots and tokens that one frame needs, under the brief's data policy, and never the three-piece set. Full capture stays behind the released storyboard — capturing earlier means recapturing, because page states and scope aren't settled yet. Start the product's dev server (or use a window-capture tool for desktop apps) and produce three artifacts per page:
 
 | Artifact | Spec | Feeds |
 |---|---|---|
