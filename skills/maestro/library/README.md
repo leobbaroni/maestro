@@ -15,7 +15,7 @@ originating project's real procedure instead of maestro's paraphrase of it.
 | Corpus | What it holds | Entry point |
 |---|---|---|
 | `taste-skill/` | 11 sub-skills: the anti-slop v2 core + brandkit, brutalist, minimalist, soft, redesign, image-to-code, stitch, output, imagegen-frontend web/mobile | `taste-skill/skills/<name>/SKILL.md` |
-| `hallmark/` | 21 macrostructures, ~50 component fingerprints, 20 themes across 4 genres, 57 slop-test gates, audit/redesign/study verbs, per-craft references | `hallmark/SKILL.md`, then `hallmark/references/…` |
+| `hallmark/` | 21 macrostructures, ~50 component fingerprints, 21 themes across 4 genres, 58 slop-test gates, audit/redesign/study verbs, per-craft references | `hallmark/SKILL.md`, then `hallmark/references/…` |
 | `impeccable/` | Per-action design references (typeset, layout, colorize, critique, audit, harden, delight, …) plus the pre-edit quality floor (`craft-floor.md`), the new-surface flow (`new-work.md`), and per-mode depth (`operate.md`) | `impeccable/reference/<action>.md` |
 | `genjutsu/` | Two runnable orchestrators — **cast** (motion, micro-interactions, wow-factor on an existing UI) and **paint** (full visual universe: art direction → design system → implementation → audit) — over 14 technique sub-skills spanning web, Compose, and SwiftUI | `genjutsu/cast/SKILL.md`, `genjutsu/paint/SKILL.md`, `genjutsu/_jutsu/<name>/SKILL.md` |
 | `gsap-skills/` | GreenSock's own eight-part skill set: core, timeline, plugins, ScrollTrigger, React, frameworks, performance, utils — plus `llms.txt` | `gsap-skills/skills/<name>/` |

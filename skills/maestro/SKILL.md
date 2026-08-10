@@ -17,6 +17,7 @@ Before any **substantial** design/build/redesign work, interview the user first:
 - Skip when: the request is a small tweak, the brief is already fully specified, or you're mid-iteration on a locked brief.
 - **The design authority is the user's pick, not yours.** Maestro carries three houses with different instincts; ask early which one leads — by look and feel, never by skill name — recommend one, push once past "whatever looks best", and lock the answer into the brief (`references/process.md` §1a). A named house ends the question and decides which protocol runs when verbs overlap.
 - Significant new surfaces also get the **mockup fan-out gate**: N divergent options, the user picks before implementation (`references/process.md`). When the authority is genuinely undecided, spend the fan-out on it — one option per house.
+- **A locked style is a pre-answered brief — build first, don't interview.** When the look is already committed (a named house style, a brand system, a prior film in the same series), it has *already* answered design authority, register, banned qualities, and motion feel — which is the entire thing this gate exists to establish, so the interview buys nothing but a round-trip. Take only what nothing can infer (duration, aspect ratio, brand colour), emit the **beat sheet**, and build: a cut communicates better than a storyboard, and the user redirects from something real. Two limits — a paid, long, or remote render is still a paid action and gets approval first (`references/process.md`), and this exception is about a *locked* style, never about an open one. When the look is genuinely undecided the gate applies in full, because that is a taste decision and it is the user's.
 - **The rendering engine is the user's pick too, whenever frames come out of a model rather than out of code.** Never assume an image or video model, and never inherit one from an example in these modules — every model name in maestro is a filled-in adapter, not a default, and engine lineups turn over faster than this skill can track. Ask which engines are actually reachable, map the job to capabilities rather than to names, and for a load-bearing asset offer a **bake-off**: same prompt across several engines, scored on axes named in advance, then synthesized — the winner is rarely one engine on every axis. Full gate and comparison protocol: `references/generative-direction.md`.
 
 ## Operating loop
@@ -45,6 +46,7 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | Sound design, SFX pin tables, music beat-sync — any engine | `video-sound.md` |
 | **Prompting an image or video model** — character references, model sheets, plates, prompted shots | `generative-direction.md` first (grammar, ledger, model gate, pre-flight), then `generative-stills.md` or `generative-video.md` |
 | **A generated piece with more than one shot** — a sequence, a recurring character, an arc | `generative-production.md` — the phased pipeline. **Storyboard the whole thing and get it approved before generating anything**; composing shot-by-shot is how continuity is lost |
+| **Motion-graphics promo, brand film, title sequence, animated ad — a film made of light rather than of UI** | `video-canvas.md` — **the lead for this shape.** One pure `drawFrame(ctx, t)` producing a scrubbable HTML player and an MP4 from one source, no browser at render time |
 | Rendering video from HTML | `video-hyperframes.md` |
 | Rendering video from React | `video-remotion.md` |
 | Choosing a component library, flair kit, gallery, icon/font/asset source, or easing tool | `toolbox.md` (long tail: `toolbox-corpus.md`) |
@@ -74,14 +76,19 @@ Two sources are deliberately *not* vendored, and the reason matters when routing
 
 **Video** — ask what the film *is* before asking which engine renders it.
 
-Product demo or launch promo built from a real app or site → **shotcraft leads** (`video-shotcraft.md`): it gates the mode, supplies the shot vocabulary and the pipeline, and renders through Remotion, so `video-remotion.md` still governs the API and determinism underneath it. For everything else HyperFrames and Remotion remain peers, chosen by project shape:
+Two films answer before the engine table does. **Real product UI on screen** — a demo or launch promo built from an actual app or site → **shotcraft leads** (`video-shotcraft.md`): it gates the mode, supplies the shot vocabulary and the pipeline, and renders through Remotion, so `video-remotion.md` still governs the API and determinism underneath it. **No product on screen, and light is the subject** — a motion-graphics promo, brand film, title sequence, animated ad → **`video-canvas.md` leads**. For everything else the three engines are peers, chosen by project shape:
 
 | Signal | Engine |
 |---|---|
+| The frame is *drawn as light* — glows, blooms, shaped falloff, additive compositing | **Canvas** |
+| The deliverable is both a scrubbable player and a video file | **Canvas** — one source, identical by construction |
+| Headless Chromium unavailable, or a render that must survive a shell killing long commands | **Canvas** — no browser, resumable frame-per-file |
 | Standalone video, HTML/CSS comfort, agent-driven CLI loop | HyperFrames |
+| The frame is fundamentally a laid-out page — flex/grid typography, cards, tables | HyperFrames |
 | Existing React codebase, reuse of app components in video | Remotion |
 | Video embedded in a product (Player, per-user renders, SaaS) | Remotion |
 | Composition authored mostly by an agent from a storyboard | HyperFrames |
+| Real screenshots, captions, voiceover, or a scored soundtrack | Remotion / shotcraft — **not** canvas |
 | Team already invested in one of them | That one |
 
 Nothing here is displaced by shotcraft: `video-direction.md` still plans story and beats for any engine, `video-sound.md` scores any engine, and a single shot card is worth pulling into a HyperFrames composition as readily as a Remotion one — adapt it, don't transplant it.

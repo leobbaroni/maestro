@@ -147,6 +147,7 @@ When the drift watcher flags one of the eight watched corpora:
 | generative-direction.md | banana-pro-director + cinema-worldbuilder (shared grammar), impeccable (comp-as-page, prompt-travels-with-asset) |
 | generative-stills.md | banana-pro-director (authoritative) |
 | generative-video.md | cinema-worldbuilder (authoritative) |
+| video-canvas.md | the motion-promo skill by keemfinity (method + craft only — **its engine source ships no licence and is NOT vendored**), reconciled against video-direction/shotcraft/sound and creative-coding. **No upstream repo; drift checking will never flag it** |
 | generative-production.md | banana-pro-director + cinema-worldbuilder, plus a user-supplied multi-shot production brief (anchor-and-stack referencing, prompt freezing, start-frame motion collapse, edit prompts) — **no upstream repo; drift checking will never flag it** |
 | platform-native.md | genjutsu |
 | toolbox.md | live web verification — no git upstream; see below |

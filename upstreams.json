@@ -20,12 +20,12 @@
       ],
       "pins": {
         "skill/reference": {
-          "sha": "bcfb7efc46a5354819bedf3ecc9ab2a117eb89df",
-          "date": "2026-08-03T02:56:39Z"
+          "sha": "181212cb2dce0f9038acd99a1a9d19f040a19fba",
+          "date": "2026-08-09T22:35:07Z"
         },
         "skill/SKILL.src.md": {
-          "sha": "6769b1879ab2bc2fb8c9fc690554ac248fd7b20c",
-          "date": "2026-07-26T02:16:17Z"
+          "sha": "19786e7a225c3688e558f8694a7c8c6a8a25d840",
+          "date": "2026-08-09T22:09:55Z"
         }
       }
     },
@@ -207,8 +207,8 @@
           "date": "2026-07-19T17:33:30Z"
         },
         "packages/skills/skills": {
-          "sha": "a836136e52f749d980cd4683d6b616d253a17b2a",
-          "date": "2026-08-03T10:18:16Z"
+          "sha": "6b956daca6b9401631efb0fa0f9c4e4cb423397c",
+          "date": "2026-08-07T12:24:22Z"
         }
       }
     },
@@ -258,8 +258,8 @@
       ],
       "pins": {
         "skills/hallmark": {
-          "sha": "aeb42fb354ff4efa36ab475773a082315a3af2ce",
-          "date": "2026-06-04T20:42:42Z"
+          "sha": "c20fc5dd09aa02e9a002dd6fad57858577668003",
+          "date": "2026-08-06T15:40:03Z"
         }
       }
     },
@@ -282,16 +282,16 @@
       ],
       "pins": {
         "references": {
-          "sha": "d4915443232e89527fdc9d7e79f132ba411fc440",
-          "date": "2026-07-28T07:18:36Z"
+          "sha": "c05d48492db915582144f60c5d0d12f3cdb9094d",
+          "date": "2026-08-09T09:00:39Z"
         },
         "SKILL.md": {
-          "sha": "3d15c4bffd18a667ef6e920f7f27dbe7d891bf54",
-          "date": "2026-07-28T06:31:48Z"
+          "sha": "60713c77f96351c41df7c29fa0ad997056a6253b",
+          "date": "2026-08-09T09:38:32Z"
         },
         "demos": {
-          "sha": "ba60245f104b6d57c109eb02f0015e99fe89f47d",
-          "date": "2026-07-26T15:40:59Z"
+          "sha": "5020cb7ceca9112db1a5be56abfc9df9fc1d85dd",
+          "date": "2026-08-09T09:59:11Z"
         },
         "template/src": {
           "sha": "741938f1a8159b274a7164b95ed6d1f0e0513c69",
@@ -333,8 +333,8 @@
           "date": "2026-07-28T23:00:07Z"
         },
         "skills/hyperframes-cli": {
-          "sha": "30f38307411908237201ed227f5350aa18ba156e",
-          "date": "2026-07-31T20:30:07Z"
+          "sha": "68205dbbc159412209663ede7732629b4f50bcf1",
+          "date": "2026-08-10T05:59:15Z"
         },
         "skills/hyperframes-creative": {
           "sha": "696cbdbbd0e5c83faf72c767126d4a153110f130",
@@ -349,8 +349,8 @@
           "date": "2026-07-15T13:19:14Z"
         },
         "skills/hyperframes-registry": {
-          "sha": "b9be0b26254fe7b759c6310036866f02d9d3d72b",
-          "date": "2026-07-15T13:19:14Z"
+          "sha": "68205dbbc159412209663ede7732629b4f50bcf1",
+          "date": "2026-08-10T05:59:15Z"
         },
         "skills/hyperframes/SKILL.md": {
           "sha": "6cab53a681bf159ffe34f66506a8004e38213fae",

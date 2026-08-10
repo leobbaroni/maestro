@@ -20,7 +20,7 @@ Macrostructure and theme are prime Grill Gate material — surface them to the u
 
 | Genre | Fires on | Theme cluster (rotates) | Nav default | Footer default |
 | --- | --- | --- | --- | --- |
-| **editorial** (default) | no other signal; portfolio, manifesto, agency, magazine, artisan brand | Specimen · Newsprint · Atelier · Garden · Almanac · Studio · Riso · Sport · Brutal · Manifesto · Editorial · Carnival | N6 Masthead | Ft1 Mast-headed |
+| **editorial** (default) | no other signal; portfolio, manifesto, agency, magazine, artisan brand | Specimen · Newsprint · Atelier · Garden · Almanac · Studio · Riso · Sport · Brutal · Manifesto · Editorial · Carnival · Grid | N6 Masthead | Ft1 Mast-headed |
 | **modern-minimal** | SaaS, enterprise, API, platform, dev tool, infra, B2B, dashboard | Coral · Cobalt | N1b SaaS three-section | Ft2 Inline single line |
 | **atmospheric** | AI tool, generative, music/video/voice, late-night, dark mode, cinematic | Bloom · Midnight · Terminal · Aurora · Lumen | N5 Floating pill | Ft5 Statement |
 | **playful** | fun, consumer, casual, friendly, onboarding, community | Hum | N1b SaaS three-section | Ft8 Marquee scroll |
@@ -118,7 +118,7 @@ Full nav roster: N1a Wordmark+2-links · N1b SaaS three-section · N2 Floating c
 
 ## Themes — selection table (catalog is the default)
 
-Rotate within the genre's cluster. Two consecutive themes must differ on **≥1 of 3 axes**: paper band (dark <30% / mid 30–85% / light >85%) · display style · accent hue. Full OKLCH token block for every theme: `library/hallmark/site/css/tokens.css`. The four with a spec file also carry signature moves + affinity in `library/hallmark/references/themes/<name>.md`.
+Rotate within the genre's cluster. Two consecutive themes must differ on **≥1 of 3 axes**: paper band (dark <30% / mid 30–85% / light >85%) · display style · accent hue. Full OKLCH token block for every theme: `library/hallmark/site/css/tokens.css`. The five with a spec file also carry signature moves + affinity in `library/hallmark/references/themes/<name>.md`.
 
 | Theme | Genre | Paper band | Display | Accent | Voice |
 | --- | --- | --- | --- | --- | --- |
@@ -134,6 +134,7 @@ Rotate within the genre's cluster. Two consecutive themes must differ on **≥1 
 | Manifesto | editorial | dark near-black | display-heavy all-caps | red `#E51A1A` | political poster |
 | Editorial | editorial | light warm-cream | display-heavy (800) | coral | magazine |
 | Carnival | editorial | light pink-cream | variable display | mustard + oxblood | loud maximalist |
+| Grid | editorial | light cool near-white (never pure `#fff`) | heavy grotesk, lowercase, tight tracking, slammed left | exactly one signal ink per page — signal red (default), ultramarine, or signal yellow (surface only) | Swiss systems manual |
 | Coral | modern-minimal | light warm-grey | geometric-sans (600) | warm coral | warm fintech |
 | Cobalt | modern-minimal | light cool-white | grotesk-sans | electric cobalt | dev-tool/API |
 | Bloom | atmospheric | light warm off-white | geometric-sans (600) | restrained coral | calm airy |

@@ -125,9 +125,27 @@ When the repeats get dense enough to blur, stop scoring them individually and **
 
 Enable when the user has picked a track *before* storyboarding. If they haven't, choose BGM at the sound stage and pace motion by content rhythm instead — don't force cuts onto a grid that doesn't exist yet.
 
+**Music is the clock, and it is decided first.** A track chosen after the storyboard means re-cutting the storyboard; the grid is upstream of picture, not a garnish on it.
+
 **1. Fit the grid; don't trust the tempo scalar.** Beat trackers return a usable *sequence of beat times* but a tempo number that can be off by 2%+ (129.2 reported against a true 131.97). Least-squares-fit the whole beat sequence to a uniform grid `tᵢ = t₀ + i·T`, and take BPM from `60/T`. Residual **≤ ±15ms** (inside half a frame) means a machine-tight grid you can trust; larger means tempo changes — fit per segment.
 
-**2. Find the accents that deserve the big hits.** Band-pass the kick range (~40–160 Hz), take onset strength, and read the energy at each integer beat. Two artifacts go into the design spec: a **music structure table** (which beat the energy tops out at, where the breakdowns and silences are — a breakdown is a natural home for the brand breath) and a **list of the strongest hits**, on which the film's 2–3 biggest slams must land. Real trap: a slam pinned on a half-beat while the strongest kick sat on the integer beat rendered 5.75 frames off. On strong-beat tracks the accents are almost always on integer beats — a half-beat pin needs onset data, not a hunch.
+**Check half/double before anything else.** Detectors routinely lock an octave off — 70 BPM reported as 140, or the reverse — and every downstream number stays self-consistently wrong. Score the 0.5×, 1×, and 2× candidates against real transients and let the evidence pick, rather than accepting the first answer.
+
+**Separate the drums before detecting.** Run harmonic/percussive separation (or a full stem split) so onset detection reads drums instead of a synth pad's attack. Melodic transients are the usual source of a grid that looks tight and feels wrong.
+
+**2. Find the accents that deserve the big hits — in three classes, not one.** Kick-only detection under-serves the picture. Band the transients and let each class drive a different motion register:
+
+| Band | Reads as | Drives |
+|---|---|---|
+| **Kick** ~40–160 Hz | Weight | Impacts, slams, snap-shrinks — the film's 2–3 biggest hits |
+| **Snare** ~150–800 Hz | The backbeat | Cuts, card arrivals, direction changes |
+| **Hi-hat** ~4 kHz+ | Subdivision | Ticks, glints, small step motion |
+
+Add an **RMS energy pass** to get the structure: where the track tops out, where the breakdowns and silences sit — a breakdown is the natural home for the brand breath. Real trap: a slam pinned on a half-beat while the strongest kick sat on the integer beat rendered 5.75 frames off. On strong-beat tracks the accents are almost always on integer beats — a half-beat pin needs onset data, not a hunch.
+
+**2a. The grid must pass an acceptance gate before you storyboard.** Score every candidate grid, including the 0.5× and 2× variants, against the nearest real transient — match rate, mean and worst-case deviation, and coverage across the track's length. **A grid that fails the gate is not a grid to build on**, and discovering that after the storyboard means re-cutting picture instead of re-running an analysis. Persist the analysis artifacts next to the project so the numbers can be re-read rather than re-derived.
+
+When one detector will not settle, cross-validate with a second and a third implementation before concluding the track is genuinely rubato.
 
 **3. Write the timeline in beats, not frames.**
 
@@ -146,9 +164,13 @@ export const SHOTS = {
 
 Shot lengths in whole beats (4 or 8 per shot); acceleration passages may step through half and quarter beats. Step-style shots (list items, mosaic cells) map one action per beat. Swapping the track or a section then means editing two constants. The SFX table uses `beatF(n)` from the same source of truth, so audio and picture can't drift apart.
 
+**Bind each anchor to the right thing.** `beatF(n)` is correct for dense, regular cut patterns — the grid *is* the rhythm there. It is the wrong anchor for a sparse accent or an isolated freeze, which must pin to the **real transient time**, because that is what the ear is actually tracking and a grid-quantized pin lands audibly early or late against it. Dense and regular → the grid. Sparse and featured → the transient.
+
 **When the BGM's own drums are already dense, hold back:** pin only sounds unique to the picture, give the big slams to 2–3 moments, and let the track's kick carry the rest.
 
 **4. Verify against the render — closed loop, mandatory.** Extract the audio *from the finished file* (not the source track — this catches encode and alignment offsets too), re-run the grid fit, and compare every designed cut against the nearest measured beat.
+
+**Separate the two error classes before you try to fix either.** *Audio-truth error* is the gap between a designed cut's second and the real transient's second — a design or analysis problem, and the one worth chasing. *Visual quantization error* is what remains after rounding to a frame boundary, and it is bounded by the frame rate itself: at 30fps nothing can land closer than ±½ frame no matter how good the analysis. Reporting sub-frame precision as an achievement, or trying to tune away an error that is purely frame-rounding, both waste a pass. Fix the first; accept the second.
 
 | Verdict | Error |
 |---|---|

@@ -1172,3 +1172,40 @@
   --dur-short: 220ms;
   --dur-long:  420ms;
 }
+
+[data-theme="grid"] {
+  --color-paper:      oklch(99%   0.003 255);   /* near-white sheet, faint cool, never #fff */
+  --color-paper-2:    oklch(97.2% 0.003 255);
+  --color-paper-3:    oklch(94.5% 0.004 255);
+  --color-rule:       oklch(88%   0.004 255);   /* the exposed grid hairline */
+  --color-rule-2:     oklch(72%   0.005 255);
+  --color-muted:      oklch(48%   0.006 255);
+  --color-neutral:    oklch(34%   0.006 255);
+  --color-ink-2:      oklch(26%   0.008 255);
+  --color-ink:        oklch(16%   0.010 255);   /* cool near-black */
+  --color-accent:     oklch(55%   0.21  28);    /* the one signal red */
+  --color-accent-ink: oklch(99%   0.003 255);
+  --color-focus:      oklch(55%   0.21  28);
+
+  --font-display: "Archivo", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Archivo", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  /* No serif anywhere in Grid: surfaces that ask for one get the grotesk. */
+  --font-serif:   "Archivo", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-label:   "Archivo", ui-sans-serif, sans-serif;
+  --font-mono:    "Spline Sans Mono", "Geist Mono", ui-monospace, monospace;
+
+  --display-weight: 800;
+  --display-style:  normal;
+
+  --text-display:   clamp(2.75rem, 7vw + 0.5rem, 6rem);
+  --text-display-s: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
+
+  --tracking-display: -0.045em;
+  --tracking-tight:   -0.02em;
+  --tracking-label:   0.04em;
+  --section-gap: 6rem;
+  --section-head-gap: 1.5rem;
+
+  --radius-card: 0; --radius-pill: 0; --radius-input: 0;
+  --rule-card: 1px; --shadow-card: none;
+}

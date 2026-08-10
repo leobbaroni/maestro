@@ -2,7 +2,7 @@
 
 *Author videos as React components rendered deterministically frame-by-frame; `useCurrentFrame()` is the only clock.*
 
-For a product demo or launch promo, `references/video-shotcraft.md` is the craft layer above this one — it brings the mode gate, a 104-card shot vocabulary with tuned implementations, and the production pipeline, while every rule below still governs the code it emits. Audio for any Remotion film: `references/video-sound.md`.
+For a product demo or launch promo, `references/video-shotcraft.md` is the craft layer above this one — it brings the mode gate, a 152-card shot vocabulary with tuned implementations, and the production pipeline, while every rule below still governs the code it emits. Audio for any Remotion film: `references/video-sound.md`.
 
 ## Mental Model
 
@@ -62,7 +62,8 @@ type Props = { readonly title: string }; // `type`, not `interface`, for default
 - Nest one composition inside another: `<Sequence width={W} height={H}><Inner /></Sequence>`.
 - Assets live in `public/`; reference via `staticFile("name.ext")`. Remote URLs work directly.
 - **Maps** (animated globes, flyovers, route reveals) have a dedicated upstream technique family — Cesium, Mapbox, MapLibre, MapTiler, and static-map recipes with their own render-stability rules for headless capture. Heavy and API-token-gated, so maestro points rather than distills: see `references/companions.md`.
-- For Studio editability, wrap elements users should manipulate: `<div>` → `<Interactive.Div>`, and give `Interactive`/`Solid`/`Sequence` a descriptive `name` prop.
+- For Studio editability, wrap elements users should manipulate: `<div>` → `<Interactive.Div>`. **`<Img>` is already editable and must not be wrapped** — wrapping it adds a layer upstream calls unnecessary. Give `Interactive`/`Solid`/`Sequence` a descriptive `name` prop, and **hardcode that name as an inline string literal** — the same constraint that already governs styles, `interpolate` params, and `defaultProps`. A computed or variable `name` is unreadable to Studio, so the element loses its label exactly where the label is the point.
+- **Preserve the user's changes.** Studio writes edits back into the source. When you touch a file a user has been editing, treat their values as intent rather than as drift to normalise away — re-imposing your own numbers silently discards their work.
 
 ### Studio interactivity is a code-shape contract
 

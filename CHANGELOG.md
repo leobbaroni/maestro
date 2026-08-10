@@ -1,5 +1,103 @@
 # Changelog
 
+## 3.9.0 — 2026-08-10
+
+**A third rendering engine, and the largest upstream absorption since 3.0.0.**
+
+### New module: `video-canvas.md` — the canvas engine
+
+Remotion needs React and a bundler; HyperFrames needs HTML/CSS and a headless browser. The
+chooser had no answer when neither fit — and the shape it had no answer for is one of the most
+common: a motion-graphics promo where **light is the subject** and there is no UI to lay out.
+One pure `drawFrame(ctx, t)` paints any frame from time alone and drives a scrubbable HTML
+player and an MP4 from the same source, with **no browser at render time**.
+
+It leads for promos, brand films, title sequences, and animated ads with no product on screen —
+now a **first-class row in the routing table and the engine chooser**, which gained the signals
+that pick it (frame drawn as light · both deliverables from one source · no Chromium · a render
+that must survive a shell killing long commands) *and* the signals that rule it out (real
+screenshots, captions, voiceover, or a scored soundtrack → Remotion/shotcraft; a laid-out page →
+HyperFrames).
+
+What it carries: the four-rule architecture contract and why each is load-bearing; the timeline
+dispatch model (local scene time, cumulative absolute ends, one scene per frame); state hygiene
+and the opaque-black clear; **a thirteen-row silent-failure table**; the resumable-render
+discipline; a beat-sheet format; thirteen named shot types; twelve craft rules; verification;
+and a refinement table mapping plain-language notes to their actual cause.
+
+**Canvas fails quietly, which is why the diagnostic table earns its place.** An invalid colour
+assigned to `fillStyle` is *ignored* and the previous value persists; the same string handed to
+a gradient stop *throws*. Same root cause, two unrelated presentations — so the table routes
+from symptom to cause instead of from cause to symptom.
+
+### Rule 0 gains a build-first exception
+
+**A locked style is a pre-answered brief.** When the look is already committed — a named house
+style, a brand system, a prior film in the series — it has already answered design authority,
+register, banned qualities, and motion feel, which is the entire thing the Grill Gate exists to
+establish. The interview then buys only a round-trip. Take what nothing can infer (duration,
+aspect, brand colour), emit the beat sheet, and build; a cut communicates better than a
+storyboard. Two limits, both explicit: a paid, long, or remote render is still a paid action and
+gets approval first, and the exception is about a *locked* style, never an open one.
+
+### Reconciled rather than pasted
+
+The absorbed source disagreed with maestro in six places. Each is now resolved in writing:
+
+- **Frame density.** `video-direction.md`'s "3 elements looks empty, 8–10 feels alive" floor is
+  written against flat type-on-a-field beats. Count visual *incident*, not objects — a lit
+  volumetric subject already carries it in bloom, spill, rim, and falloff, so one object per
+  beat is correct on canvas and a busy composite is the failure.
+- **Pure black.** `#000` is right for encoded video; `creative-coding.md`'s near-black advice is
+  about interactive canvas art on desktop LCDs, where pure black flattens low-alpha additive
+  accumulation. Both stand, scoped.
+- **Beat length.** The 1.5–4s ceiling holds for beats made of light; it lifts for any beat
+  carrying evidence a viewer must parse — a statistic, a panel, a demo.
+- **House style vs. product-derived direction.** Style is a brief field, never an engine
+  default, and **shotcraft wins whenever real product UI is on screen** — house tokens beside
+  captured screenshots is exactly the mismatch that reads broken.
+- **Reduced motion.** The film is content and properly exempt; the player chrome is not. Under
+  `prefers-reduced-motion: reduce` it must not autoplay — open paused.
+- **Sound.** Audio is a mux step, not a render step: cues stay a declarative table pinned in
+  seconds against timeline entries, so they survive retiming.
+
+### Upstream drift — nine watched paths across four projects
+
+- **video-shotcraft: 104 → 152 shot cards**, 95 → 143 with demos. The stale count appeared in
+  six places across three files; an agent following it would scan for a third of the library and
+  conclude the rest did not exist. `demos/_fixtures/` now holds **two** unrelated modules, so
+  "71 import the shared fake-UI fixtures" described the wrong thing. Added: the
+  `@remotion/motion-blur` dependency (its absence is an install error, not a visual
+  difference), the SVG-defs id collision that silently mis-renders the *second* instance of a
+  card in one composition, and the clean-room provenance of the 48 new cards.
+- **The zoom-vs-scale rule was overstated.** maestro said "scale up with layout-level CSS
+  `zoom`, never `transform: scale`". Upstream's shipped stage defaults to `transform: scale` and
+  opts into `zoom` for text-dense small-type scenes. Now stated as a choice with its criterion.
+- **Beat sync was rewritten upstream and is rewritten here.** Music is the clock and is chosen
+  before the storyboard. Check half/double tempo before anything else — a detector locked an
+  octave off keeps every downstream number self-consistently wrong. Separate drums before
+  detecting. Three transient classes replace kick-only, each driving a different motion
+  register. **The grid must pass an acceptance gate before storyboarding**, because discovering
+  a bad grid afterwards means re-cutting picture. And the blanket `beatF(n)` rule is now
+  qualified: dense regular cuts bind to the grid, sparse featured accents bind to the real
+  transient. Verification splits into audio-truth error (worth chasing) and frame-quantization
+  error (bounded by the frame rate — accept it).
+- **hallmark shipped a 21st theme, `Grid`** — the editorial cluster's Swiss neo-grotesque slot,
+  and the first non-serif member of a serif-led cluster. Vendored verbatim (161-line spec plus
+  its 36-line token block) and, more importantly, **wired into the selection brain**: without a
+  row in the theme table and a place in the editorial rotation, no build could ever reach it.
+  Nav archetypes corrected `N1–N9` → `N1a–N13` in both layers.
+- **Remotion:** `<Img>` is already Studio-editable and must **not** be wrapped in
+  `<Interactive.Div>`; the `name` prop must be a hardcoded inline literal or Studio cannot read
+  it; and Studio writes user edits back to source, so a user's values are intent rather than
+  drift to normalise away.
+- **HyperFrames:** `npx hyperframes catalog <query>` searches the registry **by meaning, on this
+  machine**. Not knowing a block's name was the last excuse for reimplementing a section that
+  already exists, and that excuse is gone.
+
+Also corrected, and pre-existing rather than drift: `library/README.md` said 57 slop-test gates
+where the vendored corpus says 58.
+
 ## 3.8.0 — 2026-08-03
 
 **New module: `generative-production.md` — the phased pipeline for a multi-shot generative

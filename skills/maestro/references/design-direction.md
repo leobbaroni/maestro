@@ -70,7 +70,7 @@ Each direction implies a motion energy, easing family, pacing, and atmosphere la
 | Cultural, fun, consumer, festive | Folk Frequency |
 | Dark, dramatic, intense, cinematic | Shadow Cut |
 
-Web-UI style families (glassmorphism, neumorphism, claymorphism, brutalism, bento grid, flat, skeuomorphic) are treatments, not directions — pick a direction above first, then use a treatment only if it serves it. Page-shape and theme selection (macrostructures, component fingerprints, the 20-theme catalog) is its own layer: `references/page-anatomy.md`.
+Web-UI style families (glassmorphism, neumorphism, claymorphism, brutalism, bento grid, flat, skeuomorphic) are treatments, not directions — pick a direction above first, then use a treatment only if it serves it. Page-shape and theme selection (macrostructures, component fingerprints, the 21-theme catalog) is its own layer: `references/page-anatomy.md`.
 
 ### Aesthetic recipes — pre-committed treatments with exact tokens
 

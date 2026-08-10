@@ -247,12 +247,15 @@ Everything runs through `npx hyperframes` (Node ≥ 22 + FFmpeg).
 | Command | One line |
 |---|---|
 | `npx hyperframes init my-video` | Scaffold a project (or `capture <url>` to seed from a site). Set the aspect at scaffold time with `--resolution landscape\|portrait\|square` (or their `-4k` variants) rather than resizing later. |
-| `npx hyperframes add <name>` | Install a registry block/component (shader transitions, prebuilt scenes). |
+| `npx hyperframes catalog <query>` | **Search the registry by meaning, locally.** Describe what the section should *do* — "pricing comparison", "logo wall" — instead of guessing a block's name. |
+| `npx hyperframes add <name>` | Install a registry block/component (shader transitions, prebuilt scenes) — including whatever the search surfaced. |
 | `npx hyperframes lint` | Fast static checks — run early and often while writing. |
 | `npx hyperframes check` | The browser gate: lint + runtime errors + layout/overflow + motion verification + contrast in one seek pass; must pass with 0 findings. |
 | `npx hyperframes snapshot --at <t1>,<t2>,…` | Capture frames at chosen timestamps; required eyeball pass when sub-compositions exist (catches the three mount pitfalls nothing else does). |
 | `npx hyperframes preview` | Open Studio — the user can edit anything on the timeline; pause here and ask before rendering. |
 | `npx hyperframes render --quality draft\|high --output out.mp4` | Render the MP4 — only after the user approves; verify the output file exists and has plausible size. |
+
+**Search before you hand-build.** The catalog is now queryable by intent on this machine, which removes the last excuse for reimplementing a section that already exists — the old failure was not knowing the block's name, and naming is exactly what the search removes. Make it step two of the loop, after `init` and before authoring: a block you find is tuned, tested, and rendered deterministically; the one you write at 2am is none of those.
 
 Render is user-gated: never auto-render just because checks pass.
 
