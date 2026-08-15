@@ -1,5 +1,70 @@
 # Changelog
 
+## 3.11.0 — 2026-08-15
+
+**Drift absorbed across four upstreams — and three of the corrections are to claims 3.9.0 and
+3.10.0 shipped.** Worth stating plainly: the checker reported "up to date" this morning, and
+seven paths had moved by evening.
+
+### Corrections to my own recent releases
+
+- **`npx hyperframes catalog <query>` does not exist.** The command takes **no positional
+  argument** — the query is a flag. 3.9.0 documented the positional form in two files, so the
+  one command that release added was a command that errors. Now
+  `npx hyperframes catalog --query "<what the beat should do>"`.
+- **"Search by meaning" overstated it.** The default tier is **`words`** — shared vocabulary
+  against name, title, description, and tags — so a query phrased in words the entry does not
+  use simply misses. `--on-device` is what opts into meaning-ranking. The module now says a miss
+  is often a vocabulary mismatch rather than an absent block, and to re-word once before
+  concluding nothing fits.
+- **The shot-card counts were corrected in the wrong direction.** 3.9.0 moved them 104 → 152 to
+  match upstream — but the sentence they sit in is about the **vendored** library, and the
+  vendored tree held 104 cards and 95 demos. The old numbers were right about the library; the
+  new ones described something that was not there, while `VENDOR-NOTES.md` still said 104, so
+  maestro stated two different counts for one corpus.
+
+### Re-vendored, so the claims are true rather than reworded
+
+- **video-shotcraft: 104 → 152 cards, 95 → 143 demos.** All 48 motion-lab cards and their demo
+  directories are now present, along with **`demos/_fixtures/Motion.tsx`** — the design-coordinate
+  stage those cards build on, which the module told readers to consult and which was never
+  vendored — and **`references/shots/ATTRIBUTION.md`**, whose absence was the one unreachable
+  pointer with legal rather than craft weight. `VENDOR-NOTES.md` reconciled.
+- **impeccable: 21 reference files behind, 1 missing entirely.** The vendored `new-work.md` was
+  two generations stale and taught a superseded procedure, and `visualize.md` was missing the
+  medium-assignment gate that maestro's own `design-direction.md` cites as distilled from it.
+  Whole reference tree re-vendored; `live-setup.md` added.
+- **JianYing / CapCut-CN export** — genuinely new upstream capability. The protocol and its three
+  Python modules are vendored, and `video-shotcraft.md` gains the rule: after final delivery, in
+  any mode, **ask once** whether the user wants an editable project, then never again. Read the
+  Mac module's docstring before running it there — the format differences that make a
+  Windows-shaped draft fail to open are not guessable from the Windows path.
+
+### Distilled from impeccable's workflow restructure
+
+- **The comp is a spatial contract, not a mood board** — only the user can downgrade its
+  authority, in explicit words, and difficulty never infers a downgrade.
+- **The hero checkpoint captures at the comp's own pixel dimensions**, not merely "beside" it.
+- **A capture is evidence only when it is valid.** Settle entrance motion before capturing — an
+  element hidden by animation timing reads as *missing* and gets "fixed" into a regression — take
+  full-page shots from the document top, then open every file and confirm it shows what its
+  filename claims. A review run on invalid evidence binds nothing.
+- **User evidence outranks your own captures.** Their screenshot reopens a closed verification;
+  say what your capture missed rather than defending it, and scope verdicts honestly — a pass
+  over three viewports is a pass over three viewports.
+- **The user's real viewport joins the required capture set** whenever the harness reports one.
+  The width that breaks is the one they see first.
+- New craft-floor ban: **geometric occlusion masks** — a circle or polygon approximating a
+  photographic subject's edge reads as a sticker at every size.
+
+### Also
+
+`hyperframes-audio` added to the companion table (new upstream skill). A search-miss reporting
+route documented, flagged as outbound since it is the only path that transmits a query anywhere.
+The `@remotion/motion-blur` set corrected — six cards across eight files, and **not**
+steep-tilt-glide, which never imports it. **Remotion had zero substantive drift**: all twelve
+skill files moved by exactly one line, a version bump.
+
 ## 3.10.0 — 2026-08-10
 
 **The video engine stops being the agent's silent decision.** Design authority was the user's

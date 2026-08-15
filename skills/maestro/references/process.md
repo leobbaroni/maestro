@@ -252,13 +252,13 @@ Misclassifying the mode is the biggest source of bad redesign output. Detect fir
 
 ## 5a. Building from an approved mockup — the comp is king
 
-When a mockup or comp has been approved, it is the specification, and the build runs in two phases.
+When a mockup or comp has been approved, it is the specification, and the build runs in two phases. **The comp is a spatial contract, not a mood board: only the user can downgrade its authority, in explicit words, and difficulty never infers a downgrade.**
 
 **Phase one is reproduction, not interpretation.** Rebuild the comp at its own breakpoint until a screenshot at the comp's width and height overlaps it near pixel-for-pixel — materials, components, elevation, assets, and implied design language included. Exactly three concessions exist: **fonts** (the closest obtainable face), **icons** (an exact match unless the user already chose a library), and **genuine defects in the comp itself**, like a spelling error. Everything else matches.
 
 **The overlap comparison is the authority, never your conviction.** Models systematically believe their HTML, CSS, and SVG recreation succeeded when it did not — so put the screenshot beside the comp at identical dimensions after every region, and judge from that. When a region keeps losing the comparison, stop recreating it in code and produce it as a rendered asset composited into the page.
 
-**Prove the hero before building past it.** Render the first viewport, capture it, and set it beside the comp's first viewport *before* any later section. The hero carries the run's ambition and every following section inherits its shortfall. Judge scale and density as quantities: a field at a tenth of the comp's coverage, or type at half its weight, is a different design. Five minutes of retry here is what a rebuild verdict at the finish costs when this check is skipped.
+**Prove the hero before building past it.** Render the first viewport, capture it **at the comp's own pixel dimensions**, and set it beside the comp's first viewport *before* any later section. The hero carries the run's ambition and every following section inherits its shortfall. Judge scale and density as quantities: a field at a tenth of the comp's coverage, or type at half its weight, is a different design. Five minutes of retry here is what a rebuild verdict at the finish costs when this check is skipped.
 
 Only once reproduction holds does **phase two** begin: static regions that should live become animated or interactive, reveals and motion go in, then responsiveness across the surface's devices. Where the comp doesn't cover the whole surface, continue inside its recorded world — a component the comp never shows inherits the system's corner language, line weights, and materials, and may not introduce container styles, border weights, or chrome the comp never uses.
 
@@ -266,7 +266,9 @@ Only once reproduction holds does **phase two** begin: static regions that shoul
 
 **Never declare design work done without rendering it and critiquing the render against the locked brief.** Passing typecheck, clean build, or "the code looks right" is not done.
 
-- **Render or screenshot the actual output**: browser screenshot for UI (at ~380px AND desktop width minimum), rendered frames or full render for video/motion, the real device class named in the brief when it matters.
+- **Render or screenshot the actual output**: browser screenshot for UI (at ~380px AND desktop width minimum, **plus the user's actual viewport width whenever the harness reports one** — an in-app browser size, a named resolution; the width that breaks is the one they see first), rendered frames or full render for video/motion, the real device class named in the brief when it matters.
+- **A capture is evidence only when it is valid — validate before you judge.** Settle or disable entrance motion before capturing: an element hidden by animation timing reads as a *missing* element and gets "fixed" into a regression. Take full-page shots from the document top, and take a comp comparison at the comp's own pixel dimensions. Then open every file once and confirm it shows what its filename claims — no blank or black regions, no wrong section behind a right name, no half-loaded state. A review conducted on invalid evidence binds nothing.
+- **User evidence outranks your own captures.** When the user answers a pass with evidence against it — a screenshot, a recording, a plain description of what they see — their evidence wins and the verification reopens. Say what your capture missed rather than defending it, and state the scope of any verdict honestly: a pass over three viewports is a pass over three viewports, not a pass.
 - **Critique the render against the brief**: every locked field — register, style direction, banned qualities, motion tier, success criteria. A build that drifts from the brief is a failed build even if it "looks good".
 - **Verify motion actually fires.** Transitions pause on hidden tabs and headless renderers; reveal animations gated on class-triggered transitions can ship blank sections. Confirm reveals enhance an already-visible default, and check the reduced-motion alternate exists.
 - **Check overflow at every breakpoint**: long headings + large clamp scales + narrow grids overflow on tablet/mobile. The viewport is part of the design.

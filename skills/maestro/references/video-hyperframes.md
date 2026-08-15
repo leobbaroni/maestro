@@ -247,7 +247,7 @@ Everything runs through `npx hyperframes` (Node ≥ 22 + FFmpeg).
 | Command | One line |
 |---|---|
 | `npx hyperframes init my-video` | Scaffold a project (or `capture <url>` to seed from a site). Set the aspect at scaffold time with `--resolution landscape\|portrait\|square` (or their `-4k` variants) rather than resizing later. |
-| `npx hyperframes catalog <query>` | **Search the registry by meaning, locally.** Describe what the section should *do* — "pricing comparison", "logo wall" — instead of guessing a block's name. |
+| `npx hyperframes catalog --query "<what the beat should do>"` | **Rank the registry against a plain-language description.** No positional argument — the query is a flag. Default tier is **`words`**: shared vocabulary against each item's name, title, description, and tags, so phrasing that shares no words with the entry misses. `--on-device` opts into meaning-ranking locally. |
 | `npx hyperframes add <name>` | Install a registry block/component (shader transitions, prebuilt scenes) — including whatever the search surfaced. |
 | `npx hyperframes lint` | Fast static checks — run early and often while writing. |
 | `npx hyperframes check` | The browser gate: lint + runtime errors + layout/overflow + motion verification + contrast in one seek pass; must pass with 0 findings. |
@@ -255,7 +255,7 @@ Everything runs through `npx hyperframes` (Node ≥ 22 + FFmpeg).
 | `npx hyperframes preview` | Open Studio — the user can edit anything on the timeline; pause here and ask before rendering. |
 | `npx hyperframes render --quality draft\|high --output out.mp4` | Render the MP4 — only after the user approves; verify the output file exists and has plausible size. |
 
-**Search before you hand-build.** The catalog is now queryable by intent on this machine, which removes the last excuse for reimplementing a section that already exists — the old failure was not knowing the block's name, and naming is exactly what the search removes. Make it step two of the loop, after `init` and before authoring: a block you find is tuned, tested, and rendered deterministically; the one you write at 2am is none of those.
+**Search before you hand-build.** The catalog is now queryable in plain language on this machine — by shared vocabulary out of the box, and by meaning under `--on-device` — which removes the last excuse for reimplementing a section that already exists: the old failure was not knowing the block's name, and naming is exactly what the query removes. Because the default tier is lexical, a miss is often a vocabulary mismatch rather than an absent block; re-word once before concluding nothing fits. When the on-device tier answered and nothing in the top hits does the job, report the gap rather than silently hand-building: `npx hyperframes feedback --search-miss "<the query you ran>" --wanted "<the move you needed>" --tier on-device`. It is the only route that transmits a query anywhere, so treat it as outbound and keep the wording generic. Make it step two of the loop, after `init` and before authoring: a block you find is tuned, tested, and rendered deterministically; the one you write at 2am is none of those.
 
 Render is user-gated: never auto-render just because checks pass.
 

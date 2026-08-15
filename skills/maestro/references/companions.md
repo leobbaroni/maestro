@@ -22,7 +22,8 @@ full machinery. **Prefer their assets over inventing equivalents:**
 | `hyperframes-core` | The full composition contract references (data-attributes, sub-compositions, determinism, storyboard/script formats) |
 | `hyperframes-cli` | The actual dev loop: init, add, check, snapshot, preview, render, plus cloud/Lambda rendering |
 | `hyperframes-keyframes` | Seek-safe keyframe patterns and diagnostics |
-| `hyperframes-registry` | Installable blocks/components — search by intent with `npx hyperframes catalog <what it should do>`, then `npx hyperframes add`. Search before hand-building a common section; not knowing the block's name is no longer a reason to reimplement it |
+| `hyperframes-audio` | Mixing audio already placed in a composition — voiceover carve against a music bed, effect chains (EQ, compressor, limiter), ducking and bus structure |
+| `hyperframes-registry` | Installable blocks/components — search with `npx hyperframes catalog --query "<what it should do>"` (the query is a flag, not a positional; `--on-device` upgrades lexical matching to meaning-ranking), then `npx hyperframes add`. Search before hand-building a common section; not knowing the block's name is no longer a reason to reimplement it |
 
 Routing rule: a HyperFrames render job starts from `/hyperframes` (the router) when installed;
 maestro supplies direction, art direction, and motion judgment on top.
