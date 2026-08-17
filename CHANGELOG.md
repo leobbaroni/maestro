@@ -1,5 +1,81 @@
 # Changelog
 
+## 3.12.0 — 2026-08-15
+
+**impeccable's roll becomes the design process, not a table row.** maestro had two competing
+option processes: its own `§3` mockup fan-out, which ran, and impeccable's dice-dealt direction
+round, which was one line in a routing table. The fan-out led by default, so the roll — the more
+disciplined of the two — was reachable only by someone who already knew it existed.
+
+`§3` is now **The direction round**, rebuilt on the roll's actual mechanics. Scope note: this is
+a **process** change. The standing `taste-skill > hallmark > impeccable` order on design-*taste*
+conflicts is untouched — it was applied at distillation time and is baked into the prose of every
+module, so flipping it honestly means re-distilling, not setting a flag.
+
+### The roll — dealt, not ranked
+
+**Your top-ranked direction is what every run would ship**, and one taste function run a thousand
+times converges on the category default. So the lead direction is **dealt**, and the dice picking
+which candidates reach the user is what breaks the rut while leaving a real choice. Skipping it
+and presenting your own ranking is the lookalike the round exists to prevent.
+
+Every candidate must be viable *before* it enters the deal — a candidate failing on truth is
+replaced, never rescued by the roll. And truth binds claims, not demonstrations: *refusing a bold
+direction because its demonstration data does not exist yet is timidity wearing honesty's
+clothes.*
+
+### The hand, and the donation
+
+Challengers are **fused before judging** — the challenger supplies the form, the product supplies
+every fact, clarity wins conflicts; judging an unfused challenger judges a costume. Then a verdict
+on exactly two axes, audience identification and product clarity: **wins** (beats the lead on
+both) · **competitive** (holds one) · **declined** (loses both).
+
+**A declined challenger is not spent.** Name the one discipline of its system the lead lacks — a
+palette's total commitment, a grid's density courage — and raise the lead to match *before*
+presenting it. The donation transfers ambition and system discipline, **never the challenger's
+clothes**: a lifted motif is a costume note, not a raise. Each raise is written in as its own
+named line credited to its donor, because a raise nobody can read did not happen.
+
+**Exactly one pick card** carries your own top candidate, and **it never takes the lead
+position** — a lineup of your candidates hands selection back to the taste function and invites
+the safest card. Re-roll comes in three registers (plain · safer · bolder) that are the user's
+steering, never yours to pre-select.
+
+### The world
+
+New section in `design-direction.md`. A locked direction is not a mood, it is a **world**, and it
+governs colour, motion, materials, and every later section. **One world owns the page** — a motif
+lifted from a second world is a costume, and the tell is a surface that reads as two productions
+cut together. Three consequences: a local extension inherits the world rather than re-opening it;
+the world overrides the craft floor where it genuinely calls for a banned treatment, **but your
+own habit does not**; and the refinement commands operate *inside* it — changing the world is a
+new round and needs the user.
+
+### Direct invocation, and one collision fixed
+
+`commands.md` now routes the vocabulary: **"roll" · "deal" · "the hand" · "re-roll"** to the
+direction round · **"world" · "lock the world"** to the world section, which previously had no
+route at all · and a named protocol (`new-work`, `visualize`, `concept-seed`) to that protocol
+verbatim, for users who know impeccable and would rather not have it translated.
+
+**One word collides and maestro resolved it wrong.** `bolder` is a refinement command for a
+surface whose world already shipped — but **while a direction round is open it is the bolder
+*register*,** a fresh deal of foreign forms. Upstream states this explicitly; maestro did not, so
+"bolder" mid-round would have run the wrong protocol and spent the round.
+
+### Fidelity, not process, depends on the install
+
+impeccable's scripts stay upstream and should: `concept-seed.mjs` is 39 KB, `context.mjs` 64 KB,
+and the package pulls six npm dependencies — maestro is a knowledge skill with no runtime deps.
+So when impeccable is installed, hand off to the real protocol, whose decision page, per-card
+comps, and re-roll pool this prose cannot reproduce. When it is not, `§3`'s mechanics are the
+same discipline at lower fidelity. **A project that installs impeccable later changes fidelity,
+not process.**
+
+cockpit's three pointers to the old "mockup fan-out" name were updated in the same change
+(cockpit 1.7.1).
+
 ## 3.11.0 — 2026-08-15
 
 **Drift absorbed across four upstreams — and three of the corrections are to claims 3.9.0 and

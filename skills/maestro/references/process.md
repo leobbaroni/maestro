@@ -10,7 +10,7 @@ The two most expensive failure modes are **building before the brief is locked**
 
 | Incoming request | First move |
 |---|---|
-| Significant new screen/page/surface | Mockup fan-out + user gate (§3) |
+| Significant new screen/page/surface | **The direction round (§3)** — dealt lead, challengers with verdicts, user gate. impeccable's `new-work` roll when installed |
 | Any video | **Film kind first (§1b)** — the user picks what the film *is*; the engine follows. Then the direction round (§3a), which fans out on beat sheets and styleframes, never on rendered films |
 | Small tweak, fully-specified change | Just do it — then verify (§6) |
 
@@ -117,32 +117,89 @@ The grill ends when the brief contains all of the following. Freeze it into a fi
 
 **Mid-session rule corrections:** when the user states a rule mid-session ("X should always count as Y"), that is a brief amendment — write it into the brief file immediately and cite the file in your reply.
 
-## 3. Mockup fan-out (hard user gate)
+## 3. The direction round (hard user gate)
 
 Never build a significant new screen, page, or visual redesign from a single guess. The user picks from options before implementation.
 
+**This round is impeccable's, and it runs by the roll.** When impeccable is installed, hand off to the real protocol — `new-work` and its `concept-seed` roll, served through its decision page — because the scripts do what this prose cannot: a live approval page, per-card comps, a persisted re-roll pool. `references/commands.md` routes it. When impeccable is **not** installed, run the mechanics below, which are the same discipline without the machinery. Either way the shape is identical, so a project that installs impeccable later changes fidelity, not process.
+
 **Surfaces only.** Video has its own round with a different artifact and a different gate point — §3a. The mechanics below assume an option costs one authoring pass; a film option costs a render, which is why they are separate sections rather than one with a caveat.
 
-**When to fan out vs. build straight:**
+**When to run the round vs. build straight:**
 
 | Situation | Path |
 |---|---|
-| New significant surface (screen, page, hero, full redesign) | Fan out N options, gate on the pick |
-| Direction itself is contested or user is undecided on style | Fan out |
+| New significant surface (screen, page, hero, full redesign) | Run the round, gate on the pick |
+| Direction itself is contested or user is undecided on style | Run the round |
 | Small tweak, component-level change, or direction already picked | Straight to build |
-| Brief fully constrains the design (only one reasonable outcome) | Straight to build, N=1 implicitly |
+| Brief fully constrains the design (only one reasonable outcome) | Straight to build |
+| A local extension of a surface whose world already shipped | Straight to build — shape it inside the recorded world |
 
-Default **N = 3**; confirm N with the user during the grill. Uninformed options are as useless as no options — the fan-out is earned by the locked brief and a moodboard first.
+### The roll — why the dice, and not your ranking
 
-**Sequence:**
+**Your top-ranked direction is what every run would ship.** That is the whole problem: a ranking is a taste function, and one taste function run a thousand times converges on the category default. So the lead direction is **dealt, not chosen** — and the dice picking which candidates reach the user is what breaks the rut while leaving the user a real choice.
 
-1. **Moodboard.** Extend the user's references to 3–5 total, searching by register, not by industry (industry-search reproduces the category reflex). Present each with one line: *what to steal from it* — a layout grammar, a type attitude, an interaction; never "the whole thing". Get a nod (bundle with open brief questions). If the user said "just go", pick it yourself and state it.
-2. **Fan out.** One design agent per option, in parallel, all fed the same brief + moodboard, plus **one distinct art direction each** — a different color-strategy tier, type pairing, layout grammar. Structurally different, not N accent-color swaps. **When the user couldn't pick a design authority from description alone (§1a), spend the fan-out on that question**: one option per house (structure-led / polish-led / craft-led), each run through that house's own protocol, so the pick chooses the authority for the rest of the project as well as this screen. Label them by look, not by house name; reveal which is which after the pick.
-3. **Option requirements.** Each option: one self-contained HTML/CSS/JS file (everything inline, no external requests), real fonts, real content from the brief, contrast floors respected. Each names and **demonstrates its one signature interaction live**, animated to the brief's motion tier, with a `prefers-reduced-motion` alternate. Self-checked at ~380px and 1440px for overflow and for animations actually firing. **One authoring pass each — no browser-iteration loops on throwaways.**
-4. **The gate (hard stop).** Present all N with: art-direction label, one-line concept, signature interaction, and where to look for the motion ("scroll the hero"). Then **stop and wait for the pick**. No implementing, no "head start" on a likely winner.
-   **The standing exit.** Every options round carries one permanent extra choice: the category standard, played straight. It is the user's door, never yours — never recommend it, never weigh it against the options, never let it soften them. When the user takes it (or asks in plain words for the familiar or competitor-like path), convention becomes the commitment: ask once for two or three products this should sit alongside, make their craft level the bar, and execute the canon at full fidelity, without irony or smuggled quirk. Record a standing preference for it in the brief.
-5. **On rejection of all N:** ask for two concrete dislikes and one new reference, then regenerate. Never regenerate blind.
-6. **Implement the winner** in the real app using the project's actual components, tokens, and data — the mockup is a design contract, not code to paste. Merge ideas from losing options only if the user named them in the pick ("2, but with 3's header"). Record the direction and pick in the project log.
+This is not a randomiser bolted onto a preference. It is the mechanism, and skipping it while claiming to have run the round is running a lookalike.
+
+**Every candidate the roll can land on must already be viable** before it enters the deal: every relationship and claim it visualises true, a real palette and component family, a distinctive composition, workable at full-surface scale within the available assets and performance budget. A candidate that fails on truth is **replaced before the roll, never rescued by it**.
+
+**Truth binds claims, not demonstrations.** Author whatever illustrative material a concept needs at full fidelity, label it synthetic where a visitor could mistake it for real, and hand the user the list to replace. What stays uninventable is commercial and factual: prices, customers, benchmarks, capabilities the product does not have. *Refusing a bold direction because its demonstration data does not exist yet is timidity wearing honesty's clothes.*
+
+### The hand
+
+The deal produces a lead direction and a set of **challengers** — foreign forms from outside the category, which is where the non-obvious lives.
+
+**Fuse each challenger before judging it.** The challenger supplies the form and its system grammar; the product supplies every fact; clarity wins conflicts. Judging an unfused challenger judges a costume.
+
+Then a verdict per challenger, **decided before any borrowing**, on exactly two axes — *audience identification* and *product clarity*:
+
+| Verdict | Means | Becomes |
+|---|---|---|
+| **Wins** | Beats the lead on both axes | The build candidate |
+| **Competitive** | Holds one axis | A full alternate |
+| **Declined** | Loses both | Demoted — but not discarded |
+
+**A declined challenger is not spent.** Name the one discipline of its system the lead direction lacks — a palette's total commitment, a grid's density courage, a form's structural honesty — and **raise the lead to match before presenting it**. A donation transfers ambition and system discipline, **never the challenger's clothes**: a lifted motif is a costume note, not a raise. Write each raise into the presented direction as **its own named line, credited to its donor** — a raise nobody can read did not happen.
+
+**The hand holds at most three full cards.** When the deal produces more, the three strongest join and the rest wait in the re-roll pool, noted in one line. Dropping a challenger from the hand takes a **named product-truth failure**, disclosed — not a preference.
+
+### Your pick, and where it may not sit
+
+Add **exactly one** card for your own top-ranked candidate when the deal did not already lead with it, kickered as the pick, same anatomy as every other card, carrying an **honest risk line naming its familiarity** when that is true.
+
+- **One pick card, never two, never a ranked list.** A lineup of your candidates hands selection back to the taste function and invites the safest card.
+- **The pick never takes the lead position.** When the dice happen to assign your top candidate, there is no pick card — the lead card simply notes that it topped your list.
+- The strongest grounded direction is often exactly where every run in the category lands. **Showing that trade is the point**; familiar and effective is a legitimate destination, not a failure of nerve.
+
+### Card anatomy, and the gate
+
+Every card carries the same fields — thesis, palette, materials, first viewport, honest risk — plus, for challengers, their verdict and case line. Present them at **equal salience**: a declined challenger renders compact and quiet with its verdict and what the lead kept from it, never full-size, never silently dropped, still adoptable on request. Salience must encode the verdict, never the accident of which cards happen to have images.
+
+Without the upstream decision page, each option is one self-contained HTML/CSS/JS file — everything inline, real fonts, real brief content, contrast floors respected — naming and **demonstrating its one signature interaction live**, animated to the brief's motion tier with a `prefers-reduced-motion` alternate, self-checked at ~380px and 1440px. One authoring pass each; no browser-iteration loops on throwaways.
+
+**Then stop and wait for the pick.** No implementing, no "head start" on a likely winner.
+
+**The standing exit.** Every round carries one permanent extra choice: the category standard, played straight. It is the user's door, never yours — never recommend it, never weigh it against the roll, never let it soften the dealt directions. When the user takes it, convention becomes the commitment: ask once for two or three products this should sit alongside, make their craft level the bar, and execute the canon at full fidelity, without irony or smuggled quirk. Record the standing preference in the brief.
+
+### Re-roll, in three registers
+
+Re-roll is the user's, freely, with an optional one-line steer. **It eliminates every direction already shown** — lead and challengers alike — and comes in three registers, which are the user's steering on the familiar-to-bold axis and **never yours to pre-select**:
+
+| Register | Deals |
+|---|---|
+| **plain** | A fresh hand, same spread |
+| **safer** | Remaining conventional grounded candidates, plus the canon against named competitors |
+| **bolder** | Foreign forms only, at full commitment |
+
+**While a direction round is open, "bolder" and "safer" mean these registers** — not the `bolder` refinement command, which is for a surface whose world already shipped. The collision is real, and resolving it wrong spends a round on the wrong protocol.
+
+**Re-roll on your own only on named factual grounds** — the lead cannot carry the product's truth or task. Taste is never grounds. A user- or brief-pinned direction beats the roll, always. After two consecutive re-rolls, ask what quality is missing rather than dealing a third time.
+
+### After the pick
+
+**On rejection of everything:** ask for two concrete dislikes and one new reference, then regenerate. Never regenerate blind.
+
+**Implement the winner** in the real app using the project's actual components, tokens, and data — the mockup is a design contract, not code to paste. Merge ideas from losing options only if the user named them in the pick ("2, but with 3's header"). Record the direction, the pick, and the raises in the project log; the locked direction becomes the **world** (`references/design-direction.md`), which governs everything built inside it afterwards.
 
 ## 3a. Video direction round (the film's equivalent gate)
 

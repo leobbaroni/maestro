@@ -18,6 +18,8 @@ Say the protocol you're running out loud ("running the `typeset` protocol on the
 - **Partly blocked:** `live` and `hooks` are the machinery. `init` writes PRODUCT.md with ordinary file tools; only the context-resolution path it assumes and its optional live-mode config step need the upstream install.
 - **Degrades cleanly:** `critique`, `polish`, `typeset`, `layout`. Critique's own rule is that a skipped detector fails the run *unless* the detector is genuinely missing or crashes after a real attempt. Polish reads the hook's findings and adds no scan of its own. `typeset` and `layout` dropped their former halt-and-report rule upstream — run them, and say the unscanned verify gate went unmet. In all four, note the deterministic pass was skipped; never present judgment as having run the detector.
 
+**One word collides, and resolving it wrong spends a round.** `bolder` is a refinement command for a surface whose world already shipped — but **while a direction round is open it is the bolder *register***, a fresh deal of foreign forms at full commitment. Same for `safer`. Check whether a round is open before routing either word; upstream states this explicitly and it is the single easiest routing mistake to make here.
+
 ## Refinement & craft protocols (impeccable)
 
 Refinement work: an interface exists and needs to get better along a named axis. `library/impeccable/reference/<name>.md`. Protocols now branch on **visitor mode** — Persuade / Operate / Read / Experience — rather than a brand-vs-product split; pick the mode from the surface in front of you, not from the product (`design-foundations.md`).
@@ -27,7 +29,11 @@ Refinement work: an interface exists and needs to get better along a named axis.
 | Review the UX, scored | `critique` | Heuristic design review with severity-ranked findings. Reports only |
 | Check a11y / perf / responsive | `audit` | Technical quality pass (native variant: `audit.native`). Reports only |
 | Final pass before shipping | `polish` | Craft sweep against the shipping bar |
-| "It's bland / too safe" | `bolder` | Amplify a timid design without adding noise |
+| "It's bland / too safe" | `bolder` | Amplify a timid design without adding noise. **Only when a direction round is closed** — see the collision note below |
+| "roll", "deal", "deal me directions", "the hand", "re-roll" | the direction round (`process.md` §3) → `new-work`'s `concept-seed` when impeccable is installed | The dice-dealt lead plus challengers with verdicts. Skipping the roll and presenting your own ranking is the lookalike this exists to prevent |
+| "bolder" / "safer" **while a round is open** | the re-roll **registers**, not the commands | A fresh deal of foreign forms (bolder) or of grounded candidates plus canon (safer) |
+| "world", "the visual world", "lock the world", "what world are we in" | `design-direction.md` § The world | The locked identity that governs colour, motion, materials, and every later section. One world owns the page |
+| A protocol named outright — "run new-work", "visualize", "concept-seed" | that protocol, verbatim | The user knows impeccable; run the real thing rather than translating it into maestro's wording |
 | "It's shouting / too much" | `quieter` | Reduce intensity, keep the point of view |
 | "Too complicated" | `distill` | Strip to essence, remove what doesn't carry |
 | Production-readiness | `harden` | Errors, i18n, edge cases, degraded states |

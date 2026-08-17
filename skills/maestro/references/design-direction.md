@@ -110,6 +110,20 @@ Second-order training reflexes. Use only when the brief literally requires them 
 
 Exception: identity preservation wins. If an existing brand already committed to a lane or font, don't second-guess it on variants — reject lists apply to greenfield decisions.
 
+## The world — one identity owns the page
+
+A locked direction is not a mood; it is a **world**, and the world is the unit that governs everything built inside it afterwards. Colour, motion, materials, component character, and the shape of the next section all answer to it.
+
+**One world owns the page.** A motif lifted from a second world is a costume, not a contribution — the tell is a surface that reads as two productions cut together, and it is the most common way a strong direction gets diluted after approval.
+
+Once a world is locked, three things follow:
+
+- **A local extension inherits it rather than re-opening it.** A component the approved design never showed still takes the system's corner language, line weights, and materials, and may not introduce container styles, border weights, or chrome the world never uses. Shape it directly; do not run a fresh direction round for it (`process.md` §3).
+- **The world overrides the craft floor.** A committed world that genuinely calls for a banned treatment gets it — the pinned brief and the world outrank a default. **Your own habit does not**; the override is a decision recorded in the world, never a preference exercised at edit time.
+- **Refinement commands operate inside it.** `bolder`, `quieter`, `distill`, `polish` all refine a surface whose world already shipped. They are not a way to change the world — that is a new direction round, and it needs the user.
+
+Record the world where the brief lives, alongside the design authority and the locked direction: its thesis, palette with values, type character, material vocabulary, and motion register. A world held only in conversation is a world the next session re-invents.
+
 ## The boldness dial
 
 Four positions: **Quieter ← Default → Bolder → Overdrive.** Pick position from register and brief, then push with the levers below. Set a risk budget first: how far can this push while still feeling like the same product?
