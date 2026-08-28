@@ -22,6 +22,7 @@ Read the vendored file before answering a mechanical question. A flag spelled ou
 | Surface | Probe | What comes back |
 |---|---|---|
 | **ComfyUI, local** | comfy-mcp `server_info` | `server.running` + `url`, the workspace path, and `hardware` — GPU, VRAM, RAM. Gates everything below |
+| **ComfyUI, hosted** | The Comfy Cloud MCP at `https://cloud.comfy.org/mcp`, or `/plugin install comfy-cloud@comfy-skills` | A standardized catalog rather than the user's live install — it cannot see their custom nodes or local models, which is exactly the difference that matters when a workflow depends on one |
 | **ComfyUI, free local models** | `search_templates(query, exclude_api=true)` | Templates that run on the user's own GPU at no charge |
 | **ComfyUI, hosted partners** | `list_partner_models()` | The partner alias catalog `partner_generate` serves — one call, one table, real names |
 | **Higgsfield** | `higgsfield model list --json`, or the MCP's `models_explore` | The live catalog with per-model `parameters`, `aspect_ratios`, `durations`, and media `roles` |
@@ -91,6 +92,7 @@ Capabilities rather than names, because names churn and capabilities don't:
 |---|---|
 | Iteration at no marginal cost, full graph control, LoRAs, ControlNet, character replacement, motion transfer | **ComfyUI local** — free per run, bounded by the GPU |
 | One breadth catalog across many vendors without per-vendor accounts | **ComfyUI partner models** — one surface, per-run partner pricing |
+| ComfyUI workflows with no local GPU at all | **Comfy Cloud** — the hosted runner; discovery tools are free, execution needs a subscription and spends compute credits even on open-weight models |
 | Identity that survives across many assets | **Higgsfield Soul ID** — a trained reusable identity, chained by `reference_id` into later generations |
 | Branded ads, UGC, unboxing, presenter video from a product URL | **Higgsfield Marketing Studio** — avatars, products, hooks, settings, ad references |
 | Scoring a *finished* cut for hook and retention | **Higgsfield Virality Predictor** (`brain_activity`) — video in, text report out |

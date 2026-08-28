@@ -75,7 +75,7 @@ exists.
 
 | Platform | Reach it by | maestro's layer |
 |---|---|---|
-| **ComfyUI** (comfy.org) | Local install driven by comfy-cli + the first-party **comfy-mcp** (`pip install comfy-mcp`, needs Python ≥ 3.10, comfy-cli ≥ 1.14, and a running ComfyUI). Cloud variant at `https://cloud.comfy.org/mcp`. Skills: `/plugin marketplace add Comfy-Org/comfy-skills` | `library/comfy-skills/` (MIT) — workflow mechanics, template vs node routing, the OSS/partner split |
+| **ComfyUI** (comfy.org) | Local install driven by comfy-cli + the first-party **comfy-mcp** (`pip install comfy-mcp`, needs Python ≥ 3.10, comfy-cli ≥ 1.14, and a running ComfyUI). Cloud variant at `https://cloud.comfy.org/mcp`, installable as `/plugin install comfy-cloud@comfy-skills` after `/plugin marketplace add Comfy-Org/comfy-skills` — it runs workflows on Comfy's GPUs, so it needs a subscription and sees a standard catalog rather than the user's own nodes. Skills: the same marketplace | `library/comfy-skills/` (MIT) — workflow mechanics, template vs node routing, the OSS/partner split |
 | **Higgsfield** (higgsfield.ai) | The `higgsfield` CLI (`curl -fsSL https://raw.githubusercontent.com/higgsfield-ai/cli/main/install.sh \| sh`, then `higgsfield auth login`); the MCP at `https://mcp.higgsfield.ai/mcp`; or REST at `api.higgsfield.ai`. Skills: `/plugin marketplace add higgsfield-ai/skills` then `/plugin install higgsfield@higgsfield`, or `npx skills add higgsfield-ai/skills` | `library/higgsfield-skills/` (MIT) — 8 skills covering generation, Soul ID, brandkit, product photoshoot, explainers, thumbnails, marketplace cards, websites |
 
 **Both are paid surfaces**, and each meters differently — Higgsfield bills credits per generation;

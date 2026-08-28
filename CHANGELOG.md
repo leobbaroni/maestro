@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.0.1 — 2026-08-28
+
+**Comfy Cloud was reachable and undocumented.** 4.0.0 vendored the corpus containing the
+`comfy-cloud` plugin without ever naming its install path, so the hosted route existed in the
+library and nowhere an agent would look. `generative-engines.md` gains it as a probe row and an
+engine surface, and `companions.md` carries the install. The distinction that matters is stated
+rather than implied: the cloud runner sees a **standardized catalog**, not the user's live
+install, so it cannot see their custom nodes or local models — which is exactly what a workflow
+depending on one will discover at run time.
+
 ## 4.0.0 — 2026-08-28
 
 **Upstream becomes the baseline for generative work, not a footnote.** maestro's generative
