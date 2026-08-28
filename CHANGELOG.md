@@ -1,5 +1,127 @@
 # Changelog
 
+## 4.0.0 — 2026-08-28
+
+**Upstream becomes the baseline for generative work, not a footnote.** maestro's generative
+family was written from two hand-authored prompt directors and a standing assumption that
+generative platforms are browser UIs a human drives. Both major platforms now ship first-party
+agent skills, MCP servers, and CLIs — so the prose was describing a world that had moved.
+
+Two corpora are vendored and, for everything mechanical, **they outrank maestro's own prose**:
+[higgsfield-ai/skills](https://github.com/higgsfield-ai/skills) (8 skills, MIT) and
+[Comfy-Org/comfy-skills](https://github.com/Comfy-Org/comfy-skills) (12 skills + the OpenClaw
+router, MIT). Their planning and prompting doctrine is distilled *into* the reference modules
+rather than left behind a pointer. Major because three documented behaviors were wrong, and
+because the generative family's entry point moved.
+
+### Three claims that were false
+
+Verified against live catalogs, not re-read:
+
+| maestro said | Reality |
+|---|---|
+| Higgsfield is "not an installable skill… nothing here shells out to it, no credential is ever needed on this side" | Official MCP (`mcp.higgsfield.ai/mcp`), official plugin (`higgsfield-ai/skills`), official CLI, and a REST API |
+| "Aspect ratio is set in the UI, never written into the prompt body" | `aspect_ratio` is an explicit parameter on the CLI/MCP/API path, validated against each model's own enum |
+| "Reference images attach in the Higgsfield UI" | A `medias` parameter with roles `start_image` / `end_image` / `image_references` / `video_references` / `audio_references` |
+
+All three are corrected per-surface rather than deleted — the browser UI is still one of three
+surfaces, and it still behaves the way the old text described.
+
+### `generative-engines.md` — the probe that replaces the recitation
+
+The model gate has said *"read what is actually reachable"* since 3.7.0 without saying how, so
+in practice it invited a recited canon. It is now tool calls: `server_info` for a local ComfyUI
+and its GPU, `list_partner_models()` for the hosted partner catalog, `search_templates
+(exclude_api=true)` for what runs free on the user's own card, and `higgsfield model list --json`
+or `models_explore` for that catalog with each model's real parameters and media roles.
+
+The module also carries three things maestro had no equivalent of:
+
+- **The OSS-vs-paid route gate.** Many families ship twice — open weights and a paid partner
+  endpoint behind one display name. When both exist, **stop and ask**; never auto-route to the
+  paid path. And say the part users get wrong: OSS is only free of charge on the user's *own*
+  machine, since a hosted runner still spends compute credits.
+- **The local-hardware gate**, with upstream's real benchmarks — ~9 minutes for 5s at 480p on a
+  3060, ~15 minutes on a 16 GB card, a comfortable floor of 16+ GB VRAM, and time scaling with
+  pixel count rather than linearly. Quote the estimate *before* running.
+- **Four silent failures**, led by the expensive one: partner nodes emit a tensor but ship no
+  save node, so the job succeeds and produces nothing retrievable.
+
+### The evidence-precedence rule
+
+Borrowed from comfy-skills and promoted to maestro law, because it settles the case that
+actually bites — two lookups disagreeing inside one session. A lookup that **returns** something
+outranks older evidence; older **direct** evidence outranks a later **empty** lookup; and never
+deny a route on an empty result alone. Absence from a pinned allowlist means *upgrade the CLI*,
+not *the model does not exist*.
+
+> "Never tell a user the OSS route doesn't exist for a family that has one — that's a wrong
+> answer, not a cautious one."
+
+### Prompt construction, absorbed
+
+`generative-direction.md` gains the mechanics it had been leaving to the library: concrete and
+sensory over abstract, a ~200-token working ceiling because models distort on long prompts,
+**describe the delta when a reference image is attached** rather than re-describing the frame,
+phrase negatives as positives since most models expose no negative field at all, and the three
+named rejection triggers — public figures, sexual content, trademarked characters — which is
+what the pre-flight's name/brand/age rules were already stripping.
+
+`generative-video.md` gains upstream's model routing shape, plus the two rules that prevent the
+common misroute: don't downgrade to an older model because its parameter enum reads more
+easily, and **a higher version number is not automatically a successor** — a `.5` release can be
+differently scoped with a *lower* resolution ceiling than the `.0` it appears to replace.
+
+### Two new modules
+
+**`brand-systems.md`** — identity systems, product imagery, thumbnails, listing cards. The
+surface where generation stops being art direction and starts making claims a company is
+answerable for, so its Rule 0 is truth: never invent positioning, claims, ingredients, prices,
+certifications, statistics, or regulatory content; preserve the user's exact copy, including a
+spelling that looks wrong; a thumbnail's promise must be true of the video. Plus request
+classification (apply-existing / extend-partial / create-identity), the **Brand Lock**, slot
+minimalism so a one-asset request doesn't trigger a full identity questionnaire, and the rule
+that **approval is never inferred from silence, from a successful generation, or from your own
+preference.**
+
+**`generative-web.md`** — generated assets inside a shipped page. The wow bar (a page that
+renders and does nothing is a wireframe with real content in it), and the anti-pattern that
+**restraint is not an escape hatch** — a minimal brief makes the signature moment calmer, not
+absent. Its Rule 0: **the user's own assets always win, generation fills gaps only** — never
+substitute a generated stranger for someone's real product or real team. Plus async batch
+submission, `no text, no logos, no watermark` in every asset prompt because type is set in HTML
+where it stays correct, per-tier downscaling, and the journey shape as a cost lever where
+single-shot is the default and "it would look cooler with more scenes" is not a reason.
+
+**Scope stated honestly:** `higgsfield-websites` is 37 reference files built around one vendor's
+design system, SDK, edge runtime, and database. The craft is absorbed; the infrastructure is
+deliberately left in the corpus, because maestro does not prescribe a stack and would be
+asserting something it has no business asserting.
+
+### The three overrides
+
+Upstream is the baseline everywhere except three places, each named in `generative-engines.md`
+because a first-party product skill is written for a context where spending is the point:
+
+1. **Cost is stated before a paid batch, always** — higgsfield-generate's UX rule 5 says the
+   opposite, which is right for a vendor console and wrong inside a process pack. Comfy's own
+   route gate already agrees.
+2. **The engine is the user's pick, not a default** — upstream's defaults are good *proposals*.
+3. **Continuity outlives the tool** — the ledger is still written, with the platform handle
+   (`soul_ref_id`, product id, brand-kit id) recorded beside the description so either can
+   rebuild the other.
+
+### Housekeeping
+
+- `upstreams.json` gains both repos with per-path pins, so they drift-track like every other
+  source. `library/higgsfield-directors/` is no longer the authority on that platform's
+  mechanics — it remains the source for the six cinema modes and their camera blocks, which
+  upstream has no equivalent of.
+- 26 → **29 reference modules**; 9 → **11 vendored corpora**; 11 → **13 upstreams**.
+- **15 genuine drift paths remain open and unactioned** across impeccable, design-dna, remotion,
+  video-shotcraft, and hyperframes — design-dna and video-shotcraft moved the same day this
+  shipped. Not folded in here; flagged rather than silently pinned.
+
 ## 3.12.0 — 2026-08-15
 
 **impeccable's roll becomes the design process, not a table row.** maestro had two competing

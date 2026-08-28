@@ -140,26 +140,43 @@ Working the other way, a shot that needs an environment nobody has plated yet is
 
 ## Platform adapters
 
-**The prompt format above is engine-neutral.** Shot structure, the camera block, the diegetic audio rule, runtime discipline, and the standalone-prompt rule hold on any video model. What varies per engine is a short list — establish it for whichever engine the user picked at the model gate (`generative-direction.md`), and record it in `MODELS.md`:
+**The prompt format above is engine-neutral.** Shot structure, the camera block, the diegetic audio rule, runtime discipline, and the standalone-prompt rule hold on any video model.
+
+**Choosing the model is not.** Run the probe in `generative-engines.md` first, then route on what the shot needs rather than on a remembered leaderboard. The shape of that routing, from upstream:
+
+| The shot needs | Route toward |
+|---|---|
+| Serious multi-shot work, consistent identity, motion-heavy, image-to-video | The vendor's current flagship video model — the default proposal, never the silent pick |
+| Reference-driven generation, editing an existing clip, or extending one | A model exposing reference/edit/extension **modes**, not just text-to-video. Check its resolution ceiling: an edit-capable variant is often capped below the flagship's |
+| A single-plane scene with no strong dynamics | A cheaper model — the flagship's advantage is motion, and a static scene pays for it without using it |
+| Volume and batch | An explicitly fast/lite tier, accepting the fidelity trade |
+| Highest fidelity for a hero shot | The cinema-grade tier, priced accordingly |
+| Open weights on the user's own GPU | The OSS route — free per run, and gated by `generative-engines.md`'s hardware check |
+
+Two upstream rules that prevent the common misroute: **don't downgrade to an older model because its parameter enum is easier to read** — validate the preferred one first; and **a higher version number is not automatically a successor.** A `.5` release can be a differently-scoped model with a *lower* resolution ceiling than the `.0` it appears to supersede, so anything needing the ceiling stays on the older one. Read the live schema, not the name.
+
+**Then establish the adapter.** What varies per engine is a short list — fill it in for whichever engine the user picked, and record it in `MODELS.md`:
 
 | Adapter slot | What to establish | Why it bites |
 |---|---|---|
 | Reference attachment | UI upload · library selection · `@image` tag · API field | A shot generated without its plate attached is a different shot |
 | Aspect ratio | UI setting or prompt parameter | If it is a UI setting, framing stays plain language |
-| **Native audio** | Generated, absent, or optional | **Decides whether the diegetic rule is load-bearing or dead weight.** An engine with no audio track means the audio line is wasted prompt budget; one that generates audio means a leaked genre word scores your scene |
+| **Native audio** | Generated, absent, or optional — and **which parameter controls it** (`generate_audio`, or `sound: on\|off`) | **Decides whether the diegetic rule is load-bearing or dead weight.** An engine with no audio track means the audio line is wasted prompt budget; one that generates audio means a leaked genre word scores your scene. It is also a cost lever: a silent clip is cheaper on models that bill audio separately, so turn it off deliberately rather than by default |
 | Max runtime per generation | The hard ceiling | Sets where a sequence has to be cut into separate generations |
 | Image-to-video | Supported, and how the still is passed | Determines whether "plate first, then shot" is available at all |
 | Camera control | Prompt-described, or explicit parameters | Some engines take movement as structured input rather than prose |
 
 **Runtime and image-to-video support are the two that reshape the plan**, not just the prompt — check them before the manifest is priced, not after a shot comes back truncated.
 
-### Worked example — Higgsfield Seedance
+### Worked example — a Higgsfield video model
 
-One filled-in instance, not a default. Verify before relying on it.
+One filled-in instance, not a default. **Probe the live catalog before relying on any of it** —
+`higgsfield model list --json` or the MCP's `models_explore` returns each model's real
+`parameters`, `aspect_ratios`, `durations`, and media `roles`, which is the only current answer.
 
-- **Prompts are text-only.** Reference images attach in the Higgsfield UI, or are selected from the character/environment library there. No `@image` tags, no `<<<image_n>>>` placeholders.
-- **Aspect ratio is a UI setting**, never a line in the prompt.
-- **Audio is generated natively** — which is exactly why the diegetic rule is load-bearing rather than stylistic here.
+- **Prompts stay text-only** — the prompt body never carries image placeholders or an aspect-ratio line on any surface.
+- **How references and ratio are passed depends on the surface.** In the browser UI both are UI controls. Through the CLI, MCP, or API they are explicit parameters: `--start-image` / `--end-image` / `--image-references` / `--video-references` / `--audio-references`, and `--aspect_ratio` against the model's own enum. Probe the surface before composing — `generative-engines.md`.
+- **Audio is generated natively on most current video models, and it is a parameter** (`generate_audio`, or `sound: on|off` depending on the model) — which is exactly why the diegetic rule is load-bearing rather than stylistic. Turning it off is also how a silent clip gets cheaper.
 - The five camera blocks (M1–M5; M6 has none — it is written from the mode row itself) are in `library/higgsfield-directors/cinema-worldbuilder.md`, written for Seedance and pasted verbatim with the lens length and runtime filled in. **On another engine they are a starting point, not tuned text** — a block tuned for one model is prose to another, so re-verify that the camera actually did what it says before trusting it across a sequence.
 - Stills built on the same platform feed it directly as reference assets: `generative-stills.md`.
 

@@ -2,7 +2,7 @@
 
 **A unified design, motion, 3D, and video skill for AI coding agents.**
 
-Maestro consolidates eleven established design, motion, and video knowledge bases — [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), [hallmark](https://github.com/nutlope/hallmark), and [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) — into a single skill with two layers. The **judgment layer** (`references/`, 26 modules) is distilled and editorially reconciled: duplicate guidance merged, conflicting recommendations resolved (design-taste conflicts by the standing hierarchy taste-skill > hallmark > impeccable), one voice throughout. The **depth layer** (`library/`) vendors **nine source corpora verbatim** — taste-skill's 11 sub-skills, hallmark's macrostructure/fingerprint/theme catalog, impeccable's per-action references, genjutsu's `cast`/`paint` orchestrators over 14 technique sub-skills, GreenSock's eight GSAP skills, design-dna's schema, LottieFiles' motion-design skill, video-shotcraft's shot cards with their tuned implementations, and the author's own two Higgsfield prompt directors — so nothing is lost to summarization: the judgment layer selects, then points at the exact library file when a task needs a full recipe, theme token set, shot parameter table, or protocol.
+Maestro consolidates thirteen established design, motion, and video knowledge bases — [impeccable](https://github.com/pbakaus/impeccable), [genjutsu](https://github.com/AThevon/genjutsu), [gsap-skills](https://github.com/greensock/gsap-skills), [threejs-skills](https://github.com/CloudAI-X/threejs-skills), [design-dna](https://github.com/zanwei/design-dna), [motion-design-skill](https://github.com/lottiefiles/motion-design-skill), [remotion](https://github.com/remotion-dev/remotion), [hyperframes](https://github.com/heygen-com/hyperframes), [taste-skill](https://github.com/Leonxlnx/taste-skill), [hallmark](https://github.com/nutlope/hallmark), [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft), [higgsfield-ai/skills](https://github.com/higgsfield-ai/skills), and [Comfy-Org/comfy-skills](https://github.com/Comfy-Org/comfy-skills) — into a single skill with two layers. The **judgment layer** (`references/`, 29 modules) is distilled and editorially reconciled: duplicate guidance merged, conflicting recommendations resolved (design-taste conflicts by the standing hierarchy taste-skill > hallmark > impeccable), one voice throughout. The **depth layer** (`library/`) vendors **eleven source corpora verbatim** — taste-skill's 11 sub-skills, hallmark's macrostructure/fingerprint/theme catalog, impeccable's per-action references, genjutsu's `cast`/`paint` orchestrators over 14 technique sub-skills, GreenSock's eight GSAP skills, design-dna's schema, LottieFiles' motion-design skill, video-shotcraft's shot cards with their tuned implementations, the author's own two Higgsfield prompt directors, and — as the baseline for all generative mechanics rather than as background — Higgsfield's eight first-party skills and Comfy's twelve — so nothing is lost to summarization: the judgment layer selects, then points at the exact library file when a task needs a full recipe, theme token set, shot parameter table, or protocol.
 
 ## Capabilities
 
@@ -57,7 +57,7 @@ it the best way my harness supports — Claude Code plugin via
 available to me as a user command (tell me to run those two commands), otherwise copy
 skills/maestro into my user skills directory (~/.claude/skills/maestro on macOS/Linux,
 %USERPROFILE%\.claude\skills\maestro on Windows); (3) verify the install by listing the
-skill and confirming skills/maestro/references contains 26 modules and skills/maestro/library
+skill and confirming skills/maestro/references contains 29 modules and skills/maestro/library
 exists (the vendored depth layer); (4) tell me the two
 ways to trigger it (just asking for design/motion/video work, or /maestro) and that
 substantial requests start with a short interview (the Grill Gate) — that's by design;
@@ -102,7 +102,7 @@ maestro/
 ├── skills/maestro/
 │   ├── SKILL.md                 Router: task→module table, engine choosers, core rules
 │   ├── templates/BRIEF.md       The brief template the Grill Gate fills
-│   ├── references/              26 modules (design, page anatomy, commands, motion, 3D, video + shotcraft/sound, generative media, process, toolbox, companions)
+│   ├── references/              29 modules (design, page anatomy, commands, motion, 3D, video + shotcraft/sound, generative media, process, toolbox, companions)
 │   └── library/                 Depth layer: 9 vendored corpora + per-corpus licenses and vendor notes
 ├── upstreams.json               Pinned source commits and module map
 ├── scripts/check-upstreams.mjs  Drift checker / re-pinner (Node 18+, zero dependencies)

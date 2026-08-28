@@ -27,7 +27,7 @@ Ask before the first prompt is composed. Same discipline as cockpit's crew propo
 
 **This is the second question, not the first.** `process.md` §1b already asked what the film *is*, and "filmed — real people, places, texture" is what routes here. That pick is settled; this gate asks only *which engine* generates it. Do not re-open the kind — a user who chose photoreal footage has ruled out the code-rendered paths, and offering them again reads as not having listened.
 
-**1. Read what is actually reachable.** Name the engines *this user can run right now* — a platform subscription they have, an API key in the environment, a local install, a CLI that is authenticated. Do not recite a canon of models they may not have access to. If exactly one engine is reachable, say so in a line and skip to composing; there is no choice to present.
+**1. Probe what is actually reachable — don't recite a canon.** This is tool calls, not recall: comfy-mcp's `server_info` for a local ComfyUI and its hardware, `list_partner_models()` for the hosted partner catalog, `search_templates(exclude_api=true)` for what runs free on the user's own GPU, and `higgsfield model list --json` (or the MCP's `models_explore`) for the Higgsfield catalog with each model's real parameters, aspect ratios, durations, and media roles. **`references/generative-engines.md` owns this probe** along with the OSS-vs-paid route gate and the local-hardware gate — run it before proposing anything. If exactly one engine is reachable, say so in a line and skip to composing; there is no choice to present. If none is, say that too and route to a code-rendered engine, which needs no credits at all.
 
 **2. Map the job to capabilities, not to names.** What an asset needs is stable even as the models churn:
 
@@ -73,6 +73,29 @@ When an asset is load-bearing — the character lock every later asset quotes, t
 **State the cost before running one.** A four-engine bake-off on a six-asset manifest is twenty-four generations. Propose it for the assets that earn it and single-engine everything downstream of an approved lock.
 
 Record the outcome in `MODELS.md` — including what lost and how, because the next batch should not re-run a comparison that already has an answer.
+
+## Prompt construction — the mechanics under the grammar
+
+The cinema modes, the photoreal stack, and the ledger below are maestro's contribution. The mechanics of *how a prompt is shaped for a model* are upstream's, and they are load-bearing enough to state here rather than leave in the library:
+
+**Concrete and sensory beats abstract and evaluative.** Subject, setting, style — then camera (lens, angle, motion), then lighting, then medium. "A red fox curled in a snowy pine forest, golden hour, cinematic" is a prompt; "a beautiful nature scene" is a wish.
+
+**Length has a ceiling.** Keep the prompt near **200 tokens or under** for a single generation. Models distort on very long prompts — the far end of a bloated prompt gets weighted into noise. maestro's Static/Dynamic split and the photoreal stack push against this, so on a long composed prompt, cut adjectives that repeat a fact the ledger already fixed rather than cutting the specification.
+
+**When a reference image is attached, describe the delta — not the picture.** This is the single most common waste in image-to-image and image-to-video work:
+
+| Surface | Wrong | Right |
+|---|---|---|
+| Image-to-image | "a man with brown hair in a leather jacket holding coffee, made into anime" | "transform into anime style, vibrant colors, soft cel shading" |
+| Image-to-video | Re-describing the wardrobe, location, and light already in the start frame | The motion alone — "she turns toward the window, camera pushes in slowly" |
+
+The model already has the frame. Re-describing it invites re-interpretation of exactly what you wanted preserved — which is why `generative-production.md` Phase 6 collapses a shot with an approved still down to its motion line.
+
+**Phrase negatives as positives.** Most models expose no `negative_prompt` field at all, so a "no blur" lands as the word *blur*. Say **"tack sharp"**. Not "no people" — **"uninhabited landscape"**. This is why the pre-flight below bans negative blocks rather than merely discouraging them.
+
+**Rejections have named causes.** Models return terminal statuses like `nsfw` or `ip_detected` rather than a useful message. The three reliable triggers are real public figures, sexual content, and trademarked or branded characters — which is precisely what the pre-flight's name, brand, and age rules exist to strip *before* a generation is spent on a refusal.
+
+**Aspect ratio is a parameter where the surface offers one**, and plain language everywhere else — 16:9 landscape/cinematic, 9:16 vertical/social, 1:1 square, with 4:3, 3:4 and 21:9 model-dependent. Validate against the model's own enum rather than assuming; a bad value is usually coerced to the nearest legal one and silently changes your framing.
 
 ## The continuity ledger — the lock has to outlive the conversation
 

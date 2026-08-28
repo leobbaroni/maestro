@@ -30,6 +30,8 @@ Maestro has two layers with different licensing postures:
 | [taste-skill](https://github.com/Leonxlnx/taste-skill) by Leonxlnx | Anti-slop frontend framework, style sub-skills (brutalist/minimalist/soft/brandkit), redesign and image-to-code protocols | MIT (also vendored) |
 | [hallmark](https://github.com/nutlope/hallmark) by Together AI | Macrostructure catalog, component fingerprints, theme system, slop-test gates, audit/redesign/study verbs | MIT (also vendored) |
 | [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) by Wei Yihao | Product-video shot vocabulary, production pipeline, aesthetic-rule precedents, sound design and music beat-sync | Apache-2.0 (partially vendored) |
+| [skills](https://github.com/higgsfield-ai/skills) by Higgsfield AI | **The baseline for generative-media mechanics**: CLI surface, model IDs and flags, Marketing Studio object model, Soul ID identity chaining, Virality Predictor, product-photoshoot modes, brandkit slot system, thumbnail truth constraints, generated-asset system | MIT (vendored) |
+| [comfy-skills](https://github.com/Comfy-Org/comfy-skills) by Comfy-Org | **The baseline for ComfyUI mechanics**: template vs node routing, the OSS/partner split and its consent gate, `search_*` discovery, save-node validation, hardware gating, and the evidence-precedence rule | MIT (vendored) |
 
 Maestro's process rituals additionally fold in the interview-first ("grilling"),
 phase-ritual ("pilot"), and mockup-fan-out ("mockups") disciplines from the author's

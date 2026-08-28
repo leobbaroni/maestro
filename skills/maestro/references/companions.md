@@ -65,6 +65,28 @@ greenfield product film with no engine committed → **run the film-kind pick fi
 workflow skill and the module is then a tiebreaker inside that pick, never a substitute for it.
 Never run both pipelines over one brief; say which is driving.
 
+## Generative engines — first-party skills and MCPs
+
+Both major generative platforms ship installable skills **and** MCP servers, and both corpora are
+vendored into `library/`. `references/generative-engines.md` is the routing layer over them; it
+carries the reachability probe, the OSS-vs-paid gate, and the three places maestro overrides
+upstream. Read it before composing a generative prompt — not this section, which only says what
+exists.
+
+| Platform | Reach it by | maestro's layer |
+|---|---|---|
+| **ComfyUI** (comfy.org) | Local install driven by comfy-cli + the first-party **comfy-mcp** (`pip install comfy-mcp`, needs Python ≥ 3.10, comfy-cli ≥ 1.14, and a running ComfyUI). Cloud variant at `https://cloud.comfy.org/mcp`. Skills: `/plugin marketplace add Comfy-Org/comfy-skills` | `library/comfy-skills/` (MIT) — workflow mechanics, template vs node routing, the OSS/partner split |
+| **Higgsfield** (higgsfield.ai) | The `higgsfield` CLI (`curl -fsSL https://raw.githubusercontent.com/higgsfield-ai/cli/main/install.sh \| sh`, then `higgsfield auth login`); the MCP at `https://mcp.higgsfield.ai/mcp`; or REST at `api.higgsfield.ai`. Skills: `/plugin marketplace add higgsfield-ai/skills` then `/plugin install higgsfield@higgsfield`, or `npx skills add higgsfield-ai/skills` | `library/higgsfield-skills/` (MIT) — 8 skills covering generation, Soul ID, brandkit, product photoshoot, explainers, thumbnails, marketplace cards, websites |
+
+**Both are paid surfaces**, and each meters differently — Higgsfield bills credits per generation;
+ComfyUI is free on the user's own GPU and billed per run on partner models or Comfy Cloud. That
+difference is the whole reason `generative-engines.md` has a route gate: never pick between them
+silently.
+
+`library/higgsfield-directors/` (the two hand-written prompt directors) is **no longer the
+authority on Higgsfield mechanics** — the vendored skills are. The directors remain the source for
+the six cinema modes and their paste-ready camera blocks, which upstream has no equivalent of.
+
 ## Upstream toolchains not installed as skills
 
 Worth knowing exist even when absent locally:
@@ -78,14 +100,6 @@ Worth knowing exist even when absent locally:
 - **genjutsu's `ui-ux-pro-max`** (github.com/AThevon/genjutsu) — 1.7 MB of Python tooling and CSV datasets, excluded from the vendor for size and its Python dependency. The other 14 sub-skills plus the `cast` and `paint` orchestrators are vendored.
 - **remotion-maps** (in remotion-dev/remotion under `packages/skills`) — map-driven video: Cesium 3D flyovers, Mapbox/MapLibre/MapTiler vector reveals, static-map fallbacks, each with render-stability rules for deterministic headless capture, plus geo-prep scripts and sample data. Needs the map SDK and usually an API token, so it isn't distilled here; pull the technique folder when a brief actually calls for maps.
 - **video-shotcraft** (github.com/Vincentwei1021/video-shotcraft) — the shot cards, pipeline, and reference implementations are vendored (`library/video-shotcraft/`), but three heavy pieces are not: the **hosted gallery** at <https://vincentwei1021.github.io/video-shotcraft/library.html> (161 motion samples — the right way to let a user watch shots and pick by name, no install needed; the preview clips now live in a release rather than the repo, so a local gallery must fetch its media first), the **full Remotion template project** needed for template mode, and the **SFX/BGM binaries** (~30 MB; the manifest is vendored, the files aren't). Clone the repo when a job needs the template or the audio.
-
-- **Higgsfield** (higgsfield.ai) — a hosted generative-media platform, not an installable skill: a
-  browser UI where the user pastes a prompt, attaches reference images, and picks the aspect
-  ratio. maestro composes the text; the platform runs it. Nothing here shells out to it, no
-  credential is ever needed on this side, and generation costs the user credits — so name the
-  asset count before a batch runs. `generative-stills.md` and `generative-video.md` carry the
-  per-surface adapters (Banana Pro, Soul Cinema, GPT-2, Seedance); the grammar above them is
-  engine-neutral and holds for any comparable platform.
 
 A `~/.claude/skills-retired/` folder, if present, holds previously installed knowledge packs
 (kept for rollback) — including, on some setups, impeccable's full `scripts/` toolchain, usable

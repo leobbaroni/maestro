@@ -358,6 +358,95 @@
         }
       },
       "$comment": "Watch the six core skills maestro distills, plus the router SKILL.md whose route table is the one file any workflow add/rename/remove must touch - that single file preserves the companions.md signal while dropping the workflow pipelines maestro only name-checks."
+    },
+    {
+      "name": "higgsfield-skills",
+      "repo": "higgsfield-ai/skills",
+      "$comment": "First-party generative-media skills. THE BASELINE for generative mechanics: CLI syntax, model IDs, flags, parameter enums, error strings, Marketing Studio object model, Soul ID chaining. maestro's generative modules distil its planning/prompt doctrine into their own prose and override it in exactly three places (cost consent, engine-is-the-user's-pick, ledger outlives the platform) - see references/generative-engines.md. Whole repo vendored to skills/maestro/library/higgsfield-skills/ (MIT, LICENSE carried; binary assets and CI excluded).",
+      "watch": [
+        "higgsfield-generate",
+        "higgsfield-brandkit",
+        "higgsfield-product-photoshoot",
+        "higgsfield-youtube-thumbnail",
+        "higgsfield-soul-id",
+        "higgsfield-websites",
+        "higgsfield-marketplace-cards",
+        "higgsfield-video-explainer"
+      ],
+      "feeds": [
+        "generative-engines.md",
+        "generative-direction.md",
+        "generative-stills.md",
+        "generative-video.md",
+        "generative-production.md",
+        "brand-systems.md",
+        "generative-web.md",
+        "companions.md"
+      ],
+      "pins": {
+        "higgsfield-generate": {
+          "sha": "fb18134b4aabe99c4bf7ff01c8f4883400efc80d",
+          "date": "2026-08-07T17:24:21Z"
+        },
+        "higgsfield-brandkit": {
+          "sha": "eeeb434c03ba6939d3da24dba2e9d6b877cd7404",
+          "date": "2026-08-03T20:26:26Z"
+        },
+        "higgsfield-product-photoshoot": {
+          "sha": "ce08d21be072783697e38380749dbf893865c7a3",
+          "date": "2026-07-06T18:06:29Z"
+        },
+        "higgsfield-youtube-thumbnail": {
+          "sha": "942f239492c05fb07fbb6864327b4af214dbf80a",
+          "date": "2026-08-03T18:36:48Z"
+        },
+        "higgsfield-soul-id": {
+          "sha": "ce08d21be072783697e38380749dbf893865c7a3",
+          "date": "2026-07-06T18:06:29Z"
+        },
+        "higgsfield-websites": {
+          "sha": "aaa82dbda00bc312722418fc594d27ceaa9ca7af",
+          "date": "2026-08-07T17:16:35Z"
+        },
+        "higgsfield-marketplace-cards": {
+          "sha": "ce08d21be072783697e38380749dbf893865c7a3",
+          "date": "2026-07-06T18:06:29Z"
+        },
+        "higgsfield-video-explainer": {
+          "sha": "d63d77e6997c64065b108fc507efa8bac42e5555",
+          "date": "2026-07-16T17:38:55Z"
+        }
+      }
+    },
+    {
+      "name": "comfy-skills",
+      "repo": "Comfy-Org/comfy-skills",
+      "$comment": "First-party ComfyUI agent skills + the comfy-cloud Claude Code plugin. THE BASELINE for ComfyUI mechanics: template vs node routing, the OSS/partner split, search_* discovery, save-node validation, hardware gating. Its evidence-precedence rule is absorbed into references/generative-engines.md and cockpit's grilling skill. Whole repo vendored to skills/maestro/library/comfy-skills/ (MIT, LICENSE carried).",
+      "watch": [
+        "skills",
+        "claude-code/commands",
+        "openclaw/comfy"
+      ],
+      "feeds": [
+        "generative-engines.md",
+        "generative-video.md",
+        "generative-stills.md",
+        "companions.md"
+      ],
+      "pins": {
+        "skills": {
+          "sha": "9cc425628ff67e2d62300b68472f3c119e6d9967",
+          "date": "2026-08-20T01:27:14Z"
+        },
+        "claude-code/commands": {
+          "sha": "ab5a0cafdf1bd4bf6cbe7e9ddddf93bd4faf40b9",
+          "date": "2026-08-07T21:25:41Z"
+        },
+        "openclaw/comfy": {
+          "sha": "ab5a0cafdf1bd4bf6cbe7e9ddddf93bd4faf40b9",
+          "date": "2026-08-07T21:25:41Z"
+        }
+      }
     }
   ]
 }

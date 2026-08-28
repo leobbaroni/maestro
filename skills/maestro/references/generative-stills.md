@@ -191,16 +191,24 @@ Fill this in per platform, once, and keep it in `MODELS.md`:
 
 One filled-in instance of the table above, not a default. Verify it still holds before relying on it; platform lineups change without notice.
 
-| This module's term | Higgsfield, as of this writing |
+| This module's term | A Higgsfield mapping, probed not recalled |
 |---|---|
 | Direct path (Step 1) | **Banana Pro** (Nano Banana) |
 | Composite path (Step 1, two steps) | **Soul Cinema** — Step A then Step B, both generations run here |
 | Multi-angle sheet, plates | **Banana Pro** |
 | Detail portrait model | **GPT-2** — higher fidelity at face-and-shoulders range, costs more credits than Banana Pro |
 
-Platform rules on this one: **reference images attach in the Higgsfield UI**, never as `@image` tags or `<<<image_n>>>` placeholders in the prompt text. **Aspect ratio is set in the UI**, never written into the prompt body — describe framing in words ("full body", "chest-up portrait", "wide establishing"). Sheets are typically 16:9, plates 21:9 or 2.39:1, portraits 4:5 or 1:1, but all of that is a UI setting. **No negative prompt blocks** — this workflow doesn't use them.
+**Platform rules depend on the surface, and there are three.** Getting this wrong silently ruins every composite prompt, so establish it once per session:
 
-The full original director, with its worked examples, is `library/higgsfield-directors/banana-pro-director.md`. Read it for the *method*; treat its model names as one platform's answer, not the answer.
+| Surface | Reference images | Aspect ratio |
+|---|---|---|
+| **Browser UI** | Attached in the UI, or picked from the character/environment library | A UI setting — keep framing in plain language ("full body", "chest-up portrait") |
+| **`higgsfield` CLI / MCP / API** | Explicit flags — `--image`, `--start-image`, `--end-image`, `--video`, `--audio`, or the `*-references` arrays. Paths auto-upload; UUIDs work directly | An explicit `--aspect_ratio` parameter, validated against the model's own enum |
+| **Any other engine** | Probe it — `generative-engines.md` | Probe it |
+
+Two rules hold on **every** surface: **no negative prompt blocks** in this workflow, and framing still gets described in words even when the ratio is a parameter, because "chest-up" and "4:5" answer different questions.
+
+The mechanics above are a convenience copy. `library/higgsfield-skills/higgsfield-generate/` is the authority on flags and model IDs, `library/higgsfield-skills/higgsfield-generate/references/media-inputs.md` on the per-model media roles, and `generative-engines.md` on which surface you are actually on. The method — not the model names — is in `library/higgsfield-directors/banana-pro-director.md`.
 
 ---
 *Distilled from: banana-pro-director (authoritative — asset order, mode structures, prompt scaffolds).*
