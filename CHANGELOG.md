@@ -1,5 +1,38 @@
 # Changelog
 
+## 4.1.0 — 2026-09-01
+
+**video-shotcraft re-vendored, and a documented split that no longer exists.** Upstream added three
+motion cards (152 → **155**) and, more importantly, gave a demo to every card. maestro documented a
+143/9 split — 143 cards resolving to `demos/`, nine implemented only inside the reference film — and
+that split is gone: **all 155 now resolve to `demos/<category>/<name>/`.** An agent following the old
+note for one of those nine would have gone to `template/src/` looking for something that had moved.
+
+Corrected in the module, the router, the README, and the vendor manifest, and re-pinned. The
+template source stays vendored regardless — not for those nine, but because `template/src/aifl/
+Main.tsx` is the SFX pin table the whole sound methodology is drawn from. One demo directory,
+`demos/interaction/clipcard-looping/`, has no card of its own; noted as a bonus rather than left to
+look like a missing card.
+
+Counts were taken by cross-referencing card filenames against demo directories rather than by
+counting files — the file count includes `ATTRIBUTION.md`, which is how a previous pass got this
+wrong in the opposite direction.
+
+### Codex parity for generative work
+
+`AGENTS.md` was written before the generative layer existed and pointed non-Claude harnesses at a
+routing table that no longer covers the biggest addition. It now says what matters for those
+harnesses: **generative work runs through CLIs and MCP servers, not Claude-specific machinery**, so
+it works identically anywhere a shell command runs. It names `generative-engines.md` as the required
+first read (reachability probe, the OSS-vs-paid gate, the GPU check) and the vendored corpora as
+authoritative on mechanics. Module count corrected to 29, with the reminder that reading all of them
+defeats the router.
+
+### Fixed
+
+- `SKILL.md` still said the depth layer vendors **nine** corpora. It has been eleven since 4.0.0 —
+  README was updated then and the router was missed.
+
 ## 4.0.1 — 2026-08-28
 
 **Comfy Cloud was reachable and undocumented.** 4.0.0 vendored the corpus containing the

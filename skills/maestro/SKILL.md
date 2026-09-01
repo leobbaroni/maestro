@@ -7,7 +7,7 @@ description: Unified design, motion, 3D, and video super skill. Use for designin
 
 One skill for the full visual stack: **design → motion → 3D → video**. It merges eleven design/motion/video skill projects into one voice — deduplicated, conflicts resolved (full list in the footer).
 
-Two layers. `references/` is the **judgment layer** — distilled, one voice, decides everything. `library/` is the **depth layer** — nine source corpora vendored verbatim, so every bundled tool stays runnable at full capability rather than only summarized; the judgment layer points into it for exact recipes, theme token sets, and long-tail protocols (rules of engagement: `library/README.md`). On genuine contradictions between sources the resolution is already encoded in the references, per the hierarchy **taste-skill > hallmark > impeccable**; everything non-conflicting composes. This file is the brain: it decides *what to load* and *how to work*. Load only what the task needs.
+Two layers. `references/` is the **judgment layer** — distilled, one voice, decides everything. `library/` is the **depth layer** — eleven source corpora vendored verbatim, so every bundled tool stays runnable at full capability rather than only summarized; the judgment layer points into it for exact recipes, theme token sets, and long-tail protocols (rules of engagement: `library/README.md`). On genuine contradictions between sources the resolution is already encoded in the references, per the hierarchy **taste-skill > hallmark > impeccable**; everything non-conflicting composes. This file is the brain: it decides *what to load* and *how to work*. Load only what the task needs.
 
 ## Rule 0 — The Grill Gate
 
@@ -46,7 +46,7 @@ Before any **substantial** design/build/redesign work, interview the user first:
 | Generative art, canvas experiments, particles, noise | `creative-coding.md` |
 | **Any video — before routing** | **`process.md` §1b first: the user picks what the film *is*; that answer selects the row below.** Then §3a's direction round gates on beat sheets, styleframe only for the finalist |
 | Planning any video (story, beats, pacing, transitions) | `video-direction.md` |
-| **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 152 shot cards, eight-stage pipeline |
+| **Product demo / launch promo from a real app or site** | `video-shotcraft.md` — the lead: mode gate, 155 shot cards, eight-stage pipeline |
 | One cinematic moment inside any video, any engine | `video-shotcraft.md` (pull a single shot card) |
 | Sound design, SFX pin tables, music beat-sync — any engine | `video-sound.md` |
 | **Which engine runs this, and who pays** — before any generation | **`generative-engines.md` first.** Probe what is reachable (ComfyUI local + partners, Higgsfield, or neither), gate OSS against paid, check the GPU. Upstream corpora are the baseline for all mechanics |

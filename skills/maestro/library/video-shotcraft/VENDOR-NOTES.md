@@ -10,15 +10,15 @@ The upstream project is ~164 MB, most of it rendered video and captured textures
 
 | Path | What it is |
 |---|---|
-| `references/shots/<category>/` | **152 shot cards** — the vocabulary, filed under ten functional categories (`opening` `typography` `ui-entrance` `camera` `data` `interaction` `transition` `rhythm` `effects` `outro`). Frontmatter (name · one-liner · when to use · duration · energy), then intent, motion core, a parameter table with tuning feel, sound notes, known traps |
+| `references/shots/<category>/` | **155 shot cards** — the vocabulary, filed under ten functional categories (`opening` `typography` `ui-entrance` `camera` `data` `interaction` `transition` `rhythm` `effects` `outro`). Frontmatter (name · one-liner · when to use · duration · energy), then intent, motion core, a parameter table with tuning feel, sound notes, known traps |
 | `references/pipeline.md` | The eight-stage production pipeline (autonomous mode runs it end to end) |
 | `references/guided-free-creation.md` | Co-creation mode: the same pipeline with user sign-off gates at stages 0–3 |
 | `references/aesthetic-rules.md` | The quality standard as precedents — R rhythm · Q texture/camera/composition · S sound · C copy · P process |
 | `references/sound-design.md` · `references/music-beat-sync.md` | Sound methodology and the beat-grid analysis method |
 | `references/final-review.md` | The independent pre-delivery review checklist |
 | `references/sequences/` | Whole-film energy skeletons to fill in before picking cards |
-| `demos/<category>/` | The tuned reference implementation for **143 of the 152 cards**, in the same ten categories — copy into a Remotion project and run. `demos/_fixtures/` is vendored too, and holds **two** unrelated shared modules: `Fixtures.tsx` (the fake-UI scene pieces) and `Motion.tsx` (the design-coordinate stage the 48 motion-lab cards build on — read it before adapting one of those) |
-| `template/src/` | The reference film's source: the implementations the **other 9 cards** point at, plus `aifl/Main.tsx` — the central SFX pin table the whole sound methodology is drawn from |
+| `demos/<category>/` | The tuned reference implementation for **all 155 cards**, in the same ten categories — copy into a Remotion project and run. `demos/_fixtures/` is vendored too, and holds **two** unrelated shared modules: `Fixtures.tsx` (the fake-UI scene pieces) and `Motion.tsx` (the design-coordinate stage the 48 motion-lab cards build on — read it before adapting one of those) |
+| `template/src/` | The reference film's source — kept for `aifl/Main.tsx` — the central SFX pin table the whole sound methodology is drawn from |
 | `template/TEMPLATE.md` + `package.json` · `remotion.config.ts` · `tsconfig.json` | The replace-guide template mode follows, and the project config that makes the source buildable |
 | `assets/lib/` | Components to copy (not import): `PageCam`, `DigitRoll`, `FlashCut`, `Caption`, `FlatPanel`, `VerticalTicker`, `helpers/` |
 | `assets/scripts/capture-template.mjs` | The page-capture script `pipeline.md` stage 4 says to copy and configure |
@@ -26,7 +26,9 @@ The upstream project is ~164 MB, most of it rendered video and captured textures
 | `assets/audio/AUDITION-2026-07-27.md` | Per-file audition data — duration, measured peak, suggested pin point — which is what makes the windowing and level rules usable without the binaries |
 | `SKILL.md` | The upstream router, kept for provenance |
 
-**Every card's implementation resolves.** 143 resolve to `demos/<category>/<name>/`; these nine live in the template instead — `brand-ink-open`, `spotlight-hero-card`, `deck-deal-flyin`, `type-and-filter`, `list-stack-press`, `row-embed`, `document-typewriter-reveal`, `paper-title-card`, `outro-group-photo-launch` — and each card's own *参考实现* section names the exact `template/src/...` file. That set is exactly the default energy-arc picks, which is why the template source is vendored rather than left upstream.
+**Every card's implementation resolves, and all 155 now resolve to `demos/<category>/<name>/`.** Earlier vendors of this tree recorded a 143/9 split, with nine energy-arc defaults implemented only inside the reference film; upstream has since given each of them its own demo, so that split is gone. The template source is still vendored — not for those nine, but because `template/src/aifl/Main.tsx` is the central SFX pin table the sound methodology is drawn from.
+
+One demo directory, `demos/interaction/clipcard-looping/`, has no card of its own. Treat it as a bonus implementation rather than a missing card.
 
 ## Deliberately upstream
 

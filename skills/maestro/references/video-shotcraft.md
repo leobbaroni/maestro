@@ -1,6 +1,6 @@
 # Video Shotcraft
 
-*The lead for product demo and promo video: a 152-card shot vocabulary with tuned reference implementations, a mode gate, an eight-stage pipeline, and a real-screenshot doctrine. Renders through Remotion — this is the craft layer above `video-remotion.md`, not a replacement for it.*
+*The lead for product demo and promo video: a 155-card shot vocabulary with tuned reference implementations, a mode gate, an eight-stage pipeline, and a real-screenshot doctrine. Renders through Remotion — this is the craft layer above `video-remotion.md`, not a replacement for it.*
 
 ## When shotcraft leads
 
@@ -44,7 +44,7 @@ Two standing exceptions: naming the template means template mode is chosen; nami
 
 ## Shot cards — the vocabulary
 
-152 cards in `library/video-shotcraft/references/shots/<category>/`, each with frontmatter carrying **name · one-line description · when to use · duration · energy**, then intent, motion core, a parameter table with tuning feel, sound notes, and known traps. Read in full only the ones you pick.
+155 cards in `library/video-shotcraft/references/shots/<category>/`, each with frontmatter carrying **name · one-line description · when to use · duration · energy**, then intent, motion core, a parameter table with tuning feel, sound notes, and known traps. Read in full only the ones you pick.
 
 **The cards and every other vendored file are Chinese-language source** (the frontmatter keys below are `name` / `一句话` / `适用` / `时长` / `能量`). Read them in the original — the parameter tables and known-traps sections are the value, and a translation round-trip is where precision goes missing.
 
@@ -63,7 +63,7 @@ Cards and demos are filed under the same ten functional categories, so a narrati
 | `effects/` | Light and emphasis — sweeps, neon, hit feedback; the emphasis layer over everything |
 | `outro/` | Endings — closing collapse, group photo, UI-to-brand morphs |
 
-Don't open 152 files to choose. Scan one category's frontmatter per narrative slot, or harvest the lot in one pass:
+Don't open 155 files to choose. Scan one category's frontmatter per narrative slot, or harvest the lot in one pass:
 
 ```bash
 # one-line summary of every card: name, what it's for, duration, energy
@@ -76,7 +76,7 @@ Within a category, card names are descriptive — `*-transitions` and `*-wipe` f
 
 Defaults per segment (a single-instance precedent, labelled as such upstream — starting points, not mandates): brand open → `brand-ink-open`; protagonist → `spotlight-hero-card`; feature climb → `deck-deal-flyin`, `type-and-filter`, `list-stack-press`, `row-embed`, `document-typewriter-reveal`; breather → `paper-title-card`; finale → `outro-group-photo-launch`. Seams between chosen shots get their transition style picked last, from the transition cards, with those frames drawn from the neighbouring shots' budgets.
 
-Where each card's implementation lives: 143 cards resolve to `library/video-shotcraft/demos/<category>/<name>/` — same category as the card — and the nine defaults listed just above are implemented in the reference film instead, at `library/video-shotcraft/template/src/...`. Every card names its own path in its *参考实现* section; both locations are vendored, so the read-the-implementation rule holds for all 152.
+Where each card's implementation lives: **every one of the 155 resolves to `library/video-shotcraft/demos/<category>/<name>/`** — same category as the card. That is a change: the nine energy-arc defaults used to be implemented only inside the reference film, and upstream has since given them their own demos. The template source stays vendored anyway, because `template/src/aifl/Main.tsx` is the SFX pin table the whole sound methodology is drawn from. Every card still names its own path in its *参考实现* section — read that rather than assuming the demo directory, since a card is free to point elsewhere.
 
 Selection order: pick the film's energy skeleton first, then fill each slot from the cards. The default skeleton for a 30–60s multi-feature product film (`library/video-shotcraft/references/sequences/promo-energy-arc.md`):
 
