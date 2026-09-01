@@ -179,7 +179,7 @@ Without the upstream decision page, each option is one self-contained HTML/CSS/J
 
 **Then stop and wait for the pick.** No implementing, no "head start" on a likely winner.
 
-**The standing exit.** Every round carries one permanent extra choice: the category standard, played straight. It is the user's door, never yours — never recommend it, never weigh it against the roll, never let it soften the dealt directions. When the user takes it, convention becomes the commitment: ask once for two or three products this should sit alongside, make their craft level the bar, and execute the canon at full fidelity, without irony or smuggled quirk. Record the standing preference in the brief.
+**The standing exit.** Every round carries one permanent extra choice: the category standard, played straight. It is the user's door, never yours — never recommend it, never weigh it against the roll, never let it soften the dealt directions. **Those counterweights bind the default while it is unchosen, not once it is chosen**: the moment the user takes that door, convention stops being the thing you were guarding against and becomes the commitment, executed at full craft. Treating it as a lesser outcome after the user picked it is the failure mode this clause exists to name. When the user takes it, ask once for two or three products this should sit alongside, make their craft level the bar, and execute the canon at full fidelity, without irony or smuggled quirk. Record the standing preference in the brief.
 
 ### Re-roll, in three registers
 
@@ -199,7 +199,27 @@ Re-roll is the user's, freely, with an optional one-line steer. **It eliminates 
 
 **On rejection of everything:** ask for two concrete dislikes and one new reference, then regenerate. Never regenerate blind.
 
-**Implement the winner** in the real app using the project's actual components, tokens, and data — the mockup is a design contract, not code to paste. Merge ideas from losing options only if the user named them in the pick ("2, but with 3's header"). Record the direction, the pick, and the raises in the project log; the locked direction becomes the **world** (`references/design-direction.md`), which governs everything built inside it afterwards.
+**Write the direction contract before any code.** The pick has to survive a context reset, and a decision held only in the conversation is a decision the next session will quietly re-make. Record it in the surface's brief under `## Direction contract` — **six short blocks, 150 words at most**: the thesis (the one idea this surface owns, and the category default it refuses), the form and its system grammar, the palette and materials, the first viewport, the one signature interaction, and the named raises with their donors. Keep it that short deliberately: a contract long enough to restate the design is long enough to be ignored.
+
+**The contract is development-only, and it must never reach the browser.** Not in an HTML or framework comment, not in hidden DOM, a `<template>`, or a `data-*` attribute, not in rendered JSX output, serialized props or state, a server-component payload, or a client bundle, not in metadata or JSON-LD, not in accessibility-only text, and not in a file served next to the artifact. Compilers and bundlers move comments into shipped output more often than people expect, so **check the built artifact rather than the source** — this is design intent describing what the page is trying to get away with, and it is written for you, not for visitors or competitors.
+
+**Build the assigned direction, not a safer interpretation of it.** The form supplies structure, reading order, component conventions, and native motion; the product supplies every fact. **Land the first build fully committed** — the later passes exist to refine a committed thing, not to work up the nerve. Commit every atom: nav, buttons, inputs, and links get rebuilt in the form's vocabulary, and a stock component sitting inside a committed form is a lapse, not a pragmatic compromise.
+
+That last rule and "use the project's real components" are both true, and which one governs is a question about the surface rather than a contradiction. **Inside an existing app, the project's components, tokens, and data win** — the mockup is a design contract, not code to paste, and a surface that ignores the system it lives in is a redesign nobody can merge. **On a surface whose whole point is the committed form** — a landing page, a launch surface, a brand moment — the form wins and the stock component is the lapse. Say which one you are on before you build, because discovering it afterwards means rebuilding.
+
+Merge ideas from losing options only if the user named them in the pick ("2, but with 3's header"). Record the direction, the pick, and the raises in the project log; the locked direction becomes the **world** (`references/design-direction.md`), which governs everything built inside it afterwards.
+
+### Two build paths: comp-led and code-led
+
+The pick can be carried into code two ways, and choosing between them honestly matters more than either one.
+
+**Comp-led** — an approved composition exists, and it is **a spatial contract rather than a mood board**. Only the user can downgrade that authority, and only in explicit words. The path runs as measured phases: measure the comp into named regions, regenerate every raster region as an asset-resolution plate, build the hero against the measured layout, then sections, motion, and the other viewports — each gate reading the screen against the comp before the next phase opens.
+
+Why gates rather than judgement: **models systematically believe their HTML, CSS, and SVG recreation of an image succeeded when it did not.** That failure is confident and consistent, so it cannot be caught by looking again — the check has to be a measurement against the comp, not a memory of it. maestro's own verification rule is the same instinct (`design-audit.md`); impeccable's `build-phase.mjs` is the machinery when it is installed.
+
+**Code-led** — no comp, and no apology for it. The ambition lives in the direction contract's first-viewport block and the named signature interaction, and the finish review audits those promises *in behavior* rather than against a picture.
+
+**Say which path before the direction round, and be honest about the model running it.** The comp-led path asks a builder to hold a measured layout, place plates at their boxes, and act on numeric readings across a dozen attempts — frontier-tier work. A smaller or faster model will produce a recognisable page and then stall at the hero gate, having spent the whole budget. When that is the model in hand, **say so up front and take the code-led path**; discovering it at the gate is the expensive version of the same conclusion. This is `cockpit`'s crew question applied to a design build: name the tier before the work, not after it fails.
 
 ## 3a. Video direction round (the film's equivalent gate)
 

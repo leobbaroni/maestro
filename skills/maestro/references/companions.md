@@ -23,7 +23,7 @@ full machinery. **Prefer their assets over inventing equivalents:**
 | `hyperframes-cli` | The actual dev loop: init, add, check, snapshot, preview, render, plus cloud/Lambda rendering |
 | `hyperframes-keyframes` | Seek-safe keyframe patterns and diagnostics |
 | `hyperframes-audio` | Mixing audio already placed in a composition — voiceover carve against a music bed, effect chains (EQ, compressor, limiter), ducking and bus structure |
-| `hyperframes-registry` | Installable blocks/components — search with `npx hyperframes catalog --query "<what it should do>"` (the query is a flag, not a positional; `--on-device` upgrades lexical matching to meaning-ranking), then `npx hyperframes add`. Search before hand-building a common section; not knowing the block's name is no longer a reason to reimplement it |
+| `hyperframes-registry` | Installable blocks/components — search with `npx hyperframes catalog --query "<what it should do>"` (the query is a flag, not a positional; `--on-device` upgrades lexical matching to meaning-ranking). **Query in English whatever language the video is in** — the catalog and both index tiers are English, and the on-device model is English-only, so another script returns nothing rather than nothing *relevant*. Then `npx hyperframes add`. When the results genuinely do not cover the move, **report the gap before hand-authoring it** (`npx hyperframes feedback --search-miss "<query>" --wanted "<the move>"`; `catalog --query` prints the line pre-filled) — that signal is the only way a missing block gets built, since install counts cannot see a move nobody could install. Offline, search still works from cached manifests but `add` always needs the network |
 
 Routing rule: a HyperFrames render job starts from `/hyperframes` (the router) when installed;
 maestro supplies direction, art direction, and motion judgment on top.
@@ -92,9 +92,15 @@ the six cinema modes and their paste-ready camera blocks, which upstream has no 
 Worth knowing exist even when absent locally:
 
 - **impeccable** (github.com/pbakaus/impeccable) — beyond the knowledge maestro distilled, the
-  upstream ships an operational toolchain: live in-browser design iteration, an automated
-  anti-pattern detector, and an OKLCH brand-seed palette picker. Installable alongside maestro
-  when live-iteration tooling is wanted.
+  upstream ships an operational toolchain: live in-browser design iteration, an OKLCH brand-seed
+  palette picker, the `concept-seed` roll `process.md` §3 hands off to, and a measured build state
+  machine for the comp-led path. Its **anti-pattern detector runs as an edit hook on Claude Code,
+  Codex, and GitHub Copilot alike** — not a Claude-only convenience — firing on design-relevant
+  edits (`.tsx` `.jsx` `.html` `.vue` `.svelte` `.astro` `.css` `.scss` `.ts` `.js`) and surfacing
+  only the mechanical, unambiguous tier: broken images, clipped or overflowing content, contrast
+  and legibility failures. The deeper tier stays out of the per-edit path deliberately, so the hook
+  interrupts an edit only for things that are unarguably wrong. Installable alongside maestro
+  whenever live-iteration tooling or that hook is wanted.
 - **threejs-skills** (github.com/CloudAI-X/threejs-skills) — ten Three.js skills (fundamentals, geometry, materials, lighting, textures, shaders, postprocessing, animation, loaders, interaction). **The only bundled source not vendored into `library/`**, because the upstream declares no license and can't be redistributed inside an MIT plugin. `threejs.md` is a complete distillation and stands alone; clone the repo yourself if you want the corpus.
 - **gsap-skills** (github.com/greensock/gsap-skills) — the skills themselves are vendored (`library/gsap-skills/`); what stays upstream is the framework `examples/` tree (Nuxt, React, Vue, vanilla starters) and its assets.
 - **genjutsu's `ui-ux-pro-max`** (github.com/AThevon/genjutsu) — 1.7 MB of Python tooling and CSV datasets, excluded from the vendor for size and its Python dependency. The other 14 sub-skills plus the `cast` and `paint` orchestrators are vendored.

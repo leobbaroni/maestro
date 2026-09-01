@@ -226,7 +226,7 @@ Delay any media by wrapping in `<Sequence from={...}>`. Layer audio tracks with 
 All captions are JSON in the `Caption` type from `@remotion/captions`:
 
 ```ts
-type Caption = { text: string; startMs: number; endMs: number; timestampMs: number | null; confidence: number | null };
+type Caption = { text: string; startMs: number; endMs: number; timestampMs: number | null; confidence: number | null; pageBreakAfter?: boolean };
 ```
 
 **Transcribe** (`@remotion/install-whisper-cpp`): Node script — `installWhisperCpp({to, version: "1.5.5"})` → `downloadWhisperModel({model: "medium.en", folder})` → convert audio to 16kHz wav (`ffmpeg -i in.mp4 -ar 16000 out.wav -y`) → `transcribe({model, whisperPath, inputPath, tokenLevelTimestamps: true})` → `toCaptions({whisperCppOutput})` → write JSON to `public/`. Transcribe each clip individually, one JSON per video. Existing `.srt`: fetch text and `parseSrt({input})`.
@@ -234,11 +234,12 @@ type Caption = { text: string; startMs: number; endMs: number; timestampMs: numb
 **Display** (`@remotion/captions`), in a dedicated component file:
 
 1. Fetch the JSON with `useDelayRender()` (`delayRender`/`continueRender`/`cancelRender`).
-2. Page it: `createTikTokStyleCaptions({captions, combineTokensWithinMilliseconds: 1200})` — higher = more words per page, lower = word-by-word.
+2. Page it: `createTikTokStyleCaptions({captions, combineTokensWithinMilliseconds: 1200})` — higher = more words per page, lower = word-by-word. **`pageBreakAfter: true` on a caption forces the page to end there** and the next caption to open a new one, which is how you keep a sentence or a speaker turn from being glued to the next by the timing heuristic alone.
 3. Render each page in a `<Sequence from={(page.startMs / 1000) * fps} durationInFrames={...}>`, capping duration at the next page's start.
 4. Highlight the active word: inside the page component, `absoluteTimeMs = page.startMs + (frame / fps) * 1000`; a token is active when `token.fromMs <= absoluteTimeMs && token.toMs > absoluteTimeMs`.
 5. Captions are whitespace-sensitive — keep the leading space in each token's `text` and use `whiteSpace: "pre"`.
-6. Render captions alongside the `<Video>` in the same tree so they stay in sync.
+6. **Key tokens by index as well as time** — ``key={`${token.fromMs}-${tokenIndex}`}``. Two tokens on a page can share a `fromMs`, and a bare timestamp key silently drops one of them in React's reconciliation.
+7. Render captions alongside the `<Video>` in the same tree so they stay in sync.
 
 ## Fonts & Text Measurement
 

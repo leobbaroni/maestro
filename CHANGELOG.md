@@ -1,5 +1,117 @@
 # Changelog
 
+## 4.2.0 — 2026-09-01
+
+**The drift pass: 16 watched paths across four upstreams, absorbed.** Every pinned source is
+current again and `check-upstreams` exits clean. Four of maestro's documented facts turned out to
+be wrong — three of them in ways that produce silent, confident failures — so this is worth
+reading as a correction list rather than a feature note.
+
+### Four claims that were wrong
+
+**The HyperFrames visibility window is half-open, not inclusive.** maestro said `start ≤ t ≤ start
++ duration` and told authors that "a reveal landing exactly on `data-duration` still renders."
+It is `[start, start + duration)` — the clip is **hidden at exactly `t = start + duration`**, so an
+animation whose resolved end state lands on the boundary has its final frame dropped. Every other
+frame looks right, which is what makes it expensive to find. Land the end state slightly before
+the boundary; the compensation is that clips can be authored exactly back to back with no
+overlapping frame.
+
+**`data-track-index` is a Studio display lane the render never reads.** maestro had it as
+required, and claimed same-track clips "must not overlap in time (lint flags it; render is
+undefined)." It is optional and constrains nothing: two clips on one track may overlap, both are
+visible, painted in CSS order. Layering is `z-index`, sequencing is `data-start`/`data-duration`,
+and track index is neither. The single case where the value means anything is two `<audio>`
+elements sharing an index *and* overlapping, which raises `duplicate_audio_track`. A negative
+`data-start` offset therefore no longer "requires different tracks" — that is just how a crossfade
+is authored.
+
+**Nesting is allowed.** maestro said visual clips "must be DIRECT children of the composition
+root" and that a nested one "is not registered as a clip." A timed element inside a wrapper is
+still timed, and a timed ancestor usefully **clamps** its descendants. The real difference is
+layout: root-level clips get automatic positioning, nested ones must position themselves. The old
+rule would have had authors flattening a DOM for no reason.
+
+**`class="clip"` is a convention the runtime never reads.** It was documented as required, with
+visibility depending on it. What it actually does is supply the scaffold's `.clip { position:
+absolute; inset: 0 }` box, act as a Studio edit hint, and satisfy `lint`. Keep writing it — but
+know that dropping it costs you layout, not timing.
+
+Also corrected in the same table: `id` is required on `<video>`/`<audio>` specifically (an id-less
+`<audio>` is never mixed, so **the render comes out silent**), and `data-volume` boosts above `1`
+up to `3.98` (+12 dB).
+
+### design-dna: stop estimating colour
+
+Upstream's headline change, and it lands as a rule: **do not estimate hex by eye.** Perceived
+colour drifts toward familiar palette defaults, routinely by a ΔE of 10 or more — enough that a
+"faithful" extraction quietly rebuilds someone else's brand in your own habitual blues. Measure
+the reference instead, keep the measured palette and its clustering config in the DNA
+(`measured_palette`, `measurement`), and fall back to visual sampling only when measurement is
+impossible — saying which you did.
+
+The rebuild then gets **scored rather than eyeballed**: screenshot it, compare against the DNA,
+read per-colour ΔE and coverage drift against PASS/FAIL thresholds. Asking the user whether it
+"looks right" is precisely the judgement the measurement exists to replace.
+
+Both scripts are now vendored (`library/design-dna/scripts/`, 41 KB) so the rule is executable
+rather than aspirational, with the caveat that bites recorded in the manifest: they resolve paths
+relative to their own directory, not your project.
+
+### impeccable: the direction contract, and where it must never appear
+
+The pick now becomes a written **direction contract** in the surface brief — six blocks, 150 words
+at most — because a decision held only in conversation is one the next session quietly re-makes.
+
+And a rule maestro had no equivalent of: **the contract is development-only and must never reach
+the browser.** Not in an HTML or framework comment, hidden DOM, a `<template>`, a `data-*`
+attribute, rendered JSX, serialized props, a server-component payload, a client bundle, metadata
+or JSON-LD, accessibility-only text, or a file served beside the artifact. Compilers move comments
+into shipped output more often than people expect, so **check the built artifact, not the source**.
+This is design intent describing what a page is trying to get away with.
+
+Three more: **build the assigned direction, not a safer interpretation of it** — land the first
+build fully committed, and a stock component inside a committed form is a lapse. That sits in real
+tension with maestro's standing "use the project's real components", so the reconciliation is
+stated rather than left implicit: inside an existing app the system wins; on a surface whose whole
+point is the committed form, the form wins — and you say which you are on before building.
+**Comp-led and code-led** become named paths, with the reason comp-led runs on measured gates:
+*models systematically believe their HTML/CSS/SVG recreation of an image succeeded when it did
+not*, and that failure is too confident to catch by looking again. Comp-led is frontier-tier work,
+so name the model tier **before** the direction round rather than discovering it at the hero gate.
+The standing exit gains its missing clause: the counterweights bind the default while it is
+unchosen — once the user picks it, convention is the commitment, executed at full craft.
+
+### Smaller absorptions
+
+- **Remotion** — `Caption` gains `pageBreakAfter?: boolean`, which forces a page to end at that
+  caption instead of leaving the timing heuristic to guess a sentence boundary. Token keys must
+  include the index (``key={`${token.fromMs}-${tokenIndex}`}``): two tokens on a page can share a
+  `fromMs`, and a bare timestamp key silently drops one in reconciliation. maestro's "never nest
+  `<HtmlInCanvas>`" was already correct and upstream has now hardened it into a rejection.
+- **Cutting a source into ranges** is a clip-assembly problem, not a keyframe one — duplicate the
+  source, select ranges with `data-media-start`, and keep separately-authored audio on the
+  identical range and timing or picture and sound drift a few cuts in. Constant
+  `data-playback-rate` is render-safe; ramps get preprocessed.
+- **GSAP** — the forbidden-property list is a **denylist, not an allowlist**: `width`, `height`,
+  `filter`, `clipPath`, `strokeDashoffset` are legitimate when the effect needs them. And never
+  duration-tween `display` or raw `visibility` on a timed clip — the framework owns that channel.
+- **Story** — *visuals point back to the source*, with a checkable test: **if the prop could appear
+  unchanged in another product's video, it did not come from the source.**
+- **Registry** — query the catalog **in English** whatever language the video is in (both index
+  tiers are English-only), and report a search miss before hand-authoring, since install counts
+  cannot see a move nobody could install.
+- **Critique** — the structured critique is the deliverable; a persisted snapshot is an archive of
+  it, never a summary-plus-link substitute.
+- **companions.md** — impeccable's anti-pattern detector runs as an edit hook on **Claude Code,
+  Codex, and GitHub Copilot** alike, surfacing only the unambiguous tier.
+
+### Housekeeping
+
+- Re-vendored `library/impeccable/` (7 reference files) and `library/design-dna/` (now with
+  `scripts/`). hyperframes and remotion stay unvendored by design — they are installable upstreams.
+- All 16 paths re-pinned; `node scripts/check-upstreams.mjs` exits 0.
+
 ## 4.1.0 — 2026-09-01
 
 **video-shotcraft re-vendored, and a documented split that no longer exists.** Upstream added three

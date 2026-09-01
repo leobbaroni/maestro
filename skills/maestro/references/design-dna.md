@@ -47,9 +47,11 @@ Every field below must appear in the output JSON.
 
 ### `design_system` — measurable tokens
 
+**Every non-optional field must appear in the emitted JSON.** Optional fields are included only when the data behind them actually exists — an unmeasured reference has no `measured_palette`, and inventing one to fill the shape is worse than omitting it.
+
 | Group | Fields |
 |---|---|
-| `color` | `palette_type` · `primary.{hex,role}` · `secondary.{hex,role}` · `accent.{hex,role}` · `neutral.{scale,usage}` · `semantic.{success,warning,error,info}` · `surface.{background,card,elevated}` · `contrast_strategy` |
+| `color` | `palette_type` · `primary.{hex,role}` · `secondary.{hex,role}` · `accent.{hex,role}` · `neutral.{scale,usage}` · `semantic.{success,warning,error,info}` · `surface.{background,card,elevated}` · `contrast_strategy` · *optional:* `measured_palette` (per entry `hex` · `coverage` as a 0–1 fraction · `role`) · `measurement` (the clustering config, including `k`) |
 | `typography` | `type_scale.{display,heading_1,heading_2,heading_3,body,body_small,caption,overline}` — each with `{size,weight,line_height,tracking}` · `font_families.{heading,body,mono}` · `font_style_notes` |
 | `spacing` | `base_unit` · `scale` · `content_density` · `section_rhythm` |
 | `layout` | `grid_system` · `max_content_width` · `columns` · `gutter` · `breakpoints` · `alignment_tendency` |
@@ -138,7 +140,7 @@ Use these enumerations; free text elsewhere should stay descriptive and concrete
 ## Extraction Procedure
 
 ### design_system
-- **color**: sample visually. Primary = area dominance; secondary = supporting role; accent = CTA usage. Neutral scale from lightest background to darkest text. Extract exact hex where visible; estimate otherwise.
+- **color**: **measure it; do not estimate hex by eye.** Perceived colour drifts toward familiar palette defaults, routinely by a ΔE of 10 or more — enough that a "faithful" extraction rebuilds someone else's brand in your own habitual blues. Where the reference is an image file, cluster it programmatically and take the measured hexes verbatim; `library/design-dna/scripts/measure-colors.mjs` does exactly this (run `npm install --prefix` against that directory once, and pass absolute paths — the scripts resolve relative to their own location, not your project). Fall back to visual sampling **only** when measurement is impossible — a URL that cannot be screenshotted — and say which one you did. Then assign by role rather than by prominence: primary = area dominance, secondary = supporting, accent = CTA emphasis, neutral scale ordered lightest to darkest regardless of theme. Keep the measured palette and the clustering configuration in the DNA (`measured_palette`, `measurement`) so a later verification pass can reuse the same settings rather than re-deriving them.
 - **typography**: identify families by visual class (geometric, humanist, serif). Estimate scale ratios from heading/body size relationships.
 - **spacing**: density from element proximity; rhythm from section-gap consistency.
 - **layout**: infer grid from content alignment; note max-width, column count, asymmetry.
@@ -221,6 +223,7 @@ Default: one self-contained HTML file with inline CSS/JS (unless the user specif
 Before delivering generated output, verify:
 
 - Every color traces back to the DNA palette; fonts match `font_families`; spacing rhythm matches `spacing.scale`; radii match `shape` tokens
+- **Where the DNA carries a measured palette, score the rebuild instead of eyeballing it.** Screenshot the generated output and compare it against the DNA with `library/design-dna/scripts/verify.mjs`, which reports per-colour ΔE and coverage drift against PASS/FAIL thresholds. A failure names the offending colours — fix those and re-verify. Asking the user whether it "looks right" is not the check, and it is the exact judgement the measurement exists to replace. With several image references, verify against each one's measurement separately
 - Overall mood matches `design_style.aesthetic.mood`; components match `components` descriptions
 - Contrast meets WCAG AA (4.5:1 body, 3:1 large text)
 - Effects match `visual_effects` spec (type, technology, params); nothing renders when `enabled: false`
@@ -230,4 +233,4 @@ Before delivering generated output, verify:
 For a systematic post-generation review (severity-ranked critique, anti-pattern scan, a11y audit, edge-case hardening), see `references/design-audit.md`.
 
 ---
-*Distilled from: design-dna (authoritative schema), hallmark (study protocol), taste-skill (generate-first).*
+*Distilled from: design-dna (authoritative schema — including its deterministic colour measurement and the ΔE/coverage verify loop), hallmark (study protocol), taste-skill (generate-first).*

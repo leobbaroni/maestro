@@ -33,6 +33,8 @@ Write the experience, then derive the pixels. Every beat gets five fields:
 
 Optionally add **SFX cues** ("on the capture pulse — a soft analog shutter click"; "on fold: drone cuts, silence, then a single clean chime").
 
+**Visuals point back to the source.** When the piece derives from concrete material — a repo, a pull request, an article, a product page — mine *that* for the visual vocabulary before inventing any. Its phrases, entities, verbs, and recurring motifs are the props; a generic prop is a decision you skipped rather than a neutral choice. The self-check per visual is exact: **if the prop could appear unchanged in another product's video, it did not come from the source.** Swap it for something only this subject could produce, and decorate it afterwards.
+
 **Motion verb vocabulary** (organized by physical character, not energy level):
 
 | Character | Verbs |

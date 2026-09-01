@@ -23,6 +23,8 @@ Tag every finding. If unsure between two levels, ask: "Would a user contact supp
 
 Report rules: be direct and specific ("the submit button", not "some elements"); state why each issue hurts users; give concrete fixes, never "consider exploring…"; prioritize ruthlessly — if everything is important, nothing is; do not soften criticism.
 
+**The structured critique itself is the deliverable — deliver it in full, in the reply.** Where a tool persists a snapshot, that file is an *archive* of the run, not a substitute for it: replacing the critique with a summary and a path to read the rest hands the user homework and buries exactly the findings they asked for. Where a score is renormalized because some heuristics did not apply, say the maximum it was scored against, so a later run can tell a partial total from a full one.
+
 **Pre-emit self-critique (before any build is shown).** Score the not-yet-delivered work 1–5 on six axes — philosophy (does it argue a point of view?), hierarchy, execution, specificity (does it fit *this* brief?), restraint, variety. Any axis <3 triggers a revision pass before the user sees it. This is the builder's own gate; the full critique workflow above is the independent pass.
 
 ## Critique Dimensions

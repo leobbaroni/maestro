@@ -62,19 +62,23 @@ Required: a sized root `<div>` with `data-composition-id` / `data-start="0"` / `
 
 ### Clips (timed children)
 
-A clip is any element with `data-start`, `data-duration` (where required), and `data-track-index`. **`class="clip"` is required on visible timed elements** (`<div>`, `<img>`, …) — without it the runtime keeps the element visible for the whole composition. Omit it on `<video>` (framework manages visibility) and `<audio>` (no visual). **Visual clips must be DIRECT children of the composition root** — a `class="clip"` element nested in a wrapper `<div>` is not registered as a clip, so its `data-start`/`data-duration` are ignored and it stays visible for the whole composition. To wrap or transform a clip, put the wrapper *inside* the clip. `<video>`/`<audio>` are exempt: the framework finds media with a flat DOM query and seeks it at any depth.
+**`data-start` is what makes an element a clip.** The runtime collects `[data-start]` and drives visibility from it, so any element carrying it is timed — that attribute alone, nothing else.
+
+**`class="clip"` is a convention, not a requirement**; the runtime never reads it. Keep writing it anyway, for three reasons that are not visibility: the scaffold's shared `.clip { position: absolute; inset: 0 }` is what gives a scene its full-frame box, Studio uses it as an edit hint, and `lint` warns (`timed_element_missing_clip_class`) when a timed element lacks it. Drop the class and you owe that layout yourself. Omit it on `<video>` and `<audio>`.
+
+**Nesting is allowed.** A timed element inside a wrapper is still timed, and a timed ancestor **clamps** its descendants — a child cannot be visible while its timed ancestor is hidden, which is the useful part. The real difference is layout, not registration: **direct children of the composition root get automatic layout** (the runtime forces `position: absolute`, anchors them at `top: 0; left: 0`, and sizes them to 100% when they have no computed size, so scenes stack in one viewport layer), while **nested clips get none and must position themselves.** An element *without* `data-start` is skipped by that pass entirely, so an untimed full-bleed background needs its own `position: absolute; inset: 0` or it collapses to zero height.
 
 | Attribute | Required | Meaning |
 |---|---|---|
-| `id` | Yes | Stable DOM id, unique across the **assembled** page (inside a sub-comp, prefix ids with the composition id — duplicate `<video>`/`<img>` ids render blank). |
+| `id` | **Yes on `<video>`/`<audio>`**, recommended elsewhere | Stable DOM id, unique across the **assembled** page (inside a sub-comp, prefix ids with the composition id — duplicate `<video>`/`<img>` ids render blank). Media without one is a `lint` **error** (`media_missing_id`), and an id-less `<audio>` is never mixed — **the render comes out silent**. Elsewhere it is a warning (`studio_missing_editable_id`): Studio needs a stable edit target. |
 | `data-start` | Yes | Start time in seconds, or a clip reference (below). |
-| `data-duration` | For `div`, `img`, sub-comps | Duration in seconds. Video/audio can default to media length. |
-| `data-track-index` | Yes | Timeline track; same-track clips must not overlap in time. |
+| `data-duration` | For `div`, `img`, sub-comps | Duration in seconds. Video/audio can default to media length. With no resolvable duration the element has no end and stays visible for the rest of the composition. |
+| `data-track-index` | **No** | Studio timeline lane, **display only** — see below. |
 | `data-media-start` | No | Offset into the media source, in seconds (skip intro without trimming the file). |
-| `data-volume` | No | Static volume 0–1 (default 1). For fades, tween `volume` on the timeline instead. |
+| `data-volume` | No | Static gain, default `1` (0 dB). `0` is silence; values above `1` boost, up to **`3.98`** (+12 dB) — Studio's fader writes this. For fades, tween `volume` on the timeline instead; a tween's values replace this baseline entirely. |
 | `data-has-audio` | No | `<video>` only: `"true"` declares an audio track when auto-detection misses it. |
 
-The visibility window is inclusive of both ends (`start ≤ t ≤ start + duration`), so the final frame holds the animation's resolved end state — a reveal landing exactly on `data-duration` still renders.
+**The visibility window is half-open: `[start, start + duration)`.** A clip shows while `start ≤ t < start + duration` and is **hidden at exactly `t = start + duration`**. So land an animation's resolved end state slightly *before* `data-duration`, never on it — a reveal that finishes exactly on the boundary has its last frame dropped, and the failure is silent because every other frame looks right. The compensation is that two clips can be authored back to back (`b.start === a.start + a.duration`) with no overlapping frame at all.
 
 Authoring hints: `data-hidden` hides an element in both preview and render (non-destructive toggle); `data-layout-ignore` excludes an element from layout audits. Legacy aliases: `data-layer` → `data-track-index`, `data-end` → `data-duration`.
 
@@ -82,13 +86,17 @@ Authoring hints: `data-hidden` hides an element in both preview and render (non-
 
 **Declare a WebGPU dependency.** A composition that cannot render without WebGPU gets `data-requires-webgpu` on its composition root; without it, local capture silently screenshots the no-GPU fallback when auto-detection picks software rendering, and you get a clean-looking render of the wrong thing. With it, capture fails loudly instead. Inside a WebGPU adapter, register queue completion **synchronously** in the seek handler — `e.detail.waitUntil(device.queue.onSubmittedWorkDone())` — so the framework waits for submitted GPU work before screenshotting. And handle a repeated seek at the same time as a re-render of that exact time, never as a step forward: while Studio is paused the same timestamp is re-dispatched to keep the swapchain presented, and advancing simulation state on it is how a paused composition drifts.
 
-### Tracks — temporal, not visual
+### Tracks — a display lane, and nothing else
 
-`data-track-index` controls **temporal overlap only**: two clips on the same track must not overlap in time (lint flags it; render is undefined). Front/back stacking is CSS `z-index`, never track index. Convention: track 0 = base video, 1+ = visual scenes/overlays/captions, 10+ = audio.
+**`data-track-index` is the row a clip occupies in Studio's timeline. The render never reads it, and it constrains nothing.** Two clips on the same track may overlap in time — nothing rejects it and the result is well defined: both are visible, painted in CSS order. Omitting the attribute is fine; the parser defaults it and Studio gives each clip its own lane. A clip on track `5` is not "above" one on track `1`: **layering is CSS `z-index`, sequencing is `data-start`/`data-duration`**, and track index is neither.
+
+The one place the value carries meaning: two `<audio>` elements sharing a track index **and** overlapping in time raise a `lint` warning (`duplicate_audio_track`) — a useful nudge that you are about to double up a bed.
+
+So picking an index is purely a readability choice for whoever opens the file in Studio. The usual convention still reads well — track 0 for base video, 1+ for scenes, overlays and captions, 10+ for audio — but when adding a clip you never need to hunt for a free lane, and you never need to renumber after a retime.
 
 ### Relative timing
 
-`data-start` accepts a clip id meaning "start when that clip ends", with optional `+ N` / `- N` offset (negative = overlap, which then requires different tracks):
+`data-start` accepts a clip id meaning "start when that clip ends", with optional `+ N` / `- N` offset — a negative one produces overlap, which is exactly how a crossfade is authored and needs no separate track:
 
 ```html
 <video id="intro" data-start="0" data-duration="10" data-track-index="0" src="..."></video>
@@ -97,6 +105,14 @@ Authoring hints: `data-hidden` hides an element in both preview and render (non-
 ```
 
 References resolve within the same composition only, the referenced clip needs a known duration, cycles are rejected, and a value that parses as a number is always absolute seconds.
+
+### Cutting one source into several ranges
+
+A hard cut, trim, splice, or reorder is **not** a keyframe problem — do not try to animate source cutting. Duplicate the same video source into several clip elements; each copy picks its range with `data-media-start` + `data-duration` and places that range on the authored timeline with `data-start`. Reordering the cut means changing those offsets, nothing more.
+
+When audio is authored separately, give each audio copy the **identical** source range and timing as its matching video clip (`data-media-start`, `data-duration`, `data-start`), keep the video muted, and let the audio elements carry the sound. A mismatch here is the classic drift where picture and sound diverge a few cuts in.
+
+**Constant `data-playback-rate` is render-safe** for both picture and pitch-preserved sound. It does **not** make source speed ramps keyframeable — a ramp or a mid-source freeze is preprocessed in the media, not expressed on the timeline.
 
 ## Sub-compositions
 

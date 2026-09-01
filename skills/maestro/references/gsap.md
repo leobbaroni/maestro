@@ -49,7 +49,7 @@ Targets: selector string, element, array, NodeList. All methods return a **Tween
 
 Aliases apply in a fixed order (translate → scale → rotate → skew), interpolate each axis independently (prevents cross-tween overwrites), and are faster than string transforms.
 
-- **`autoAlpha`** — use instead of `opacity` for show/hide: at 0 it also sets `visibility: hidden` (no pointer events, out of a11y tree).
+- **`autoAlpha`** — use instead of `opacity` for show/hide: at 0 it also sets `visibility: hidden` (no pointer events, out of a11y tree). **Inside a framework that owns clip visibility** (HyperFrames, Remotion), never duration-tween `display` or raw `visibility` on a timed clip element — the framework owns that channel and lint rejects it. `autoAlpha`, or a zero-duration set at the moment you need the switch, is the way to get the same result without fighting the owner.
 - **Relative values:** `x: "+=20"`, `"-=30"`, `"*=2"`, `"/=2"` — relative to value at first render.
 - **Directional rotation:** `rotation: "-170_short"` (shortest path), `"_cw"`, `"_ccw"`.
 - **`clearProps: "rotation,x"` or `"all"`** — remove GSAP inline styles on complete so CSS takes back over. Clearing any transform part clears the whole transform.
@@ -436,7 +436,7 @@ Same three principles everywhere: create after mount, scope selectors to the com
 
 ## Performance
 
-- **Animate transforms + opacity** (`x y scale rotation opacity/autoAlpha`) — compositor-only. Never animate `width height top left right bottom margin* padding*` for motion, and beware reflow props (`fontSize`, `letterSpacing`): slow tweens of layout properties snap to whole pixels and visibly stutter. Faithful conversions: position → keep CSS rest position, tween the `x`/`y` delta; `fontSize` → `scale`; `letterSpacing` → SplitText + per-char `x` (uniform scale is a *different* effect).
+- **Animate transforms + opacity** (`x y scale rotation opacity/autoAlpha`) — compositor-only. Never animate `width height top left right bottom margin* padding*` for motion, and beware reflow props (`fontSize`, `letterSpacing`): slow tweens of layout properties snap to whole pixels and visibly stutter. **That list is a denylist, not an allowlist** — `width`, `height`, `filter`, `clipPath`, `strokeDashoffset` and friends are legitimate targets when the effect genuinely needs them; prefer transforms and opacity wherever you have the choice, rather than treating anything unlisted as banned. Faithful conversions: position → keep CSS rest position, tween the `x`/`y` delta; `fontSize` → `scale`; `letterSpacing` → SplitText + per-char `x` (uniform scale is a *different* effect).
 - `will-change: transform` in CSS only on elements that actually animate — everywhere, it burns memory and helps nothing.
 - **`gsap.quickTo(target, "x", { duration: 0.4, ease: "power3" })`** for high-frequency event-driven updates (mouse followers): returns a setter function reusing one tween. `gsap.quickSetter(target, "x", "px")` when you want instant sets with no interpolation.
 - Stagger > N tweens; reuse timelines; don't build tweens per frame; virtualize/limit huge lists; pause or kill off-screen animations.
