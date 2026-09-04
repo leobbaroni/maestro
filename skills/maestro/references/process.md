@@ -27,7 +27,7 @@ Before any substantial design, build, or redesign work, interview the user until
 - Walk the **design tree branch by branch**: each answer opens or closes downstream branches. Resolve dependencies between decisions in order (platform before layout, audience before tone, motion tier before animation specifics).
 - **Never ask what you can look up.** If a question is answerable by exploring the codebase, existing assets, or prior project files, explore instead of asking.
 - If a named reference is behind a login or paywall, ask for a screenshot instead of silently skipping it.
-- **Structure choices are grill material.** For page-scale work, surface the macrostructure and theme as explicit user choices — on a vague brief, offer the domain-matched trio of three categorically different page shapes (`references/page-anatomy.md`), recommended pick first, not seven abstract tones.
+- **Structure choices are grill material.** For page-scale work, surface the page's shape and register as explicit user choices — on a vague brief, offer three **categorically different** structures derived from the brief's own content and the dealt direction (`references/design-direction.md`), recommended pick first, not seven abstract tones.
 - **The design authority is the user's call, not yours** (next section). Never silently pick which house drives the look.
 - **Honest-copy pause.** When a stat/proof slot has no user-supplied number, never invent one: pause and ask, mark "metric to confirm", or drop the slot.
 - **Component-scope shortcut.** A brief naming one UI element (button, input, card, modal) skips page-level choices entirely — ship the component with all 8 interaction states and a state-demo wrapper.
@@ -57,10 +57,9 @@ Ask by **look and feel, never by skill name**. The user is picking a result, not
 
 | Offer it as | Leads to | Reads as | Best when |
 |---|---|---|---|
-| "Structure-led: a page shaped unlike the usual — the layout itself is the idea" | hallmark | Editorial, art-directed, print-adjacent; strong shapes, committed themes | Landing pages, portfolios, brand sites, anything that must not look templated |
-| "Polish-led: conventional shape, uncommonly well finished — no AI tells anywhere" | taste-skill | Confident, current, premium; the details survive zooming in | Marketing surfaces, launches, redesigns of something already close |
-| "Craft-led: usability and system rigor first, taste in service of the work" | impeccable | Calm, legible, systematic; nothing shouts | Dashboards, product UI, tools, dense data, anything people use daily |
-| "Blend" | all three composing | Structure from one, finish from another, rigor throughout | Mixed-register work (a marketing site with a real app behind it), or a brief that pulls two ways |
+| "Craft-led: usability and system rigor first, taste in service of the work" | impeccable — **the default** | Calm, legible, systematic; nothing shouts, and every part is deliberate | Dashboards, product UI, tools, dense data — and, unless the user says otherwise, everything else |
+| "Polish-led: conventional shape, uncommonly well finished — no AI tells anywhere" | taste-skill | Confident, current, premium; the details survive zooming in | Marketing surfaces, launches, redesigns of something already close, where the shape is settled and finish carries it |
+| "Blend" | both composing | Rigor throughout, taste-skill's finish pass on the surfaces that sell | Mixed-register work — a marketing site with a real app behind it |
 
 Mechanics that make the choice real:
 
@@ -68,7 +67,7 @@ Mechanics that make the choice real:
 - **Recommend one and say why** in the same breath. Register usually decides it: product surface → craft-led; brand surface → structure-led when the shape should surprise, polish-led when the shape is settled and the finish carries it; mixed register or a brief pulling both ways → blend, naming which house owns which layer.
 - **Push once past a lazy answer.** "Whatever looks best" is not a pick — reply with the two most different options rendered as sentences and ask which one they'd rather land on. If they still decline, choose, state the choice and the reason, and treat it as locked.
 - **Ask preference questions in the same pass:** which of their references they actually love versus merely tolerate; what they never want to see; whether they want the safe or the ambitious version of this brief.
-- **A named house ends the question.** "Do it hallmark-style" is the answer; stop offering alternatives. Scope of the pick: it decides whose instincts lead the look and which protocol runs when verbs overlap (`references/commands.md`). It does not reopen source conflicts already resolved inside the modules — the `taste-skill > hallmark > impeccable` order was applied at distillation time and is baked into the reference prose, not a runtime dial.
+- **A named house ends the question.** "Do it taste-skill-style" is the answer; stop offering alternatives. Scope of the pick: it decides whose instincts lead the look and which protocol runs when verbs overlap (`references/commands.md`). It does not reopen source conflicts already resolved inside the modules — the **`impeccable > taste-skill`** order is applied at distillation time and lives in the reference prose, not in a runtime dial.
 - **Lock it into the brief** (§2) and honor it downstream: it decides which protocol runs when verbs overlap (`references/commands.md`), and re-opening it mid-build is a direction change that needs the user, not a quiet swap.
 
 ### 1b. Film kind — ask, don't assume
@@ -109,7 +108,7 @@ The grill ends when the brief contains all of the following. Freeze it into a fi
 | **Film kind** | Which kind the user picked (§1b) — product-as-it-is · abstract · designed frames · filmed-looking · packaged — who chose it, and the engine it selects. Video only. Changing it later is a direction change, not a swap |
 | **Platform** | Target surfaces and breakpoints (e.g. mobile-first ~380px + 1440px desktop; 16:9 vs 9:16 for video). |
 | **Style direction** | The Design Read one-liner first (`references/design-direction.md` step 0), then 1+ concrete references (site/app/screenshot) with *what to steal from each*, plus 2–3 **banned qualities** ("no card grid", "not so text-dense", "no corporate blue"). |
-| **Page shape + theme** | For page-scale work: the picked macrostructure, nav/footer archetypes, and theme (or the custom fork) from `references/page-anatomy.md` — plus what the previous build used, so this one differs. |
+| **Page shape + theme** | For page-scale work: the committed structural thesis in one line, the nav and footer character, and the theme — plus what the previous surface in this project used, so this one demonstrably differs (`references/design-direction.md`). |
 | **Motion tier** | *calm* (subtle fades, hover states only) · *lively* (micro-interactions, staggered entrances, one animated accent) · *showpiece* (scroll-driven sections, animated hero, page-transition feel). The tier shapes everything downstream. |
 | **Dials** | Brand surfaces also lock DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY values with a one-line reason (inference table: `references/design-direction.md`). DENSITY drives the spacing bands; MOTION crosswalks to the tier above. |
 | **Constraints** | Tech stack, existing tokens/components to honor, real content (actual headline/copy/data — lorem ipsum is auto-rejected), budget/paid-action limits, non-goals. |
@@ -356,4 +355,4 @@ Only once reproduction holds does **phase two** begin: static regions that shoul
 For mega-requests (5+ asks in one message): echo the asks back as a numbered checklist before working, and report per-item DONE / NOT DONE / PARTIAL at the end — never silent omission.
 
 ---
-*Distilled from: grilling, pilot, mockups, impeccable, taste-skill (redesign protocol, output discipline), hallmark (structure grilling).*
+*Distilled from: grilling, pilot, mockups, impeccable (the leading house — the roll, the direction contract, the build paths), taste-skill (redesign protocol, output discipline). Structure-grilling material absorbed from hallmark before it was retired as a tracked source.*

@@ -10,7 +10,7 @@
 | Product photography: studio, lifestyle, hero banner, carousel, ad pack, try-on | **Yes** — the product track |
 | Thumbnails and video covers | **Yes** — the thumbnail track |
 | Marketplace listing cards and A+ content modules | **Yes** — the listing track |
-| A website that presents the brand | `page-anatomy.md` + `design-direction.md`, with the Brand Lock below as its input |
+| A website that presents the brand | `design-direction.md`, with the Brand Lock below as its input |
 | The brand's *taste* — what it should look like at all | `design-direction.md`, and the direction round in `process.md` §3 |
 | One-off images with no brand attached | `generative-stills.md` |
 

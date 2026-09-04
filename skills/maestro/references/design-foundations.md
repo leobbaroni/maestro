@@ -210,7 +210,7 @@ The hero is a single moment, not a feature list. Hard rules on landing/brand sur
 | Viewport | `min-h-[100dvh]`, never `h-screen` (iOS address-bar jump) |
 | Nav | Single line at desktop; height ≤80px (default 64–72px) |
 
-Plan headline size and hero-asset size *together*: if copy overflows the fold, cut copy or reduce scale — never let the CTA sink below the fold. Hero *composition* archetypes: `references/page-anatomy.md`.
+Plan headline size and hero-asset size *together*: if copy overflows the fold, cut copy or reduce scale — never let the CTA sink below the fold. Hero *composition* follows the committed form rather than a stock arrangement: `references/design-direction.md`.
 
 ## UX Copy & Clarity
 
@@ -287,7 +287,7 @@ Full anti-pattern catalog (gradients, card grids, generic fonts, fake metrics): 
 
 ### Image & asset strategy (brand surfaces)
 
-Landing pages and portfolios are visual products; a text-only page with div "screenshots" is incomplete work, not minimalism — but **typography-only is a legitimate committed direction** when chosen deliberately (`references/page-anatomy.md` enrichment tiers). When imagery is warranted, priority order:
+Landing pages and portfolios are visual products; a text-only page with div "screenshots" is incomplete work, not minimalism — but **typography-only is a legitimate committed direction** when chosen deliberately and recorded in the world (`references/design-direction.md`). When imagery is warranted, priority order:
 
 1. **Image-gen tool first** when available — hero photography, product shots, texture, generated at the section's aspect ratio.
 2. **Real photography second:** `https://picsum.photos/seed/{descriptive-seed}/{w}/{h}` (seed describes the section); supplied brand/stock URLs — verify every hotlink resolves.
@@ -330,4 +330,4 @@ Animate only `transform` and `opacity` (`clip-path`/`filter` sparingly); never w
 Quality must be consistent — never perfect one corner while another stays rough. If spacing is off everywhere, fix the system, not one screen.
 
 ---
-*Distilled from: impeccable, design-kit, taste-skill (hero discipline, consistency locks, asset strategy), hallmark (type/color/overflow gates).*
+*Distilled from: impeccable (the leading house), design-kit, taste-skill (hero discipline, consistency locks, asset strategy). Type, colour and overflow gates absorbed from hallmark before it was retired as a tracked source.*

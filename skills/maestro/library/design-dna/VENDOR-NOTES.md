@@ -15,7 +15,7 @@ the exact JSON shape lives here and the schema wins on any disagreement.
 | `references/generation-guide.md` | Going the other way: generating a design from an existing DNA profile |
 | `scripts/measure-colors.mjs` | **Deterministic colour measurement.** Clusters a reference image into a palette with per-entry `hex`, `coverage` (0–1) and `role`. Run it instead of estimating hex by eye — eyeballed colour drifts by a ΔE of 10+ |
 | `scripts/verify.mjs` | **The verify loop.** Scores a screenshot of the rebuild against a DNA file (or a standalone measurement) and reports per-colour ΔE and coverage drift with PASS/FAIL thresholds |
-| `scripts/color-math.mjs` · `scripts/package.json` | The ΔE/colour-space helpers the two scripts import, and their dependency manifest — `npm install --prefix <this dir>` before first use |
+| `scripts/color-math.mjs` · `scripts/package.json` | The ΔE/colour-space helpers the two scripts import, and their dependency manifest. **Never `npm install` into this directory** — the only dependency is `sharp`, whose platform binaries would add tens of megabytes to every install of the plugin, and they are platform-specific so a committed copy would be wrong for most users anyway. Copy the scripts to a scratch directory and install there; `../../references/design-dna.md` carries the exact commands |
 
 Use it for extracting a reference UI into a structured profile, applying a profile to new work,
 or deriving a palette when another module asks for one (`generative-direction.md` routes here).

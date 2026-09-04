@@ -330,4 +330,4 @@ const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches; /
 Design rules for the reduced variant are in `references/motion-principles.md` (Accessibility).
 
 ---
-*Distilled from: genjutsu (css-native, framer-motion), hyperframes-animation adapters, impeccable, LottieFiles motion-design-skill, taste-skill (React forbidden patterns), hallmark (microinteractions).*
+*Distilled from: genjutsu (css-native, framer-motion), hyperframes-animation adapters, impeccable, LottieFiles motion-design-skill, taste-skill (React forbidden patterns). Microinteraction material absorbed from hallmark before it was retired as a tracked source.*

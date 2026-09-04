@@ -1,5 +1,86 @@
 # Changelog
 
+## 5.0.0 — 2026-09-01
+
+**The catalog was the sameness.** Mockups across different briefs kept rhyming, and the cause was
+arithmetic rather than taste: maestro carried a catalog of 21 named page shapes whose own selection
+table said *"the first ten cover ~80% of briefs."* A finite menu of ten shapes means every brief in
+the world lands in the same ten, and two briefs that both read as "SaaS feature page" get the same
+grid with different words in it. Meanwhile the mechanism built to escape a category — impeccable's
+roll, which deals **foreign forms from outside it** — was ranked *last* on design-taste conflicts
+and handed off to only "when impeccable is installed."
+
+So the convergent engine had top authority and the divergent one had least. This release inverts
+that. Breaking: a module and an upstream are removed, and the taste hierarchy is reversed.
+
+### The hierarchy is now `impeccable > taste-skill`
+
+Was `taste-skill > hallmark > impeccable`. maestro's own rule is that this order is *"applied at
+distillation time and lives in the reference prose, not a runtime dial"* — so flipping it honestly
+meant re-resolving the conflict points, not editing a declaration. The verb table drops to two
+houses, the audit stack runs impeccable's `critique` **first**, the resolution order makes
+impeccable the default **on every register** (it used to be product-surface only), and taste-skill
+takes the work it is genuinely best at: tells, category defaults, and line-level finish on a
+surface whose direction is already committed.
+
+The design-house question users are asked changes with it. impeccable is now the recommended
+default rather than one of three peers, and "blend" is two houses composing instead of three.
+
+### hallmark retired, `page-anatomy.md` deleted
+
+`library/hallmark/` (983 KB, 109 files) is gone, the upstream is no longer tracked, and
+`page-anatomy.md` is deleted — 29 → **28 modules**, 11 → **10 corpora**, 13 → **12 upstreams**.
+
+**Its knowledge is not lost, and its attribution stays.** The slop-test gates, type/colour/overflow
+gates, motion budget, microinteractions, roman headers, the diversification rule, the study
+protocol and structure-grilling material were already distilled into the judgment layer; every
+module footer that carried hallmark now records it as absorbed-before-retirement, and NOTICE.md
+keeps the MIT attribution that covers it. What was removed is the **catalog**, its **authority**,
+and its **drift tracking** — not the craft.
+
+### Structure now comes from the roll — `design-direction.md` §*The shape is dealt, not selected*
+
+Deleting a catalog creates the opposite risk: "derive it" quietly becoming "default to a stack of
+centred sections." So the replacement is explicit. A page's shape is derived twice — from the
+**brief's own content** (what is the actual spine: a sequence, a comparison, an argument, a
+catalog, one claim?) and from the **dealt direction's form**, which is where a structure borrowed
+from a printed programme, a control panel, a field guide or a ledger brings its own reading order.
+
+Then the guard: **name the structural thesis in one line, in the world.** *"A two-column ledger,
+rules not cards, the whole argument readable without scrolling past the fold."* A structure you
+cannot state in a sentence is one you did not choose. And keep consecutive surfaces genuinely
+different — when the next one lands in the same place on every axis, that is the signal to re-roll
+rather than ship, because **structural sameness is the AI fingerprint and it survives every visual
+change made on top of it.**
+
+### design-dna actually works now
+
+4.2.0 shipped a pointer to scripts that could not run — `Cannot find package 'sharp'` — and told
+users to `npm install` **into the plugin**, which would have put ~20 MB of platform-specific
+binaries inside every install (and the wrong platform's, for most of them).
+
+Fixed properly: the scripts stay vendored, the dependency installs to a scratch directory outside
+the plugin, and both the module and the vendor manifest carry the exact commands plus an explicit
+**"never `npm install` into this directory."** When `sharp` cannot install, the instruction is to
+say measurement is unavailable and fall back to visual sampling *declared as such* — an estimate
+labelled as a measurement is worse than an estimate.
+
+Verified end to end rather than assumed: measured against a generated image with a known palette,
+`measure-colors.mjs` returned `#1b4332` / `#d8f3dc` / `#ff6b35` at coverage `0.6` / `0.3` / `0.1`
+with roles correctly assigned, and `verify.mjs` scored the round trip at **ΔE 0** across all three.
+
+### Also
+
+- **video-shotcraft re-vendored twice in one day** — 155 → **157 cards**, all with demos. The
+  vendor manifest now marks the count as a snapshot and says to count the directory when the exact
+  number matters, because a hardcoded number in prose goes stale faster than this repo is re-read.
+- Licensing accuracy: NOTICE.md and README claimed three-to-four vendored corpora when **nine**
+  ship a LICENSE — a count that drifted when higgsfield-skills and comfy-skills landed in 4.0.0.
+  Both now enumerate all nine, and record `higgsfield-directors/` as author-original with no
+  upstream.
+- Every reference to the deleted module was re-pointed rather than left dangling (design-audit,
+  design-dna, design-foundations, motion-principles, process, brand-systems, SKILL.md).
+
 ## 4.2.0 — 2026-09-01
 
 **The drift pass: 16 watched paths across four upstreams, absorbed.** Every pinned source is

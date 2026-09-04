@@ -185,7 +185,7 @@ Two complementary caps — both hold:
 - **≤3 distinct motion primitives per page** (a counter + a hover-lift + a marquee = three; a fourth is the slop pull). Cut motion before adding motion. A showpiece tier is still ≤3 primitives — each must earn its place.
 - **2–3 elements in simultaneous active motion** (the existing rule above) — primitives count across the page; this counts what moves at one instant.
 
-Page-shape defaults (`references/page-anatomy.md` shapes): motion **default-on** (ship 2–3 purposeful microinteractions) for bento-grid, stat-led, workbench, marquee-hero, FAQ-accordion pages; **default-off** (stillness is the brand, motion opt-in) for editorial, manifesto, letter, quote-led, type-specimen, long-document, index pages. Some themes multiply durations: stark print-like themes run 0× (static is correct, not a bug); heavy display themes ~0.7×; luxury editorial ~1.2–1.3×.
+Motion defaults follow the surface's character, not a named shape: **default-on** (ship 2–3 purposeful microinteractions) where the page is modular, interactive, or data-forward — tiled layouts, stat-led pages, workbenches, marquee heroes, accordions; **default-off** (stillness is the brand, motion opt-in) where the page is read rather than operated — editorial, manifesto, letter, quote-led, type-specimen, long-document, index pages. Some themes multiply durations: stark print-like themes run 0× (static is correct, not a bug); heavy display themes ~0.7×; luxury editorial ~1.2–1.3×.
 
 Interaction details: tooltip delays are asymmetric — pointer hover 800–1000ms, keyboard focus 0ms. Success that is visible needs no announcement (label swap, not toast); optimistic updates roll back with an Undo on failure. Focus rings appear instantly, never animated in.
 
@@ -312,4 +312,4 @@ The blanket kill is the safety net for CSS you don't own, not the answer for you
 | Everything enters the same way | Default y+opacity on every element | Vary: from left, from right, from scale, opacity-only, letter-spacing |
 
 ---
-*Distilled from: LottieFiles motion-design-skill, genjutsu motion-principles, hyperframes-creative, impeccable, hallmark (motion budget).*
+*Distilled from: LottieFiles motion-design-skill, genjutsu motion-principles, hyperframes-creative, impeccable. The motion budget was absorbed from hallmark before it was retired as a tracked source.*

@@ -70,7 +70,7 @@ Each direction implies a motion energy, easing family, pacing, and atmosphere la
 | Cultural, fun, consumer, festive | Folk Frequency |
 | Dark, dramatic, intense, cinematic | Shadow Cut |
 
-Web-UI style families (glassmorphism, neumorphism, claymorphism, brutalism, bento grid, flat, skeuomorphic) are treatments, not directions — pick a direction above first, then use a treatment only if it serves it. Page-shape and theme selection (macrostructures, component fingerprints, the 21-theme catalog) is its own layer: `references/page-anatomy.md`.
+Web-UI style families (glassmorphism, neumorphism, claymorphism, brutalism, bento grid, flat, skeuomorphic) are treatments, not directions — pick a direction above first, then use a treatment only if it serves it. **A treatment is also not a structure**: reaching for "bento" answers what the surfaces look like, never what the page is shaped like, and mistaking one for the other is how a direction quietly becomes a template. The shape comes from the brief's content and the dealt form — see *The shape is dealt, not selected* below.
 
 ### Aesthetic recipes — pre-committed treatments with exact tokens
 
@@ -123,6 +123,19 @@ Once a world is locked, three things follow:
 - **Refinement commands operate inside it.** `bolder`, `quieter`, `distill`, `polish` all refine a surface whose world already shipped. They are not a way to change the world — that is a new direction round, and it needs the user.
 
 Record the world where the brief lives, alongside the design authority and the locked direction: its thesis, palette with values, type character, material vocabulary, and motion register. A world held only in conversation is a world the next session re-invents.
+
+## The shape is dealt, not selected
+
+**A page's structure is part of its direction, and it comes out of the roll — not out of a menu.** maestro used to carry a catalog of named page shapes and pick one per brief. That is exactly how every output starts to rhyme: a finite list of *N* shapes means every brief in the world lands in the same *N*, and two briefs that both read as "SaaS feature page" get the same grid with different words in it. The convergence is not a failure of the picking; it is the arithmetic of picking from a list.
+
+So the shape is **derived**, twice over:
+
+- **From the brief's own content.** What is the actual spine of this thing — a sequence, a comparison, an argument, a catalog, a single claim, a body of work? Structure follows the shape of what there is to say. A page with one claim and one proof does not need eight tiles; a page with fourteen equal items has a real reason for a grid, and that reason is the content, not a template.
+- **From the dealt direction's form.** The direction round deals **foreign forms — structures from outside the category** — and that is where a non-obvious layout comes from. A form borrowed from a printed programme, a control panel, a field guide, or a ledger brings its own reading order and its own furniture. Fuse it against the product's facts (`process.md` §3), and let it decide the shape.
+
+**Name the shape you committed to, in one line, in the world.** This is the guard against the opposite failure: with no catalog to pick from, "derive it" can quietly become "default to a stack of centred sections." Write the structural thesis down — *"a two-column ledger, rules not cards, the whole argument readable without scrolling past the fold"* — so the shape is a decision somebody made rather than the shape that happened. A structure you cannot state in a sentence is one you did not choose.
+
+**Then make consecutive surfaces genuinely differ.** Keep a short record of what the last few surfaces in this project committed to — their structural thesis, their paper band, their display character, their accent — and when the next one lands in the same place on all of them, that is the signal to re-roll rather than to ship. Two surfaces are allowed to share a register; they are not allowed to be the same page with different copy. **Structural sameness is the AI fingerprint, and it survives every visual change you make on top of it.**
 
 ## The boldness dial
 
@@ -244,7 +257,7 @@ Two commitments the inventory has to carry as **quantities**, because both pass 
 
 A brand system = voice + tokens + distinctive assets, all downstream of the thesis.
 
-- **Voice**: the three physical-object words govern palette mechanics, type character, motion energy, and copy tone simultaneously. Palette IS voice — a calm brand and a restless brand must not share palette mechanics. Don't converge across projects; each surface differentiates from the last — operationalized: read the previous build's structure stamp and log before picking, and differ on macrostructure, theme (≥1 of 3 axes), nav, footer, and enrichment (`references/page-anatomy.md`). When a cultural-symbol palette is the obvious pull, reach past it; let culture come from type, imagery, copy.
+- **Voice**: the three physical-object words govern palette mechanics, type character, motion energy, and copy tone simultaneously. Palette IS voice — a calm brand and a restless brand must not share palette mechanics. Don't converge across projects; each surface differentiates from the last — operationalized: read what the previous surface in this project committed to before picking, and differ on structural thesis, theme (≥1 of 3 axes), nav, footer, and enrichment — see *The shape is dealt, not selected* below. When a cultural-symbol palette is the obvious pull, reach past it; let culture come from type, imagery, copy.
 - **Tokens**: one canonical spec file; generated code (CSS variables / Tailwind config / Theme.kt / Color+App.swift) are children of it. Interactive elements define all five states: default, hover, focus, active, disabled. Minimal skeleton:
 
 ```yaml
@@ -282,7 +295,7 @@ motion:
 
 The single highest-leverage decision. Google-Fonts defaults are the #1 tell of template work.
 
-**Headers are roman — globally.** Italic on any heading or headline (including a single italicized emphasis word inside an upright headline) is among the most reliable AI tells. Emphasis in headers comes from weight, accent color, or a drawn underline. Italic survives in body copy and in two display idioms that are quotes-of-a-voice, not headings: the pull-quote/testimonial set at display size and the letter-form salutation (`references/page-anatomy.md` Quote-Led and Letter shapes). Other exception: a *preserved existing brand* whose identity is genuinely italic-led (redesign-preserve mode) — never a greenfield choice.
+**Headers are roman — globally.** Italic on any heading or headline (including a single italicized emphasis word inside an upright headline) is among the most reliable AI tells. Emphasis in headers comes from weight, accent color, or a drawn underline. Italic survives in body copy and in two display idioms that are quotes-of-a-voice, not headings: the pull-quote/testimonial set at display size and the letter-form salutation, where the italic is the quoted voice rather than the heading. Other exception: a *preserved existing brand* whose identity is genuinely italic-led (redesign-preserve mode) — never a greenfield choice.
 
 ### Selection procedure (every project, never skip)
 
@@ -378,4 +391,4 @@ All MIT/ISC, commercial-OK — prefer for distinctiveness: Phosphor (6 weights �
 4. Keep the refs; later critique passes cite them as the taste bar.
 
 ---
-*Distilled from: impeccable, design-kit, hyperframes, genjutsu, taste-skill (dials, Design Read, aesthetic recipes, generate-first), hallmark (roman headers, diversification).*
+*Distilled from: impeccable (the leading house), design-kit, hyperframes, genjutsu, taste-skill (dials, Design Read, aesthetic recipes, generate-first). Roman headers and the diversification rule absorbed from hallmark before it was retired as a tracked source.*
